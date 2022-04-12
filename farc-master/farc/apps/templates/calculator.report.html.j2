@@ -29,8 +29,10 @@
                      src="/static/images/Logo_Flow-R_Couleur.jpg"
                      class="d-inline-block align-middle mr-3">
                 <div id="reportHeaderTitle" class='align-self-center mr-auto'>
-                    <h2 class="header_text mb-0">
-                        REPORT {{form.simulation_name}}
+                    <h2 class="header_text mb-0"> 
+                        <a href="{{ permalink.link }}">
+                            REPORT {{form.simulation_name}}
+                        </a>
                     </h1>
                     <p class="mb-0" id="report_version">
                         Created {{ creation_date }} using FARC v{{ form.calculator_version }}
