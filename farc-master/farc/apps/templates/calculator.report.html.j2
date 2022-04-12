@@ -29,8 +29,10 @@
                      src="/static/images/Logo_Flow-R_Couleur.jpg"
                      class="d-inline-block align-middle mr-3">
                 <div id="reportHeaderTitle" class='align-self-center mr-auto'>
-                    <h2 class="header_text mb-0">
-                        REPORT {{form.simulation_name}}
+                    <h2 class="header_text mb-0"> 
+                        <a href="{{ permalink.link }}">
+                            REPORT {{form.simulation_name}}
+                        </a>
                     </h1>
                     <p class="mb-0" id="report_version">
                         Created {{ creation_date }} using FARC v{{ form.calculator_version }}
@@ -678,7 +680,7 @@
                 <strong>Break data:</strong>
             </div>
             <div class="card-body">
-                {% if form.infected_dont_have_breaks_with_exposed %}
+                {% if form.infected_dont_have_breaks_with_exposed==1 %}
                     <p class="pOccupant">
                         Exposed occupant(s):
                     </p>
@@ -687,7 +689,7 @@
                     <li>
                         <p class="data_text">
                             Lunch break:
-                            {% if form.exposed_lunch_option %}
+                            {% if form.exposed_lunch_option == 1 %}
                                 Yes
                             </li>
                             <ul>
@@ -725,7 +727,7 @@
                     </ul>
                 {% endif %}
             </ul>
-            {% if form.infected_dont_have_breaks_with_exposed %}
+            {% if form.infected_dont_have_breaks_with_exposed==1 %}
                 <p class="pOccupant">
                     Infected occupant(s):
                 </p>
@@ -733,7 +735,7 @@
                     <li>
                         <p class="data_text">
                             Lunch break:
-                            {% if form.infected_lunch_option %}
+                            {% if form.infected_lunch_option == 1%}
                                 Yes
                             </li>
                             <ul>

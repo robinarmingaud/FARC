@@ -212,7 +212,7 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 
         ),
         (
-            f'NO bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a mask wear ratio of {form.infected_mask_wear_ratio} for infected people',
+            f'NO bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a {form.infected_mask_wear_ratio} wear ratio for infected people',
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=0),
 
         ),
@@ -222,7 +222,7 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 
         ),
         (
-            f'{form.biov_amount} m3/h bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a mask wear ratio of {form.infected_mask_wear_ratio} for infected people',
+            f'{form.biov_amount} m3/h bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a {form.infected_mask_wear_ratio} wear ratio for infected people',
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=1),
 
         ),
