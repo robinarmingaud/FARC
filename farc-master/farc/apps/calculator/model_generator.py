@@ -39,7 +39,7 @@ class FormData:
     exposed_coffee_duration: int
     exposed_finish: minutes_since_midnight
     exposed_lunch_finish: minutes_since_midnight
-    exposed_lunch_option: bool
+    exposed_lunch_option: int
     exposed_lunch_start: minutes_since_midnight
     exposed_start: minutes_since_midnight
     floor_area: float
@@ -47,10 +47,10 @@ class FormData:
     biov_option: int
     infected_coffee_break_option: str               #Used if infected_dont_have_breaks_with_exposed
     infected_coffee_duration: int                   #Used if infected_dont_have_breaks_with_exposed
-    infected_dont_have_breaks_with_exposed: bool
+    infected_dont_have_breaks_with_exposed: int
     infected_finish: minutes_since_midnight
     infected_lunch_finish: minutes_since_midnight   #Used if infected_dont_have_breaks_with_exposed
-    infected_lunch_option: bool                     #Used if infected_dont_have_breaks_with_exposed
+    infected_lunch_option: int                      #Used if infected_dont_have_breaks_with_exposed
     infected_lunch_start: minutes_since_midnight    #Used if infected_dont_have_breaks_with_exposed
     infected_people: int
     infected_start: minutes_since_midnight
@@ -138,9 +138,9 @@ class FormData:
             ['exposed_start', 'exposed_finish'],
             ['infected_start', 'infected_finish'],
         ]
-        if self.exposed_lunch_option:
+        if self.exposed_lunch_option == 1:
             time_intervals.append(['exposed_lunch_start', 'exposed_lunch_finish'])
-        if self.infected_dont_have_breaks_with_exposed and self.infected_lunch_option:
+        if self.infected_dont_have_breaks_with_exposed==1 and self.infected_lunch_option == 1:
             time_intervals.append(['infected_lunch_start', 'infected_lunch_finish'])
 
         for start_name, end_name in time_intervals:
@@ -448,14 +448,14 @@ class FormData:
 
     def exposed_lunch_break_times(self) -> models.BoundarySequence_t:
         result = []
-        if self.exposed_lunch_option:
+        if self.exposed_lunch_option ==1:
             result.append((self.exposed_lunch_start, self.exposed_lunch_finish))
         return tuple(result)
 
     def infected_lunch_break_times(self) -> models.BoundarySequence_t:
-        if self.infected_dont_have_breaks_with_exposed:
+        if self.infected_dont_have_breaks_with_exposed==1:
             result = []
-            if self.infected_lunch_option:
+            if self.infected_lunch_option == 1:
                 result.append((self.infected_lunch_start, self.infected_lunch_finish))
             return tuple(result)
         else:
@@ -486,18 +486,18 @@ class FormData:
         exposed_coffee_breaks = self.exposed_number_of_coffee_breaks()
         if exposed_coffee_breaks == 0:
             return ()
-        if self.exposed_lunch_option:
+        if self.exposed_lunch_option == 1:
             breaks = self._coffee_break_times(self.exposed_start, self.exposed_finish, exposed_coffee_breaks, self.exposed_coffee_duration, self.exposed_lunch_start, self.exposed_lunch_finish)
         else:
             breaks = self._compute_breaks_in_interval(self.exposed_start, self.exposed_finish, exposed_coffee_breaks, self.exposed_coffee_duration)
         return breaks
 
     def infected_coffee_break_times(self) -> models.BoundarySequence_t:
-        if self.infected_dont_have_breaks_with_exposed:
+        if self.infected_dont_have_breaks_with_exposed==1:
             infected_coffee_breaks = self.infected_number_of_coffee_breaks()
             if infected_coffee_breaks == 0:
                 return ()
-            if self.infected_lunch_option:
+            if self.infected_lunch_option == 1:
                 breaks = self._coffee_break_times(self.infected_start, self.infected_finish, infected_coffee_breaks, self.infected_coffee_duration, self.infected_lunch_start, self.infected_lunch_finish)
             else:
                 breaks = self._compute_breaks_in_interval(self.infected_start, self.infected_finish, infected_coffee_breaks, self.infected_coffee_duration)
