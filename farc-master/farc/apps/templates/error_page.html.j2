@@ -1,0 +1,25 @@
+{% extends "layout.html.j2" %}
+{% block extra_headers %}
+    <link rel="stylesheet" href="/static/css/error_page.css">
+{% endblock extra_headers %}
+{% block main %}
+    <div id="main_error"></div>
+    <div class="field--item">
+        <div class="component-row component-row__display__fluidcenter section-navigation effect_none">
+            <div class="component-row__row">
+                <div class="component-row__column component-row__center section-has-no-column col-md-12 col-sm-12 col-xs-12">
+                    <div class="box-effects-wrapper ">
+                        <div class="text-component text-component-page clearfix">
+                            {% block contents %}
+                                {{ contents }}
+                            {% endblock contents %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="endof-cern-header-blocks"></a>
+</div>
+<br>
+{% endblock main %}
