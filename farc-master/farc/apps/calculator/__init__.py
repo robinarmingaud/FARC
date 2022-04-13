@@ -29,7 +29,7 @@ from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import __version__, _DEFAULTS as d, LOCALE
+from .DEFAULT_DATA import __version__, _DEFAULTS as d, LOCALE, PLACEHOLDERS, TOOLTIPS
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
@@ -181,7 +181,9 @@ class CalculatorForm(BaseRequestHandler):
             calculator_prefix=self.settings["calculator_prefix"],
             calculator_version=__version__,
             default = d,
-            ACTIVITY_TYPES = ACTIVITY_TYPES
+            ACTIVITY_TYPES = ACTIVITY_TYPES,
+            PLACEHOLDERS = PLACEHOLDERS,
+            TOOLTIPS = TOOLTIPS
         )
         self.finish(report)
 
