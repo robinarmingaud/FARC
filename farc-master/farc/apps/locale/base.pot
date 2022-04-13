@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-13 16:50+0200\n"
+"POT-Creation-Date: 2022-04-13 17:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,12 +237,12 @@ msgid " Central heating system in use: "
 msgstr ""
 
 #: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:259
-#: templates/calculator.form.html.j2:280
+#: templates/calculator.form.html.j2:280 templates/calculator.form.html.j2:546
 msgid " No "
 msgstr ""
 
 #: templates/calculator.form.html.j2:125 templates/calculator.form.html.j2:261
-#: templates/calculator.form.html.j2:278
+#: templates/calculator.form.html.j2:278 templates/calculator.form.html.j2:548
 msgid " Yes "
 msgstr ""
 
@@ -380,5 +380,87 @@ msgstr ""
 
 #: templates/calculator.form.html.j2:352
 msgid " Activity type:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:387 templates/calculator.form.html.j2:443
+msgid " Mask wear ratio: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:391 templates/calculator.form.html.j2:446
+msgid " Presence: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:394 templates/calculator.form.html.j2:503
+#: templates/calculator.form.html.j2:552
+msgid " Start: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:398 templates/calculator.form.html.j2:453
+#: templates/calculator.form.html.j2:506 templates/calculator.form.html.j2:555
+msgid " Finish: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:406
+msgid " Infected person(s):"
+msgstr ""
+
+#: templates/calculator.form.html.j2:408
+msgid " Activity: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:449
+msgid " Start:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:464
+msgid " Which month is the event? "
+msgstr ""
+
+#: templates/calculator.form.html.j2:481
+msgid " Activity breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:490
+msgid " Input separate breaks for infected and exposed person(s)"
+msgstr ""
+
+#: templates/calculator.form.html.j2:494
+msgid " Exposed person(s) breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:496 templates/calculator.form.html.j2:544
+msgid " Lunch break: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:498
+msgid " No"
+msgstr ""
+
+#: templates/calculator.form.html.j2:500
+msgid " Yes"
+msgstr ""
+
+#: templates/calculator.form.html.j2:513 templates/calculator.form.html.j2:562
+msgid " Coffee Breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:517 templates/calculator.form.html.j2:566
+msgid " No breaks "
+msgstr ""
+
+#: templates/calculator.form.html.j2:527 templates/calculator.form.html.j2:576
+msgid " Duration (minutes): "
+msgstr ""
+
+#: templates/calculator.form.html.j2:542
+msgid " Infected person(s) breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:591
+msgid " Coffee breaks are spread evenly throughout the day. "
+msgstr ""
+
+#: templates/calculator.form.html.j2:602
+msgid " Generate report "
 msgstr ""
 
