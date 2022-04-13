@@ -1,3 +1,8 @@
+import gettext
+import babel
+_ = gettext.gettext
+
+LOCALE = babel.Locale('fr')
 
 # ------------------ Default form values ----------------------
 
