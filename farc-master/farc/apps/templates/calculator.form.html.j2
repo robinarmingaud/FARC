@@ -353,7 +353,7 @@
             <div class="col-sm-6">
                 <select id="exposed_activity_type" name="exposed_activity_type" class="form-control">
                   {% set default_exposed_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', default.exposed_activity_type) | first %}
-                    <optgroup label="---- Default ----">
+                    <optgroup label="---- {{PLACEHOLDERS.default}} ----">
                       <option selected value="{{default_exposed_activity.Id}}">{{default_exposed_activity.Name}}</option>
                     </optgroup>
                   {% for group in ACTIVITY_TYPES | map(attribute = 'Group') | unique %}
@@ -384,18 +384,18 @@
         </div>
 
         <div class="form-group row">
-             <div class="col-sm-4"><label class="col-form-label">Mask wear ratio: </label></div>
+             <div class="col-sm-4"><label class="col-form-label">{%trans%} Mask wear ratio: {%endtrans%} </label></div>
              <div class="col-sm-6 align-self-center"><input type="number" id="exposed_mask_wear_ratio" class="form-control" name="exposed_mask_wear_ratio" min=0.0 max=1.0 value={{default.exposed_mask_wear_ratio}} step=0.1 required></div>
         </div>
 
-        <div class='sub_title'>Presence:</div>
+        <div class='sub_title'>{%trans%} Presence: {%endtrans%}</div>
         <div class="split">
         <div>
-          <label class="tabbed mb-0">Start:</label>
+          <label class="tabbed mb-0">{%trans%} Start: {%endtrans%}</label>
           <input type="time" id="exposed_start" class="start_time" data-time-group="exposed" data-lunch-break="exposed_lunch" name="exposed_start" value={{default.exposed_start}} required>
         </div>
         <div>
-          <label class="tabbed mb-0">Finish:</label>
+          <label class="tabbed mb-0">{%trans%} Finish: {%endtrans%} </label>
           <input type="time" id="exposed_finish" class="finish_time" data-time-group="exposed" data-lunch-break="exposed_lunch" name="exposed_finish" value={{default.exposed_finish}} required>
         </div>
         </div>
@@ -403,13 +403,13 @@
       <br>
 
       <div class="boxMargin pb-0">
-        <div class='sub_title'>Infected person(s):</div>
+        <div class='sub_title'>{%trans%} Infected person(s):{%endtrans%} </div>
         <div class="form-group row">
-            <div class="col-sm-4"><label class="col-form-label">Activity:</label></div>
+            <div class="col-sm-4"><label class="col-form-label">{%trans%} Activity: {%endtrans%}</label></div>
             <div class="col-sm-6">
                 <select id="infected_activity_type" name="infected_activity_type" class="form-control">
                       {% set default_infected_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', default.infected_activity_type) | first %}
-                    <optgroup label="---- Default ----">
+                    <optgroup label="---- {{PLACEHOLDERS.default}} ----">
                       <option selected value="{{default_infected_activity.Id}}">{{default_infected_activity.Name}}</option>
                     </optgroup>
                   {% for group in ACTIVITY_TYPES | map(attribute = 'Group') | unique %}
@@ -440,17 +440,17 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-4"><label class="col-form-label">Mask wear ratio: </label></div>
+            <div class="col-sm-4"><label class="col-form-label">{%trans%} Mask wear ratio: {%endtrans%} </label></div>
             <div class="col-sm-6 align-self-center"><input type="number" id="infected_mask_wear_ratio" class="form-control" name="infected_mask_wear_ratio" min=0.0 max=1.0 value={{default.infected_mask_wear_ratio}} step=0.1 required></div>
         </div>
-        <div class='sub_title'>Presence:</div>
+        <div class='sub_title'>{%trans%} Presence: {%endtrans%}</div>
         <div class="split">
         <div>
-          <label class="tabbed mb-0">Start: </label> 
+          <label class="tabbed mb-0">{%trans%} Start:{%endtrans%} </label> 
           <input type="time" id="infected_start" class="start_time" data-time-group="infected" data-lunch-break="infected_lunch" name="infected_start" value={{default.infected_start}} required>
         </div>
         <div>
-          <label class="tabbed mb-0">Finish: </label>
+          <label class="tabbed mb-0">{%trans%} Finish: {%endtrans%} </label>
           <input type="time" id="infected_finish" class="finish_time" data-time-group="infected" data-lunch-break="infected_lunch" name="infected_finish" value={{default.infected_finish}} required>
         </div>
         </div>
@@ -461,10 +461,10 @@
     <hr width="80%">
 
     <div class="form-group row">
-    <div class="col-sm-4"><label class="col-form-label">Which month is the event?</label></div>
+    <div class="col-sm-4"><label class="col-form-label">{%trans%} Which month is the event? {%endtrans%}</label></div>
     <div class="col-sm-6 align-self-center">
     <select id="event_month" name="event_month" class="form-control" value={{default.event_month}} required>
-    {% set months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']%}
+    {% set months = PLACEHOLDERS.months %}
       {% for month in months %}
         {% if month == default.event_month %}
           <option value = {{month}} selected> {{month}} </option>
@@ -478,8 +478,8 @@
     <hr width="80%">
 
     <span id="activity_breaks">
-      <b>Activity breaks:</b>
-      <div data-tooltip="Input breaks that, by default, are the same for infected/exposed person(s) unless specified otherwise.">
+      <b>{%trans%} Activity breaks: {%endtrans%} </b>
+      <div data-tooltip="{{TOOLTIPS.activity_breaks}}">
         <span class="tooltip_text">?</span>
       </div>
     </span><br>
@@ -487,34 +487,34 @@
     <!-- Lunch Options -->
     <div class="form-check">
       <input type="checkbox" id="infected_dont_have_breaks_with_exposed" class="tabbed form-check-input infected_dont_have_breaks_with_exposed_option" name="infected_dont_have_breaks_with_exposed" value='1' onclick="toggle_split_breaks()">
-      <label for="infected_dont_have_breaks_with_exposed" class="form-check-label col-sm-12">Input separate breaks for infected and exposed person(s)</label>
+      <label for="infected_dont_have_breaks_with_exposed" class="form-check-label col-sm-12">{%trans%} Input separate breaks for infected and exposed person(s){%endtrans%} </label>
 
     </div><br>
     <div class="breakBoxExposed" id="DIVexposed_breaks">
-      <span id="exposed_break_title"><b>Exposed person(s) breaks:</b></span>
+      <span id="exposed_break_title"><b>{%trans%} Exposed person(s) breaks: {%endtrans%}</b></span>
       <div class="boxMargin">
-        Lunch break:
+       {%trans%} Lunch break: {%endtrans%}
         <input class="ml-2 exposed_lunch_option" type="radio" id="exposed_lunch_option_no" data-lunch-select="exposed" name="exposed_lunch_option" value=0 onclick="require_fields(this)">
-          <label for="exposed_lunch_option_no">No</label>
+          <label for="exposed_lunch_option_no">{%trans%} No{%endtrans%} </label>
         <input class="ml-2 exposed_lunch_option" type="radio" id="exposed_lunch_option_yes" data-lunch-select="exposed" name="exposed_lunch_option" value=1 onclick="require_fields(this)">
-          <label for="exposed_lunch_option_yes">Yes</label><br>
+          <label for="exposed_lunch_option_yes">{%trans%} Yes{%endtrans%} </label><br>
         <div class="split">
         <div>
-        Start: <input type="time" id="exposed_lunch_start" class="start_time" data-time-group="exposed_lunch" data-lunch-for="exposed" data-has-radio="#exposed_lunch_option_yes" name="exposed_lunch_start" value={{default.exposed_lunch_start}} required>
+       {%trans%} Start: {%endtrans%} <input type="time" id="exposed_lunch_start" class="start_time" data-time-group="exposed_lunch" data-lunch-for="exposed" data-has-radio="#exposed_lunch_option_yes" name="exposed_lunch_start" value={{default.exposed_lunch_start}} required>
         </div>
         <div>
-        Finish: <input type="time" id="exposed_lunch_finish" class="finish_time" data-time-group="exposed_lunch" data-lunch-for="exposed" data-has-radio="#exposed_lunch_option_yes" name="exposed_lunch_finish" value={{default.exposed_lunch_finish}} required><br>
+       {%trans%} Finish: {%endtrans%} <input type="time" id="exposed_lunch_finish" class="finish_time" data-time-group="exposed_lunch" data-lunch-for="exposed" data-has-radio="#exposed_lunch_option_yes" name="exposed_lunch_finish" value={{default.exposed_lunch_finish}} required><br>
         </div>
         </div>
 
         <!-- Coffee Options -->
         <div class="split">
         <div>
-        Coffee Breaks:
+        {%trans%} Coffee Breaks: {%endtrans%}
         </div>
         <div>
         <input type="radio" class="exposed_coffee_break_option" id="exposed_coffee_break_0" name="exposed_coffee_break_option" value="coffee_break_0">
-          <label for="exposed_coffee_break_0" >No breaks</label>
+          <label for="exposed_coffee_break_0" >{%trans%} No breaks {%endtrans%} </label>
         <input class="ml-2 exposed_coffee_break_option" type="radio" id="exposed_coffee_break_2" name="exposed_coffee_break_option" value="coffee_break_2">
           <label for="exposed_coffee_break_2">2</label>
         <input class="ml-2 exposed_coffee_break_option" type="radio" id="exposed_coffee_break_4" name="exposed_coffee_break_option" value="coffee_break_4">
@@ -524,7 +524,7 @@
 
         <br>
 
-        Duration (minutes):
+       {%trans%} Duration (minutes): {%endtrans%}
         <select id="exposed_coffee_duration" name="exposed_coffee_duration">
           {% for i in range(1,7) %}
             {% if i*5 == default.exposed_coffee_duration %}
@@ -539,31 +539,31 @@
     </div>
 
     <div class="breakBoxInfected" id="DIVinfected_breaks">
-      <b>Infected person(s) breaks:</b>
+      <b>{%trans%} Infected person(s) breaks: {%endtrans%} </b>
       <div class="boxMargin">
-        Lunch break:
+       {%trans%} Lunch break: {%endtrans%}
         <input class="ml-2 infected_lunch_option" type="radio" id="infected_lunch_option_no" data-lunch-select="infected" name="infected_lunch_option" value=0 onclick="require_fields(this)">
-          <label for="infected_lunch_option_no">No</label>
+          <label for="infected_lunch_option_no">{%trans%} No {%endtrans%}</label>
         <input class="ml-2 infected_lunch_option" type="radio" id="infected_lunch_option_yes" data-lunch-select="infected" name="infected_lunch_option" value=1 onclick="require_fields(this)">
-          <label for="infected_lunch_option_yes">Yes</label><br>
+          <label for="infected_lunch_option_yes">{%trans%} Yes {%endtrans%} </label><br>
 
         <div class="split">
         <div>
-        Start: <input type="time" id="infected_lunch_start" class="start_time" data-time-group="infected_lunch" data-lunch-for="infected" data-has-radio="#infected_lunch_option_yes" name="infected_lunch_start" value={{default.infected_lunch_start}}>
+       {%trans%} Start: {%endtrans%} <input type="time" id="infected_lunch_start" class="start_time" data-time-group="infected_lunch" data-lunch-for="infected" data-has-radio="#infected_lunch_option_yes" name="infected_lunch_start" value={{default.infected_lunch_start}}>
         </div>
         <div>
-        Finish: <input type="time" id="infected_lunch_finish" class="finish_time" data-time-group="infected_lunch" data-lunch-for="infected" data-has-radio="#infected_lunch_option_yes" name="infected_lunch_finish" value={{default.infected_lunch_finish}}><br>
+       {%trans%} Finish: {%endtrans%} <input type="time" id="infected_lunch_finish" class="finish_time" data-time-group="infected_lunch" data-lunch-for="infected" data-has-radio="#infected_lunch_option_yes" name="infected_lunch_finish" value={{default.infected_lunch_finish}}><br>
         </div>
         </div>
 
         <!-- Coffee Options -->
         <div class="split">
         <div>
-        Coffee Breaks:
+       {%trans%} Coffee Breaks: {%endtrans%}
         </div>
         <div>
         <input class="infected_coffee_break_option" type="radio" id="infected_coffee_break_0" name="infected_coffee_break_option" value="coffee_break_0">
-          <label for="infected_coffee_break_0" >No breaks</label>
+          <label for="infected_coffee_break_0" >{%trans%} No breaks {%endtrans%}</label>
         <input class="ml-2 infected_coffee_break_option" type="radio" id="infected_coffee_break_2" name="infected_coffee_break_option" value="coffee_break_2">
           <label for="infected_coffee_break_2">2</label>
         <input class="ml-2 infected_coffee_break_option" type="radio" id="infected_coffee_break_4" name="infected_coffee_break_option" value="coffee_break_4">
@@ -573,7 +573,7 @@
 
         <br>
 
-        Duration (minutes):
+        {%trans%} Duration (minutes): {%endtrans%}
         <select id="infected_coffee_duration" name="infected_coffee_duration">
           {% for i in range(1,7) %}
             {% if i*5 == default.infected_coffee_duration %}
@@ -588,7 +588,7 @@
     </div>
 
     <br id="spacing">
-    <i>Coffee breaks are spread evenly throughout the day.</i><br>
+    <i> {%trans%} Coffee breaks are spread evenly throughout the day. {%endtrans%} </i><br>
 
     
     <br><br>
@@ -599,7 +599,7 @@
 
 <div class="center">
   <button type='submit' class="btn btn-primary bigButton" id="generate_report">
-      Generate report
+     {%trans%} Generate report {%endtrans%}
   </button>
 </div>
 

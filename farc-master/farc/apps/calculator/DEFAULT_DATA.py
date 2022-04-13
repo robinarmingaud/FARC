@@ -135,7 +135,8 @@ TOOLTIPS = {'virus_data' : 'Choose the SARS-CoV-2 Variant of Concern (VOC).',
 'window_open' : "If 'Periodically' is selected, windows will be open during lunch and coffee breaks",
 'bio_ventilation' : "This value can be modified for alternative scenarios even if 'No' is checked",
 'face_mask' : 'Masks worn at workstations or removed when a 2m physical distance is respected and proper venting is ensured.',
-'event_data' : 'The total no. of occupants in the room and how many of them you assume are infected.'
+'event_data' : 'The total no. of occupants in the room and how many of them you assume are infected.',
+'activity_breaks' : 'Input breaks that, by default, are the same for infected/exposed person(s) unless specified otherwise.'
 }
 PLACEHOLDERS = {'room_volume':'Room volume (m³)',
 'room_floor_area':'Room floor area (m²)',
@@ -147,5 +148,8 @@ PLACEHOLDERS = {'room_volume':'Room volume (m³)',
 'width' : 'Width (m)',
 'opening_distance' : 'Opening distance (m)',
 'duration' : 'Duration (min)',
-'frequency' : 'Frequency (min)'
+'frequency' : 'Frequency (min)',
+'default' : 'Default',
+'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+
 }
