@@ -1,0 +1,466 @@
+# Translations template for PROJECT.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-04-13 17:15+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: templates/about.html.j2:6
+msgid " Airborne Transmission of SARS-CoV-2 "
+msgstr ""
+
+#: templates/about.html.j2:8
+msgid ""
+"\n"
+"        Currently, the existing public health measures point to the "
+"importance of proper building and environmental engineering control "
+"measures, such as proper Indoor Air Quality (IAQ).\n"
+"        This pandemic clearly raised increased awareness on airborne "
+"transmission of respiratory viruses in indoor settings.\n"
+"        Out of the main modes of viral transmission, the airborne route "
+"of SARS-CoV-2 seems to have a significant importance to the spread of "
+"COVID-19 infections world-wide, hence proper guidance to building "
+"engineers or facility managers, on how to prevent on-site transmission, "
+"is essential.\n"
+"        "
+msgstr ""
+
+#: templates/about.html.j2:14
+msgid ""
+" For information on the Airborne Transmission of SARS-CoV-2, feel free to"
+" check out the special issue on the Interface Focus journal from Royal "
+"Society publishing: "
+msgstr ""
+
+#: templates/about.html.j2:14
+msgid " Interface Focus: Volume 12, Issue 2 "
+msgstr ""
+
+#: templates/about.html.j2:14
+msgid "  and an CERN HSE Seminar: "
+msgstr ""
+
+#: templates/about.html.j2:18
+msgid " What is FARC? "
+msgstr ""
+
+#: templates/about.html.j2:20
+msgid ""
+" FARC stands for Flow-R Airborne Risk Calculator and was developed to "
+"better understand and quantify the risk of long-range airborne spread "
+"viruses in workplaces. FARC comes with different applications that allow "
+"more or less flexibility in the input parameters: "
+msgstr ""
+
+#: templates/about.html.j2:23
+msgid " FARC calculator app "
+msgstr ""
+
+#: templates/about.html.j2:26
+msgid ""
+"\n"
+"    The mathematical and physical model simulate the long-range airborne "
+"spread of SARS-CoV-2 virus in a finite volume, assuming a homogenous "
+"mixture, and estimates the risk of COVID-19 airborne transmission "
+"therein. The results DO NOT include (for now) short-range airborne "
+"exposure (where the physical distance plays a factor) nor the other known"
+" modes of SARS-CoV-2 transmission. Hence, the output from this model is "
+"only valid when the other recommended public health & safety instructions"
+" are observed, such as adequate physical distancing, good hand hygiene "
+"and other barrier measures.\n"
+"    "
+msgstr ""
+
+#: templates/about.html.j2:31
+msgid ""
+"\n"
+"    The methodology, mathematical equations and parameters of the model "
+"are published here in this paper: "
+msgstr ""
+
+#: templates/about.html.j2:32
+msgid ""
+" Modelling airborne transmission of SARS-CoV-2 using CARA: risk "
+"assessment for enclosed spaces"
+msgstr ""
+
+#: templates/about.html.j2:34
+msgid ""
+"\n"
+"The model used is based on scientific publications relating to airborne "
+"transmission of infectious diseases, virology, epidemiology and aerosol "
+"science. It can be used to compare the effectiveness of different "
+"airborne-related risk mitigation measures.\n"
+"The tool helps assess the potential dose of infectious airborne viruses "
+"in indoor gatherings, with people seated, standing, moving around, while "
+"breathing, speaking or shouting/singing. The model is based on the "
+"exponential dose-response of disease transmission, which assumes a fixed "
+"value for the average infectious dose.\n"
+"The methodology of the model is divided into five parts:\n"
+msgstr ""
+
+#: templates/about.html.j2:40
+msgid " Estimating the emission rate of virions; "
+msgstr ""
+
+#: templates/about.html.j2:41
+msgid " Estimating the removal rate of virions; "
+msgstr ""
+
+#: templates/about.html.j2:42
+msgid ""
+" Modeling the concentration of virions within a given volume, as a "
+"function of time; "
+msgstr ""
+
+#: templates/about.html.j2:43
+msgid " Absorbed dose of infectious viruses, inhaled during the exposure time; "
+msgstr ""
+
+#: templates/about.html.j2:44
+msgid ""
+"\n"
+"        Estimating the probability of a COVID-19 infection (or secondary "
+"transmission) and the expected number of new cases arising from the event"
+"\n"
+"        "
+msgstr ""
+
+#: templates/about.html.j2:50
+msgid " What is the aim of FARC?"
+msgstr ""
+
+#: templates/about.html.j2:52
+msgid ""
+"Although the user is able to calculate the infection probability of a "
+"stand-alone event with a pre-defined set of protection measures, the main"
+" utility of CARA is to compare the relative impact of different measures "
+"and/or combination of measure. For example:"
+msgstr ""
+
+#: templates/about.html.j2:54
+msgid ""
+" Compare keeping a window slightly open vs one or two windows open "
+"entirely "
+msgstr ""
+
+#: templates/about.html.j2:55
+msgid ""
+" Compare opening one entire window every 2h for 10 min vs keeping half a "
+"window open all day"
+msgstr ""
+
+#: templates/about.html.j2:56
+msgid " Compare the effect of an FFP2 with respect to a Type I surgical mask"
+msgstr ""
+
+#: templates/about.html.j2:57
+msgid ""
+" Adapt the maximum occupancy considering the effect of bio-ventilation "
+"devices"
+msgstr ""
+
+#: templates/about.html.j2:60
+msgid " Main Developers of CARA: "
+msgstr ""
+
+#: templates/about.html.j2:64
+msgid " Code Contributors of CARA: "
+msgstr ""
+
+#: templates/about.html.j2:68
+msgid " Contributors of FARC: "
+msgstr ""
+
+#: templates/about.html.j2:73
+msgid " References: "
+msgstr ""
+
+#: templates/about.html.j2:78
+msgid " Acknowledgements: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:22
+msgid " Please send feedback to "
+msgstr ""
+
+#: templates/calculator.form.html.j2:26
+msgid " FARC Calculator "
+msgstr ""
+
+#: templates/calculator.form.html.j2:48
+msgid " Simulation name: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:53
+msgid " Room number: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:59
+msgid " Virus data: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:66
+msgid " Variant: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:81
+msgid " Room data: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:93
+msgid "Room volume:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:104
+msgid "Floor area: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:112
+msgid " Ceiling height: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:120
+msgid " Central heating system in use: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:259
+#: templates/calculator.form.html.j2:280 templates/calculator.form.html.j2:546
+msgid " No "
+msgstr ""
+
+#: templates/calculator.form.html.j2:125 templates/calculator.form.html.j2:261
+#: templates/calculator.form.html.j2:278 templates/calculator.form.html.j2:548
+msgid " Yes "
+msgstr ""
+
+#: templates/calculator.form.html.j2:129
+msgid " Geographic location: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:145
+msgid " Ventilation data: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:152
+msgid " Ventilation type: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:157
+msgid " No ventilation "
+msgstr ""
+
+#: templates/calculator.form.html.j2:159
+msgid " Mechanical "
+msgstr ""
+
+#: templates/calculator.form.html.j2:163
+msgid " Natural "
+msgstr ""
+
+#: templates/calculator.form.html.j2:172
+msgid " Natural Ventilation "
+msgstr ""
+
+#: templates/calculator.form.html.j2:178
+msgid ""
+"\n"
+"            Single-sided ventilation is assumed in the model and is "
+"typically effective for room depths up to a depth 2.5 x the ceiling "
+"height. \n"
+"            If these conditions are not met, the air exchange might not "
+"be homogenous producing an artificially lower risk further away from the "
+"window.\n"
+"          "
+msgstr ""
+
+#: templates/calculator.form.html.j2:194
+msgid " Air supply flow rate "
+msgstr ""
+
+#: templates/calculator.form.html.j2:203
+msgid " Air changes per hour "
+msgstr ""
+
+#: templates/calculator.form.html.j2:213
+msgid " Number of windows:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:217
+msgid " Height of window: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:220
+msgid "Window type:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:222
+msgid " Sliding / Side-Hung "
+msgstr ""
+
+#: templates/calculator.form.html.j2:224
+msgid " Top- or Bottom-Hung "
+msgstr ""
+
+#: templates/calculator.form.html.j2:226
+msgid " Width of window: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:230
+msgid " Opening distance: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:233
+msgid " Window open "
+msgstr ""
+
+#: templates/calculator.form.html.j2:240
+msgid " Permanently "
+msgstr ""
+
+#: templates/calculator.form.html.j2:244
+msgid " Periodically: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:251
+msgid " Bio ventilation: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:269
+msgid " Face masks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:276
+msgid " Are masks worn when occupants are at workstations?"
+msgstr ""
+
+#: templates/calculator.form.html.j2:283
+msgid " Type of masks used: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:288
+msgid " Surgical/Type I "
+msgstr ""
+
+#: templates/calculator.form.html.j2:295
+msgid " Respirator/FFP2 "
+msgstr ""
+
+#: templates/calculator.form.html.j2:307
+msgid " Event data: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:313
+msgid " Total number of occupants:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:318
+msgid " Number of infected people: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:322
+msgid " Conference/Training activities limited to 1 infected "
+msgstr ""
+
+#: templates/calculator.form.html.j2:350
+msgid " Exposed person(s): "
+msgstr ""
+
+#: templates/calculator.form.html.j2:352
+msgid " Activity type:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:387 templates/calculator.form.html.j2:443
+msgid " Mask wear ratio: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:391 templates/calculator.form.html.j2:446
+msgid " Presence: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:394 templates/calculator.form.html.j2:503
+#: templates/calculator.form.html.j2:552
+msgid " Start: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:398 templates/calculator.form.html.j2:453
+#: templates/calculator.form.html.j2:506 templates/calculator.form.html.j2:555
+msgid " Finish: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:406
+msgid " Infected person(s):"
+msgstr ""
+
+#: templates/calculator.form.html.j2:408
+msgid " Activity: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:449
+msgid " Start:"
+msgstr ""
+
+#: templates/calculator.form.html.j2:464
+msgid " Which month is the event? "
+msgstr ""
+
+#: templates/calculator.form.html.j2:481
+msgid " Activity breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:490
+msgid " Input separate breaks for infected and exposed person(s)"
+msgstr ""
+
+#: templates/calculator.form.html.j2:494
+msgid " Exposed person(s) breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:496 templates/calculator.form.html.j2:544
+msgid " Lunch break: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:498
+msgid " No"
+msgstr ""
+
+#: templates/calculator.form.html.j2:500
+msgid " Yes"
+msgstr ""
+
+#: templates/calculator.form.html.j2:513 templates/calculator.form.html.j2:562
+msgid " Coffee Breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:517 templates/calculator.form.html.j2:566
+msgid " No breaks "
+msgstr ""
+
+#: templates/calculator.form.html.j2:527 templates/calculator.form.html.j2:576
+msgid " Duration (minutes): "
+msgstr ""
+
+#: templates/calculator.form.html.j2:542
+msgid " Infected person(s) breaks: "
+msgstr ""
+
+#: templates/calculator.form.html.j2:591
+msgid " Coffee breaks are spread evenly throughout the day. "
+msgstr ""
+
+#: templates/calculator.form.html.j2:602
+msgid " Generate report "
+msgstr ""
+

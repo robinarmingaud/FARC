@@ -1,3 +1,8 @@
+import gettext
+import babel
+_ = gettext.gettext
+
+LOCALE = babel.Locale('fr')
 
 # ------------------ Default form values ----------------------
 
@@ -121,3 +126,30 @@ MONTH_NAMES = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December',
 ]
+
+# ------------------ Text ----------------------
+
+TOOLTIPS = {'virus_data' : 'Choose the SARS-CoV-2 Variant of Concern (VOC).',
+'room_data':'The area you wish to study (choose one of the 2 options). Indicate if a central (radiator-type) heating system is in use.',
+'ventilation_data':'The available means of venting / filtration of indoor spaces.',
+'window_open' : "If 'Periodically' is selected, windows will be open during lunch and coffee breaks",
+'bio_ventilation' : "This value can be modified for alternative scenarios even if 'No' is checked",
+'face_mask' : 'Masks worn at workstations or removed when a 2m physical distance is respected and proper venting is ensured.',
+'event_data' : 'The total no. of occupants in the room and how many of them you assume are infected.',
+'activity_breaks' : 'Input breaks that, by default, are the same for infected/exposed person(s) unless specified otherwise.'
+}
+PLACEHOLDERS = {'room_volume':'Room volume (m³)',
+'room_floor_area':'Room floor area (m²)',
+'ceiling_height' : 'Room ceiling height (m)',
+'flow_rate' : 'Flow rate (m³ / hour)',
+'air_exchange' : 'Air exchange (h⁻¹)',
+'number' : 'Number (#)',
+'height' : 'Height (m)',
+'width' : 'Width (m)',
+'opening_distance' : 'Opening distance (m)',
+'duration' : 'Duration (min)',
+'frequency' : 'Frequency (min)',
+'default' : 'Default',
+'months' : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+
+}
