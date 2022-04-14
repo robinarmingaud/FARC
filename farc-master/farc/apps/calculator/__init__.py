@@ -173,7 +173,8 @@ class CalculatorForm(BaseRequestHandler):
         with open('farc/apps/static/js/form.js', 'r') as original: data = original.read().splitlines(True)
         javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
         with open('farc/apps/static/js/form.js', 'w') as modified: modified.writelines([javascript_out + "\n"] + data[1:])
-        template = self.settings["template_environment"].get_template(
+        template_environment = self.settings["template_environment"]
+        template = template_environment.get_template(
             "calculator.form.html.j2")
         report = template.render(
             user=self.current_user,
@@ -183,7 +184,8 @@ class CalculatorForm(BaseRequestHandler):
             default = d,
             ACTIVITY_TYPES = ACTIVITY_TYPES,
             PLACEHOLDERS = PLACEHOLDERS,
-            TOOLTIPS = TOOLTIPS
+            TOOLTIPS = TOOLTIPS,
+            text_blocks=template_environment.globals['common_text']
         )
         self.finish(report)
 
@@ -202,11 +204,13 @@ class CompressedCalculatorFormInputs(BaseRequestHandler):
 
 class ReadmeHandler(BaseRequestHandler):
     def get(self):
-        template = self.settings['template_environment'].get_template("userguide.html.j2")
+        template_environment = self.settings["template_environment"]
+        template = template_environment.get_template("userguide.html.j2")
         readme = template.render(
             active_page="calculator/user-guide",
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
+            text_blocks=template_environment.globals['common_text']
         )
         self.finish(readme)
 
