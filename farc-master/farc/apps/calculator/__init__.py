@@ -24,12 +24,16 @@ import tornado.log
 from babel.support import Translations
 
 from farc.apps.calculator.DEFAULT_DATA import ACTIVITY_TYPES
+from farc.data import MONTH_NAMES
 
 from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
 from .DEFAULT_DATA import __version__, _DEFAULTS as d, LOCALE, PLACEHOLDERS, TOOLTIPS
+from babel.support import Translations
+import gettext
+_ = gettext.gettext
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
@@ -54,12 +58,7 @@ class BaseRequestHandler(RequestHandler):
 
         error_id = uuid.uuid4()
         contents = (
-            f'Unfortunately an error occurred when processing your request. '
-            f'Please let us know about this issue with as much detail as possible at '
-            f'<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a>, reporting status '
-            f'code {status_code}, the error id of "{error_id}" and the time of the '
-            f'request ({datetime.datetime.utcnow()}).<br><br><br><br>'
-        )
+            _('Unfortunately an error occurred when processing your request. Please let us know about this issue with as much detail as possible at') + ' ' + '<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a>, ' + _('reporting status code') + ' ' + f'{status_code}' +  ', ' + _('the error id of :') + ' ' + f'{error_id}' +  ' ' + _('and the time of the request')+ ' ' + f'{datetime.datetime.utcnow()}' +'.<br><br><br><br>')
         # Print the error to the log (and not to the browser!)
         if "exc_info" in kwargs:
             print(f"ERROR UUID {error_id}")
@@ -83,7 +82,7 @@ class Missing404Handler(BaseRequestHandler):
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
             active_page='Error',
-            contents='Unfortunately the page you were looking for does not exist.<br><br><br><br>'
+            contents=_('Unfortunately the page you were looking for does not exist.')+'<br><br><br><br>'
         ))
 
 
@@ -103,7 +102,7 @@ class ConcentrationModel(BaseRequestHandler):
             if self.settings.get("debug", False):
                 import traceback
                 print(traceback.format_exc())
-            response_json = {'code': 400, 'error': f'Your request was invalid {html.escape(str(err))}'}
+            response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
             self.set_status(400)
             self.finish(json.dumps(response_json))
             return
@@ -185,7 +184,8 @@ class CalculatorForm(BaseRequestHandler):
             ACTIVITY_TYPES = ACTIVITY_TYPES,
             PLACEHOLDERS = PLACEHOLDERS,
             TOOLTIPS = TOOLTIPS,
-            text_blocks=template_environment.globals['common_text']
+            text_blocks=template_environment.globals['common_text'],
+            MONTH_NAMES = MONTH_NAMES
         )
         self.finish(report)
 
@@ -198,7 +198,7 @@ class CompressedCalculatorFormInputs(BaseRequestHandler):
             args = zlib.decompress(base64.b64decode(compressed_args)).decode()
         except Exception as err:  # noqa
             self.set_status(400)
-            return self.finish("Invalid calculator data: it seems incomplete. Was there an error copying & pasting the URL?")
+            return self.finish(_("Invalid calculator data: it seems incomplete. Was there an error copying & pasting the URL?"))
         self.redirect(f'{self.settings["calculator_prefix"]}?{args}')
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-14 12:41+0200\n"
+"POT-Creation-Date: 2022-04-14 15:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,6 +18,397 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
+
+#: calculator/DEFAULT_DATA.py:36 calculator/DEFAULT_DATA.py:126
+msgid "January"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:57
+msgid "Boardroom"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:59
+msgid "Workshop without masks"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:63 templates/calculator.report.html.j2:385
+msgid "SARS-CoV-2 (nominal strain)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:63 templates/calculator.report.html.j2:387
+msgid "SARS-CoV-2 (Alpha VOC)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:63 templates/calculator.report.html.j2:389
+msgid "SARS-CoV-2 (Beta VOC)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:63 templates/calculator.report.html.j2:391
+msgid "SARS-CoV-2 (Gamma VOC)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:63 templates/calculator.report.html.j2:393
+msgid "SARS-CoV-2 (Delta VOC)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:63 templates/calculator.report.html.j2:395
+msgid "SARS-CoV-2 (Omicron VOC)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:76
+msgid "Office worker"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:77 calculator/DEFAULT_DATA.py:78
+#: calculator/DEFAULT_DATA.py:79
+msgid "Business"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:77
+msgid "Workshop worker"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:78
+msgid "Meeting participant"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:79
+msgid "Meeting leader"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:80 calculator/DEFAULT_DATA.py:81
+#: calculator/DEFAULT_DATA.py:82
+msgid "Hospital"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:80
+msgid "Hospital patient"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:81
+msgid "Nurse working"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:82
+msgid "Physician working"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:83 calculator/DEFAULT_DATA.py:84
+#: calculator/DEFAULT_DATA.py:85
+msgid "Education"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:83
+msgid "Student sitting"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:84
+msgid "Professor teaching"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:85
+msgid "Professor conferencing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
+#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:89
+#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:91
+#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:93
+#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
+msgid "Events"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:86
+msgid "Concert musician (soft music)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:87
+msgid "Concert musician (rock)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:88
+msgid "Concert singer (rock)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:89
+msgid "Concert spectator (standing)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:90
+msgid "Concert spectator (sitting)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:91
+msgid "Museum visitor"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:92
+msgid "Theater spectator"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:93
+msgid "Theater actor"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:94
+msgid "Conferencer"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:95
+msgid "Conference attendee"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
+#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:99
+#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:101
+msgid "Restaurant and Bar"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:96
+msgid "Guest standing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:97
+msgid "Guest sitting"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:98
+msgid "Server"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:99
+msgid "Barrista"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:100
+msgid "Nightclub dancing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:101
+msgid "Nightclub sitting"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:103
+#: calculator/DEFAULT_DATA.py:104
+msgid "Store and Retail"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:102
+msgid "Customer standing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:103
+msgid "Cashier sitting"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:104
+msgid "Vendor standing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
+#: calculator/DEFAULT_DATA.py:107
+msgid "Sport"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:105
+msgid "Musculation"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:106
+msgid "Floor gymnastics"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:107
+msgid "Team competition"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:108
+msgid "Miscellaneous"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:108
+msgid "Trip in elevator"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:110
+msgid "Navy"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:109
+msgid "Watch seated"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:110
+msgid "Watch standing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:126
+msgid "February"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:126
+msgid "March"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:126
+msgid "April"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:126
+msgid "May"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:126
+msgid "June"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:126
+msgid "July"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:127
+msgid "August"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:127
+msgid "September"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:127
+msgid "October"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:127
+msgid "November"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:127
+msgid "December"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:132
+msgid "Choose the SARS-CoV-2 Variant of Concern (VOC)."
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:133
+msgid ""
+"The area you wish to study (choose one of the 2 options). Indicate if a "
+"central (radiator-type) heating system is in use."
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:134
+msgid "The available means of venting / filtration of indoor spaces."
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:135
+msgid ""
+"If 'Periodically' is selected, windows will be open during lunch and "
+"coffee breaks"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:136
+msgid ""
+"This value can be modified for alternative scenarios even if 'No' is "
+"checked"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:137
+msgid ""
+"Masks worn at workstations or removed when a 2m physical distance is "
+"respected and proper venting is ensured."
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:138
+msgid ""
+"The total no. of occupants in the room and how many of them you assume "
+"are infected."
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:139
+msgid ""
+"Input breaks that, by default, are the same for infected/exposed "
+"person(s) unless specified otherwise."
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:141
+msgid "Room volume (m³)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:142
+msgid "Room floor area (m²)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:143
+msgid "Room ceiling height (m)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:144
+msgid "Flow rate (m³ / hour)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:145
+msgid "Air exchange (h⁻¹)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:146
+msgid "Number (#)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:147
+msgid "Height (m)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:148
+msgid "Width (m)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:149
+msgid "Opening distance (m)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:150
+msgid "Duration (min)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:151
+msgid "Frequency (min)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:152
+msgid "Default"
+msgstr ""
+
+#: calculator/__init__.py:61
+msgid ""
+"Unfortunately an error occurred when processing your request. Please let "
+"us know about this issue with as much detail as possible at"
+msgstr ""
+
+#: calculator/__init__.py:61
+msgid "reporting status code"
+msgstr ""
+
+#: calculator/__init__.py:61
+msgid "the error id of :"
+msgstr ""
+
+#: calculator/__init__.py:61
+msgid "and the time of the request"
+msgstr ""
+
+#: calculator/__init__.py:85
+msgid "Unfortunately the page you were looking for does not exist."
+msgstr ""
+
+#: calculator/__init__.py:105
+msgid "Your request was invalid"
+msgstr ""
+
+#: calculator/__init__.py:201
+msgid ""
+"Invalid calculator data: it seems incomplete. Was there an error copying "
+"& pasting the URL?"
+msgstr ""
 
 #: templates/about.html.j2:6
 msgid "Airborne Transmission of SARS-CoV-2"
@@ -697,7 +1088,7 @@ msgid ""
 "the CERN Open Report"
 msgstr ""
 
-#: templates/calculator.report.html.j2:175
+#: templates/calculator.report.html.j2:175 templates/common_text.md.j2:39
 msgid "CERN-OPEN-2021-004"
 msgstr ""
 
@@ -778,30 +1169,6 @@ msgstr ""
 
 #: templates/calculator.report.html.j2:383
 msgid "Virus variant:"
-msgstr ""
-
-#: templates/calculator.report.html.j2:385
-msgid "SARS-CoV-2 (nominal strain)"
-msgstr ""
-
-#: templates/calculator.report.html.j2:387
-msgid "SARS-CoV-2 (Alpha VOC)"
-msgstr ""
-
-#: templates/calculator.report.html.j2:389
-msgid "SARS-CoV-2 (Beta VOC)"
-msgstr ""
-
-#: templates/calculator.report.html.j2:391
-msgid "SARS-CoV-2 (Gamma VOC)"
-msgstr ""
-
-#: templates/calculator.report.html.j2:393
-msgid "SARS-CoV-2 (Delta VOC)"
-msgstr ""
-
-#: templates/calculator.report.html.j2:395
-msgid "SARS-CoV-2 (Omicron VOC)"
 msgstr ""
 
 #: templates/calculator.report.html.j2:401
@@ -1028,5 +1395,247 @@ msgstr ""
 
 #: templates/calculator.report.html.j2:859
 msgid "Disclaimer:"
+msgstr ""
+
+#: templates/common_text.md.j2:5
+msgid "HSE Unit, Occupational Health & Safety Group, CERN"
+msgstr ""
+
+#: templates/common_text.md.j2:6
+msgid "Beams Department, Accelerators and Beam Physics Group, CERN"
+msgstr ""
+
+#: templates/common_text.md.j2:7
+msgid "Experimental Physics Department, Safety Office, CERN"
+msgstr ""
+
+#: templates/common_text.md.j2:8
+msgid "Beams Department, Controls Group, CERN"
+msgstr ""
+
+#: templates/common_text.md.j2:9
+msgid ""
+"Information Technology Department, Collaboration, Devices & Applications "
+"Group, CERN"
+msgstr ""
+
+#: templates/common_text.md.j2:10
+msgid "Norwegian University of Science and Technology (NTNU)"
+msgstr ""
+
+#: templates/common_text.md.j2:16
+msgid "Summer Students, CERN"
+msgstr ""
+
+#: templates/common_text.md.j2:17
+msgid "M.V. Lomonosov Moscow State University"
+msgstr ""
+
+#: templates/common_text.md.j2:18
+msgid "National Research Nuclear University \"MEPhI\""
+msgstr ""
+
+#: templates/common_text.md.j2:19
+msgid "University of Manitoba"
+msgstr ""
+
+#: templates/common_text.md.j2:25
+msgid "CEO of Ingenica"
+msgstr ""
+
+#: templates/common_text.md.j2:26
+msgid "Head of engineering, Ingenica-LLI"
+msgstr ""
+
+#: templates/common_text.md.j2:27
+msgid "Flow-R Products mnanager, Ingenica"
+msgstr ""
+
+#: templates/common_text.md.j2:28
+msgid "Teacher and researcher (HDR) IMT Atlantique"
+msgstr ""
+
+#: templates/common_text.md.j2:29 templates/common_text.md.j2:30
+msgid "Student IMT Atlantique"
+msgstr ""
+
+#: templates/common_text.md.j2:35
+msgid ""
+"We wish to thank all FARC Contributors from Ingenica and IMT Atlantique "
+"but also and especialy the CARA team and contributors from CERN in Geneva"
+" and from other organisations all around the world for their great work "
+"on this tool"
+msgstr ""
+
+#: templates/common_text.md.j2:39
+msgid "Reference list can be found in the CARA paper:"
+msgstr ""
+
+#: templates/common_text.md.j2:44
+msgid ""
+"FARC is a risk assessment tool developed to model the concentration of "
+"viruses in enclosed spaces, in order to inform space-management "
+"decisions."
+msgstr ""
+
+#: templates/common_text.md.j2:47
+msgid ""
+"FARC models the concentration profile of virions in enclosed spaces with "
+"clear and intuitive graphs.\n"
+"        The user can set a number of parameters, including room volume, "
+"exposure time, activity type, mask-wearing and ventilation.\n"
+"        The report generated indicates how to avoid exceeding critical "
+"concentrations and chains of airborne transmission in spaces such as "
+"individual offices, meeting rooms and labs."
+msgstr ""
+
+#: templates/common_text.md.j2:52
+msgid ""
+"The risk assessment tool simulates the long-range airborne spread SARS-"
+"CoV-2 virus in a finite volume, assuming a homogenous mixture, and "
+"estimates the risk of COVID-19 airborne transmission therein.\n"
+"        The results DO NOT include short-range airborne exposure (where "
+"the physical distance is a significant factor) nor the other known modes "
+"of SARS-CoV-2 transmission.\n"
+"        Hence, the output from this model is only valid when the other "
+"recommended public health & safety instructions are observed, such as "
+"adequate physical distancing, good hand hygiene and other barrier "
+"measures."
+msgstr ""
+
+#: templates/common_text.md.j2:57
+msgid ""
+"The model used is based on scientific publications relating to airborne "
+"transmission of infectious diseases, dose-response exposures and aerosol "
+"science, as of February 2021.\n"
+"        It can be used to compare the effectiveness of different "
+"airborne-related risk mitigation measures."
+msgstr ""
+
+#: templates/common_text.md.j2:61
+msgid ""
+"Note that this model applies a deterministic approach, i.e., it is "
+"assumed at least one person is infected and shedding viruses into the "
+"simulated volume.\n"
+"        Nonetheless, it is also important to understand that the absolute"
+" risk of infection is uncertain, as it will depend on the probability "
+"that someone infected attends the event.\n"
+"        The model is most useful for comparing the impact and "
+"effectiveness of different mitigation measures such as ventilation, air "
+"disinfecion devices, exposure time, physical activity and\n"
+"        the size of the room, only considering long-range airborne "
+"transmission of COVID-19 in indoor settings."
+msgstr ""
+
+#: templates/common_text.md.j2:67
+msgid ""
+"This tool is designed to be informative, allowing the user to adapt "
+"different settings and model the relative impact on the estimated "
+"infection probabilities.\n"
+"        The objective is to facilitate targeted decision-making and "
+"investment through comparisons, rather than a singular determination of "
+"absolute risk.\n"
+"        While the SARS-CoV-2 virus is in circulation among the "
+"population, the notion of 'zero risk' or 'completely safe scenario' does "
+"not exist.\n"
+"        Each event modelled is unique, and the results generated therein "
+"are only as accurate as the inputs and assumptions."
+msgstr ""
+
+#: templates/common_text.md.j2:73
+msgid ""
+"FARC has not undergone review, approval or certification by competent "
+"authorities, and as a result, it cannot be considered\n"
+"        as a fully endorsed and reliable tool, namely in the assessment "
+"of potential viral emissions from infected hosts to be modelled."
+msgstr ""
+
+#: templates/index.html.j2:11 templates/index.html.j2:47
+msgid "Calculator"
+msgstr ""
+
+#: templates/index.html.j2:18
+msgid "Introduction"
+msgstr ""
+
+#: templates/index.html.j2:22
+msgid ""
+"FARC is a risk assessment tool developed to model the concentration of "
+"viruses in enclosed spaces, in order to inform space-management "
+"decisions.\n"
+"                    It does this by simulating the long-range airborne "
+"spread SARS-CoV-2 virus in a finite volume, assuming homogenous mixing, "
+"and it estimates the risk of COVID-19 airborne transmission therein.\n"
+"                Please see the"
+msgstr ""
+
+#: templates/index.html.j2:24
+msgid "About"
+msgstr ""
+
+#: templates/index.html.j2:24
+msgid ""
+"page for more details on the methodology, assumptions and limitations of "
+"FARC."
+msgstr ""
+
+#: templates/index.html.j2:27
+msgid "FARC is based on CARA tool and released under Apache 2.0 licence."
+msgstr ""
+
+#: templates/index.html.j2:28
+msgid ""
+"We wish to to thank the CARA team from CERN in Geneva and all around the "
+"world for their great work on this tool."
+msgstr ""
+
+#: templates/index.html.j2:40
+msgid "Apps:"
+msgstr ""
+
+#: templates/index.html.j2:56
+msgid "Information"
+msgstr ""
+
+#: templates/index.html.j2:59
+msgid "FARC - Flow-R Airborne Risk calculator"
+msgstr ""
+
+#: templates/index.html.j2:61
+msgid "© Copyright 2022 Ingenica. All rights not expressly granted are reserved."
+msgstr ""
+
+#: templates/index.html.j2:63 templates/index.html.j2:71
+msgid "Licensed under the Apache License, Version 2.0"
+msgstr ""
+
+#: templates/index.html.j2:65
+msgid "based on:"
+msgstr ""
+
+#: templates/index.html.j2:67
+msgid "CARA – COVID Airborne Risk Assessment tool"
+msgstr ""
+
+#: templates/index.html.j2:69
+msgid "© Copyright 2020-2021 CERN. All rights not expressly granted are reserved."
+msgstr ""
+
+#: templates/index.html.j2:73
+msgid "You may not use this file except in compliance with the License."
+msgstr ""
+
+#: templates/index.html.j2:75
+msgid "You may obtain a copy of the License at"
+msgstr ""
+
+#: templates/index.html.j2:79
+msgid ""
+"Unless required by applicable law or agreed to in writing, software "
+"distributed under the License is distributed on an \"AS IS\" BASIS, "
+"WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied."
+"\n"
+"        See the License for the specific language governing permissions "
+"and limitations under the License."
 msgstr ""
 
