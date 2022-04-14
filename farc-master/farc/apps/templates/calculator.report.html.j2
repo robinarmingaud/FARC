@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport"
               content="width=device-width, initial-scale=1, maximum-scale=1.0">
-        <title>Report | FARC (Flow-R Airborne Risk Calculator)</title>
+        <title>{%trans%}Report | FARC (Flow-R Airborne Risk Calculator){%endtrans%} </title>
         <link rel="stylesheet" type="text/css" href="/static/css/report.css">
         <link rel="stylesheet"
               href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -31,18 +31,18 @@
                 <div id="reportHeaderTitle" class='align-self-center mr-auto'>
                     <h2 class="header_text mb-0"> 
                         <a href="{{ permalink.link }}">
-                            REPORT {{form.simulation_name}}
+                           {%trans%}REPORT{%endtrans%} {{form.simulation_name}}
                         </a>
                     </h1>
                     <p class="mb-0" id="report_version">
-                        Created {{ creation_date }} using FARC v{{ form.calculator_version }}
+                      {%trans%}Created{%endtrans%} {{ creation_date }} {%trans%}using FARC{%endtrans%} v{{ form.calculator_version }}
                     </p>
                 </div>
                 <button type="button"
                         class="btn btn-outline-dark align-self-center"
                         id="download-pdf"
                         onclick="print()">
-                    Print Report
+                  {%trans%}Print Report{%endtrans%}
                 </button>
                 <a href="{{ permalink.link }}"
                    id="pdf_qrcode_aref"
@@ -60,7 +60,7 @@
                        href="#results"
                        role="tab"
                        aria-controls="results"
-                       aria-selected="true">Results</a>
+                       aria-selected="true">{%trans%}Results{%endtrans%} </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
@@ -69,7 +69,7 @@
                        href="#data"
                        role="tab"
                        aria-controls="data"
-                       aria-selected="false">Input Data</a>
+                       aria-selected="false">{%trans%}Input Data{%endtrans%} </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"
@@ -78,7 +78,7 @@
                        href="#rules"
                        role="tab"
                        aria-controls="rules"
-                       aria-selected="false">Recommended Actions</a>
+                       aria-selected="false">{%trans%}Recommended Actions{%endtrans%}</a>
                 </li>
             </ul>
             <div class="tab-content" id="tabContentResults">
@@ -115,7 +115,7 @@
                                                 <div class="split">
                                                     <div class="col-md-3">
                                                         <div id="DivProbabilityOfInfection">
-                                                            <b>Probability of infection (%)</b>
+                                                            <b>{%trans%}Probability of infection (%){%endtrans%} </b>
                                                         </div>
                                                         <div id = "divWarning" class="d-flex">
                                                             {% block warning_animation %}
@@ -141,18 +141,18 @@
                                                             <div class="flex-row align-self-center">
                                                                 {% if scale_warning == 'red' %}
                                                                     <div class="alert alert-danger mb-0" role="alert">
-                                                                        <strong>High risk level:</strong>
-                                                                    Taking into account the uncertainties tied to the model variables, in this scenario, the <b>probability of one exposed occupant getting infected is {{ prob_inf | non_zero_percentage }}</b> and the <b>expected number of new cases is {{ expected_new_cases | float_format }}</b>*.
+                                                                        <strong>{%trans%}High risk level:{%endtrans%} </strong>
+                                                                   {%trans%}Taking into account the uncertainties tied to the model variables, in this scenario, the{%endtrans%} <b>{%trans%}probability of one exposed occupant getting infected is{%endtrans%} {{ prob_inf | non_zero_percentage }}</b> {%trans%}and the{%endtrans%} <b> {%trans%}expected number of new cases is{%endtrans%} {{ expected_new_cases | float_format }}</b>*.
                                                                 </div>
                                                             {% elif scale_warning == 'orange' %}
                                                                 <div class="alert alert-warning mb-0" role="alert">
-                                                                    <strong>Attention:</strong>
-                                                                Taking into account the uncertainties tied to the model variables, in this scenario, the <b>probability of one exposed occupant getting infected is {{ prob_inf | non_zero_percentage }}</b> and the <b>expected number of new cases is {{ expected_new_cases | float_format }}</b>*.
+                                                                    <strong>{%trans%}Attention:{%endtrans%} </strong>
+                                                              {%trans%}Taking into account the uncertainties tied to the model variables, in this scenario, the{%endtrans%} <b>{%trans%}probability of one exposed occupant getting infected is{%endtrans%} {{ prob_inf | non_zero_percentage }}</b> {%trans%}and the{%endtrans%} <b>{%trans%}expected number of new cases is{%endtrans%} {{ expected_new_cases | float_format }}</b>*.
                                                             </div>
                                                         {% elif scale_warning == 'green' %}
                                                             <div class="alert alert-success mb-0" role="alert">
-                                                                <strong>Acceptable:</strong>
-                                                            Taking into account the uncertainties tied to the model variables, in this scenario, the <b>probability of one exposed occupant getting infected is {{ prob_inf | non_zero_percentage }}</b> and the <b>expected number of new cases is {{ expected_new_cases | float_format }}</b>*.
+                                                                <strong>{%trans%}Acceptable:{%endtrans%} </strong>
+                                                           {%trans%}Taking into account the uncertainties tied to the model variables, in this scenario, the{%endtrans%} <b>{%trans%}probability of one exposed occupant getting infected is{%endtrans%} {{ prob_inf | non_zero_percentage }}</b> {%trans%}and the{%endtrans%} <b>{%trans%}expected number of new cases is{%endtrans%} {{ expected_new_cases | float_format }}</b>*.
                                                         </div>
                                                     {% endif %}
                                                 </div>
@@ -163,18 +163,16 @@
                                 <br>
                                 {% block report_summary_footnote %}
                                     {% if scale_warning == 'red' %}
-                                        This exceeds the reasonnable risk threshold or number of expected new cases.
-                                        The risk level should be reduced before this activity can be undertaken.
+                                    {%trans%}This exceeds the reasonnable risk threshold or number of expected new cases. The risk level should be reduced before this activity can be undertaken.{%endtrans%}
                                     {% elif scale_warning == 'orange' %}
-                                        This activity has an elevated level of risk, mitigation actions like reducing the gauge or increasing the ventilation should be undertaken prior to activity.
-                                        This level of risk is not recommended for repeatable activities or during high level of virus circulation.
+                                    {%trans%}This activity has an elevated level of risk, mitigation actions like reducing the gauge or increasing the ventilation should be undertaken prior to activity. This level of risk is not recommended for repeatable activities or during high level of virus circulation.{%endtrans%}
                                     {% elif scale_warning == 'green' %}
-                                        This level of risk is within acceptable parameters, no further actions are recommended.
+                                    {%trans%}This level of risk is within acceptable parameters, no further actions are recommended.{%endtrans%}
                                     {% endif %}
                                 {% endblock report_summary_footnote %}
                             </div>
                             <p id="section1">
-                            * The results are based on the parameters and assumptions published in the CERN Open Report <a href="https://cds.cern.ch/record/2756083">CERN-OPEN-2021-004</a>.
+                           {%trans%}* The results are based on the parameters and assumptions published in the CERN Open Report{%endtrans%} <a href="https://cds.cern.ch/record/2756083">{%trans%}CERN-OPEN-2021-004{%endtrans%}</a>.
                         </p>
                         <div id="concentration_plot"></div>
                         <script type="application/javascript">
@@ -191,7 +189,7 @@
         </div>
         <div class="card bg-light mb-3">
             <div class="card-header">
-                <strong>Alternative scenarios</strong>
+                <strong>{%trans%}Alternative scenarios{%endtrans%} </strong>
                 <button class="icon_button p-0 float-right"
                         data-toggle="collapse"
                         href="#collapseAlternativeScenarios"
@@ -216,9 +214,9 @@
                             <table class="table w-auto">
                                 <thead class="thead-light">
                                     <tr id="alternativeScenariosComparison">
-                                        <th>Scenario</th>
-                                        <th>P(i)</th>
-                                        <th>Expected new cases</th>
+                                        <th>{%trans%}Scenario{%endtrans%} </th>
+                                        <th>{%trans%}P(i){%endtrans%}</th>
+                                        <th>{%trans%}Expected new cases{%endtrans%} </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -284,17 +282,14 @@
                     </div>
                     <br />
                     <p class="data_text">
-                        <strong>Notes for alternative scenarios:</strong>
+                        <strong>{%trans%}Notes for alternative scenarios:{%endtrans%} </strong>
                         <br>
                         <ol>
-                            <li>
-                                This graph shows the concentration of infectious quanta in the air. The filtration of Type I and FFP2 masks, if worn, applies not only to the emission rate but also to the individual exposure (i.e. inhalation).
-                                For this reason, scenarios with different types of mask will show the same concentration on the graph but have different absorbed doses and infection probabilities.
+                            <li>{%trans%}This graph shows the concentration of infectious quanta in the air. The filtration of Type I and FFP2 masks, if worn, applies not only to the emission rate but also to the individual exposure (i.e. inhalation). For this reason, scenarios with different types of mask will show the same concentration on the graph but have different absorbed doses and infection probabilities.{%endtrans%}
                             </li>
-                            <li>
-                                If you have selected more sophisticated options, such as bio-ventilation or FFP2 masks, this will be indicated in the plot as the "base scenario", representing the inputs inserted in the form.
+                            <li>{%trans%}If you have selected more sophisticated options, such as bio-ventilation or FFP2 masks, this will be indicated in the plot as the "base scenario", representing the inputs inserted in the form.{%endtrans%}
                                 <br>
-                                The other alternative scenarios shown for comparison will not include either bio-ventilation or FFP2 masks.
+                                {%trans%}The other alternative scenarios shown for comparison will not include either bio-ventilation or FFP2 masks.{%endtrans%}
                             </li>
                         </ol>
                         <br>
@@ -306,7 +301,7 @@
     {% block report_footer %}
         <div class="card bg-light mb-3" id="link-results">
             <div class="card-header">
-                <strong>Link to reproduce results</strong>
+                <strong>{%trans%}Link to reproduce results{%endtrans%}</strong>
                 <button class="icon_button p-0 float-right"
                         data-toggle="collapse"
                         href="#collapseQRcode"
@@ -333,7 +328,7 @@
                                 data-placement="top"
                                 title="Copy to clipboard"
                                 onclick="copy_clipboard('{{ permalink.link }}');">
-                            Click to copy a shareable link
+                            {%trans%}Click to copy a shareable link{%endtrans%}
                         </button>
                     </div>
                     <div id="link_reproduce_results" class="split">
@@ -346,9 +341,9 @@
                         <div class="align-self-center">
                             <span id="SpanQR">
                                 <p id="pQR">
-                                    Click the QR code to regenerate the report and get a shareable link.
+                                    {%trans%}Click the QR code to regenerate the report and get a shareable link.{%endtrans%}
                                     <br>
-                                    Alternatively, scan to regenerate the report.
+                                    {%trans%}Alternatively, scan to regenerate the report.{%endtrans%}
                                     <br>
                                 </p>
                             </span>
@@ -365,61 +360,61 @@
     {% block simulation_overview %}
         <div class="card">
             <div class="card-header">
-                <strong>Simulation:</strong>
+                <strong>{%trans%}Simulation:{%endtrans%} </strong>
             </div>
             <div class="card-body">
                 <p>
-                    Simulation Name: {{ form.simulation_name }}
+                   {%trans%}Simulation Name:{%endtrans%} {{ form.simulation_name }}
                 </p>
                 <p>
-                    Room Number: {{ form.room_number }}
+                  {%trans%}Room Number:{%endtrans%} {{ form.room_number }}
                 </p>
             </div>
         </div>
         <br>
         <div class="card">
             <div class="card-header">
-                <strong>Input data:</strong>
+                <strong>{%trans%}Input data:{%endtrans%}</strong>
             </div>
             <div class="card-body">
                 <ul>
                     <li>
                         <p class="data_text">
-                            Virus variant:
+                            {%trans%}Virus variant:{%endtrans%}
                             {% if form.virus_type == "SARS_CoV_2" %}
-                                SARS-CoV-2 (nominal strain)
+                               {%trans%}SARS-CoV-2 (nominal strain){%endtrans%}
                             {% elif form.virus_type == "SARS_CoV_2_ALPHA" %}
-                                SARS-CoV-2 (Alpha VOC)
+                               {%trans%}SARS-CoV-2 (Alpha VOC){%endtrans%}
                             {% elif form.virus_type == "SARS_CoV_2_BETA" %}
-                                SARS-CoV-2 (Beta VOC)
+                               {%trans%}SARS-CoV-2 (Beta VOC){%endtrans%}
                             {% elif form.virus_type == "SARS_CoV_2_GAMMA" %}
-                                SARS-CoV-2 (Gamma VOC)
+                               {%trans%}SARS-CoV-2 (Gamma VOC){%endtrans%}
                             {% elif form.virus_type == "SARS_CoV_2_DELTA" %}
-                                SARS-CoV-2 (Delta VOC)
+                               {%trans%}SARS-CoV-2 (Delta VOC){%endtrans%}
                             {% elif form.virus_type == "SARS_CoV_2_OMICRON" %}
-                                SARS-CoV-2 (Omicron VOC)
+                               {%trans%}SARS-CoV-2 (Omicron VOC){%endtrans%}
                             {% endif %}
                         </p>
                     </li>
                     <li>
                         <p class="data_text">
-                            Room Volume: {{ model.concentration_model.room.volume }} m³
+                           {%trans%}Room Volume:{%endtrans%} {{ model.concentration_model.room.volume }} m³
                         </p>
                     </li>
                     <li>
                         <p class="data_text">
-                            Room Central Heating: {{ "On" if form.room_heating_option == 1 else "Off" }}
+                           {%trans%}Room Central Heating:{%endtrans%} {{ "On" if form.room_heating_option == 1 else "Off" }}
                         </p>
                     </li>
                     <li>
                         <p class="data_text">
-                            Geographic Location: {{ form.location_name }}
+                           {%trans%}Geographic Location:{%endtrans%} {{ form.location_name }}
                         </p>
                     </li>
                     {% if form.ventilation_type == 'natural_ventilation' %}
                         <li>
                             <p class="data_text">
-                                Nearest weather station: {{ form.nearest_weather_station()[1].strip().title() }}
+                              {%trans%}Nearest weather station:{%endtrans%}{{ form.nearest_weather_station()[1].strip().title() }}
                             </p>
                         </li>
                     {% endif %}
@@ -429,101 +424,101 @@
         <br>
         <div class="card">
             <div class="card-header">
-                <strong>Ventilation data:</strong>
+                <strong>{%trans%}Ventilation data:{%endtrans%}</strong>
             </div>
             <div class="card-body">
                 <ul>
                     <li>
                         <p class="data_text">
-                            Mechanical ventilation:
+                           {%trans%}Mechanical ventilation:{%endtrans%}
                             {% if form.ventilation_type == 'mechanical_ventilation' %}
-                                Yes
+                               {%trans%}Yes{%endtrans%}
                             </p>
                         </li>
                         <ul>
                             <li>
                                 <p class="data_subtext">
                                     {% if form.mechanical_ventilation_type == "mech_type_air_supply" %}
-                                        Air supply flow rate: {{ form.air_supply }} m³ / hour
+                                       {%trans%}Air supply flow rate:{%endtrans%} {{ form.air_supply }} m³ / {%trans%}hour{%endtrans%}
                                     {% elif form.mechanical_ventilation_type == "mech_type_air_changes" %}
-                                        Air changes per hour: {{ form.air_changes }} h⁻¹
+                                       {%trans%}Air changes per hour:{%endtrans%} {{ form.air_changes }} {%trans%}h{%endtrans%}⁻¹
                                     {% endif %}
                                 </p>
                             </li>
                         </ul>
                     {% else %}
-                        No
+                        {%trans%}No{%endtrans%}
                     </li>
                 {% endif %}
                 <li>
                     <p class="data_text">
-                        Natural ventilation:
+                       {%trans%}Natural ventilation:{%endtrans%}
                         {% if form.ventilation_type == 'natural_ventilation' %}
-                            Yes
+                           {%trans%}Yes{%endtrans%}
                         </p>
                     </li>
                     <ul>
                         <li>
                             <p class="data_subtext">
-                                Number of windows: {{ form.windows_number }}
+                               {%trans%}Number of windows:{%endtrans%} {{ form.windows_number }}
                             </p>
                         </li>
                         <li>
                             <p class="data_subtext">
-                                Height of window: {{ form.window_height }} m
+                               {%trans%}Height of window:{%endtrans%} {{ form.window_height }} m
                             </p>
                         </li>
                         <li>
                             <p class="data_subtext">
-                                Window type:
+                               {%trans%}Window type:{%endtrans%}
                                 {% if form.window_type == "window_hinged" %}
-                                    Top- or Bottom-Hung
+                                   {%trans%}Top- or Bottom-Hung{%endtrans%}
                                 </p>
                             </li>
                             <li>
                                 <p class="data_subtext">
-                                    Width of window: {{ form.window_width }} m
+                                   {%trans%}Width of window:{%endtrans%} {{ form.window_width }} m
                                 </p>
                             </li>
                         {% elif form.window_type == "window_sliding" %}
-                            Sliding / Side-Hung
+                           {%trans%}Sliding / Side-Hung{%endtrans%}
                         </p>
                     </li>
                 {% endif %}
                 <li>
                     <p class="data_subtext">
-                        Opening distance: {{ form.opening_distance }} m
+                       {%trans%}Opening distance:{%endtrans%} {{ form.opening_distance }} m
                     </p>
                 </li>
                 <li>
                     <p class="data_subtext">
-                        Windows open:
+                       {%trans%}Windows open:{%endtrans%}
                         {% if form.window_opening_regime == "windows_open_periodically" %}
-                            Periodically for {{ form.windows_duration | readable_minutes }}
-                            every {{ form.windows_frequency | readable_minutes }}
+                           {%trans%}Periodically for{%endtrans%}{{ form.windows_duration | readable_minutes }}
+                           {%trans%}every{%endtrans%}{{ form.windows_frequency | readable_minutes }}
                         {% elif form.window_opening_regime == "windows_open_permanently" %}
-                            Permanently
+                            {%trans%}Permanently{%endtrans%}
                         {% endif %}
                     </p>
                 </li>
             </ul>
             <p class="data_subtext data_italic">
-                When using the natural ventilation option, air flows are calculated using averaged hourly temperatures for the region {{ form.location_name }}, based on historical data for the month selected.
+               {%trans%}When using the natural ventilation option, air flows are calculated using averaged hourly temperatures for the region{%endtrans%} {{ form.location_name }},{%trans%}based on historical data for the month selected.{%endtrans%}
             </p>
         {% else %}
-            No
+           {%trans%}No{%endtrans%}
         </p>
     </li>
 {% endif %}
 <li>
     <p class="data_text">
-        Bio-ventilation: {{ 'Yes' if form.biov_option==1 else 'No' }}
+       {%trans%}Bio-ventilation:{%endtrans%} {{ _('Yes') if form.biov_option==1 else _('No') }}
     </li>
     {% if form.biov_option==1 %}
         <ul>
             <li>
                 <p class="data_text">
-                    Bio-ventilation amount: {{ form.biov_amount }} m³ / hour
+                    {%trans%}Bio-ventilation amount:{%endtrans%} {{ form.biov_amount }} {%trans%}m³ / hour{%endtrans%}
                 </p>
             </li>
         </ul>
@@ -534,25 +529,25 @@
 <br>
 <div class="card">
     <div class="card-header">
-        <strong>Event data:</strong>
+        <strong>{%trans%}Event data:{%endtrans%}</strong>
     </div>
     <div class="card-body">
         <ul>
             <li>
                 <p class="data_text">
-                    Number of attendees and infected people: {{ form.total_people }} in attendance, of whom {{ form.infected_people }}
-                    {{ "is" if form.infected_people == 1 else "are" }}
-                    infected.
+                    {%trans%}Number of attendees and infected people:{%endtrans%} {{ form.total_people }} {%trans%}in attendance, of whom{%endtrans%} {{ form.infected_people }}
+                    {{ _("is") if form.infected_people == 1 else _("are") }}
+                    {%trans%}infected.{%endtrans%}
                 </p>
             </li>
             <li>
                 <p class="data_text">
-                    Exposed occupant(s):
+                    {%trans%}Exposed occupant(s):{%endtrans%}
                 </p>
                 <ul>
                     <li>
                         <p class="data_text">
-                            Activity type: {{ form.exposed_activity_type }}
+                            {%trans%}Activity type:{%endtrans%} {{ form.exposed_activity_type }}
                             <!--{% if form.exposed_activity_type == "watch_seated" %}
                                     Watch seated – typical scenario for someone seating in front of a console, speaking quietly for 30% and loudly for 10% of the time.
                                     {% elif form.exposed_activity_type == "watch_standing" %}
@@ -584,35 +579,35 @@
                     </li>
                     <li>
                         <p class="data_text">
-                            Mask wearing time (when masks are worn): {{ form.exposed_mask_wear_ratio * 100 }}%
+                            {%trans%}Mask wearing time (when masks are worn):{%endtrans%} {{ form.exposed_mask_wear_ratio * 100 }}%
                         </p>
                     </li>
                     <li>
                         <p class="data_text">
-                            Activity time:
+                            {%trans%}Activity time:{%endtrans%}
                         </p>
                     </li>
                     <ul>
                         <li>
                             <p class="data_subtext">
-                                Start time: {{ form.exposed_start | minutes_to_time }}
+                                {%trans%}Start time:{%endtrans%} {{ form.exposed_start | minutes_to_time }}
                             </p>
                         </li>
                         <li>
                             <p class="data_subtext">
-                                End time: {{ form.exposed_finish | minutes_to_time }}
+                                {%trans%}End time:{%endtrans%} {{ form.exposed_finish | minutes_to_time }}
                             </p>
                         </li>
                     </ul>
                 </ul>
                 <li>
                     <p class="data_text">
-                        Infected occupant(s):
+                        {%trans%}Infected occupant(s):{%endtrans%}
                     </p>
                     <ul>
                         <li>
                             <p class="data_text">
-                                Activity type: {{ form.infected_activity_type }}
+                                {%trans%}Activity type:{%endtrans%} {{ form.infected_activity_type }}
                                 <!--
                                     {% if form.infected_activity_type == "watch_seated" %}
                                     Watch seated – typical scenario for someone seating in front of a console, speaking quietly for 30% and loudly for 10% of the time.
@@ -645,30 +640,30 @@
                         </li>
                         <li>
                             <p class="data_text">
-                                Mask wearing time (when masks are worn): {{ form.infected_mask_wear_ratio * 100 }}%
+                                {%trans%}Mask wearing time (when masks are worn):{%endtrans%} {{ form.infected_mask_wear_ratio * 100 }}%
                             </p>
                         </li>
                         <li>
                             <p class="data_text">
-                                Infected occupant(s) activity time:
+                                {%trans%}Infected occupant(s) activity time:{%endtrans%}
                             </p>
                         </li>
                         <ul>
                             <li>
                                 <p class="data_subtext">
-                                    Start time: {{ form.infected_start | minutes_to_time }}
+                                    {%trans%}Start time:{%endtrans%} {{ form.infected_start | minutes_to_time }}
                                 </p>
                             </li>
                             <li>
                                 <p class="data_subtext">
-                                    End time: {{ form.infected_finish | minutes_to_time }}
+                                    {%trans%}End time:{%endtrans%} {{ form.infected_finish | minutes_to_time }}
                                 </p>
                             </li>
                         </ul>
                     </ul>
                     <li>
                         <p class="data_text">
-                            Event for the month of {{ form.event_month }}
+                           {%trans%}Event for the month of{%endtrans%} {{ form.event_month }}
                         </p>
                     </li>
                 </ul>
@@ -677,50 +672,50 @@
         <br>
         <div class="card">
             <div class="card-header">
-                <strong>Break data:</strong>
+                <strong>{%trans%}Break data:{%endtrans%}</strong>
             </div>
             <div class="card-body">
                 {% if form.infected_dont_have_breaks_with_exposed==1 %}
                     <p class="pOccupant">
-                        Exposed occupant(s):
+                        {%trans%}Exposed occupant(s):{%endtrans%}
                     </p>
                 {% endif %}
                 <ul>
                     <li>
                         <p class="data_text">
-                            Lunch break:
+                            {%trans%}Lunch break:{%endtrans%}
                             {% if form.exposed_lunch_option == 1 %}
-                                Yes
+                                {%trans%}Yes{%endtrans%}
                             </li>
                             <ul>
                                 <li>
                                     <p class="data_subtext">
-                                        Start time: {{ form.exposed_lunch_start | minutes_to_time }}
+                                        {%trans%}Start time:{%endtrans%} {{ form.exposed_lunch_start | minutes_to_time }}
                                     </p>
                                 </li>
                                 <li>
                                     <p class="data_subtext">
-                                        End time: {{ form.exposed_lunch_finish | minutes_to_time }}
+                                        {%trans%}End time:{%endtrans%} {{ form.exposed_lunch_finish | minutes_to_time }}
                                     </p>
                                 </li>
                             </ul>
                         {% else %}
-                            No
+                           {%trans%}No{%endtrans%}
                         {% endif %}
                     </p>
                 </li>
                 <li>
                     <p class="data_text">
-                        Coffee breaks: {{ form.exposed_number_of_coffee_breaks() }}
+                       {%trans%}Coffee breaks:{%endtrans%} {{ form.exposed_number_of_coffee_breaks() }}
                         {% if form.exposed_number_of_coffee_breaks() > 0 %}
-                            each of {{ form.exposed_coffee_duration }} minutes duration
+                            {%trans%}each of{%endtrans%} {{ form.exposed_coffee_duration }} {%trans%}minutes duration{%endtrans%}
                         </p>
                     </li>
                     <ul>
                         {%- for start_time, end_time in form.exposed_coffee_break_times() %}
                             <li>
                                 <p class="data_subtext">
-                                    Coffee break {{ loop.index }}: Start: {{ start_time | minutes_to_time }} &nbsp&nbsp End: {{ end_time | minutes_to_time }}
+                                    {%trans%}Coffee break{%endtrans%} {{ loop.index }}: {%trans%}Start:{%endtrans%} {{ start_time | minutes_to_time }} &nbsp&nbsp {%trans%}End:{%endtrans%} {{ end_time | minutes_to_time }}
                                 </p>
                             </li>
                         {%- endfor %}
@@ -729,44 +724,44 @@
             </ul>
             {% if form.infected_dont_have_breaks_with_exposed==1 %}
                 <p class="pOccupant">
-                    Infected occupant(s):
+                    {%trans%}Infected occupant(s):{%endtrans%}
                 </p>
                 <ul>
                     <li>
                         <p class="data_text">
-                            Lunch break:
+                            {%trans%}Lunch break:{%endtrans%}
                             {% if form.infected_lunch_option == 1%}
-                                Yes
+                               {%trans%}Yes{%endtrans%}
                             </li>
                             <ul>
                                 <li>
                                     <p class="data_subtext">
-                                        Start time: {{ form.infected_lunch_start | minutes_to_time }}
+                                        {%trans%}Start time:{%endtrans%}%} {{ form.infected_lunch_start | minutes_to_time }}
                                     </p>
                                 </li>
                                 <li>
                                     <p class="data_subtext">
-                                        End time: {{ form.infected_lunch_finish | minutes_to_time }}
+                                        {%trans%}End time:{%endtrans%} {{ form.infected_lunch_finish | minutes_to_time }}
                                     </p>
                                 </li>
                             </ul>
                         {% else %}
-                            No
+                            {%trans%}No{%endtrans%}
                         {% endif %}
                     </p>
                 </li>
                 <li>
                     <p class="data_text">
-                        Coffee breaks: {{ form.infected_number_of_coffee_breaks() }}
+                        {%trans%}Coffee breaks:{%endtrans%} {{ form.infected_number_of_coffee_breaks() }}
                         {% if form.infected_number_of_coffee_breaks() > 0 %}
-                            each of {{ form.infected_coffee_duration }} minutes duration
+                            {%trans%}each of{%endtrans%} {{ form.infected_coffee_duration }} {%trans%}minutes duration{%endtrans%}
                         </p>
                     </li>
                     <ul>
                         {%- for start_time, end_time in form.infected_coffee_break_times() %}
                             <li>
                                 <p class="data_subtext">
-                                    Coffee break {{ loop.index }}: Start: {{ start_time | minutes_to_time }} &nbsp&nbsp End: {{ end_time | minutes_to_time }}
+                                    {%trans%}Coffee break{%endtrans%} {{ loop.index }}: {%trans%}Start:{%endtrans%} {{ start_time | minutes_to_time }} &nbsp&nbsp {%trans%}End:{%endtrans%} {{ end_time | minutes_to_time }}
                                 </p>
                             </li>
                         {%- endfor %}
@@ -774,26 +769,26 @@
                 {% endif %}
             </ul>
         {% else %}
-            <i>Same breaks taken by the exposed and infected persons.</i>
+            <i>{%trans%}Same breaks taken by the exposed and infected persons.{%endtrans%}</i>
         {% endif %}
     </div>
 </div>
 <br>
 <div class="card">
     <div class="card-header">
-        <strong>Mask wearing:</strong>
+        <strong>{%trans%}Mask wearing:{%endtrans%}</strong>
     </div>
     <div class="card-body">
         <ul>
             <li>
                 <p class="data_text">
-                    Masks worn at workstations? {{ 'Yes' if form.mask_wearing_option == "mask_on" else 'No' }}
+                   {%trans%}Masks worn at workstations?{%endtrans%} {{ _('Yes') if form.mask_wearing_option == "mask_on" else _('No') }}
                 </p>
             </li>
             {% if form.mask_wearing_option == "mask_on" %}
                 <li>
                     <p class="data_text">
-                        Mask type: {{ form.mask_type }}
+                        {%trans%}Mask type:{%endtrans%} {{ form.mask_type }}
                     </p>
                 </li>
             {% endif %}
@@ -810,7 +805,7 @@
          aria-labelledby="rules-tab">
         <div class="card bg-light mb-3">
             <div class="card-header">
-                <strong>Recommended Actions</strong>
+                <strong>{%trans%}Recommended Actions{%endtrans%}</strong>
                 <button class="icon_button p-0 float-right"
                         data-toggle="collapse"
                         href="#collapseRules"
@@ -831,20 +826,20 @@
             <div class="collapse show" id="collapseRules">
                 <div class="card-body">
                     <p class="card-text">
-                        Please ensure that this scenario conforms to current COVID-related national/local regulations and internal Organization rules.
+                       {%trans%}Please ensure that this scenario conforms to current COVID-related national/local regulations and internal Organization rules.{%endtrans%}
                     </p>
                     <br>
                     <div class="d-flex">
                         <div class="split">
                             <div class="d-flex flex-column col-xl-8 p-0">
                                 <div class="alert alert-success mb-0" role="alert">
-                                Events with a <strong>P(i) less than 2%</strong> may go ahead without further mitigation measures.
+                                {%trans%}Events with a{%endtrans%} <strong>{%trans%}P(i) less than 2%{%endtrans%}</strong> {%trans%}may go ahead without further mitigation measures.{%endtrans%}
                             </div>
                             <div class="alert alert-warning mb-0" role="alert">
-                            Events with a <strong>P(i) between 2% and 10%</strong> should not be conducted on a regular basis or during high level of virus circulation. Mitigation measures to minimise the risk before proceeding are recommended.
+                            {%trans%}Events with a{%endtrans%} <strong>{%trans%}P(i) between 2% and 10%{%endtrans%}</strong> {%trans%}should not be conducted on a regular basis or during high level of virus circulation. Mitigation measures to minimise the risk before proceeding are recommended.{%endtrans%}
                         </div>
                         <div class="alert alert-danger mb-0" role="alert">
-                        Events with a <strong>P(i) exceeding 10% or a number of expected new cases that exceeds 1</strong> should not take place until additional measures are in place and a risk reduction has been performed.
+                        {%trans%}Events with a{%endtrans%} <strong>{%trans%}P(i) exceeding 10% or a number of expected new cases that exceeds 1{%endtrans%}</strong> {%trans%}should not take place until additional measures are in place and a risk reduction has been performed.{%endtrans%}
                     </div>
                 </div>
             </div>
@@ -861,48 +856,8 @@
     <br>
     <div id="disclaimer" class="rounded">
         {% block disclaimer %}
-            <p class="image">
-                <img align="middle"
-                     src="/static/images/disclaimer.jpg"
-                     width="40"
-                     height="40">
-                <b>Disclaimer:</b>
-                <br>
-                <br>
-            </p>
-            <p>
-                FARC is a risk assessment tool developed to model the concentration of viruses in enclosed spaces, in order to inform space-management decisions.
-            </p>
-            <p>
-                FARC models the concentration profile of potential infectious viruses in enclosed spaces with clear and intuitive graphs.
-                The user can set a number of parameters, including room volume, exposure time, activity type, mask-wearing and ventilation.
-                The report generated indicates how to avoid exceeding critical concentrations and chains of airborne transmission in spaces such as individual offices, meeting rooms and labs.
-            </p>
-            <p>
-                The risk assessment tool simulates the long-range airborne spread SARS-CoV-2 virus in a finite volume, assuming a homogenous mixture, and estimates the risk of COVID-19 airborne transmission therein.
-                The results DO NOT include short-range airborne exposure (where the physical distance is a significant factor) nor the other known modes of SARS-CoV-2 transmission.
-                Hence, the output from this model is only valid when the other recommended public health & safety instructions are observed, such as adequate physical distancing, good hand hygiene and other barrier measures.
-            </p>
-            <p>
-                The model used is based on scientific publications relating to airborne transmission of infectious diseases, dose-response exposures and aerosol science.
-                It can be used to compare the effectiveness of different airborne-related risk mitigation measures.
-            </p>
-            <p>
-                Note that this model applies a deterministic approach, i.e., it is assumed at least one person is infected and shedding viruses into the simulated volume.
-                Nonetheless, it is also important to understand that the absolute risk of infection is uncertain, as it will depend on the probability that someone infected attends the event.
-                The model is most useful for comparing the impact and effectiveness of different mitigation measures such as ventilation, filtration, exposure time, physical activity and
-                the size of the room, only considering long-range airborne transmission of COVID-19 in indoor settings.
-            </p>
-            <p>
-                This tool is designed to be informative, allowing the user to adapt different settings and model the relative impact on the estimated infection probabilities.
-                The objective is to facilitate targeted decision-making and investment through comparisons, rather than a singular determination of absolute risk.
-                While the SARS-CoV-2 virus is in circulation among the population, the notion of 'zero risk' or 'completely safe scenario' does not exist.
-                Each event modelled is unique, and the results generated therein are only as accurate as the inputs and assumptions.
-            </p>
-            <p>
-                FARC has not undergone review, approval or certification by competent authorities, and as a result, it cannot be considered
-                as a fully endorsed and reliable tool, namely in the assessment of potential viral emissions from infected hosts to be modelled.
-            </p>
+            <p class="image"> <img align="middle" src="/static/images/disclaimer.jpg" width="40" height="40"><b>{%trans%}Disclaimer:{%endtrans%}</b><br><br></p>
+            {{ text_blocks['Disclaimer'] }}
         {% endblock disclaimer %}
     </div>
 {% endblock disclaimer_container %}

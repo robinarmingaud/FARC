@@ -4,6 +4,7 @@ import dataclasses
 from datetime import datetime
 import io
 import json
+from turtle import update
 import typing
 import urllib
 import zlib
@@ -12,11 +13,16 @@ import jinja2
 import numpy as np
 
 from farc import models
+from farc.apps.calculator import markdown_tools
+from farc.apps.calculator.DEFAULT_DATA import LOCALE
 
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
 from ... import dataclass_utils
 
+from babel.support import Translations
+import gettext
+_ = gettext.gettext
 
 
 def model_start_end(model: models.ExposureModel):
@@ -348,6 +354,8 @@ class ReportGenerator:
         env = jinja2.Environment(
             loader=self.jinja_loader,
             undefined=jinja2.StrictUndefined,
+            extensions=['jinja2.ext.i18n', 'jinja2.ext.autoescape'],
+            autoescape=jinja2.select_autoescape(['html', 'xml'])
         )
         env.filters['non_zero_percentage'] = non_zero_percentage
         env.filters['readable_minutes'] = readable_minutes
@@ -355,6 +363,10 @@ class ReportGenerator:
         env.filters['float_format'] = "{0:.2f}".format
         env.filters['int_format'] = "{:0.0f}".format
         env.filters['JSONify'] = json.dumps
+        translation = Translations.load('locale', LOCALE)
+        env.install_gettext_translations(translation)
+        env.globals.update(_ = _)
+        env.globals['text_blocks'] = markdown_tools.extract_rendered_markdown_blocks(env.get_template('common_text.md.j2'))
         return env
 
     def render(self, context: dict) -> str:
