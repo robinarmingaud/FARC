@@ -462,7 +462,7 @@
     <div class="col-sm-4"><label class="col-form-label">{%trans%}Which month is the event?{%endtrans%}</label></div>
     <div class="col-sm-6 align-self-center">
     <select id="event_month" name="event_month" class="form-control" value={{default.event_month}} required>
-    {% set months = PLACEHOLDERS.months %}
+    {% set months = MONTH_NAMES %}
       {% for month in months %}
         {% if month == default.event_month %}
           <option value = {{month}} selected> {{month}} </option>

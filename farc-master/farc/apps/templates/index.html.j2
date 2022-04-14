@@ -8,24 +8,24 @@
                    role="button"
                    class="btn btn-outline-primary">
                     <div class="d-flex d-row">
-                        <i class="icon-calculator"></i><span class="pl-1">Calculator
+                        <i class="icon-calculator"></i><span class="pl-1">{%trans%}Calculator{%endtrans%}
                 </div>
             </a>
         </div>
     </div>
     <div class="split">
         <div class="col-lg-8 col-md-7 pl-0">
-            <h2 class="paragraph-title">Introduction</h2>
+            <h2 class="paragraph-title">{%trans%}Introduction{%endtrans%}</h2>
             <br>
             <div>
                 <p>
-                    FARC is a risk assessment tool developed to model the concentration of viruses in enclosed spaces, in order to inform space-management decisions.
+                    {%trans%}FARC is a risk assessment tool developed to model the concentration of viruses in enclosed spaces, in order to inform space-management decisions.
                     It does this by simulating the long-range airborne spread SARS-CoV-2 virus in a finite volume, assuming homogenous mixing, and it estimates the risk of COVID-19 airborne transmission therein.
-                Please see the <a href="/about">About</a> page for more details on the methodology, assumptions and limitations of FARC.
+                Please see the{%endtrans%} <a href="/about">{%trans%}About{%endtrans%}</a> {%trans%}page for more details on the methodology, assumptions and limitations of FARC.{%endtrans%}
             </p>
             <p>
-            FARC is based on CARA tool and released under Apache 2.0 licence. </a>.
-        We wish to to thank the CARA team from CERN in Geneva and all around the world for their great work on this tool more in the <a href="/about">About</a> page.
+           {%trans%}FARC is based on CARA tool and released under Apache 2.0 licence.{%endtrans%} </a>
+       {%trans%}We wish to to thank the CARA team from CERN in Geneva and all around the world for their great work on this tool.{%endtrans%}
     </p>
     <br>
 </div>
@@ -37,14 +37,14 @@
 <br>
 <div id="apps_section" class="d-none">
     <div class="d-flex flex-row">
-        <h2 class="paragraph-title pr-4 align-self-center">Apps:</h2>
+        <h2 class="paragraph-title pr-4 align-self-center">{%trans%}Apps:{%endtrans%}</h2>
         <br>
         <div class="pr-3">
             <a href="{{ calculator_prefix }}"
                role="button"
                class="btn btn-lg btn-outline-primary">
                 <div class="d-flex d-row">
-                    <i class="icon-calculator"></i><span class="pl-2">Calculator
+                    <i class="icon-calculator"></i><span class="pl-2">{%trans%}Calculator{%endtrans%}
             </div>
         </a>
     </div>
@@ -53,33 +53,31 @@
 </div>
 <br>
 <div>
-    <h2 class="paragraph-title">Information</h2>
+    <h2 class="paragraph-title">{%trans%}Information{%endtrans%}</h2>
     <br>
     <p>
-        FARC - Flow-R Airborne Risk calculator
+        {%trans%}FARC - Flow-R Airborne Risk calculator{%endtrans%}
         <br>
-        © Copyright 2022 Ingenica. All rights not expressly granted are reserved.
+        {%trans%}© Copyright 2022 Ingenica. All rights not expressly granted are reserved.{%endtrans%}
         <br>
-        Licensed under the Apache License, Version 2.0
+        {%trans%}Licensed under the Apache License, Version 2.0{%endtrans%}
         <br>
-        based on:
+        {%trans%}based on:{%endtrans%}
         <br>
-        CARA – COVID Airborne Risk Assessment tool
+        {%trans%}CARA – COVID Airborne Risk Assessment tool{%endtrans%}
         <br>
-        © Copyright 2020-2021 CERN. All rights not expressly granted are reserved.
+        {%trans%}© Copyright 2020-2021 CERN. All rights not expressly granted are reserved.{%endtrans%}
         <br>
-        Licensed under the Apache License, Version 2.0
+        {%trans%}Licensed under the Apache License, Version 2.0{%endtrans%}
         <br>
-        Licensed under the Apache License, Version 2.0 (the "License");
+        {%trans%}You may not use this file except in compliance with the License.{%endtrans%}
         <br>
-        you may not use this file except in compliance with the License.
-        <br>
-        You may obtain a copy of the License at
+        {%trans%}You may obtain a copy of the License at{%endtrans%}
         <br>
         <a href=http://www.apache.org/licenses/LICENSE-2.0><i>http://www.apache.org/licenses/LICENSE-2.0</i></a>
         <br>
-        Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and limitations under the License.
+        {%trans%}Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and limitations under the License.{%endtrans%}
     </p>
 </div>
 {% endblock main %}
