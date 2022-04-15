@@ -8,6 +8,7 @@ from turtle import update
 import typing
 import urllib
 import zlib
+import time as t
 
 import jinja2
 import numpy as np
@@ -214,22 +215,22 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 
     alternatives = (
         (
-            f'NO bio-ventilation and NO masks',
+            _(f'NO bio-ventilation and NO masks'),
             dataclass_utils.replace(form, mask_wearing_option='mask_off', biov_option=0),
 
         ),
         (
-            f'NO bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a {form.infected_mask_wear_ratio} wear ratio for infected people',
+            _(f'NO bio-ventilation and') + f'{form.mask_type}' + _('masks with a') + f'{form.exposed_mask_wear_ratio}' + _('wear ratio for exposed people and a') + f'{form.infected_mask_wear_ratio}' + _('wear ratio for infected people'),
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=0),
 
         ),
         (
-            f'{form.biov_amount} m3/h bio-ventilation and NO masks',
+            f'{form.biov_amount}' + _('m3/h bio-ventilation and NO masks'),
             dataclass_utils.replace(form, mask_wearing_option='mask_off', biov_option=1),
 
         ),
         (
-            f'{form.biov_amount} m3/h bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a {form.infected_mask_wear_ratio} wear ratio for infected people',
+            f'{form.biov_amount}' + _('m3/h bio-ventilation and') + f'{form.mask_type}' + _('masks with a') + f'{form.exposed_mask_wear_ratio}' + _('wear ratio for exposed people and a') + f'{form.infected_mask_wear_ratio}' +  _('wear ratio for infected people'),
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=1),
             
         ),
@@ -249,6 +250,7 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 
 
 def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
+    start = t.process_time()
     model = mc_model.build_model(size=_DEFAULT_MC_SAMPLE_SIZE)
 
     '''cumulative_doses = np.cumsum([
@@ -260,7 +262,8 @@ def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
         np.array(model.cumulative_deposited_exposure(float(time))).mean()
         for time in sample_times
     ]
-
+    
+    print(t.process_time() - start) 
     return {
         'probability_of_infection': np.mean(model.infection_probability()),
         'expected_new_cases': np.mean(model.expected_new_cases()),
@@ -292,7 +295,7 @@ def comparison_report(
             scenarios.values(),
             [sample_times] * len(scenarios),
             timeout=60,
-        )
+        )    
 
     row: int = 0
     for (name, model), model_stats in zip(scenarios.items(), results):
@@ -327,6 +330,7 @@ class ReportGenerator:
             form: FormData,
             executor_factory: typing.Callable[[], concurrent.futures.Executor],
     ) -> dict:
+        
         now = datetime.utcnow().astimezone()
         time = now.strftime("%Y-%m-%d %H:%M:%S UTC")
 
@@ -348,6 +352,7 @@ class ReportGenerator:
         context['expected_new_cases'] = next(iter(next(iter(context['alternative_scenarios'].items()))[1].items()))[1]['expected_new_cases']
         context['permalink'] = generate_permalink(base_url, self.calculator_prefix, form)
         context['calculator_prefix'] = self.calculator_prefix
+        
         return context
 
     def _template_environment(self) -> jinja2.Environment:

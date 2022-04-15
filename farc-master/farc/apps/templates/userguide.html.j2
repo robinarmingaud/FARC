@@ -5,17 +5,16 @@
 {% block main %}
     <div class="container container--padding">
         <br>
-        <h1>Instructions for use</h1>
+        <h1>{%trans%}Instructions for use{%endtrans%}</h1>
     <br>
     <p>
-        This is a guide to help you use the calculator app.
-        If you are using the expert version of the tool,  you should look at the expert notes.
+        {%trans%}This is a guide to help you use the calculator app.{%endtrans%}
     </p>
     <p>
-        For more information on the Airborne Transmission of SARS-CoV-2, feel free to check out this HSE Seminar: <a href="https://cds.cern.ch/record/2743403">https://cds.cern.ch/record/2743403</a>
+        {%trans%}For more information on the Airborne Transmission of SARS-CoV-2, feel free to check out this HSE Seminar:{%endtrans%} <a href="https://cds.cern.ch/record/2743403">https://cds.cern.ch/record/2743403</a>
     </p>
     <p>
-        The methodology, mathematical equations and parameters of the CARA model are described here in the CERN Report: <a href="https://cds.cern.ch/record/2756083">CERN-OPEN-2021-004</a>
+        {%trans%}The methodology, mathematical equations and parameters of the CARA model are described here in the CERN Report:{%endtrans%} <a href="https://cds.cern.ch/record/2756083">{%trans%}CERN-OPEN-2021-004{%endtrans%}</a>
     </p>
 </div>
 <div class="center">
@@ -25,104 +24,104 @@
             data-target="#collapseDisclaimer"
             aria-expanded="false"
             aria-controls="collapseDisclaimer">
-        Disclaimer
+        {%trans%}Disclaimer{%endtrans%}
     </button>
 </div>
 <div class="collapse container container--padding" id="collapseDisclaimer">
     {{ text_blocks['Disclaimer'] }}
 </div>
 <div class="container container--padding">
-    <h1>How to use this tool</h1>
+    <h1>{%trans%}How to use this tool{%endtrans%}</h1>
     <br>
-    <h3>Simulation Name &amp; Room number</h3>
+    <h3>{%trans%}Simulation Name{%endtrans%} &amp; {%trans%}Room number{%endtrans%}</h3>
     <br>
     <p>
-        In order to be able to trace back the simulations in your workplace risk assessments, performed with the tool, you can give each one a unique name - for example "Office use on Tuesday mornings".
-        The simulation name has no bearing on the calculation.
+        {%trans%}In order to be able to trace back the simulations in your workplace risk assessments, performed with the tool, you can give each one a unique name - for example "Office use on Tuesday mornings".
+        The simulation name has no bearing on the calculation.{%endtrans%}
     </p>
     <p>
-        A room number is included, if you do not wish to use a formal room number any reference will do - for example "57/2-004"
+        {%trans%}A room number is included, if you do not wish to use a formal room number any reference will do - for example "57/2-004"{%endtrans%}
     </p>
     <br>
-    <h3>Virus Data</h3>
+    <h3>{%trans%}Virus Data{%endtrans%}</h3>
     <br>
     <p>
-        Please choose the correct virus strain or any reported Variant of Concern (VOC) from the list.
+        {%trans%}Please choose the correct virus strain or any reported Variant of Concern (VOC) from the list.
         Changing this setting alters the properties of the virus which are used for the simulation.
         This has a significant effect on the probability of infection.
-        The choices are:
+        The choices are:{%endtrans%}
     </p>
     <ul>
         <li>
-            <code>SARS-CoV-2 (nominal strain)</code>, covering typical strains and variants which are not of concern from an epidemiologic point of view of the virus;
+            <code>{%trans%}SARS-CoV-2 (nominal strain){%endtrans%}</code>, {%trans%}covering typical strains and variants which are not of concern from an epidemiologic point of view of the virus{%endtrans%};
     </li>
     <li>
-        <code>SARS-CoV-2 (Alpha VOC)</code>, first identified in the UK at the end of 2020 which is found to be approximately 1.5x more transmissible compared to the non-VOCs;
+        <code>{%trans%}SARS-CoV-2 (Alpha VOC){%endtrans%}</code>, {%trans%}first identified in the UK at the end of 2020 which is found to be approximately 1.5x more transmissible compared to the non-VOCs{%endtrans%};
 </li>
 <li>
-    <code>SARS-CoV-2 (Beta VOC)</code>, first identified in South Africa in May 2020 which is found to be approximately 1.25x more transmissible compared to the non-VOCs;
+    <code>{%trans%}SARS-CoV-2 (Beta VOC){%endtrans%}</code>, {%trans%}first identified in South Africa in May 2020 which is found to be approximately 1.25x more transmissible compared to the non-VOCs{%endtrans%};
 </li>
 <li>
-    <code>SARS-CoV-2 (Gamma VOC)</code>, first identified in Brazil in January 2021 which is found to be approximately 2.2x more transmissible compared to the non-VOCs.
+    <code>{%trans%}SARS-CoV-2 (Gamma VOC){%endtrans%}</code>, {%trans%}first identified in Brazil in January 2021 which is found to be approximately 2.2x more transmissible compared to the non-VOCs.{%endtrans%}
 </li>
 <li>
-    <code>SARS-CoV-2 (Delta VOC)</code>, first identified in India towards the end of 2020 which is found to be approximately 60% more transmissible compared to the ALPHA VOC.
+    <code>{%trans%}SARS-CoV-2 (Delta VOC){%endtrans%}</code>, {%trans%}first identified in India towards the end of 2020 which is found to be approximately 60% more transmissible compared to the ALPHA VOC.{%endtrans%}
 </li>
 <li>
-    <code>SARS-CoV-2 (Omicron VOC)</code>, first identified in South Africa in November 2021 which is found to be at least 2.53x more transmissible compared to the DELTA VOC.
+    <code>{%trans%}SARS-CoV-2 (Omicron VOC){%endtrans%}</code>, {%trans%}first identified in South Africa in November 2021 which is found to be at least 2.53x more transmissible compared to the DELTA VOC.{%endtrans%}
 </li>
 </ul>
 <p>
-    The user can modify the selected variant from the default, according to the prevalence of the different variants in the local area. Access to this information can be found here:
+    {%trans%}The user can modify the selected variant from the default, according to the prevalence of the different variants in the local area. Access to this information can be found here:{%endtrans%}
 </p>
 <p>
-    N.B. The transmission data for the Gamma variant has been taken from a study data gathered in Manaus, Brazil where the variant was first observed.
-    The local population in Manaus had very high levels of Covid-19 antibodies (&gt;67%) in recent months.
+    {%trans%}N.B. The transmission data for the Gamma variant has been taken from a study data gathered in Manaus, Brazil where the variant was first observed.
+    The local population in Manaus had very high levels of Covid-19 antibodies{%endtrans%} (&gt;67%) {%trans%}in recent months.
     This factor has been taken into account by the authors of the study, via statistical adjustments to the transmission value (i.e. it has been increased, to account for spread in a population with significant acquired Covid-19 immunity).
-    However, this value may be revised in the future as more studies of the Gamma VOC transmission in different geographical locations become available.
+    However, this value may be revised in the future as more studies of the Gamma VOC transmission in different geographical locations become available.{%endtrans%}
 </p>
 <br>
-<h3>Room Data</h3>
+<h3>{%trans%}Room Data{%endtrans%}</h3>
 <br>
 <p>
-    Please enter either the room volume (in m³) or both the floor area (m²) and the room height (m).
+    {%trans%}Please enter either the room volume (in m³) or both the floor area (m²) and the room height (m).{%endtrans%}
 </p>
 <br>
-<h4>Room heating system</h4>
+<h4>{%trans%}Room heating system{%endtrans%}</h4>
 <br>
 <p>
-    The use of central heating (e.g. radiators) reduces relative humidity of the indoor air, which can decrease the decay rate of viral infectivity. If your space is heated with such water radiators, select 'Yes'. If your space does not have such heating, or they are not in use in the period of the simulation (e.g. summer), select 'No'.
+    {%trans%}The use of central heating (e.g. radiators) reduces relative humidity of the indoor air, which can decrease the decay rate of viral infectivity. If your space is heated with such water radiators, select 'Yes'. If your space does not have such heating, or they are not in use in the period of the simulation (e.g. summer), select 'No'.{%endtrans%}
 </p>
 <br>
-<h3>Ventilation type</h3>
+<h3>{%trans%}Ventilation type{%endtrans%}</h3>
 <br>
 <p>
-    There are three main options:
+    {%trans%}There are three main options:{%endtrans%}
 </p>
 <br>
-<h4>Mechanical ventilation</h4>
+<h4>{%trans%}Mechanical ventilation{%endtrans%}</h4>
 <br>
 <p>
-    If the room has mechanical ventilation, suppling fresh air from outside (either a local or centralised system), you should select this option.
-    In order to make an accurate calculation you will need to know either the flow rate of fresh air supplied in the room or th total number of air changes per hour with fresh air.
+    {%trans%}If the room has mechanical ventilation, suppling fresh air from outside (either a local or centralised system), you should select this option.
+    In order to make an accurate calculation you will need to know either the flow rate of fresh air supplied in the room or th total number of air changes per hour with fresh air.{%endtrans%}
 </p>
 <p>
-    Please bear in mind that any of the two inputs only consider the supply of fresh air. If a portion of air is recirculated, it shall not be accounted for in the inputs.
+    {%trans%}Please bear in mind that any of the two inputs only consider the supply of fresh air. If a portion of air is recirculated, it shall not be accounted for in the inputs.{%endtrans%}
 </p>
 <br>
-<h4>Natural ventilation</h4>
+<h4>{%trans%}Natural ventilation{%endtrans%}</h4>
 <br>
 <p>
-    Natural ventilation refers to rooms which have openable windows.
-    There are many possibilities to calculate natural ventilation air flows, for simplification this tool assumes a single-sided natural ventilation scheme which is a conservative approach for the purpose of this tool.
+    {%trans%}Natural ventilation refers to rooms which have openable windows.
+    There are many possibilities to calculate natural ventilation air flows, for simplification this tool assumes a single-sided natural ventilation scheme which is a conservative approach for the purpose of this tool.{%endtrans%}
 </p>
 <p>
-    Please choose the type of window (see illustration below):
+    {%trans%}Please choose the type of window (see illustration below):{%endtrans%}
 </p>
 <ul>
-    <li>Sliding or side-hung</li>
+    <li>{%trans%}Sliding or side-hung{%endtrans%}</li>
     <li>
-        Top- or bottom-hung
+        {%trans%}Top- or bottom-hung{%endtrans%}
         <img src="/static/images/window_type.PNG"
              alt="Window type"
              title="How to determine the window type"
@@ -130,11 +129,11 @@
     </li>
 </ul>
 <p>
-    Please enter the number, height and width and opening distance of the windows (in m).
-    If there are multiple windows of different sizes, you should take an average.
+    {%trans%}Please enter the number, height and width and opening distance of the windows (in m).
+    If there are multiple windows of different sizes, you should take an average.{%endtrans%}
 </p>
 <p>
-    The window opening distance (in m) is:
+    {%trans%}The window opening distance (in m) is:{%endtrans%}
 </p>
 <ul>
     <li>
