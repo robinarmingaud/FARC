@@ -74,4 +74,3 @@ wcwidth==0.2.5
 webencodings==0.5.1
 widgetsnbextension==3.6.0
 babel==2.9.1
-turtle==0.0.1

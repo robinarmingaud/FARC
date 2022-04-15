@@ -9,6 +9,7 @@ RUN apt update; apt dist-upgrade -y
 RUN apt install $python -y
 RUN apt install python3-pip -y
 RUN apt install python3-dev
+RUN apt-get install -y python3-tk
 
 ADD ./farc-master/farc /opt/farc/
 
