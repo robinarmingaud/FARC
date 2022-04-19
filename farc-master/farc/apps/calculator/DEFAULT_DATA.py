@@ -1,8 +1,9 @@
 import tornado
 
+# ------------------ Translation ----------------------
 
 tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
-locale = tornado.locale.get('en','de','fr')
+locale = tornado.locale.get('en','fr','de')
 _ = locale.translate
 
 
