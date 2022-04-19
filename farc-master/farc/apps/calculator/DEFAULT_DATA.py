@@ -1,8 +1,10 @@
-import gettext
-import babel
-_ = gettext.gettext
+import tornado
 
-LOCALE = babel.Locale('fr')
+
+tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+locale = tornado.locale.get('en','de','fr')
+_ = locale.translate
+
 
 # ------------------ Default form values ----------------------
 
