@@ -27,16 +27,15 @@ from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import __version__, _DEFAULTS as d, PLACEHOLDERS, TOOLTIPS,MONTH_NAMES
+from .DEFAULT_DATA import __version__, _DEFAULTS as d, PLACEHOLDERS, TOOLTIPS,MONTH_NAMES, locale
 import tornado
 tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
-locale = tornado.locale.get('en','de','fr')
 _ = locale.translate
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
         """Called at the beginning of a request before  `get`/`post`/etc."""
-
+    
         # Read the secure cookie which exists if we are in an authenticated
         # context (though not if the farc webservice is running standalone).
         session = json.loads(self.get_secure_cookie('session') or 'null')
@@ -246,7 +245,6 @@ def make_app(
     )
     
     tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
-    locale = tornado.locale.get('en','de','fr')
     template_environment.globals['_'] = locale.translate
     template_environment.globals['common_text'] = markdown_tools.extract_rendered_markdown_blocks(
         template_environment.get_template('common_text.md.j2')

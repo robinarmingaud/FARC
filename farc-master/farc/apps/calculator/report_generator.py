@@ -20,10 +20,9 @@ from farc.apps.calculator import markdown_tools
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
 from ... import dataclass_utils
-
+from .DEFAULT_DATA import locale
 
 tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
-locale = tornado.locale.get('en','de','fr')
 _ = locale.translate
 
 
@@ -370,7 +369,6 @@ class ReportGenerator:
         env.filters['int_format'] = "{:0.0f}".format
         env.filters['JSONify'] = json.dumps
         tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
-        locale = tornado.locale.get('en','de','fr')
         env.globals['_'] = locale.translate
         env.globals['text_blocks'] = markdown_tools.extract_rendered_markdown_blocks(env.get_template('common_text.md.j2'))
         return env
