@@ -12,18 +12,19 @@ import time as t
 
 import jinja2
 import numpy as np
+import tornado
 
 from farc import models
 from farc.apps.calculator import markdown_tools
-from farc.apps.calculator.DEFAULT_DATA import LOCALE
 
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
 from ... import dataclass_utils
 
-from babel.support import Translations
-import gettext
-_ = gettext.gettext
+
+tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+locale = tornado.locale.get('en','de','fr')
+_ = locale.translate
 
 
 def model_start_end(model: models.ExposureModel):
@@ -220,17 +221,17 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 
         ),
         (
-            _(f'NO bio-ventilation and') + f'{form.mask_type}' + _('masks with a') + f'{form.exposed_mask_wear_ratio}' + _('wear ratio for exposed people and a') + f'{form.infected_mask_wear_ratio}' + _('wear ratio for infected people'),
+            _(f'NO bio-ventilation and ') + f'{form.mask_type}' + _(' masks with a ') + f'{form.exposed_mask_wear_ratio}' + _(' wear ratio for exposed people and a ') + f'{form.infected_mask_wear_ratio}' + _(' wear ratio for infected people'),
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=0),
 
         ),
         (
-            f'{form.biov_amount}' + _('m3/h bio-ventilation and NO masks'),
+            f'{form.biov_amount}' + _(' m3/h bio-ventilation and NO masks'),
             dataclass_utils.replace(form, mask_wearing_option='mask_off', biov_option=1),
 
         ),
         (
-            f'{form.biov_amount}' + _('m3/h bio-ventilation and') + f'{form.mask_type}' + _('masks with a') + f'{form.exposed_mask_wear_ratio}' + _('wear ratio for exposed people and a') + f'{form.infected_mask_wear_ratio}' +  _('wear ratio for infected people'),
+            f'{form.biov_amount}' + _(' m3/h bio-ventilation and ') + f'{form.mask_type}' + _(' masks with a ') + f'{form.exposed_mask_wear_ratio}' + _(' wear ratio for exposed people and a ') + f'{form.infected_mask_wear_ratio}' +  _(' wear ratio for infected people'),
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=1),
             
         ),
@@ -368,9 +369,9 @@ class ReportGenerator:
         env.filters['float_format'] = "{0:.2f}".format
         env.filters['int_format'] = "{:0.0f}".format
         env.filters['JSONify'] = json.dumps
-        translation = Translations.load('locale', LOCALE)
-        env.install_gettext_translations(translation)
-        env.globals.update(_ = _)
+        tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+        locale = tornado.locale.get('en','de','fr')
+        env.globals['_'] = locale.translate
         env.globals['text_blocks'] = markdown_tools.extract_rendered_markdown_blocks(env.get_template('common_text.md.j2'))
         return env
 

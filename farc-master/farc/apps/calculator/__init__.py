@@ -15,25 +15,23 @@ import traceback
 import typing
 import uuid
 import zlib
-import babel
 
 import jinja2
 import loky
 from tornado.web import Application, RequestHandler, StaticFileHandler
 import tornado.log
-from babel.support import Translations
 
 from farc.apps.calculator.DEFAULT_DATA import ACTIVITY_TYPES
-from farc.data import MONTH_NAMES
 
 from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import __version__, _DEFAULTS as d, LOCALE, PLACEHOLDERS, TOOLTIPS
-from babel.support import Translations
-import gettext
-_ = gettext.gettext
+from .DEFAULT_DATA import __version__, _DEFAULTS as d, PLACEHOLDERS, TOOLTIPS,MONTH_NAMES
+import tornado
+tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+locale = tornado.locale.get('en','de','fr')
+_ = locale.translate
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
@@ -244,13 +242,12 @@ def make_app(
     template_environment = jinja2.Environment(
         loader=loader,
         undefined=jinja2.StrictUndefined,  # fail when rendering any undefined template context variable
-        extensions=['jinja2.ext.i18n', 'jinja2.ext.autoescape'],
         autoescape=jinja2.select_autoescape(['html', 'xml'])
     )
-
-    translation = Translations.load('locale', LOCALE)
-    template_environment.install_gettext_translations(translation)
-
+    
+    tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+    locale = tornado.locale.get('en','de','fr')
+    template_environment.globals['_'] = locale.translate
     template_environment.globals['common_text'] = markdown_tools.extract_rendered_markdown_blocks(
         template_environment.get_template('common_text.md.j2')
     )
