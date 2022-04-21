@@ -2,6 +2,7 @@ import concurrent.futures
 import base64
 import dataclasses
 from datetime import datetime
+from importlib import reload
 import io
 import json
 from turtle import update
@@ -20,10 +21,7 @@ from farc.apps.calculator import markdown_tools
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
 from ... import dataclass_utils
-from .DEFAULT_DATA import locale
 
-tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
-_ = locale.translate
 
 
 def model_start_end(model: models.ExposureModel):
@@ -204,9 +202,8 @@ def non_zero_percentage(percentage: int) -> str:
         return "{:0.1f}%".format(percentage)
 
 
-def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.ExposureModel]:
+def manufacture_alternative_scenarios(form: FormData, _) -> typing.Dict[str, mc.ExposureModel]:
     scenarios = {}
-
     if form.biov_option == 1:
         base = 3 if form.mask_wearing_option =='mask_on' else 2
     else:
@@ -250,7 +247,6 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 
 
 def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
-    start = t.process_time()
     model = mc_model.build_model(size=_DEFAULT_MC_SAMPLE_SIZE)
 
     '''cumulative_doses = np.cumsum([
@@ -262,8 +258,7 @@ def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
         np.array(model.cumulative_deposited_exposure(float(time))).mean()
         for time in sample_times
     ]
-    
-    print(t.process_time() - start) 
+
     return {
         'probability_of_infection': np.mean(model.infection_probability()),
         'expected_new_cases': np.mean(model.expected_new_cases()),
@@ -312,6 +307,13 @@ def comparison_report(
 class ReportGenerator:
     jinja_loader: jinja2.BaseLoader
     calculator_prefix: str
+    tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+    locale = tornado.locale.get()
+    _ = locale.translate
+
+    def set_locale(self, locale):
+        self.locale = locale
+        self._ = locale.translate
 
     def build_report(
             self,
@@ -343,7 +345,7 @@ class ReportGenerator:
         scenario_sample_times = interesting_times(model)
 
         context.update(calculate_report_data(model))
-        alternative_scenarios = manufacture_alternative_scenarios(form)
+        alternative_scenarios = manufacture_alternative_scenarios(form, self._)
         
         context['alternative_scenarios'] = comparison_report(
             alternative_scenarios, scenario_sample_times, executor_factory=executor_factory,
@@ -368,11 +370,12 @@ class ReportGenerator:
         env.filters['float_format'] = "{0:.2f}".format
         env.filters['int_format'] = "{:0.0f}".format
         env.filters['JSONify'] = json.dumps
-        tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
-        env.globals['_'] = locale.translate
-        env.globals['text_blocks'] = markdown_tools.extract_rendered_markdown_blocks(env.get_template('common_text.md.j2'))
+        env.globals['_'] = self._
         return env
 
     def render(self, context: dict) -> str:
-        template = self._template_environment().get_template("calculator.report.html.j2")
-        return template.render(**context)
+        template_environment = self._template_environment()
+        _=self._
+        template = template_environment.get_template("calculator.report.html.j2")
+        text_blocks = markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
+        return template.render(**context, text_blocks = text_blocks)
