@@ -309,7 +309,7 @@ Pybabel est nécessaire pour extraire le texte du code.
 $ pip install Babel
 ```
 
-Ajouter "pybabel.py au PATH
+Ajouter "pybabel.py au PATH.
 Si des champs de texte ont été modifiés dans le code, utiliser la fonction _ si on souhaite les traduire. 
 Extraire le texte : 
 
