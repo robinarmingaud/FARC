@@ -86,7 +86,7 @@ def non_temp_transition_times(model: models.ExposureModel):
     return sorted(time for time in change_times if (t_start <= time <= t_end))
 
 
-def interesting_times(model: models.ExposureModel, approx_n_pts=100) -> typing.List[float]:
+def interesting_times(model: models.ExposureModel, approx_n_pts=25) -> typing.List[float]:
     """
     Pick approximately ``approx_n_pts`` time points which are interesting for the
     given model.
