@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 12:29+0200\n"
+"POT-Creation-Date: 2022-04-21 15:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -424,38 +424,38 @@ msgstr ""
 msgid "Your request was invalid"
 msgstr ""
 
-#: calculator/__init__.py:219
+#: calculator/__init__.py:220
 msgid ""
 "Invalid calculator data: it seems incomplete. Was there an error copying "
 "& pasting the URL?"
 msgstr ""
 
-#: calculator/report_generator.py:216
+#: calculator/report_generator.py:215
 msgid "NO bio-ventilation and NO masks"
 msgstr "Pas de bio_ventilation ni de masque"
 
-#: calculator/report_generator.py:221
+#: calculator/report_generator.py:220
 #, fuzzy
 msgid "NO bio-ventilation and "
 msgstr "Pas de ventilation et "
 
-#: calculator/report_generator.py:221 calculator/report_generator.py:231
+#: calculator/report_generator.py:220 calculator/report_generator.py:230
 msgid " masks with a "
 msgstr ""
 
-#: calculator/report_generator.py:221 calculator/report_generator.py:231
+#: calculator/report_generator.py:220 calculator/report_generator.py:230
 msgid " wear ratio for exposed people and a "
 msgstr ""
 
-#: calculator/report_generator.py:221 calculator/report_generator.py:231
+#: calculator/report_generator.py:220 calculator/report_generator.py:230
 msgid " wear ratio for infected people"
 msgstr ""
 
-#: calculator/report_generator.py:226
+#: calculator/report_generator.py:225
 msgid " m3/h bio-ventilation and NO masks"
 msgstr ""
 
-#: calculator/report_generator.py:231
+#: calculator/report_generator.py:230
 #, fuzzy
 msgid " m3/h bio-ventilation and "
 msgstr "Pas de ventilation"
