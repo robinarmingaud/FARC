@@ -303,15 +303,15 @@ specifying the respective annotation to be exposed outside CERN.
 
 ## Internationalisation
 
--Pybabel est nécessaire pour extraire le texte du code. 
+Pybabel est nécessaire pour extraire le texte du code. 
 
 ```console
 $ pip install Babel
 ```
 
--Ajouter "pybabel.py au PATH
--Si des champs de texte ont été modifiés dans le code, utiliser la fonction _() si on souhaite les traduire. Ex : _('YES')
--Extraire le texte : 
+Ajouter "pybabel.py au PATH
+Si des champs de texte ont été modifiés dans le code, utiliser la fonction _ si on souhaite les traduire. 
+Extraire le texte : 
 
 ```console
 $ cd farc-master/farc/apps
