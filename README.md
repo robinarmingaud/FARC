@@ -300,3 +300,38 @@ $ oc process -f deploymentconfig.yaml --param PROJECT_NAME='cara-test' | oc repl
 
 Be aware that if you create/recreate the environment you must manually create a **route** in OpenShift, 
 specifying the respective annotation to be exposed outside CERN.
+
+## Internationalisation
+
+    -Pybabel est nécessaire pour extraire le texte du code. 
+
+```console
+$ pip install Babel
+```
+
+    -Ajouter "pybabel.py au PATH
+    -Si des champs de texte ont été modifiés dans le code, utiliser la fonction _() si on souhaite les traduire. Ex : _('YES')
+    -Extraire le texte : 
+
+```console
+$ cd farc-master/farc/apps
+```
+
+```console
+$ pybabel extract -F babel-mapping.ini -o locale/base.pot ./
+```
+
+    -Cette commande crée un fichier de template de traduction dans le dossier locale
+    -Update les traductions dans les différentes langues :
+
+```console
+$ pybabel update -i locale/base.pot -d locale
+```
+
+    -Les fichiers pot sont des dictionnaires comprenant les champs de textes venant du template de traduction et leur traduction. Un éditeur en ligne efficace pour renseigner ces traductions : https://pofile.net/
+    -Ensuite, compiler les fichiers pot en fichier mo :
+
+```console
+$ pybabel compile -d locale    
+```
+
