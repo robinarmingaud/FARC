@@ -462,12 +462,12 @@
     <div class="col-sm-4"><label class="col-form-label">{{_("Which month is the event?")}}</label></div>
     <div class="col-sm-6 align-self-center">
     <select id="event_month" name="event_month" class="form-control" required>
-    {% set months = MONTH_NAMES %}
+    {% set months = MONTH_NAMES.items() | list %}
       {% for month in months %}
-        {% if month == default.event_month %}
-          <option value = {{month}} selected> {{month}} </option>
+        {% if month[0] == default.event_month %}
+          <option value = {{month[0]}} selected> {{month[1]}} </option>
         {% else %}
-          <option value = {{month}}> {{month}} </option>
+          <option value = {{month[0]}}> {{month[1]}} </option>
         {% endif %}
       {% endfor %}
     </select>

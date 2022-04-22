@@ -5,6 +5,7 @@ from datetime import datetime
 from importlib import reload
 import io
 import json
+import os
 from turtle import update
 import typing
 import urllib
@@ -307,7 +308,8 @@ def comparison_report(
 class ReportGenerator:
     jinja_loader: jinja2.BaseLoader
     calculator_prefix: str
-    tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+    path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'locale'))
+    tornado.locale.load_gettext_translations(path , 'messages')
     locale = tornado.locale.get()
     _ = locale.translate
 

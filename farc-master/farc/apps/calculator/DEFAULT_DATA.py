@@ -1,8 +1,13 @@
+import os
 import tornado
+
+#To change default data, change value in both variable definition and set_locale function
 
 # ------------------ Translation ----------------------
 
-tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'locale'))
+
+tornado.locale.load_gettext_translations(path , 'messages')
 locale = tornado.locale.get()
 _ = locale.translate
 
@@ -125,10 +130,10 @@ WINDOWS_TYPES = {'window_sliding', 'window_hinged', 'not-applicable'}
 
 COFFEE_OPTIONS_INT = {'coffee_break_0': 0, 'coffee_break_1': 1, 'coffee_break_2': 2, 'coffee_break_4': 4}
 
-MONTH_NAMES = [
-    _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'),
-    _('August'), _('September'), _('October'), _('November'), _('December'),
-]
+MONTH_NAMES = {
+    'January' : _('January'), 'February' : _('February'), 'March' : _('March'), 'April' : _('April'), 'May' : _('May'), 'June' :_('June'), 'July' : _('July'),
+    'August' : _('August'), 'September' : _('September'), 'October': _('October'), 'November' : _('November'), 'December' : _('December'),
+}
 
 # ------------------ Text ----------------------
 
@@ -251,10 +256,10 @@ def set_locale (locale):
                     {'Group':_('Navy'),'Id':'Watch_seated', 'Name' : _('Watch seated'), 'Activity' : 'Seated', 'Expiration' : {'Shouting': 10, 'Speaking': 30, 'Breathing': 60}}, # Manning a console seating in front of it
                     {'Group':_('Navy'),'Id':'Watch_standing', 'Name' : _('Watch standing'), 'Activity' : 'Light activity', 'Expiration' : {'Shouting': 20, 'Speaking': 30, 'Breathing': 50}}] # Pacing and moving from station to station, giving orders and looking at data at stations
 
-    MONTH_NAMES = [
-        _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'),
-        _('August'), _('September'), _('October'), _('November'), _('December'),
-    ]
+    MONTH_NAMES = {
+    'January' : _('January'), 'February' : _('February'), 'March' : _('March'), 'April' : _('April'), 'May' : _('May'), 'June' :_('June'), 'July' : _('July'),
+    'August' : _('August'), 'September' : _('September'), 'October': _('October'), 'November' : _('November'), 'December' : _('December'),
+    }
 
     # ------------------ Text ----------------------
 
