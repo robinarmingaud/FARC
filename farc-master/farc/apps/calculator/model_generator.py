@@ -2,6 +2,7 @@ import dataclasses
 import datetime
 import html
 import logging
+import os
 import typing
 
 import numpy as np
@@ -74,11 +75,12 @@ class FormData:
     window_width: float
     windows_number: int
     window_opening_regime: str
-    tornado.locale.load_gettext_translations(r'farc\apps\locale', 'messages')
+    path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'locale'))
+    tornado.locale.load_gettext_translations(path , 'messages')
     locale = tornado.locale.get()
     _ = locale.translate
     _DEFAULTS = d
-    MONTHS = MONTH_NAMES
+    MONTHS = list(MONTH_NAMES.keys())
     activities = { activity['Id'] for activity in ACTIVITY_TYPES}
 
 
@@ -86,9 +88,10 @@ class FormData:
     def set_locale(self,locale):
         self.locale = locale
         self._ = locale.translate
-        self._DEFAULTS = set_locale(self.locale)['_DEFAULTS']
-        self.MONTHS = set_locale(self.locale)['MONTH_NAMES']
-        activities = { activity['Id'] for activity in  set_locale(self.locale)['ACTIVITY_TYPES']}
+        data = set_locale(self.locale)
+        self._DEFAULTS = data['_DEFAULTS']
+        self.MONTHS = list(data['MONTH_NAMES'].keys())
+        self.activities = { activity['Id'] for activity in  data['ACTIVITY_TYPES']}
     
     @classmethod
     def from_dict(cls, form_data: typing.Dict, locale) -> "FormData":
@@ -242,8 +245,9 @@ class FormData:
         """
         Return the outside temperature as a PiecewiseConstant in the destination
         timezone.
-
+    
         """
+
         month = self.MONTHS.index(self.event_month) + 1
 
         wx_station = self.nearest_weather_station()

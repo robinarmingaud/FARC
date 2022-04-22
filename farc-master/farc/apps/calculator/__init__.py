@@ -76,7 +76,7 @@ class Missing404Handler(BaseRequestHandler):
     async def prepare(self):
         template_environment = self.settings["template_environment"]
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-        _ = tornado.locale.get(self.locale.code)
+        _ = tornado.locale.get(self.locale.code).translate
         await super().prepare()
         self.set_status(404)
         template = self.settings["template_environment"].get_template(
@@ -104,6 +104,7 @@ class ConcentrationModel(BaseRequestHandler):
 
         try:
             form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
+            form.set_locale(tornado.locale.get(self.locale.code))
         except Exception as err:
             if self.settings.get("debug", False):
                 import traceback
