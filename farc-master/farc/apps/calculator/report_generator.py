@@ -87,7 +87,7 @@ def non_temp_transition_times(model: models.ExposureModel):
     return sorted(time for time in change_times if (t_start <= time <= t_end))
 
 
-def interesting_times(model: models.ExposureModel, approx_n_pts=25) -> typing.List[float]:
+def interesting_times(model: models.ExposureModel, approx_n_pts=100) -> typing.List[float]:
     """
     Pick approximately ``approx_n_pts`` time points which are interesting for the
     given model.
@@ -254,7 +254,7 @@ def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
         np.array(model.deposited_exposure_between_bounds(float(time1), float(time2))).mean()
         for time1, time2 in zip(sample_times[:-1], sample_times[1:])
     ])'''
-
+    import time
     cumulative_doses = [
         np.array(model.cumulative_deposited_exposure(float(time))).mean()
         for time in sample_times
