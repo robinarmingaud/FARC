@@ -1,3 +1,4 @@
+from math import exp
 import typing
 
 import numpy as np
@@ -20,12 +21,16 @@ class Normal(SampleableDistribution):
     """
     Defines a normal (i.e. Gaussian) distribution
     """
+
     def __init__(self, mean: float, standard_deviation: float):
         self.mean = mean
         self.standard_deviation = standard_deviation
 
+    def get_mean(self) :
+        return self.mean
+
     def generate_samples(self, size: int) -> float_array_size_n:
-        return np.random.normal(self.mean, self.standard_deviation, size=size)
+        return np.array([self.get_mean() for i in range(size)])
 
 
 class Uniform(SampleableDistribution):
@@ -35,10 +40,16 @@ class Uniform(SampleableDistribution):
     def __init__(self, low: float, high: float):
         self.low = low
         self.high = high
+        self.mean = (self.low + self.high)/2
+    def get_mean(self):
+        return self.mean
+
 
     def generate_samples(self, size: int) -> float_array_size_n:
+        print(self.mean)
+        print('----------')
+        print(np.random.uniform(self.low, self.high, size=size).mean())
         return np.random.uniform(self.low, self.high, size=size)
-
 
 class LogNormal(SampleableDistribution):
     """
@@ -51,6 +62,10 @@ class LogNormal(SampleableDistribution):
         # Gaussian distribution
         self.mean_gaussian = mean_gaussian
         self.standard_deviation_gaussian = standard_deviation_gaussian
+        self.mean = np.exp(self.mean_gaussian + ((self.standard_deviation_gaussian)**2) )
+
+    def get_self(self):
+        return exp(self.mean_gaussian + ((self.standard_deviation_gaussian)**2)/2)
 
     def generate_samples(self, size: int) -> float_array_size_n:
         return np.random.lognormal(self.mean_gaussian,
