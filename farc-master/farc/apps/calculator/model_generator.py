@@ -350,61 +350,6 @@ class FormData:
         scenario_activity_and_expiration = {}
         for activity in ACTIVITY_TYPES :
             scenario_activity_and_expiration[activity['Id']] = (activity['Activity'], activity['Expiration'])
-            
-# Anciennes activités CARA
-#       scenario_activity_and_expiration = {
-#           'office': (
-#                'Seated',
-#                # Mostly silent in the office, but 1/3rd of time speaking.
-#                {'Speaking': 1, 'Breathing': 2}
-#            ),
-#            'controlroom-day': (
-#                'Seated',
-#                # Daytime control room shift, 50% speaking.
-#                {'Speaking': 1, 'Breathing': 1}
-#            ),
-#            'controlroom-night': (
-#                'Seated',
-#                # Nightshift control room, 10% speaking.
-#                {'Speaking': 1, 'Breathing': 9}
-#            ),
-#            'smallmeeting': (
-#                'Seated',
-#                # Conversation of N people is approximately 1/N% of the time speaking.
-#                {'Speaking': 1, 'Breathing': self.total_people - 1}
-#            ),
-#            'largemeeting': (
-#                'Standing',
-#                # each infected person spends 1/3 of time speaking.
-#                {'Speaking': 1, 'Breathing': 2}
-#            ),
-#            'callcentre': ('Seated', 'Speaking'),
-#            'library': ('Seated', 'Breathing'),
-#            'training': ('Standing', 'Speaking'),
-#            'lab': (
-#                'Light activity',
-#                #Model 1/2 of time spent speaking in a lab.
-#                {'Speaking': 1, 'Breathing': 1}),
-#            'workshop': (
-#                'Moderate activity',
-#                #Model 1/2 of time spent speaking in a workshop.
-#                {'Speaking': 1, 'Breathing': 1}),
-#            'gym':('Heavy exercise', 'Breathing'),
-#            'watch_seated': (
-#                # Manning a console seating in front of it
-#                'Seated',
-#                # Mostly silent, but 30% of time speaking quietly and 10% of time speaking loudly (answering orders).
-#                {'Shouting': 10, 'Speaking': 30, 'Breathing': 60}
-#            ),
-#            'watch_standing': (
-#                # Pacing and moving from station to station, giving orders and looking at data at stations
-#                'Light activity',
-#                # Mostly silent, but 30% of time speaking quietly and 20% of time speaking loudly (giving orders).
-#                {'Shouting': 20, 'Speaking': 30, 'Breathing': 50}
-#            ),
-#        }
-
-        # [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.activity_type]
         [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.infected_activity_type]
         activity = activity_distributions[activity_defn]
         expiration = build_expiration(expiration_defn)
