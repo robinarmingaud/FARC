@@ -237,20 +237,6 @@ function on_ventilation_type_change() {
   });
 }
 
-function on_wearing_mask_change() {
-  wearing_mask = $('input[type=radio][name=mask_wearing_option]')
-  wearing_mask.each(function (index) {
-    if (this.checked) {
-      getChildElement($(this)).show();
-      require_fields(this);
-    }
-    else {
-      getChildElement($(this)).hide();
-      require_fields(this);
-    }
-  })
-}
-
 /* -------UI------- */
 
 function show_disclaimer() {
@@ -604,12 +590,6 @@ $(document).ready(function () {
   // Call the function now to handle forward/back button presses in the browser.
   on_ventilation_type_change();
 
-  // When the mask_wearing_option changes we want to make its respective
-  // children show/hide.
-  $("input[type=radio][name=mask_wearing_option]").change(on_wearing_mask_change);
-  // Call the function now to handle forward/back button presses in the browser.
-  on_wearing_mask_change();
-
   // Setup the maximum number of people at page load (to handle back/forward),
   // and update it when total people is changed.
   setMaxInfectedPeople();
@@ -724,20 +704,6 @@ $(document).ready(function () {
   }
 });
 
-
-function enableMaskSelection(){
-  if($("#mask_on").is(':checked')){
-    $("#DIVmasks_used").css({ 'pointer-events' : ''});
-    $("#DIVmasks_used").fadeTo( "fast", 1 )
-  }
-  if($("#mask_off").is(':checked')){
-    $("#DIVmasks_used").css({'pointer-events' : 'none' });
-    $("#DIVmasks_used").fadeTo( "fast", 0.4 )
-  }
-}
-
-//Enable or disable mask selection when the document load
-$(document).ready(enableMaskSelection)
 
 
 /* -------Debugging------- */
