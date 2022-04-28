@@ -15,30 +15,27 @@ import traceback
 import typing
 import uuid
 import zlib
-import babel
 
 import jinja2
 import loky
 from tornado.web import Application, RequestHandler, StaticFileHandler
 import tornado.log
-from babel.support import Translations
-
-from farc.apps.calculator.DEFAULT_DATA import ACTIVITY_TYPES
-from farc.data import MONTH_NAMES
 
 from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import __version__, _DEFAULTS as d, LOCALE, PLACEHOLDERS, TOOLTIPS
-from babel.support import Translations
-import gettext
-_ = gettext.gettext
+from .DEFAULT_DATA import __version__, _DEFAULTS as d, set_locale
+import tornado
+
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         """Called at the beginning of a request before  `get`/`post`/etc."""
-
+    
         # Read the secure cookie which exists if we are in an authenticated
         # context (though not if the farc webservice is running standalone).
         session = json.loads(self.get_secure_cookie('session') or 'null')
@@ -53,6 +50,9 @@ class BaseRequestHandler(RequestHandler):
             self.current_user = AnonymousUser()
 
     def write_error(self, status_code: int, **kwargs) -> None:
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _=tornado.locale.get(self.locale.code).translate
         template = self.settings["template_environment"].get_template(
             "error_page.html.j2")
 
@@ -68,12 +68,15 @@ class BaseRequestHandler(RequestHandler):
             calculator_prefix=self.settings["calculator_prefix"],
             active_page='Error',
             contents=contents,
-            default = d
+            default = set_locale(tornado.locale.get(self.locale.code))['_DEFAULTS']
         ))
 
 
 class Missing404Handler(BaseRequestHandler):
     async def prepare(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         await super().prepare()
         self.set_status(404)
         template = self.settings["template_environment"].get_template(
@@ -88,6 +91,9 @@ class Missing404Handler(BaseRequestHandler):
 
 class ConcentrationModel(BaseRequestHandler):
     async def post(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         requested_model_config = {
             name: self.get_argument(name) for name in self.request.arguments
         }
@@ -97,7 +103,8 @@ class ConcentrationModel(BaseRequestHandler):
             start = datetime.datetime.now()
 
         try:
-            form = model_generator.FormData.from_dict(requested_model_config)
+            form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
+            form.set_locale(tornado.locale.get(self.locale.code))
         except Exception as err:
             if self.settings.get("debug", False):
                 import traceback
@@ -109,6 +116,7 @@ class ConcentrationModel(BaseRequestHandler):
 
         base_url = self.request.protocol + "://" + self.request.host
         report_generator: ReportGenerator = self.settings['report_generator']
+        report_generator.set_locale(tornado.locale.get(self.locale.code))
         executor = loky.get_reusable_executor(
             max_workers=self.settings['handler_worker_pool_size'],
             timeout=300,
@@ -126,9 +134,14 @@ class ConcentrationModel(BaseRequestHandler):
 
 class StaticModel(BaseRequestHandler):
     async def get(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         form = model_generator.FormData.from_dict(model_generator.baseline_raw_form_data())
+        form.set_locale(tornado.locale.get(self.locale.code))
         base_url = self.request.protocol + "://" + self.request.host
         report_generator: ReportGenerator = self.settings['report_generator']
+        report_generator.set_locale(tornado.locale.get(self.locale.code))
         executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
         report_task = executor.submit(
             report_generator.build_report, base_url, form,
@@ -146,10 +159,11 @@ class LandingPage(BaseRequestHandler):
         template_environment = self.settings["template_environment"]
         template = self.settings["template_environment"].get_template(
             "index.html.j2")
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         report = template.render(
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
-            text_blocks=template_environment.globals['common_text']
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
         )
         self.finish(report)
 
@@ -157,12 +171,13 @@ class LandingPage(BaseRequestHandler):
 class AboutPage(BaseRequestHandler):
     def get(self):
         template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template("about.html.j2")
         report = template.render(
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
             active_page="about",
-            text_blocks=template_environment.globals['common_text']
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
         )
         self.finish(report)
 
@@ -173,25 +188,30 @@ class CalculatorForm(BaseRequestHandler):
         javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
         with open('farc/apps/static/js/form.js', 'w') as modified: modified.writelines([javascript_out + "\n"] + data[1:])
         template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template(
             "calculator.form.html.j2")
+        data = set_locale(tornado.locale.get(self.locale.code))
         report = template.render(
             user=self.current_user,
             xsrf_form_html=self.xsrf_form_html(),
             calculator_prefix=self.settings["calculator_prefix"],
             calculator_version=__version__,
-            default = d,
-            ACTIVITY_TYPES = ACTIVITY_TYPES,
-            PLACEHOLDERS = PLACEHOLDERS,
-            TOOLTIPS = TOOLTIPS,
-            text_blocks=template_environment.globals['common_text'],
-            MONTH_NAMES = MONTH_NAMES
+            default = data['_DEFAULTS'],
+            ACTIVITY_TYPES = data['ACTIVITY_TYPES'],
+            PLACEHOLDERS = data['PLACEHOLDERS'],
+            TOOLTIPS = data['TOOLTIPS'],
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
+            MONTH_NAMES = data['MONTH_NAMES']
         )
         self.finish(report)
 
 
 class CompressedCalculatorFormInputs(BaseRequestHandler):
     def get(self, compressed_args: str):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _=tornado.locale.get(self.locale.code).translate
         # Convert a base64 zlib encoded shortened URL into a non compressed
         # URL, and redirect.
         try:
@@ -205,12 +225,13 @@ class CompressedCalculatorFormInputs(BaseRequestHandler):
 class ReadmeHandler(BaseRequestHandler):
     def get(self):
         template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template("userguide.html.j2")
         readme = template.render(
             active_page="calculator/user-guide",
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
-            text_blocks=template_environment.globals['common_text']
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
         )
         self.finish(readme)
 
@@ -234,7 +255,6 @@ def make_app(
         (calculator_prefix + r'/user-guide', ReadmeHandler),
         (calculator_prefix + r'/static/(.*)', StaticFileHandler, {'path': calculator_static_dir}),
     ]
-
     cara_templates = Path(__file__).parent.parent / "templates"
     calculator_templates = Path(__file__).parent / "templates"
     templates_directories = [cara_templates, calculator_templates]
@@ -244,15 +264,7 @@ def make_app(
     template_environment = jinja2.Environment(
         loader=loader,
         undefined=jinja2.StrictUndefined,  # fail when rendering any undefined template context variable
-        extensions=['jinja2.ext.i18n', 'jinja2.ext.autoescape'],
         autoescape=jinja2.select_autoescape(['html', 'xml'])
-    )
-
-    translation = Translations.load('locale', LOCALE)
-    template_environment.install_gettext_translations(translation)
-
-    template_environment.globals['common_text'] = markdown_tools.extract_rendered_markdown_blocks(
-        template_environment.get_template('common_text.md.j2')
     )
 
     if debug:
@@ -279,7 +291,7 @@ def make_app(
         # can be used, and it is recommended to specify these values explicitly (through
         # the environment variables).
         handler_worker_pool_size=(
-            int(os.environ.get("HANDLER_WORKER_POOL_SIZE", 1)) or None
+            int(os.environ.get("HANDLER_WORKER_POOL_SIZE", 8)) or None
         ),
         report_generation_parallelism=(
             int(os.environ.get('REPORT_PARALLELISM', 0)) or None

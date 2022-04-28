@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport"
@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>
             {% block title %}
-                FARC | Flow-R Airborne Risk Calculator
+                {{_("FARC | Flow-R Airborne Risk Calculator")}}
             {% endblock title %}
         </title>
         <link rel="stylesheet"
@@ -39,7 +39,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-link">
                             <a href="/"
-                               class="{{ "header-navbar nav-link active" if "home/" == active_page else "header-navbar nav-link" }}">Home</a>
+                               class="{{ "header-navbar nav-link active" if "home/" == active_page else "header-navbar nav-link" }}">{{_("Home")}}</a>
                         </li>
                         <div id="apps_dropdown">
                             <li class="nav-item dropdown p-2">
@@ -50,19 +50,19 @@
                                    data-toggle="dropdown"
                                    aria-haspopup="true"
                                    aria-expanded="false">
-                                    Apps
+                                    {{_("Apps")}}
                                 </a>
                                 <ul id="ulNavbar"
                                     class="dropdown-menu dropwown-navbar-colors text-right"
                                     aria-labelledby="navbarDropdown">
                                     <li>
                                         <a href="{{ calculator_prefix }}"
-                                           class="{{ "header-navbar nav-link active" if "calculator/" == active_page else "header-navbar nav-link" }}">FARC Calculator</a>
+                                           class="{{ "header-navbar nav-link active" if "calculator/" == active_page else "header-navbar nav-link" }}">{{_("FARC Calculator")}}</a>
                                     </li>
                                     <li>
                                         <a id="userGuideNavbar"
                                            href="{{ calculator_prefix }}/user-guide"
-                                           class="{{ "header-navbar nav-link active" if "user-guide" in active_page else "header-navbar nav-link" }}">User Guide</a>
+                                           class="{{ "header-navbar nav-link active" if "user-guide" in active_page else "header-navbar nav-link" }}">{{_("User Guide")}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -70,16 +70,16 @@
                         <div id="mobile_calculator_option">
                             <li class="nav-link">
                                 <a href="{{ calculator_prefix }}"
-                                   class="{{ "header-navbar nav-link active" if "calculator/" == active_page else "header-navbar nav-link" }}">FARC Calculator</a>
+                                   class="{{ "header-navbar nav-link active" if "calculator/" == active_page else "header-navbar nav-link" }}">{{_("FARC Calculator")}}</a>
                             </li>
                             <li class="nav-link">
                                 <a href="{{ calculator_prefix }}/user-guide"
-                                   class="{{ "header-navbar nav-link active" if "user-guide" in active_page else "header-navbar nav-link" }}">User Guide</a>
+                                   class="{{ "header-navbar nav-link active" if "user-guide" in active_page else "header-navbar nav-link" }}">{{_("User Guide")}}</a>
                             </li>
                         </div>
                         <li class="nav-link">
                             <a href="/about"
-                               class="{{ "header-navbar nav-link active" if "about" == active_page else "header-navbar nav-link" }}">About</a>
+                               class="{{ "header-navbar nav-link active" if "about" == active_page else "header-navbar nav-link" }}">{{_("About")}}</a>
                         </li>
                         {% if user.is_authenticated() %}
                             <li class="nav-item dropdown p-2">
@@ -90,13 +90,13 @@
                                    data-toggle="dropdown"
                                    aria-haspopup="true"
                                    aria-expanded="false">
-                                    Signed in as: {{ user.username }}
+                                    {{_("Signed in as:")}} {{ user.username }}
                                 </a>
                                 <ul class="dropdown-menu dropwown-navbar-colors"
                                     id ="ulAuthentification"
                                     aria-labelledby="navbarDropdown">
                                     <li>
-                                        <a href="/auth/logout" class="nav-link ml-2">Sign out</a>
+                                        <a href="/auth/logout" class="nav-link ml-2">{{_("Sign out")}}</a>
                                     </li>
                                 </ul>
                                 {# Sent to Piwik for statistics #}
@@ -117,15 +117,15 @@
                     <div class="col-sm-10 col-md-8 col-lg-6">
                         <img src="/static/images/Logo_Flow-R_Blanc@2x.png" alt="Logo">
                         <p>
-                            <span class = "footerText"><em>Flow-R FARC Team strives to deploy its know-how and technologies to help solve
+                            <span class = "footerText"><em>{{_("Flow-R FARC Team strives to deploy its know-how and technologies to help solve
                                 the challenges arising in the local and global fight against airborne diseases.
                                 However, Flow-R FARC team is not in a position to advise on medical research, health or health
                                 policy issues. Any initiative is conducted on a best effort and as-is basis, without liability or
-                            warranty.</em></span>
+                            warranty.")}}</em></span>
                         </p>
                         <p class="footerText">
-                            FARC is based on CARA tool developed at CERN.
-                            FARC and CARA are Apache 2.0 licensed.
+                            {{_("FARC is based on CARA tool developed at CERN.
+                            FARC and CARA are Apache 2.0 licensed.")}}
                         </p>
                     </div>
                 </div>

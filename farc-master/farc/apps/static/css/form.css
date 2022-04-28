@@ -128,11 +128,6 @@
   display: none
 }
 
-#DIVmasks_used {
-  pointer-events: none;
-  opacity: 0.4
-}
-
 #userGuideBtn {
   color: white
 }
