@@ -81,7 +81,7 @@ _DEFAULTS = {
 
 # ------------------ Activities ----------------------
 
-ACTIVITY_TYPES = [{'Group':'Business','Id':'Office_worker', 'Name' : _('Office worker'), 'Activity' : 'Seated', 'Expiration' : {'Speaking': 2, 'Breathing': 8}},
+ACTIVITY_TYPES = [{'Group':_('Business'),'Id':'Office_worker', 'Name' : _('Office worker'), 'Activity' : 'Seated', 'Expiration' : {'Speaking': 2, 'Breathing': 8}},
                 {'Group':_('Business'),'Id':'Workshop_worker', 'Name' : _('Workshop worker'), 'Activity' : 'Moderate activity', 'Expiration' : {'Speaking':7, 'Breathing':1.5, 'Shouting':1.5}},
                 {'Group':_('Business'),'Id':'Meeting_participant', 'Name' : _('Meeting participant'), 'Activity' : 'Seated', 'Expiration' : {'Speaking':1.5, 'Breathing':8, 'Shouting': 0.5 }},
                 {'Group':_('Business'),'Id':'Meeting_leader', 'Name' : _('Meeting leader'), 'Activity' : 'Standing', 'Expiration' : {'Breathing':6,'Speaking':3,'Shouting':1}},

@@ -98,7 +98,6 @@ def interesting_times(model: models.ExposureModel, approx_n_pts=100) -> typing.L
 
     """
     times = non_temp_transition_times(model)
-
     # Expand the times list to ensure that we have a maximum gap size between
     # the key times.
     nice_times = fill_big_gaps(times, gap_size=(max(times) - min(times)) / approx_n_pts)
@@ -250,16 +249,13 @@ def manufacture_alternative_scenarios(form: FormData, _) -> typing.Dict[str, mc.
 def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
     model = mc_model.build_model(size=_DEFAULT_MC_SAMPLE_SIZE)
 
-    '''cumulative_doses = np.cumsum([
+    cumulative_doses = np.cumsum([
         np.array(model.deposited_exposure_between_bounds(float(time1), float(time2))).mean()
         for time1, time2 in zip(sample_times[:-1], sample_times[1:])
-    ])'''
-    import time
-    cumulative_doses = [
-        np.array(model.cumulative_deposited_exposure(float(time))).mean()
-        for time in sample_times
-    ]
-
+    ])
+    cumulative_doses_list = list(cumulative_doses)
+    oneoverln2 = 1 / np.log(2)
+    infectious_dose = oneoverln2 * model.concentration_model.virus.infectious_dose
     return {
         'probability_of_infection': np.mean(model.infection_probability()),
         'expected_new_cases': np.mean(model.expected_new_cases()),
@@ -267,10 +263,10 @@ def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
             np.mean(model.concentration_model.concentration(time))
             for time in sample_times
         ],
-        'cumulative_doses': list(cumulative_doses),
+        'cumulative_doses': cumulative_doses_list,
         'cumulative_infection_probabilities': [
-            np.mean(model.cumulative_infection_probability(time))
-            for time in sample_times
+            ((1 - np.exp(-((viral_dose * (1 - model.exposed.host_immunity)) / (infectious_dose *model.concentration_model.virus.transmissibility_factor)))) * 100).mean()
+            for viral_dose in cumulative_doses_list
         ],
     }
 
