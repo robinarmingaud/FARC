@@ -46,9 +46,6 @@ class Uniform(SampleableDistribution):
 
 
     def generate_samples(self, size: int) -> float_array_size_n:
-        print(self.mean)
-        print('----------')
-        print(np.random.uniform(self.low, self.high, size=size).mean())
         return np.random.uniform(self.low, self.high, size=size)
 
 class LogNormal(SampleableDistribution):
