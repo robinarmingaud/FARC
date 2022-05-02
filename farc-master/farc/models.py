@@ -1196,7 +1196,6 @@ class ExposureModel:
 
         for start, stop in self.exposed.presence.boundaries():
             deposited_exposure += self.deposited_exposure_between_bounds(start, stop)
-
         return deposited_exposure * self.repeats
 
     def _dose_infection_probability(self, viral_dose: _VectorisedFloat) -> _VectorisedFloat:
