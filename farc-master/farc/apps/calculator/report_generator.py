@@ -249,13 +249,22 @@ def manufacture_alternative_scenarios(form: FormData, _) -> typing.Dict[str, mc.
 def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
     model = mc_model.build_model(size=_DEFAULT_MC_SAMPLE_SIZE)
 
-    cumulative_doses = np.cumsum([
-        np.array(model.deposited_exposure_between_bounds(float(time1), float(time2))).mean()
-        for time1, time2 in zip(sample_times[:-1], sample_times[1:])
-    ])
-    cumulative_doses_list = list(cumulative_doses)
+    cumulative_doses = [np.array(model.deposited_exposure_between_bounds(float(time1), float(time2)))
+        for time1, time2 in zip(sample_times[:-1], sample_times[1:])]
+    
+    cumulative_doses_mean = np.cumsum([
+        dose.mean()
+        for dose in cumulative_doses])
+
+    viral_dose_array = [cumulative_doses[0]]
+    for i in range(1,len(cumulative_doses)):
+        viral_dose_array.append(np.add(viral_dose_array[-1], cumulative_doses[i]))
+    
     oneoverln2 = 1 / np.log(2)
     infectious_dose = oneoverln2 * model.concentration_model.virus.infectious_dose
+    cumulative_probability_test = [((1 - np.exp(-((viral_dose * (1 - model.exposed.host_immunity)) / (infectious_dose*model.concentration_model.virus.transmissibility_factor)))) * 100).mean()
+            for viral_dose in viral_dose_array]
+
     return {
         'probability_of_infection': np.mean(model.infection_probability()),
         'expected_new_cases': np.mean(model.expected_new_cases()),
@@ -263,11 +272,8 @@ def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
             np.mean(model.concentration_model.concentration(time))
             for time in sample_times
         ],
-        'cumulative_doses': cumulative_doses_list,
-        'cumulative_infection_probabilities': [
-            ((1 - np.exp(-((viral_dose * (1 - model.exposed.host_immunity)) / (infectious_dose *model.concentration_model.virus.transmissibility_factor)))) * 100).mean()
-            for viral_dose in cumulative_doses_list
-        ],
+        'cumulative_doses': list(cumulative_doses_mean),
+        'cumulative_infection_probabilities': list(cumulative_probability_test),
     }
 
 

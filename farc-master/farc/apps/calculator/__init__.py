@@ -119,7 +119,7 @@ class ConcentrationModel(BaseRequestHandler):
         report_generator.set_locale(tornado.locale.get(self.locale.code))
         executor = loky.get_reusable_executor(
             max_workers=self.settings['handler_worker_pool_size'],
-            timeout=300,
+            timeout=10,
         )
         report_task = executor.submit(
             report_generator.build_report, base_url, form,
@@ -291,7 +291,7 @@ def make_app(
         # can be used, and it is recommended to specify these values explicitly (through
         # the environment variables).
         handler_worker_pool_size=(
-            int(os.environ.get("HANDLER_WORKER_POOL_SIZE", 8)) or None
+            int(os.environ.get("HANDLER_WORKER_POOL_SIZE", 1)) or None
         ),
         report_generation_parallelism=(
             int(os.environ.get('REPORT_PARALLELISM', 0)) or None

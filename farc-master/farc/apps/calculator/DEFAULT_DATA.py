@@ -56,7 +56,7 @@ _DEFAULTS = {
         'infected_start': '08:30',
         'location_latitude': 47.21725,
         'location_longitude': -1.55336,
-        'location_name': "Nantes, FRA",
+        'location_name': "Nantes, Loire-Atlantique, Pays de la Loire, FRA",
         'mask_type': 'Type_I',
         'mask_wearing_option': 'mask_off',
         'mechanical_ventilation_type': 'mech_type_air_supply',
