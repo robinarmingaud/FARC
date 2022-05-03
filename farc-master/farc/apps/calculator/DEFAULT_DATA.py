@@ -23,7 +23,7 @@ _DEFAULT_MC_SAMPLE_SIZE = 250000
 # calculator version. If the calculator needs to make breaking changes (e.g. change
 # form attributes) then it can also increase its MAJOR version without needing to
 # increase the overall CARA version (found at ``farc.__version__``).
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 _DEFAULTS = {
         # 'activity_type': 'office',
         'exposed_activity_type': 'Office_worker',
