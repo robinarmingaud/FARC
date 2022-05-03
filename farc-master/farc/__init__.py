@@ -4,5 +4,4 @@
 Documentation for the CARA package
 
 """
-
-__version__ = "1.0.1"
+from .apps.calculator.DEFAULT_DATA import __version__
