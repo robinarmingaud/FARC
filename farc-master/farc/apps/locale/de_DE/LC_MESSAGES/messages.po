@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 11:57+0200\n"
+"POT-Creation-Date: 2022-05-03 14:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de_DE\n"
@@ -768,7 +768,7 @@ msgid "Acknowledgements:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:22
-msgid "Please send feedback to"
+msgid "Please send feedback to "
 msgstr ""
 
 #: templates/calculator.form.html.j2:26 templates/layout.html.j2:60
@@ -784,7 +784,7 @@ msgstr ""
 msgid "Room number:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:610
+#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:608
 msgid "Virus data:"
 msgstr ""
 
@@ -812,9 +812,9 @@ msgstr ""
 msgid "Central heating system in use:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:257
-#: templates/calculator.form.html.j2:278 templates/calculator.form.html.j2:496
-#: templates/calculator.form.html.j2:544
+#: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:255
+#: templates/calculator.form.html.j2:276 templates/calculator.form.html.j2:494
+#: templates/calculator.form.html.j2:542
 #: templates/calculator.report.html.j2:450
 #: templates/calculator.report.html.j2:509
 #: templates/calculator.report.html.j2:515
@@ -824,9 +824,9 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: templates/calculator.form.html.j2:125 templates/calculator.form.html.j2:259
-#: templates/calculator.form.html.j2:276 templates/calculator.form.html.j2:498
-#: templates/calculator.form.html.j2:546
+#: templates/calculator.form.html.j2:125 templates/calculator.form.html.j2:257
+#: templates/calculator.form.html.j2:274 templates/calculator.form.html.j2:496
+#: templates/calculator.form.html.j2:544
 #: templates/calculator.report.html.j2:435
 #: templates/calculator.report.html.j2:457
 #: templates/calculator.report.html.j2:515
@@ -840,7 +840,7 @@ msgstr ""
 msgid "Geographic location:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:145 templates/calculator.form.html.j2:620
+#: templates/calculator.form.html.j2:145 templates/calculator.form.html.j2:618
 #: templates/calculator.report.html.j2:427
 msgid "Ventilation data:"
 msgstr ""
@@ -857,15 +857,15 @@ msgstr ""
 msgid "Mechanical"
 msgstr ""
 
-#: templates/calculator.form.html.j2:163
+#: templates/calculator.form.html.j2:161
 msgid "Natural"
 msgstr ""
 
-#: templates/calculator.form.html.j2:172
+#: templates/calculator.form.html.j2:170
 msgid "Natural Ventilation"
 msgstr ""
 
-#: templates/calculator.form.html.j2:178
+#: templates/calculator.form.html.j2:176
 msgid ""
 "Single-sided ventilation is assumed in the model and is typically "
 "effective for room depths up to a depth 2.5 x the ceiling height. \n"
@@ -874,192 +874,192 @@ msgid ""
 "window."
 msgstr ""
 
-#: templates/calculator.form.html.j2:192
+#: templates/calculator.form.html.j2:190
 msgid "Air supply flow rate"
 msgstr ""
 
-#: templates/calculator.form.html.j2:201
+#: templates/calculator.form.html.j2:199
 msgid "Air changes per hour"
 msgstr ""
 
-#: templates/calculator.form.html.j2:211
+#: templates/calculator.form.html.j2:209
 #: templates/calculator.report.html.j2:463
 msgid "Number of windows:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:215
+#: templates/calculator.form.html.j2:213
 #: templates/calculator.report.html.j2:468
 msgid "Height of window:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:218
+#: templates/calculator.form.html.j2:216
 #: templates/calculator.report.html.j2:473
 msgid "Window type:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:220
+#: templates/calculator.form.html.j2:218
 #: templates/calculator.report.html.j2:484
 msgid "Sliding / Side-Hung"
 msgstr ""
 
-#: templates/calculator.form.html.j2:222
+#: templates/calculator.form.html.j2:220
 #: templates/calculator.report.html.j2:475
 msgid "Top- or Bottom-Hung"
 msgstr ""
 
-#: templates/calculator.form.html.j2:224
+#: templates/calculator.form.html.j2:222
 #: templates/calculator.report.html.j2:480
 msgid "Width of window:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:228
+#: templates/calculator.form.html.j2:226
 #: templates/calculator.report.html.j2:490
 msgid "Opening distance:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:231
+#: templates/calculator.form.html.j2:229
 msgid "Window open"
 msgstr ""
 
-#: templates/calculator.form.html.j2:238
+#: templates/calculator.form.html.j2:236
 #: templates/calculator.report.html.j2:500
 msgid "Permanently"
 msgstr ""
 
-#: templates/calculator.form.html.j2:242
+#: templates/calculator.form.html.j2:240
 msgid "Periodically:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:249
+#: templates/calculator.form.html.j2:247
 msgid "Bio ventilation:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:267
+#: templates/calculator.form.html.j2:265
 msgid "Face masks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:274
+#: templates/calculator.form.html.j2:272
 msgid "Are masks worn when occupants are at workstations?"
 msgstr ""
 
-#: templates/calculator.form.html.j2:281
+#: templates/calculator.form.html.j2:279
 msgid "Type of masks used (necessary for alternative scenarios):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:286
+#: templates/calculator.form.html.j2:284
 msgid "Surgical/Type I"
 msgstr ""
 
-#: templates/calculator.form.html.j2:293
+#: templates/calculator.form.html.j2:291
 msgid "Respirator/FFP2"
 msgstr ""
 
-#: templates/calculator.form.html.j2:305
+#: templates/calculator.form.html.j2:303
 #: templates/calculator.report.html.j2:532
 msgid "Event data:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:311
+#: templates/calculator.form.html.j2:309
 msgid "Total number of occupants:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:316
+#: templates/calculator.form.html.j2:314
 msgid "Number of infected people:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:320
+#: templates/calculator.form.html.j2:318
 msgid "Conference/Training activities limited to 1 infected"
 msgstr ""
 
-#: templates/calculator.form.html.j2:348
+#: templates/calculator.form.html.j2:346
 msgid "Exposed person(s):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:350
+#: templates/calculator.form.html.j2:348
 #: templates/calculator.report.html.j2:551
 #: templates/calculator.report.html.j2:628
 msgid "Activity type:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:385 templates/calculator.form.html.j2:441
+#: templates/calculator.form.html.j2:383 templates/calculator.form.html.j2:439
 msgid "Mask wear ratio:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:389 templates/calculator.form.html.j2:444
+#: templates/calculator.form.html.j2:387 templates/calculator.form.html.j2:442
 msgid "Presence:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:392 templates/calculator.form.html.j2:447
-#: templates/calculator.form.html.j2:501 templates/calculator.form.html.j2:550
+#: templates/calculator.form.html.j2:390 templates/calculator.form.html.j2:445
+#: templates/calculator.form.html.j2:499 templates/calculator.form.html.j2:548
 #: templates/calculator.report.html.j2:752
 #: templates/calculator.report.html.j2:798
 msgid "Start:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:396 templates/calculator.form.html.j2:451
-#: templates/calculator.form.html.j2:504 templates/calculator.form.html.j2:553
+#: templates/calculator.form.html.j2:394 templates/calculator.form.html.j2:449
+#: templates/calculator.form.html.j2:502 templates/calculator.form.html.j2:551
 msgid "Finish:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:404
+#: templates/calculator.form.html.j2:402
 msgid "Infected person(s):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:406
+#: templates/calculator.form.html.j2:404
 msgid "Activity:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:462
+#: templates/calculator.form.html.j2:460
 msgid "Which month is the event?"
 msgstr ""
 
-#: templates/calculator.form.html.j2:479 templates/calculator.form.html.j2:651
+#: templates/calculator.form.html.j2:477 templates/calculator.form.html.j2:649
 msgid "Activity breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:488
+#: templates/calculator.form.html.j2:486
 msgid "Input separate breaks for infected and exposed person(s)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:492
+#: templates/calculator.form.html.j2:490
 msgid "Exposed person(s) breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:494 templates/calculator.form.html.j2:542
+#: templates/calculator.form.html.j2:492 templates/calculator.form.html.j2:540
 #: templates/calculator.report.html.j2:720
 #: templates/calculator.report.html.j2:766
 msgid "Lunch break:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:511 templates/calculator.form.html.j2:560
+#: templates/calculator.form.html.j2:509 templates/calculator.form.html.j2:558
 msgid "Coffee Breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:515 templates/calculator.form.html.j2:564
+#: templates/calculator.form.html.j2:513 templates/calculator.form.html.j2:562
 msgid "No breaks"
 msgstr ""
 
-#: templates/calculator.form.html.j2:525 templates/calculator.form.html.j2:574
+#: templates/calculator.form.html.j2:523 templates/calculator.form.html.j2:572
 msgid "Duration (minutes):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:540
+#: templates/calculator.form.html.j2:538
 msgid "Infected person(s) breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:589
+#: templates/calculator.form.html.j2:587
 msgid "Coffee breaks are spread evenly throughout the day."
 msgstr ""
 
-#: templates/calculator.form.html.j2:600
+#: templates/calculator.form.html.j2:598
 msgid "Generate report"
 msgstr ""
 
-#: templates/calculator.form.html.j2:607
+#: templates/calculator.form.html.j2:605
 msgid "Quick Guide:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:608
+#: templates/calculator.form.html.j2:606
 msgid ""
 "FARC stands for Flow-R Airborne Risk Calculator.\n"
 "  This tool simulates the long range airborne spread SARS-CoV-2 virus in "
@@ -1068,45 +1068,45 @@ msgid ""
 "of different mitigation measures."
 msgstr ""
 
-#: templates/calculator.form.html.j2:611
+#: templates/calculator.form.html.j2:609
 msgid ""
 "SARS-CoV-2 covers the original 'wild type' strain of the virus and three "
 "variants of concern (VOC):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:613
+#: templates/calculator.form.html.j2:611
 msgid "Alpha (also known as B.1.1.7, first identified in UK, Sept 2020),"
 msgstr ""
 
-#: templates/calculator.form.html.j2:614
+#: templates/calculator.form.html.j2:612
 msgid "Beta (also known as B.1.351, first identified in South Africa, May 2020)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:615
+#: templates/calculator.form.html.j2:613
 msgid "Gamma (also known as P.1, first identified in Brazil/Japan, Jan 2021)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:616
+#: templates/calculator.form.html.j2:614
 msgid "Delta (also known as B.1.617.2, first identified in India, Oct 2020)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:617
+#: templates/calculator.form.html.j2:615
 msgid ""
 "Omicron (also known as B.1.1.529, first identified in South Africa, "
 "November 2021)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:619
+#: templates/calculator.form.html.j2:617
 msgid "Modify the default as necessary, according to local area prevalence."
 msgstr ""
 
-#: templates/calculator.form.html.j2:622
+#: templates/calculator.form.html.j2:620
 msgid ""
 "Mechanical ventilation = the HVAC supply of fresh air. Check the flow "
 "rates with the concerned technical department."
 msgstr ""
 
-#: templates/calculator.form.html.j2:623
+#: templates/calculator.form.html.j2:621
 msgid ""
 "Natural ventilation = the type of window opening. The opening distance is"
 " between the fixed frame and movable part when open (commonly used values"
@@ -1115,68 +1115,68 @@ msgid ""
 "frequency (e.g. every 60 min)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:624
+#: templates/calculator.form.html.j2:622
 msgid ""
 "Bio-ventilation = the disinfected air flow of the device. The following "
 "values are based on the different fan velocities of a specific commercial"
 " device proposed by the Flow-R:"
 msgstr ""
 
+#: templates/calculator.form.html.j2:624 templates/calculator.form.html.j2:625
 #: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
-#: templates/calculator.form.html.j2:628 templates/calculator.form.html.j2:629
 msgid "/h (noisy)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
+#: templates/calculator.form.html.j2:624 templates/calculator.form.html.j2:625
 msgid "/h (very noisy)"
 msgstr ""
 
+#: templates/calculator.form.html.j2:624 templates/calculator.form.html.j2:625
 #: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
-#: templates/calculator.form.html.j2:628 templates/calculator.form.html.j2:629
 msgid "/h (max, very noisy. Recommended without attendance)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:628 templates/calculator.form.html.j2:629
+#: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
 msgid "/h (ultra silent)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:628 templates/calculator.form.html.j2:629
+#: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
 msgid "/h (silent)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:632
+#: templates/calculator.form.html.j2:630
 msgid "Activity types:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:633
+#: templates/calculator.form.html.j2:631
 msgid ""
 "The type of activity applies to the infected and exposed persons "
 "separately."
 msgstr ""
 
-#: templates/calculator.form.html.j2:652
+#: templates/calculator.form.html.j2:650
 msgid ""
 "If coffee breaks are included, they are spread out evenly throughout the "
 "day, in addition to any lunch break (if applicable)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:654
+#: templates/calculator.form.html.j2:652
 msgid "Refer to"
 msgstr ""
 
-#: templates/calculator.form.html.j2:654
+#: templates/calculator.form.html.j2:652
 msgid "FARC user guide"
 msgstr ""
 
-#: templates/calculator.form.html.j2:655
+#: templates/calculator.form.html.j2:653
 msgid "for more detailed explanations on how to use this tool."
 msgstr ""
 
-#: templates/calculator.form.html.j2:660
+#: templates/calculator.form.html.j2:658
 msgid "User guide"
 msgstr ""
 
-#: templates/calculator.form.html.j2:663 templates/userguide.html.j2:27
+#: templates/calculator.form.html.j2:661 templates/userguide.html.j2:27
 msgid "Disclaimer"
 msgstr ""
 
@@ -2529,5 +2529,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "Expiration : "
+#~ msgstr ""
+
+#~ msgid "Please send feedback to"
 #~ msgstr ""
 

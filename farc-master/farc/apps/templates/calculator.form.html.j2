@@ -19,7 +19,7 @@
 {% block main %}
 
 <span class="cara_version">v{{ calculator_version }}</span>
-<span class="feedback">{{_("Please send feedback to")}}<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a></span>
+<span class="ml-2 feedback">{{_("Please send feedback to ")}}<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a></span>
 <header class= "bg-light">
   <div class="container container--padding">
     <div class="d-flex header-height">
@@ -153,13 +153,11 @@
     
     <div class="split">
     <div>
-    <input type="radio" class="ventilation_option" id="no_ventilation" name="ventilation_type" value='no_ventilation' >
+    <input type="radio" class="ml-2 ventilation_option" id="no_ventilation" name="ventilation_type" value='no_ventilation' >
       <label for="no_ventilation">{{_("No ventilation")}}</label>
     <input class="ml-2 ventilation_option" type="radio" id="mechanical_ventilation" name="ventilation_type" value='mechanical_ventilation' data-enables="#DIVmechanical_ventilation">
       <label for="mechanical_ventilation">{{_("Mechanical")}}</label>
-    </div>
-    <div>
-    <input type="radio" class="ventilation_option" id="natural_ventilation" name="ventilation_type" value='natural_ventilation' data-enables="#DIVnatural_ventilation" data-toggle="modal" data-target="#warning_modal">
+    <input type="radio" class="ml-2 ventilation_option" id="natural_ventilation" name="ventilation_type" value='natural_ventilation' data-enables="#DIVnatural_ventilation" data-toggle="modal" data-target="#warning_modal">
       <label for="natural_ventilation">{{_("Natural")}}</label><br>
     </div>
     </div>
@@ -240,8 +238,8 @@
         <div class="form-group row">
           <span class="tabbed center_radio"><input type="radio" class="window_open_option" id="windows_open_periodically" name="window_opening_regime" value="windows_open_periodically" onclick="require_fields(this)"></span>
           <label for="windows_open_periodically" class="col-form-label ml-2 mr-2">{{_("Periodically:")}} </label><br>
-          <input type="number" step="any" id="windows_duration" class="non_zero disabled form-control col-sm-4" name="windows_duration" placeholder="{{PLACEHOLDERS.duration}}" min="1" data-has-radio="#windows_open_periodically" value = '{{default.windows_duration}}'> 
-          <input type="number" step="any" id="windows_frequency" class="non_zero disabled form-control col-sm-4" name="windows_frequency" placeholder="{{PLACEHOLDERS.frequency}}" min="1" data-has-radio="#windows_open_periodically" value = '{{default.windows_frequency}}'>
+          <input type="number" step="any" id="windows_duration" class="ml-2 non_zero disabled form-control col-sm-4" name="windows_duration" placeholder="{{PLACEHOLDERS.duration}}" min="1" data-has-radio="#windows_open_periodically" value = '{{default.windows_duration}}'> 
+          <input type="number" step="any" id="windows_frequency" class="ml-2 non_zero disabled form-control col-sm-4" name="windows_frequency" placeholder="{{PLACEHOLDERS.frequency}}" min="1" data-has-radio="#windows_open_periodically" value = '{{default.windows_frequency}}'>
         </div>
         <br>
     </div>
