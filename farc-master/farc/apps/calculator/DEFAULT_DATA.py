@@ -15,7 +15,7 @@ _ = locale.translate
 # ------------------ Default form values ----------------------
 
 _NO_DEFAULT = object()
-_DEFAULT_MC_SAMPLE_SIZE = 250000
+_DEFAULT_MC_SAMPLE_SIZE = 60000
 # The calculator version is based on a combination of the model version and the
 # semantic version of the calculator itself. The version uses the terms
 # "{MAJOR}.{MINOR}.{PATCH}" to describe the 3 distinct numbers constituting a version.
