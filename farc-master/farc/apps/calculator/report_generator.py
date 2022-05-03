@@ -21,6 +21,7 @@ from farc.apps.calculator import markdown_tools
 
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
+from .DEFAULT_DATA import ACTIVITY_TYPES, set_locale
 from ... import dataclass_utils
 
 
@@ -98,7 +99,6 @@ def interesting_times(model: models.ExposureModel, approx_n_pts=100) -> typing.L
 
     """
     times = non_temp_transition_times(model)
-
     # Expand the times list to ensure that we have a maximum gap size between
     # the key times.
     nice_times = fill_big_gaps(times, gap_size=(max(times) - min(times)) / approx_n_pts)
@@ -250,15 +250,21 @@ def manufacture_alternative_scenarios(form: FormData, _) -> typing.Dict[str, mc.
 def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
     model = mc_model.build_model(size=_DEFAULT_MC_SAMPLE_SIZE)
 
-    '''cumulative_doses = np.cumsum([
-        np.array(model.deposited_exposure_between_bounds(float(time1), float(time2))).mean()
-        for time1, time2 in zip(sample_times[:-1], sample_times[1:])
-    ])'''
-    import time
-    cumulative_doses = [
-        np.array(model.cumulative_deposited_exposure(float(time))).mean()
-        for time in sample_times
-    ]
+    cumulative_doses = [np.array(model.deposited_exposure_between_bounds(float(time1), float(time2)))
+        for time1, time2 in zip(sample_times[:-1], sample_times[1:])]
+    
+    cumulative_doses_mean = np.cumsum([
+        dose.mean()
+        for dose in cumulative_doses])
+
+    viral_dose_array = [cumulative_doses[0]]
+    for i in range(1,len(cumulative_doses)):
+        viral_dose_array.append(np.add(viral_dose_array[-1], cumulative_doses[i]))
+    
+    oneoverln2 = 1 / np.log(2)
+    infectious_dose = oneoverln2 * model.concentration_model.virus.infectious_dose
+    cumulative_probability_test = [((1 - np.exp(-((viral_dose * (1 - model.exposed.host_immunity)) / (infectious_dose*model.concentration_model.virus.transmissibility_factor)))) * 100).mean()
+            for viral_dose in viral_dose_array]
 
     return {
         'probability_of_infection': np.mean(model.infection_probability()),
@@ -267,11 +273,8 @@ def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
             np.mean(model.concentration_model.concentration(time))
             for time in sample_times
         ],
-        'cumulative_doses': list(cumulative_doses),
-        'cumulative_infection_probabilities': [
-            np.mean(model.cumulative_infection_probability(time))
-            for time in sample_times
-        ],
+        'cumulative_doses': list(cumulative_doses_mean),
+        'cumulative_infection_probabilities': list(cumulative_probability_test),
     }
 
 
@@ -312,10 +315,12 @@ class ReportGenerator:
     tornado.locale.load_gettext_translations(path , 'messages')
     locale = tornado.locale.get()
     _ = locale.translate
+    ACTIVITY_TYPES = ACTIVITY_TYPES
 
     def set_locale(self, locale):
         self.locale = locale
         self._ = locale.translate
+        self.ACTIVITY_TYPES = set_locale(locale)['ACTIVITY_TYPES']
 
     def build_report(
             self,
@@ -356,7 +361,6 @@ class ReportGenerator:
         context['expected_new_cases'] = next(iter(next(iter(context['alternative_scenarios'].items()))[1].items()))[1]['expected_new_cases']
         context['permalink'] = generate_permalink(base_url, self.calculator_prefix, form)
         context['calculator_prefix'] = self.calculator_prefix
-        
         return context
 
     def _template_environment(self) -> jinja2.Environment:
@@ -373,6 +377,7 @@ class ReportGenerator:
         env.filters['int_format'] = "{:0.0f}".format
         env.filters['JSONify'] = json.dumps
         env.globals['_'] = self._
+        env.globals['ACTIVITY_TYPES'] = self.ACTIVITY_TYPES
         return env
 
     def render(self, context: dict) -> str:

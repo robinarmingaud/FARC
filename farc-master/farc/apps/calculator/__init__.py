@@ -291,7 +291,7 @@ def make_app(
         # can be used, and it is recommended to specify these values explicitly (through
         # the environment variables).
         handler_worker_pool_size=(
-            int(os.environ.get("HANDLER_WORKER_POOL_SIZE", 8)) or None
+            int(os.environ.get("HANDLER_WORKER_POOL_SIZE", 1)) or None
         ),
         report_generation_parallelism=(
             int(os.environ.get('REPORT_PARALLELISM', 0)) or None
