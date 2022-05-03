@@ -7,394 +7,539 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 15:25+0200\n"
+"POT-Creation-Date: 2022-05-03 11:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de_DE\n"
 "Language-Team: de_DE <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.10.1\n"
 
-#: calculator/DEFAULT_DATA.py:39 calculator/DEFAULT_DATA.py:129
-#: calculator/DEFAULT_DATA.py:178 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:44 calculator/DEFAULT_DATA.py:134
+#: calculator/DEFAULT_DATA.py:183 calculator/DEFAULT_DATA.py:260
 msgid "January"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:60 calculator/DEFAULT_DATA.py:199
+#: calculator/DEFAULT_DATA.py:65 calculator/DEFAULT_DATA.py:204
 msgid "Boardroom"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:62 calculator/DEFAULT_DATA.py:201
+#: calculator/DEFAULT_DATA.py:67 calculator/DEFAULT_DATA.py:206
 msgid "Workshop without masks"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:66 calculator/DEFAULT_DATA.py:205
+#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
 #: templates/calculator.report.html.j2:385 templates/userguide.html.j2:56
 msgid "SARS-CoV-2 (nominal strain)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:66 calculator/DEFAULT_DATA.py:205
+#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
 #: templates/calculator.report.html.j2:387 templates/userguide.html.j2:59
 msgid "SARS-CoV-2 (Alpha VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:66 calculator/DEFAULT_DATA.py:205
+#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
 #: templates/calculator.report.html.j2:389 templates/userguide.html.j2:62
 msgid "SARS-CoV-2 (Beta VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:66 calculator/DEFAULT_DATA.py:205
+#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
 #: templates/calculator.report.html.j2:391 templates/userguide.html.j2:65
 msgid "SARS-CoV-2 (Gamma VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:66 calculator/DEFAULT_DATA.py:205
+#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
 #: templates/calculator.report.html.j2:393 templates/userguide.html.j2:68
 msgid "SARS-CoV-2 (Delta VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:66 calculator/DEFAULT_DATA.py:205
+#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
 #: templates/calculator.report.html.j2:395 templates/userguide.html.j2:71
 msgid "SARS-CoV-2 (Omicron VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:79 calculator/DEFAULT_DATA.py:218
-msgid "Office worker"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:80 calculator/DEFAULT_DATA.py:81
-#: calculator/DEFAULT_DATA.py:82 calculator/DEFAULT_DATA.py:219
-#: calculator/DEFAULT_DATA.py:220 calculator/DEFAULT_DATA.py:221
+#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:85
+#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
+#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:225
+#: calculator/DEFAULT_DATA.py:226
 msgid "Business"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:80 calculator/DEFAULT_DATA.py:219
-msgid "Workshop worker"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:81 calculator/DEFAULT_DATA.py:220
-msgid "Meeting participant"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:82 calculator/DEFAULT_DATA.py:221
-msgid "Meeting leader"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:83 calculator/DEFAULT_DATA.py:84
-#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:222
-#: calculator/DEFAULT_DATA.py:223 calculator/DEFAULT_DATA.py:224
-msgid "Hospital"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:83 calculator/DEFAULT_DATA.py:222
-msgid "Hospital patient"
-msgstr ""
-
 #: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:223
-msgid "Nurse working"
+msgid "Office worker"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:224
-msgid "Physician working"
+#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:86
+#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:91
+#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:100
+#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:105
+#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:111
+#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:223
+#: calculator/DEFAULT_DATA.py:225 calculator/DEFAULT_DATA.py:227
+#: calculator/DEFAULT_DATA.py:230 calculator/DEFAULT_DATA.py:237
+#: calculator/DEFAULT_DATA.py:239 calculator/DEFAULT_DATA.py:242
+#: calculator/DEFAULT_DATA.py:244 calculator/DEFAULT_DATA.py:248
+#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:256
+msgid "Seated"
 msgstr ""
 
+#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:85
 #: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
-#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:225
+#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:89
+#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:91
+#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:93
+#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
+#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
+#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:99
+#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:102
+#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
+#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
+#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:110
+#: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:112
+#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:114
+#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:116
+#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
+#: calculator/DEFAULT_DATA.py:223 calculator/DEFAULT_DATA.py:224
+#: calculator/DEFAULT_DATA.py:225 calculator/DEFAULT_DATA.py:226
+#: calculator/DEFAULT_DATA.py:227 calculator/DEFAULT_DATA.py:228
+#: calculator/DEFAULT_DATA.py:229 calculator/DEFAULT_DATA.py:230
+#: calculator/DEFAULT_DATA.py:231 calculator/DEFAULT_DATA.py:232
+#: calculator/DEFAULT_DATA.py:233 calculator/DEFAULT_DATA.py:234
+#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:236
+#: calculator/DEFAULT_DATA.py:237 calculator/DEFAULT_DATA.py:238
+#: calculator/DEFAULT_DATA.py:239 calculator/DEFAULT_DATA.py:241
+#: calculator/DEFAULT_DATA.py:242 calculator/DEFAULT_DATA.py:243
+#: calculator/DEFAULT_DATA.py:244 calculator/DEFAULT_DATA.py:245
+#: calculator/DEFAULT_DATA.py:246 calculator/DEFAULT_DATA.py:249
+#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:251
+#: calculator/DEFAULT_DATA.py:252 calculator/DEFAULT_DATA.py:253
+#: calculator/DEFAULT_DATA.py:254 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
+msgid "Speaking"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:85
+#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
+#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:89
+#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:91
+#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:93
+#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
+#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
+#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:99
+#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:101
+#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:103
+#: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:105
+#: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:107
+#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:109
+#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:111
+#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:113
+#: calculator/DEFAULT_DATA.py:114 calculator/DEFAULT_DATA.py:115
+#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:117
+#: calculator/DEFAULT_DATA.py:118 calculator/DEFAULT_DATA.py:223
+#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:225
 #: calculator/DEFAULT_DATA.py:226 calculator/DEFAULT_DATA.py:227
-msgid "Education"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:225
-msgid "Student sitting"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:87 calculator/DEFAULT_DATA.py:226
-msgid "Professor teaching"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:227
-msgid "Professor conferencing"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:89 calculator/DEFAULT_DATA.py:90
-#: calculator/DEFAULT_DATA.py:91 calculator/DEFAULT_DATA.py:92
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:94
-#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:96
-#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:98
 #: calculator/DEFAULT_DATA.py:228 calculator/DEFAULT_DATA.py:229
 #: calculator/DEFAULT_DATA.py:230 calculator/DEFAULT_DATA.py:231
 #: calculator/DEFAULT_DATA.py:232 calculator/DEFAULT_DATA.py:233
 #: calculator/DEFAULT_DATA.py:234 calculator/DEFAULT_DATA.py:235
 #: calculator/DEFAULT_DATA.py:236 calculator/DEFAULT_DATA.py:237
-msgid "Events"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:89 calculator/DEFAULT_DATA.py:228
-msgid "Concert musician (soft music)"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:229
-msgid "Concert musician (rock)"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:91 calculator/DEFAULT_DATA.py:230
-msgid "Concert singer (rock)"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:231
-msgid "Concert spectator (standing)"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:232
-msgid "Concert spectator (sitting)"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:233
-msgid "Museum visitor"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:234
-msgid "Theater spectator"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:235
-msgid "Theater actor"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:236
-msgid "Conferencer"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:237
-msgid "Conference attendee"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:100
-#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:102
-#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
 #: calculator/DEFAULT_DATA.py:238 calculator/DEFAULT_DATA.py:239
 #: calculator/DEFAULT_DATA.py:240 calculator/DEFAULT_DATA.py:241
 #: calculator/DEFAULT_DATA.py:242 calculator/DEFAULT_DATA.py:243
-msgid "Restaurant and Bar"
+#: calculator/DEFAULT_DATA.py:244 calculator/DEFAULT_DATA.py:245
+#: calculator/DEFAULT_DATA.py:246 calculator/DEFAULT_DATA.py:247
+#: calculator/DEFAULT_DATA.py:248 calculator/DEFAULT_DATA.py:249
+#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:251
+#: calculator/DEFAULT_DATA.py:252 calculator/DEFAULT_DATA.py:253
+#: calculator/DEFAULT_DATA.py:254 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
+msgid "Breathing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:224
+msgid "Workshop worker"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:95
+#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:101
+#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:114
+#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:234
+#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:240
+#: calculator/DEFAULT_DATA.py:247 calculator/DEFAULT_DATA.py:253
+msgid "Moderate activity"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:86
+#: calculator/DEFAULT_DATA.py:87 calculator/DEFAULT_DATA.py:92
+#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:95
+#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
+#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:100
+#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:102
+#: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:107
+#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:109
+#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
+#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:225
+#: calculator/DEFAULT_DATA.py:226 calculator/DEFAULT_DATA.py:231
+#: calculator/DEFAULT_DATA.py:232 calculator/DEFAULT_DATA.py:234
+#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:236
+#: calculator/DEFAULT_DATA.py:237 calculator/DEFAULT_DATA.py:239
+#: calculator/DEFAULT_DATA.py:240 calculator/DEFAULT_DATA.py:241
+#: calculator/DEFAULT_DATA.py:243 calculator/DEFAULT_DATA.py:246
+#: calculator/DEFAULT_DATA.py:247 calculator/DEFAULT_DATA.py:248
+#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
+msgid "Shouting"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:225
+msgid "Meeting participant"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:87 calculator/DEFAULT_DATA.py:226
+msgid "Meeting leader"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:87 calculator/DEFAULT_DATA.py:90
+#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:94
+#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:104
+#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:110
+#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:116
+#: calculator/DEFAULT_DATA.py:226 calculator/DEFAULT_DATA.py:229
+#: calculator/DEFAULT_DATA.py:231 calculator/DEFAULT_DATA.py:233
+#: calculator/DEFAULT_DATA.py:238 calculator/DEFAULT_DATA.py:243
+#: calculator/DEFAULT_DATA.py:246 calculator/DEFAULT_DATA.py:249
+#: calculator/DEFAULT_DATA.py:251 calculator/DEFAULT_DATA.py:255
+msgid "Standing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:89
+#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:227
+#: calculator/DEFAULT_DATA.py:228 calculator/DEFAULT_DATA.py:229
+msgid "Hospital"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:227
+msgid "Hospital patient"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:89 calculator/DEFAULT_DATA.py:228
+msgid "Nurse working"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:89 calculator/DEFAULT_DATA.py:93
+#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:102
+#: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:118
+#: calculator/DEFAULT_DATA.py:228 calculator/DEFAULT_DATA.py:232
+#: calculator/DEFAULT_DATA.py:236 calculator/DEFAULT_DATA.py:241
+#: calculator/DEFAULT_DATA.py:245 calculator/DEFAULT_DATA.py:257
+msgid "Light activity"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:229
+msgid "Physician working"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:91 calculator/DEFAULT_DATA.py:92
+#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:230
+#: calculator/DEFAULT_DATA.py:231 calculator/DEFAULT_DATA.py:232
+msgid "Education"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:91 calculator/DEFAULT_DATA.py:230
+msgid "Student sitting"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:231
+msgid "Professor teaching"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:232
+msgid "Professor conferencing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
+#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
+#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:99
+#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:101
+#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:103
+#: calculator/DEFAULT_DATA.py:233 calculator/DEFAULT_DATA.py:234
+#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:236
+#: calculator/DEFAULT_DATA.py:237 calculator/DEFAULT_DATA.py:238
+#: calculator/DEFAULT_DATA.py:239 calculator/DEFAULT_DATA.py:240
+#: calculator/DEFAULT_DATA.py:241 calculator/DEFAULT_DATA.py:242
+msgid "Events"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:233
+msgid "Concert musician (soft music)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:234
+msgid "Concert musician (rock)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:235
+msgid "Concert singer (rock)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:236
+msgid "Concert spectator (standing)"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:237
+msgid "Concert spectator (sitting)"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:238
-msgid "Guest standing"
+msgid "Museum visitor"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:239
-msgid "Guest sitting"
+msgid "Theater spectator"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:240
-msgid "Server"
+msgid "Theater actor"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:241
-msgid "Barrista"
+msgid "Conferencer"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:242
-msgid "Nightclub dancing"
+msgid "Conference attendee"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:105
+#: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:107
+#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:109
+#: calculator/DEFAULT_DATA.py:243 calculator/DEFAULT_DATA.py:244
+#: calculator/DEFAULT_DATA.py:245 calculator/DEFAULT_DATA.py:246
+#: calculator/DEFAULT_DATA.py:247 calculator/DEFAULT_DATA.py:248
+msgid "Restaurant and Bar"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:243
-msgid "Nightclub sitting"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:244
-#: calculator/DEFAULT_DATA.py:245 calculator/DEFAULT_DATA.py:246
-msgid "Store and Retail"
+msgid "Guest standing"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:244
-msgid "Customer standing"
+msgid "Guest sitting"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:245
-msgid "Cashier sitting"
+msgid "Server"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:246
-msgid "Vendor standing"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:109
-#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:247
-#: calculator/DEFAULT_DATA.py:248 calculator/DEFAULT_DATA.py:249
-msgid "Sport"
+msgid "Barrista"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:247
-msgid "Musculation"
+msgid "Nightclub dancing"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:248
-msgid "Floor gymnastics"
+msgid "Nightclub sitting"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:111
+#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:249
+#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:251
+msgid "Store and Retail"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:249
-msgid "Team competition"
+msgid "Customer standing"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:250
-msgid "Miscellaneous"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:250
-msgid "Trip in elevator"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:113
-#: calculator/DEFAULT_DATA.py:251 calculator/DEFAULT_DATA.py:252
-msgid "Navy"
+msgid "Cashier sitting"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:251
-msgid "Watch seated"
+msgid "Vendor standing"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:114
+#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:252
+#: calculator/DEFAULT_DATA.py:253 calculator/DEFAULT_DATA.py:254
+msgid "Sport"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:252
+msgid "Musculation"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:115
+#: calculator/DEFAULT_DATA.py:252 calculator/DEFAULT_DATA.py:254
+msgid "Heavy exercise"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:114 calculator/DEFAULT_DATA.py:253
+msgid "Floor gymnastics"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:254
+msgid "Team competition"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:255
+msgid "Miscellaneous"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:255
+msgid "Trip in elevator"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
+#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
+msgid "Navy"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:256
+msgid "Watch seated"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:118 calculator/DEFAULT_DATA.py:257
 msgid "Watch standing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:129 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
 msgid "February"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:129 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
 msgid "March"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:129 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
 msgid "April"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:129 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
 msgid "May"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:129 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
 msgid "June"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:129 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
 msgid "July"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:130 calculator/DEFAULT_DATA.py:256
+#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
 msgid "August"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:130 calculator/DEFAULT_DATA.py:256
+#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
 msgid "September"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:130 calculator/DEFAULT_DATA.py:256
+#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
 msgid "October"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:130 calculator/DEFAULT_DATA.py:256
+#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
 msgid "November"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:130 calculator/DEFAULT_DATA.py:256
+#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
 msgid "December"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
+#: calculator/DEFAULT_DATA.py:140 calculator/DEFAULT_DATA.py:266
 msgid "Choose the SARS-CoV-2 Variant of Concern (VOC)."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:136 calculator/DEFAULT_DATA.py:262
+#: calculator/DEFAULT_DATA.py:141 calculator/DEFAULT_DATA.py:267
 msgid ""
 "The area you wish to study (choose one of the 2 options). Indicate if a "
 "central (radiator-type) heating system is in use."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:137 calculator/DEFAULT_DATA.py:263
+#: calculator/DEFAULT_DATA.py:142 calculator/DEFAULT_DATA.py:268
 msgid "The available means of venting / filtration of indoor spaces."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:138 calculator/DEFAULT_DATA.py:264
+#: calculator/DEFAULT_DATA.py:143 calculator/DEFAULT_DATA.py:269
 msgid ""
 "If 'Periodically' is selected, windows will be open during lunch and "
 "coffee breaks"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:139 calculator/DEFAULT_DATA.py:265
+#: calculator/DEFAULT_DATA.py:144 calculator/DEFAULT_DATA.py:270
 msgid ""
 "This value can be modified for alternative scenarios even if 'No' is "
 "checked"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:140 calculator/DEFAULT_DATA.py:266
+#: calculator/DEFAULT_DATA.py:145 calculator/DEFAULT_DATA.py:271
 msgid ""
 "Masks worn at workstations or removed when a 2m physical distance is "
 "respected and proper venting is ensured."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:141 calculator/DEFAULT_DATA.py:267
+#: calculator/DEFAULT_DATA.py:146 calculator/DEFAULT_DATA.py:272
 msgid ""
 "The total no. of occupants in the room and how many of them you assume "
 "are infected."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:142 calculator/DEFAULT_DATA.py:268
+#: calculator/DEFAULT_DATA.py:147 calculator/DEFAULT_DATA.py:273
 msgid ""
 "Input breaks that, by default, are the same for infected/exposed "
 "person(s) unless specified otherwise."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:144 calculator/DEFAULT_DATA.py:270
+#: calculator/DEFAULT_DATA.py:149 calculator/DEFAULT_DATA.py:275
 msgid "Room volume (m³)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:145 calculator/DEFAULT_DATA.py:271
+#: calculator/DEFAULT_DATA.py:150 calculator/DEFAULT_DATA.py:276
 msgid "Room floor area (m²)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:146 calculator/DEFAULT_DATA.py:272
+#: calculator/DEFAULT_DATA.py:151 calculator/DEFAULT_DATA.py:277
 msgid "Room ceiling height (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:147 calculator/DEFAULT_DATA.py:273
+#: calculator/DEFAULT_DATA.py:152 calculator/DEFAULT_DATA.py:278
 msgid "Flow rate (m³ / hour)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:148 calculator/DEFAULT_DATA.py:274
+#: calculator/DEFAULT_DATA.py:153 calculator/DEFAULT_DATA.py:279
 msgid "Air exchange (h⁻¹)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:149 calculator/DEFAULT_DATA.py:275
+#: calculator/DEFAULT_DATA.py:154 calculator/DEFAULT_DATA.py:280
 msgid "Number (#)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:150 calculator/DEFAULT_DATA.py:276
+#: calculator/DEFAULT_DATA.py:155 calculator/DEFAULT_DATA.py:281
 msgid "Height (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:151 calculator/DEFAULT_DATA.py:277
+#: calculator/DEFAULT_DATA.py:156 calculator/DEFAULT_DATA.py:282
 msgid "Width (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:152 calculator/DEFAULT_DATA.py:278
+#: calculator/DEFAULT_DATA.py:157 calculator/DEFAULT_DATA.py:283
 msgid "Opening distance (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:153 calculator/DEFAULT_DATA.py:279
+#: calculator/DEFAULT_DATA.py:158 calculator/DEFAULT_DATA.py:284
 msgid "Duration (min)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:154 calculator/DEFAULT_DATA.py:280
+#: calculator/DEFAULT_DATA.py:159 calculator/DEFAULT_DATA.py:285
 msgid "Frequency (min)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:155 calculator/DEFAULT_DATA.py:281
+#: calculator/DEFAULT_DATA.py:160 calculator/DEFAULT_DATA.py:286
 msgid "Default"
 msgstr ""
 
@@ -420,41 +565,41 @@ msgstr ""
 msgid "Unfortunately the page you were looking for does not exist."
 msgstr ""
 
-#: calculator/__init__.py:111
+#: calculator/__init__.py:112
 msgid "Your request was invalid"
 msgstr ""
 
-#: calculator/__init__.py:220
+#: calculator/__init__.py:221
 msgid ""
 "Invalid calculator data: it seems incomplete. Was there an error copying "
 "& pasting the URL?"
 msgstr ""
 
-#: calculator/report_generator.py:215
+#: calculator/report_generator.py:216
 msgid "NO bio-ventilation and NO masks"
 msgstr ""
 
-#: calculator/report_generator.py:220
+#: calculator/report_generator.py:221
 msgid "NO bio-ventilation and "
 msgstr ""
 
-#: calculator/report_generator.py:220 calculator/report_generator.py:230
+#: calculator/report_generator.py:221 calculator/report_generator.py:231
 msgid " masks with a "
 msgstr ""
 
-#: calculator/report_generator.py:220 calculator/report_generator.py:230
+#: calculator/report_generator.py:221 calculator/report_generator.py:231
 msgid " wear ratio for exposed people and a "
 msgstr ""
 
-#: calculator/report_generator.py:220 calculator/report_generator.py:230
+#: calculator/report_generator.py:221 calculator/report_generator.py:231
 msgid " wear ratio for infected people"
 msgstr ""
 
-#: calculator/report_generator.py:225
+#: calculator/report_generator.py:226
 msgid " m3/h bio-ventilation and NO masks"
 msgstr ""
 
-#: calculator/report_generator.py:230
+#: calculator/report_generator.py:231
 msgid " m3/h bio-ventilation and "
 msgstr ""
 
@@ -673,9 +818,9 @@ msgstr ""
 #: templates/calculator.report.html.j2:450
 #: templates/calculator.report.html.j2:509
 #: templates/calculator.report.html.j2:515
-#: templates/calculator.report.html.j2:703
-#: templates/calculator.report.html.j2:749
-#: templates/calculator.report.html.j2:785
+#: templates/calculator.report.html.j2:737
+#: templates/calculator.report.html.j2:783
+#: templates/calculator.report.html.j2:819
 msgid "No"
 msgstr ""
 
@@ -685,9 +830,9 @@ msgstr ""
 #: templates/calculator.report.html.j2:435
 #: templates/calculator.report.html.j2:457
 #: templates/calculator.report.html.j2:515
-#: templates/calculator.report.html.j2:688
-#: templates/calculator.report.html.j2:734
-#: templates/calculator.report.html.j2:785
+#: templates/calculator.report.html.j2:722
+#: templates/calculator.report.html.j2:768
+#: templates/calculator.report.html.j2:819
 msgid "Yes"
 msgstr ""
 
@@ -798,7 +943,7 @@ msgid "Are masks worn when occupants are at workstations?"
 msgstr ""
 
 #: templates/calculator.form.html.j2:281
-msgid "Type of masks used:"
+msgid "Type of masks used (necessary for alternative scenarios):"
 msgstr ""
 
 #: templates/calculator.form.html.j2:286
@@ -831,8 +976,8 @@ msgid "Exposed person(s):"
 msgstr ""
 
 #: templates/calculator.form.html.j2:350
-#: templates/calculator.report.html.j2:550
-#: templates/calculator.report.html.j2:610
+#: templates/calculator.report.html.j2:551
+#: templates/calculator.report.html.j2:628
 msgid "Activity type:"
 msgstr ""
 
@@ -846,8 +991,8 @@ msgstr ""
 
 #: templates/calculator.form.html.j2:392 templates/calculator.form.html.j2:447
 #: templates/calculator.form.html.j2:501 templates/calculator.form.html.j2:550
-#: templates/calculator.report.html.j2:718
-#: templates/calculator.report.html.j2:764
+#: templates/calculator.report.html.j2:752
+#: templates/calculator.report.html.j2:798
 msgid "Start:"
 msgstr ""
 
@@ -881,8 +1026,8 @@ msgid "Exposed person(s) breaks:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:494 templates/calculator.form.html.j2:542
-#: templates/calculator.report.html.j2:686
-#: templates/calculator.report.html.j2:732
+#: templates/calculator.report.html.j2:720
+#: templates/calculator.report.html.j2:766
 msgid "Lunch break:"
 msgstr ""
 
@@ -1064,7 +1209,7 @@ msgid "Input Data"
 msgstr ""
 
 #: templates/calculator.report.html.j2:81
-#: templates/calculator.report.html.j2:808
+#: templates/calculator.report.html.j2:842
 msgid "Recommended Actions"
 msgstr ""
 
@@ -1316,134 +1461,144 @@ msgid "infected."
 msgstr ""
 
 #: templates/calculator.report.html.j2:545
-#: templates/calculator.report.html.j2:680
+#: templates/calculator.report.html.j2:714
 msgid "Exposed occupant(s):"
 msgstr ""
 
-#: templates/calculator.report.html.j2:582
-#: templates/calculator.report.html.j2:643
-msgid "Mask wearing time (when masks are worn):"
-msgstr ""
-
-#: templates/calculator.report.html.j2:587
-msgid "Activity time:"
+#: templates/calculator.report.html.j2:584
+#: templates/calculator.report.html.j2:662
+msgid "Expiration type: "
 msgstr ""
 
 #: templates/calculator.report.html.j2:593
-#: templates/calculator.report.html.j2:654
-#: templates/calculator.report.html.j2:693
-#: templates/calculator.report.html.j2:739
+#: templates/calculator.report.html.j2:671
+msgid "Activity level: "
+msgstr ""
+
+#: templates/calculator.report.html.j2:599
+#: templates/calculator.report.html.j2:677
+msgid "Mask wearing time (when masks are worn):"
+msgstr ""
+
+#: templates/calculator.report.html.j2:604
+msgid "Activity time:"
+msgstr ""
+
+#: templates/calculator.report.html.j2:610
+#: templates/calculator.report.html.j2:688
+#: templates/calculator.report.html.j2:727
+#: templates/calculator.report.html.j2:773
 msgid "Start time:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:598
-#: templates/calculator.report.html.j2:659
-#: templates/calculator.report.html.j2:698
-#: templates/calculator.report.html.j2:744
+#: templates/calculator.report.html.j2:615
+#: templates/calculator.report.html.j2:693
+#: templates/calculator.report.html.j2:732
+#: templates/calculator.report.html.j2:778
 msgid "End time:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:605
-#: templates/calculator.report.html.j2:727
+#: templates/calculator.report.html.j2:622
+#: templates/calculator.report.html.j2:761
 msgid "Infected occupant(s):"
 msgstr ""
 
-#: templates/calculator.report.html.j2:648
+#: templates/calculator.report.html.j2:682
 msgid "Infected occupant(s) activity time:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:666
+#: templates/calculator.report.html.j2:700
 msgid "Event for the month of"
 msgstr ""
 
-#: templates/calculator.report.html.j2:675
+#: templates/calculator.report.html.j2:709
 msgid "Break data:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:709
-#: templates/calculator.report.html.j2:755
+#: templates/calculator.report.html.j2:743
+#: templates/calculator.report.html.j2:789
 msgid "Coffee breaks:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:711
-#: templates/calculator.report.html.j2:757
+#: templates/calculator.report.html.j2:745
+#: templates/calculator.report.html.j2:791
 msgid "each of"
 msgstr ""
 
-#: templates/calculator.report.html.j2:711
-#: templates/calculator.report.html.j2:757
+#: templates/calculator.report.html.j2:745
+#: templates/calculator.report.html.j2:791
 msgid "minutes duration"
 msgstr ""
 
-#: templates/calculator.report.html.j2:718
-#: templates/calculator.report.html.j2:764
+#: templates/calculator.report.html.j2:752
+#: templates/calculator.report.html.j2:798
 msgid "Coffee break"
 msgstr ""
 
-#: templates/calculator.report.html.j2:718
-#: templates/calculator.report.html.j2:764
+#: templates/calculator.report.html.j2:752
+#: templates/calculator.report.html.j2:798
 msgid "End:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:772
+#: templates/calculator.report.html.j2:806
 msgid "Same breaks taken by the exposed and infected persons."
 msgstr ""
 
-#: templates/calculator.report.html.j2:779
+#: templates/calculator.report.html.j2:813
 msgid "Mask wearing:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:785
+#: templates/calculator.report.html.j2:819
 msgid "Masks worn at workstations?"
 msgstr ""
 
-#: templates/calculator.report.html.j2:791
+#: templates/calculator.report.html.j2:825
 msgid "Mask type:"
 msgstr ""
 
-#: templates/calculator.report.html.j2:829
+#: templates/calculator.report.html.j2:863
 msgid ""
 "Please ensure that this scenario conforms to current COVID-related "
 "national/local regulations and internal Organization rules."
 msgstr ""
 
-#: templates/calculator.report.html.j2:836
-#: templates/calculator.report.html.j2:839
-#: templates/calculator.report.html.j2:842
+#: templates/calculator.report.html.j2:870
+#: templates/calculator.report.html.j2:873
+#: templates/calculator.report.html.j2:876
 msgid "Events with a"
 msgstr ""
 
-#: templates/calculator.report.html.j2:836
+#: templates/calculator.report.html.j2:870
 msgid "P(i) less than 2%"
 msgstr ""
 
-#: templates/calculator.report.html.j2:836
+#: templates/calculator.report.html.j2:870
 msgid "may go ahead without further mitigation measures."
 msgstr ""
 
-#: templates/calculator.report.html.j2:839
+#: templates/calculator.report.html.j2:873
 msgid "P(i) between 2% and 10%"
 msgstr ""
 
-#: templates/calculator.report.html.j2:839
+#: templates/calculator.report.html.j2:873
 msgid ""
 "should not be conducted on a regular basis or during high level of virus "
 "circulation. Mitigation measures to minimise the risk before proceeding "
 "are recommended."
 msgstr ""
 
-#: templates/calculator.report.html.j2:842
+#: templates/calculator.report.html.j2:876
 #, python-format
 msgid "P(i) exceeding 10% or a number of expected new cases that exceeds 1"
 msgstr ""
 
-#: templates/calculator.report.html.j2:842
+#: templates/calculator.report.html.j2:876
 msgid ""
 "should not take place until additional measures are in place and a risk "
 "reduction has been performed."
 msgstr ""
 
-#: templates/calculator.report.html.j2:859
+#: templates/calculator.report.html.j2:893
 msgid "Disclaimer:"
 msgstr ""
 
@@ -2368,5 +2523,11 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "m3/h bio-ventilation and"
+#~ msgstr ""
+
+#~ msgid "Type of masks used:"
+#~ msgstr ""
+
+#~ msgid "Expiration : "
 #~ msgstr ""
 

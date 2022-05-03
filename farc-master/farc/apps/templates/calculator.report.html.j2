@@ -547,7 +547,8 @@
                 <ul>
                     <li>
                         <p class="data_text">
-                            {{_("Activity type:")}} {{ form.exposed_activity_type }}
+                            {% set exposed_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', form.exposed_activity_type) | first %}
+                            {{_("Activity type:")}} {{ exposed_activity['Name'] }}
                             <!--{% if form.exposed_activity_type == "watch_seated" %}
                                     Watch seated – typical scenario for someone seating in front of a console, speaking quietly for 30% and loudly for 10% of the time.
                                     {% elif form.exposed_activity_type == "watch_standing" %}
@@ -578,6 +579,22 @@
                         </p>
                     </li>
                     <li>
+                        </p>
+                            <p class="data_text">
+                            {{_("Expiration type: ")}} 
+                            {% for key,value in exposed_activity["Expiration"].items() %}
+                             {{key}} : {{value}},
+                            {%endfor%}
+                            </p>
+                        </li>
+                    <li>
+                        </p>
+                            <p class="data_text">
+                            {{_("Activity level: ")}} 
+                             {{exposed_activity["Activity"]}}
+                            </p>
+                        </li>
+                    <li>
                         <p class="data_text">
                             {{_("Mask wearing time (when masks are worn):")}} {{ form.exposed_mask_wear_ratio * 100 }}%
                         </p>
@@ -607,7 +624,9 @@
                     <ul>
                         <li>
                             <p class="data_text">
-                                {{_("Activity type:")}} {{ form.infected_activity_type }}
+                                {% set infected_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', form.infected_activity_type) | first %}
+                                {{_("Activity type:")}} {{ infected_activity['Name'] }}
+
                                 <!--
                                     {% if form.infected_activity_type == "watch_seated" %}
                                     Watch seated – typical scenario for someone seating in front of a console, speaking quietly for 30% and loudly for 10% of the time.
@@ -636,6 +655,21 @@
                                     {% elif form.infected_activity_type == "gym" %}
                                     Gym = For comparison only, all persons doing heavy physical exercise, breathing and not speaking.
                                     {% endif %} -->
+                        </li>
+                        <li>
+                        </p>
+                            <p class="data_text">
+                            {{_("Expiration type: ")}} 
+                            {% for key,value in infected_activity["Expiration"].items() %}
+                             {{key}} : {{value}},
+                            {%endfor%}
+                            </p>
+                        </li>
+                        <li>
+                        </p>
+                            <p class="data_text">
+                            {{_("Activity level: ")}} 
+                             {{infected_activity["Activity"]}}
                             </p>
                         </li>
                         <li>
