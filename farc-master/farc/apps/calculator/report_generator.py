@@ -21,6 +21,7 @@ from farc.apps.calculator import markdown_tools
 
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
+from .DEFAULT_DATA import ACTIVITY_TYPES, set_locale
 from ... import dataclass_utils
 
 
@@ -314,10 +315,12 @@ class ReportGenerator:
     tornado.locale.load_gettext_translations(path , 'messages')
     locale = tornado.locale.get()
     _ = locale.translate
+    ACTIVITY_TYPES = ACTIVITY_TYPES
 
     def set_locale(self, locale):
         self.locale = locale
         self._ = locale.translate
+        self.ACTIVITY_TYPES = set_locale(locale)['ACTIVITY_TYPES']
 
     def build_report(
             self,
@@ -358,7 +361,6 @@ class ReportGenerator:
         context['expected_new_cases'] = next(iter(next(iter(context['alternative_scenarios'].items()))[1].items()))[1]['expected_new_cases']
         context['permalink'] = generate_permalink(base_url, self.calculator_prefix, form)
         context['calculator_prefix'] = self.calculator_prefix
-        
         return context
 
     def _template_environment(self) -> jinja2.Environment:
@@ -375,6 +377,7 @@ class ReportGenerator:
         env.filters['int_format'] = "{:0.0f}".format
         env.filters['JSONify'] = json.dumps
         env.globals['_'] = self._
+        env.globals['ACTIVITY_TYPES'] = self.ACTIVITY_TYPES
         return env
 
     def render(self, context: dict) -> str:
