@@ -23,11 +23,11 @@ msgid "January"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:65 calculator/DEFAULT_DATA.py:204
-msgid "Boardroom"
+msgid "My simulation"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:67 calculator/DEFAULT_DATA.py:206
-msgid "Workshop without masks"
+msgid "1"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
@@ -457,11 +457,11 @@ msgstr ""
 #: calculator/DEFAULT_DATA.py:141 calculator/DEFAULT_DATA.py:267
 msgid ""
 "The area you wish to study (choose one of the 2 options). Indicate if a "
-"central (radiator-type) heating system is in use."
+"heating or air conditionning system is in use."
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:142 calculator/DEFAULT_DATA.py:268
-msgid "The available means of venting / filtration of indoor spaces."
+msgid "The available means of ventilation / bioventilation of indoor spaces."
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:143 calculator/DEFAULT_DATA.py:269
@@ -575,11 +575,11 @@ msgid ""
 msgstr ""
 
 #: calculator/report_generator.py:216
-msgid "NO bio-ventilation and NO masks"
+msgid "NO bioventilation and NO masks"
 msgstr ""
 
 #: calculator/report_generator.py:221
-msgid "NO bio-ventilation and "
+msgid "NO bioventilation and "
 msgstr ""
 
 #: calculator/report_generator.py:221 calculator/report_generator.py:231
@@ -595,11 +595,11 @@ msgid " wear ratio for infected people"
 msgstr ""
 
 #: calculator/report_generator.py:226
-msgid " m3/h bio-ventilation and NO masks"
+msgid " m3/h bioventilation and NO masks"
 msgstr ""
 
 #: calculator/report_generator.py:231
-msgid " m3/h bio-ventilation and "
+msgid " m3/h bioventilation and "
 msgstr ""
 
 #: templates/about.html.j2:6
@@ -722,7 +722,7 @@ msgstr ""
 msgid ""
 "Although the user is able to calculate the infection probability of a "
 "stand-alone event with a pre-defined set of protection measures, the main"
-" utility of CARA is to compare the relative impact of different measures "
+" utility of FARC is to compare the relative impact of different measures "
 "and/or combination of measure. For example:"
 msgstr ""
 
@@ -742,7 +742,7 @@ msgstr ""
 
 #: templates/about.html.j2:48
 msgid ""
-"Adapt the maximum occupancy considering the effect of bio-ventilation "
+"Adapt the maximum occupancy considering the effect of bioventilation "
 "devices"
 msgstr ""
 
@@ -808,7 +808,7 @@ msgid "Ceiling height:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:120
-msgid "Central heating system in use:"
+msgid "Heating or air-conditionning system in use:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:255
@@ -930,7 +930,7 @@ msgid "Periodically:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:247
-msgid "Bio ventilation:"
+msgid "Bioventilation:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:265
@@ -938,11 +938,11 @@ msgid "Face masks:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:272
-msgid "Are masks worn when occupants are at workstations?"
+msgid "Are masks worn during event?"
 msgstr ""
 
 #: templates/calculator.form.html.j2:279
-msgid "Type of masks used (necessary for alternative scenarios):"
+msgid "Type of masks used (requested for alternative scenarios):"
 msgstr ""
 
 #: templates/calculator.form.html.j2:284
@@ -967,7 +967,7 @@ msgid "Number of infected people:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:318
-msgid "Conference/Training activities limited to 1 infected"
+msgid ""
 msgstr ""
 
 #: templates/calculator.form.html.j2:346
@@ -1116,7 +1116,7 @@ msgstr ""
 
 #: templates/calculator.form.html.j2:622
 msgid ""
-"Bio-ventilation = the disinfected air flow of the device. The following "
+"Bioventilation = the disinfected air flow of the device. The following "
 "values are based on the different fan velocities of a specific commercial"
 " device proposed by the Flow-R:"
 msgstr ""
@@ -1318,7 +1318,7 @@ msgstr ""
 
 #: templates/calculator.report.html.j2:290
 msgid ""
-"If you have selected more sophisticated options, such as bio-ventilation "
+"If you have selected more sophisticated options, such as bioventilation "
 "or FFP2 masks, this will be indicated in the plot as the 'base scenario',"
 " representing the inputs inserted in the form."
 msgstr ""
@@ -1370,7 +1370,7 @@ msgid "Room Volume:"
 msgstr ""
 
 #: templates/calculator.report.html.j2:406
-msgid "Room Central Heating:"
+msgid "Room heating or air conditionning:"
 msgstr ""
 
 #: templates/calculator.report.html.j2:411
@@ -1428,11 +1428,11 @@ msgid "based on historical data for the month selected."
 msgstr ""
 
 #: templates/calculator.report.html.j2:515
-msgid "Bio-ventilation:"
+msgid "Bioventilation:"
 msgstr ""
 
 #: templates/calculator.report.html.j2:521
-msgid "Bio-ventilation amount:"
+msgid "Bioventilation amount:"
 msgstr ""
 
 #: templates/calculator.report.html.j2:521
@@ -1711,7 +1711,7 @@ msgstr ""
 msgid ""
 "The model used is based on scientific publications relating to airborne "
 "transmission of infectious diseases, dose-response exposures and aerosol "
-"science, as of February 2021.\n"
+"science, as of February 2022.\n"
 "        It can be used to compare the effectiveness of different "
 "airborne-related risk mitigation measures."
 msgstr ""
@@ -2020,15 +2020,15 @@ msgid ""
 msgstr ""
 
 #: templates/userguide.html.j2:90
-msgid "Room heating system"
+msgid "Room heating or air conditionning system"
 msgstr ""
 
 #: templates/userguide.html.j2:93
 msgid ""
-"The use of central heating (e.g. radiators) reduces relative humidity of "
+"The use of heating (e.g. radiators) or air conditionning reduces relative humidity of "
 "the indoor air, which can decrease the decay rate of viral infectivity. "
-"If your space is heated with such water radiators, select 'Yes'. If your "
-"space does not have such heating, or they are not in use in the period of"
+"If your space is equiped with such devices, select 'Yes'. If your "
+"space does not have such devices, or they are not in use in the period of"
 " the simulation (e.g. summer), select 'No'."
 msgstr ""
 
@@ -2146,16 +2146,16 @@ msgid ""
 msgstr ""
 
 #: templates/userguide.html.j2:166
-msgid "Bio Ventilation"
+msgid "Bioventilation"
 msgstr ""
 
 #: templates/userguide.html.j2:169
 msgid ""
-"Bio ventilation assumes there is a desinfection device producing "
-"biological clean air (UVC device or BIOV filter).\n"
+"Bioventilation assumes there is a desinfection device producing "
+"biological clean air (UVC device or filter).\n"
 "    The calculator allows you to simulate the installation of a "
 "disinfection device within the room.\n"
-"    The recommended airflow rate for the Bio ventilkation device should "
+"    The recommended airflow rate for the Bioventilation device should "
 "correspond to a total air exchange rate of 3 - 10 ACH (the higher the "
 "better, even beyond 10)."
 msgstr ""
@@ -2329,8 +2329,7 @@ msgstr ""
 msgid ""
 "The model allows for a simulation with either a continuous wearing of "
 "face masks throughout the duration of the event, or have the removed at "
-"all times - i.e. all occupants (infected and exposed alike) wear or not "
-"masks for the duration of the simulation.\n"
+"all times. However, the wear mask ratio can be used to simulate different events.\n"
 "    Please bear in mind the user inputs shall be aligned with the current"
 " applicable public health"
 msgstr ""
@@ -2345,7 +2344,7 @@ msgstr ""
 #: templates/userguide.html.j2:272
 msgid ""
 "If you have selected the Conference/Training activity type, this equates "
-"to the speakr/trainer and all participants either wearing masks "
+"to the speaker/trainer and all participants either wearing masks "
 "throughout the conference/training (Yes), or removing them when "
 "seated/standing at their socially distanced positions within the "
 "conference/training room (No).\n"
@@ -2460,9 +2459,9 @@ msgstr ""
 
 #: templates/userguide.html.j2:329
 msgid ""
-"A Bio ventilation device removes virions from the air at a constant rate "
+"A Bioventilation device removes virions from the air at a constant rate "
 "and is modelled in the same way as mechanical ventilation, however air "
-"passed through a Bio ventilation device is recycled (i.e. it is not fresh"
+"passed through a Bioventilation device is recycled (i.e. it is not fresh"
 " air)."
 msgstr ""
 
