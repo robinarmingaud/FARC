@@ -1152,7 +1152,8 @@ class ExposureModel:
             # we compute first the mean of all diameter-dependent quantities
             # to perform properly the Monte-Carlo integration over
             # particle diameters (doing things in another order would
-            # lead to wrong results).
+            # lead to wrong results). NB : taking the mean of the exposure corresponds 
+            # to integrating
             dep_exposure_integrated = np.array(self._normed_exposure_between_bounds(time1, time2) *
                                                aerosols *
                                                fdep).mean()
