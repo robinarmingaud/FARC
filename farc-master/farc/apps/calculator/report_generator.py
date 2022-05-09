@@ -2,20 +2,28 @@ import concurrent.futures
 import base64
 import dataclasses
 from datetime import datetime
+from importlib import reload
 import io
 import json
+import os
+from turtle import update
 import typing
 import urllib
 import zlib
+import time as t
 
 import jinja2
 import numpy as np
+import tornado
 
 from farc import models
+from farc.apps.calculator import markdown_tools
 
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
+from .DEFAULT_DATA import ACTIVITY_TYPES, set_locale
 from ... import dataclass_utils
+
 
 
 def model_start_end(model: models.ExposureModel):
@@ -91,7 +99,6 @@ def interesting_times(model: models.ExposureModel, approx_n_pts=100) -> typing.L
 
     """
     times = non_temp_transition_times(model)
-
     # Expand the times list to ensure that we have a maximum gap size between
     # the key times.
     nice_times = fill_big_gaps(times, gap_size=(max(times) - min(times)) / approx_n_pts)
@@ -196,9 +203,8 @@ def non_zero_percentage(percentage: int) -> str:
         return "{:0.1f}%".format(percentage)
 
 
-def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.ExposureModel]:
+def manufacture_alternative_scenarios(form: FormData, _) -> typing.Dict[str, mc.ExposureModel]:
     scenarios = {}
-
     if form.biov_option == 1:
         base = 3 if form.mask_wearing_option =='mask_on' else 2
     else:
@@ -207,24 +213,24 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 
     alternatives = (
         (
-            f'NO bio-ventilation and NO masks',
+            _(f'NO bioventilation and NO masks'),
             dataclass_utils.replace(form, mask_wearing_option='mask_off', biov_option=0),
 
         ),
         (
-            f'NO bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a {form.infected_mask_wear_ratio} wear ratio for infected people',
+            _(f'NO bioventilation and ') + f'{form.mask_type}' + _(' masks with a ') + f'{form.exposed_mask_wear_ratio}' + _(' wear ratio for exposed people and a ') + f'{form.infected_mask_wear_ratio}' + _(' wear ratio for infected people'),
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=0),
 
         ),
         (
-            f'{form.biov_amount} m3/h bio-ventilation and NO masks',
+            f'{form.biov_amount}' + _(' m3/h bioventilation and NO masks'),
             dataclass_utils.replace(form, mask_wearing_option='mask_off', biov_option=1),
 
         ),
         (
-            f'{form.biov_amount} m3/h bio-ventilation and {form.mask_type} masks with a {form.exposed_mask_wear_ratio} wear ratio for exposed people and a {form.infected_mask_wear_ratio} wear ratio for infected people',
+            f'{form.biov_amount}' + _(' m3/h bioventilation and ') + f'{form.mask_type}' + _(' masks with a ') + f'{form.exposed_mask_wear_ratio}' + _(' wear ratio for exposed people and a ') + f'{form.infected_mask_wear_ratio}' +  _(' wear ratio for infected people'),
             dataclass_utils.replace(form, mask_wearing_option='mask_on', biov_option=1),
-
+            
         ),
     )
 
@@ -244,15 +250,21 @@ def manufacture_alternative_scenarios(form: FormData) -> typing.Dict[str, mc.Exp
 def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
     model = mc_model.build_model(size=_DEFAULT_MC_SAMPLE_SIZE)
 
-    '''cumulative_doses = np.cumsum([
-        np.array(model.deposited_exposure_between_bounds(float(time1), float(time2))).mean()
-        for time1, time2 in zip(sample_times[:-1], sample_times[1:])
-    ])'''
+    cumulative_doses = [np.array(model.deposited_exposure_between_bounds(float(time1), float(time2)))
+        for time1, time2 in zip(sample_times[:-1], sample_times[1:])]
+    
+    cumulative_doses_mean = np.cumsum([
+        dose.mean()
+        for dose in cumulative_doses])
 
-    cumulative_doses = [
-        np.array(model.cumulative_deposited_exposure(float(time))).mean()
-        for time in sample_times
-    ]
+    viral_dose_array = [cumulative_doses[0]]
+    for i in range(1,len(cumulative_doses)):
+        viral_dose_array.append(np.add(viral_dose_array[-1], cumulative_doses[i]))
+    
+    oneoverln2 = 1 / np.log(2)
+    infectious_dose = oneoverln2 * model.concentration_model.virus.infectious_dose
+    cumulative_probability_test = [((1 - np.exp(-((viral_dose * (1 - model.exposed.host_immunity)) / (infectious_dose*model.concentration_model.virus.transmissibility_factor)))) * 100).mean()
+            for viral_dose in viral_dose_array]
 
     return {
         'probability_of_infection': np.mean(model.infection_probability()),
@@ -261,11 +273,8 @@ def scenario_statistics(mc_model: mc.ExposureModel, sample_times: np.ndarray):
             np.mean(model.concentration_model.concentration(time))
             for time in sample_times
         ],
-        'cumulative_doses': list(cumulative_doses),
-        'cumulative_infection_probabilities': [
-            np.mean(model.cumulative_infection_probability(time))
-            for time in sample_times
-        ],
+        'cumulative_doses': list(cumulative_doses_mean),
+        'cumulative_infection_probabilities': list(cumulative_probability_test),
     }
 
 
@@ -285,7 +294,7 @@ def comparison_report(
             scenarios.values(),
             [sample_times] * len(scenarios),
             timeout=60,
-        )
+        )    
 
     row: int = 0
     for (name, model), model_stats in zip(scenarios.items(), results):
@@ -302,6 +311,16 @@ def comparison_report(
 class ReportGenerator:
     jinja_loader: jinja2.BaseLoader
     calculator_prefix: str
+    path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'locale'))
+    tornado.locale.load_gettext_translations(path , 'messages')
+    locale = tornado.locale.get()
+    _ = locale.translate
+    ACTIVITY_TYPES = ACTIVITY_TYPES
+
+    def set_locale(self, locale):
+        self.locale = locale
+        self._ = locale.translate
+        self.ACTIVITY_TYPES = set_locale(locale)['ACTIVITY_TYPES']
 
     def build_report(
             self,
@@ -320,6 +339,7 @@ class ReportGenerator:
             form: FormData,
             executor_factory: typing.Callable[[], concurrent.futures.Executor],
     ) -> dict:
+        
         now = datetime.utcnow().astimezone()
         time = now.strftime("%Y-%m-%d %H:%M:%S UTC")
 
@@ -332,7 +352,7 @@ class ReportGenerator:
         scenario_sample_times = interesting_times(model)
 
         context.update(calculate_report_data(model))
-        alternative_scenarios = manufacture_alternative_scenarios(form)
+        alternative_scenarios = manufacture_alternative_scenarios(form, self._)
         
         context['alternative_scenarios'] = comparison_report(
             alternative_scenarios, scenario_sample_times, executor_factory=executor_factory,
@@ -347,6 +367,8 @@ class ReportGenerator:
         env = jinja2.Environment(
             loader=self.jinja_loader,
             undefined=jinja2.StrictUndefined,
+            extensions=['jinja2.ext.i18n', 'jinja2.ext.autoescape'],
+            autoescape=jinja2.select_autoescape(['html', 'xml'])
         )
         env.filters['non_zero_percentage'] = non_zero_percentage
         env.filters['readable_minutes'] = readable_minutes
@@ -354,8 +376,13 @@ class ReportGenerator:
         env.filters['float_format'] = "{0:.2f}".format
         env.filters['int_format'] = "{:0.0f}".format
         env.filters['JSONify'] = json.dumps
+        env.globals['_'] = self._
+        env.globals['ACTIVITY_TYPES'] = self.ACTIVITY_TYPES
         return env
 
     def render(self, context: dict) -> str:
-        template = self._template_environment().get_template("calculator.report.html.j2")
-        return template.render(**context)
+        template_environment = self._template_environment()
+        _=self._
+        template = template_environment.get_template("calculator.report.html.j2")
+        text_blocks = markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
+        return template.render(**context, text_blocks = text_blocks)

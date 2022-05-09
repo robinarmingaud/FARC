@@ -21,18 +21,21 @@ import loky
 from tornado.web import Application, RequestHandler, StaticFileHandler
 import tornado.log
 
-from farc.apps.calculator.DEFAULT_DATA import ACTIVITY_TYPES
-
 from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import __version__, _DEFAULTS as d
+from .DEFAULT_DATA import __version__, _DEFAULTS as d, set_locale
+import tornado
+
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         """Called at the beginning of a request before  `get`/`post`/etc."""
-
+    
         # Read the secure cookie which exists if we are in an authenticated
         # context (though not if the farc webservice is running standalone).
         session = json.loads(self.get_secure_cookie('session') or 'null')
@@ -47,17 +50,15 @@ class BaseRequestHandler(RequestHandler):
             self.current_user = AnonymousUser()
 
     def write_error(self, status_code: int, **kwargs) -> None:
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _=tornado.locale.get(self.locale.code).translate
         template = self.settings["template_environment"].get_template(
             "error_page.html.j2")
 
         error_id = uuid.uuid4()
         contents = (
-            f'Unfortunately an error occurred when processing your request. '
-            f'Please let us know about this issue with as much detail as possible at '
-            f'<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a>, reporting status '
-            f'code {status_code}, the error id of "{error_id}" and the time of the '
-            f'request ({datetime.datetime.utcnow()}).<br><br><br><br>'
-        )
+            _('Unfortunately an error occurred when processing your request. Please let us know about this issue with as much detail as possible at') + ' ' + '<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a>, ' + _('reporting status code') + ' ' + f'{status_code}' +  ', ' + _('the error id of :') + ' ' + f'{error_id}' +  ' ' + _('and the time of the request')+ ' ' + f'{datetime.datetime.utcnow()}' +'.<br><br><br><br>')
         # Print the error to the log (and not to the browser!)
         if "exc_info" in kwargs:
             print(f"ERROR UUID {error_id}")
@@ -67,12 +68,15 @@ class BaseRequestHandler(RequestHandler):
             calculator_prefix=self.settings["calculator_prefix"],
             active_page='Error',
             contents=contents,
-            default = d
+            default = set_locale(tornado.locale.get(self.locale.code))['_DEFAULTS']
         ))
 
 
 class Missing404Handler(BaseRequestHandler):
     async def prepare(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         await super().prepare()
         self.set_status(404)
         template = self.settings["template_environment"].get_template(
@@ -81,12 +85,15 @@ class Missing404Handler(BaseRequestHandler):
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
             active_page='Error',
-            contents='Unfortunately the page you were looking for does not exist.<br><br><br><br>'
+            contents=_('Unfortunately the page you were looking for does not exist.')+'<br><br><br><br>'
         ))
 
 
 class ConcentrationModel(BaseRequestHandler):
     async def post(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         requested_model_config = {
             name: self.get_argument(name) for name in self.request.arguments
         }
@@ -96,18 +103,20 @@ class ConcentrationModel(BaseRequestHandler):
             start = datetime.datetime.now()
 
         try:
-            form = model_generator.FormData.from_dict(requested_model_config)
+            form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
+            form.set_locale(tornado.locale.get(self.locale.code))
         except Exception as err:
             if self.settings.get("debug", False):
                 import traceback
                 print(traceback.format_exc())
-            response_json = {'code': 400, 'error': f'Your request was invalid {html.escape(str(err))}'}
+            response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
             self.set_status(400)
             self.finish(json.dumps(response_json))
             return
 
         base_url = self.request.protocol + "://" + self.request.host
         report_generator: ReportGenerator = self.settings['report_generator']
+        report_generator.set_locale(tornado.locale.get(self.locale.code))
         executor = loky.get_reusable_executor(
             max_workers=self.settings['handler_worker_pool_size'],
             timeout=300,
@@ -125,9 +134,14 @@ class ConcentrationModel(BaseRequestHandler):
 
 class StaticModel(BaseRequestHandler):
     async def get(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _ = tornado.locale.get(self.locale.code).translate
         form = model_generator.FormData.from_dict(model_generator.baseline_raw_form_data())
+        form.set_locale(tornado.locale.get(self.locale.code))
         base_url = self.request.protocol + "://" + self.request.host
         report_generator: ReportGenerator = self.settings['report_generator']
+        report_generator.set_locale(tornado.locale.get(self.locale.code))
         executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
         report_task = executor.submit(
             report_generator.build_report, base_url, form,
@@ -145,10 +159,11 @@ class LandingPage(BaseRequestHandler):
         template_environment = self.settings["template_environment"]
         template = self.settings["template_environment"].get_template(
             "index.html.j2")
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         report = template.render(
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
-            text_blocks=template_environment.globals['common_text']
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
         )
         self.finish(report)
 
@@ -156,12 +171,13 @@ class LandingPage(BaseRequestHandler):
 class AboutPage(BaseRequestHandler):
     def get(self):
         template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template("about.html.j2")
         report = template.render(
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
             active_page="about",
-            text_blocks=template_environment.globals['common_text']
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
         )
         self.finish(report)
 
@@ -171,40 +187,54 @@ class CalculatorForm(BaseRequestHandler):
         with open('farc/apps/static/js/form.js', 'r') as original: data = original.read().splitlines(True)
         javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
         with open('farc/apps/static/js/form.js', 'w') as modified: modified.writelines([javascript_out + "\n"] + data[1:])
-        template = self.settings["template_environment"].get_template(
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        template = template_environment.get_template(
             "calculator.form.html.j2")
+        data = set_locale(tornado.locale.get(self.locale.code))
         report = template.render(
             user=self.current_user,
             xsrf_form_html=self.xsrf_form_html(),
             calculator_prefix=self.settings["calculator_prefix"],
             calculator_version=__version__,
-            default = d,
-            ACTIVITY_TYPES = ACTIVITY_TYPES
+            default = data['_DEFAULTS'],
+            ACTIVITY_TYPES = data['ACTIVITY_TYPES'],
+            PLACEHOLDERS = data['PLACEHOLDERS'],
+            TOOLTIPS = data['TOOLTIPS'],
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
+            MONTH_NAMES = data['MONTH_NAMES']
         )
         self.finish(report)
 
 
 class CompressedCalculatorFormInputs(BaseRequestHandler):
     def get(self, compressed_args: str):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        _=tornado.locale.get(self.locale.code).translate
         # Convert a base64 zlib encoded shortened URL into a non compressed
         # URL, and redirect.
         try:
             args = zlib.decompress(base64.b64decode(compressed_args)).decode()
         except Exception as err:  # noqa
             self.set_status(400)
-            return self.finish("Invalid calculator data: it seems incomplete. Was there an error copying & pasting the URL?")
+            return self.finish(_("Invalid calculator data: it seems incomplete. Was there an error copying & pasting the URL?"))
         self.redirect(f'{self.settings["calculator_prefix"]}?{args}')
 
 
 class ReadmeHandler(BaseRequestHandler):
     def get(self):
-        template = self.settings['template_environment'].get_template("userguide.html.j2")
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        template = template_environment.get_template("userguide.html.j2")
         readme = template.render(
             active_page="calculator/user-guide",
             user=self.current_user,
             calculator_prefix=self.settings["calculator_prefix"],
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
         )
         self.finish(readme)
+
 
 
 def make_app(
@@ -225,7 +255,6 @@ def make_app(
         (calculator_prefix + r'/user-guide', ReadmeHandler),
         (calculator_prefix + r'/static/(.*)', StaticFileHandler, {'path': calculator_static_dir}),
     ]
-
     cara_templates = Path(__file__).parent.parent / "templates"
     calculator_templates = Path(__file__).parent / "templates"
     templates_directories = [cara_templates, calculator_templates]
@@ -235,10 +264,7 @@ def make_app(
     template_environment = jinja2.Environment(
         loader=loader,
         undefined=jinja2.StrictUndefined,  # fail when rendering any undefined template context variable
-    )
-
-    template_environment.globals['common_text'] = markdown_tools.extract_rendered_markdown_blocks(
-        template_environment.get_template('common_text.md.j2')
+        autoescape=jinja2.select_autoescape(['html', 'xml'])
     )
 
     if debug:

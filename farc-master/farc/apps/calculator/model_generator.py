@@ -2,9 +2,11 @@ import dataclasses
 import datetime
 import html
 import logging
+import os
 import typing
 
 import numpy as np
+import tornado
 
 from farc import models
 from farc import data
@@ -13,17 +15,11 @@ import farc.monte_carlo as mc
 from .. import calculator
 from farc.monte_carlo.data import activity_distributions, virus_distributions, mask_distributions
 from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factors, expiration_distributions
-from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES
+from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES, set_locale
 
 LOG = logging.getLogger(__name__)
-activities = { activity['Id'] for activity in ACTIVITY_TYPES}
 
 minutes_since_midnight = typing.NewType('minutes_since_midnight', int)
-
-
-# Used to declare when an attribute of a class must have a value provided, and
-# there should be no default value used.
-
 
 @dataclasses.dataclass
 class FormData:
@@ -79,16 +75,30 @@ class FormData:
     window_width: float
     windows_number: int
     window_opening_regime: str
+    path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'locale'))
+    tornado.locale.load_gettext_translations(path , 'messages')
+    locale = tornado.locale.get()
+    _ = locale.translate
+    _DEFAULTS = d
+    MONTHS = list(MONTH_NAMES.keys())
+    activities = { activity['Id'] for activity in ACTIVITY_TYPES}
 
 
-    #: The default values for undefined fields.
+
+    def set_locale(self,locale):
+        self.locale = locale
+        self._ = locale.translate
+        data = set_locale(self.locale)
+        self._DEFAULTS = data['_DEFAULTS']
+        self.MONTHS = list(data['MONTH_NAMES'].keys())
+        self.activities = { activity['Id'] for activity in  data['ACTIVITY_TYPES']}
     
-    _DEFAULTS: typing.ClassVar[typing.Dict[str, typing.Any]] = d
     @classmethod
-    def from_dict(cls, form_data: typing.Dict) -> "FormData":
+    def from_dict(cls, form_data: typing.Dict, locale) -> "FormData":
         # Take a copy of the form data so that we can mutate it.
         form_data = form_data.copy()
         form_data.pop('_xsrf', None)
+        FormData.set_locale(cls, locale)
 
         # Don't let arbitrary unescaped HTML through the net.
         for key, value in form_data.items():
@@ -152,8 +162,8 @@ class FormData:
 
         validation_tuples = [
             # ('activity_type', ACTIVITY_TYPES),
-            ('exposed_activity_type', activities),
-            ('infected_activity_type', activities),
+            ('exposed_activity_type', self.activities),
+            ('infected_activity_type', self.activities),
             ('exposed_coffee_break_option', COFFEE_OPTIONS_INT),
             ('infected_coffee_break_option', COFFEE_OPTIONS_INT),
             ('mechanical_ventilation_type', MECHANICAL_VENTILATION_TYPES),
@@ -164,7 +174,7 @@ class FormData:
             ('volume_type', VOLUME_TYPES),
             ('window_opening_regime', WINDOWS_OPENING_REGIMES),
             ('window_type', WINDOWS_TYPES),
-            ('event_month', MONTH_NAMES)]
+            ('event_month', self.MONTHS)]
         for attr_name, valid_set in validation_tuples:
             if getattr(self, attr_name) not in valid_set:
                 raise ValueError(f"{getattr(self, attr_name)} is not a valid value for {attr_name}")
@@ -218,7 +228,7 @@ class FormData:
         be *added* to UTC to convert to the form location's timezone.
 
         """
-        month = MONTH_NAMES.index(self.event_month) + 1
+        month = self.MONTHS.index(self.event_month) + 1
         timezone = farc.data.weather.timezone_at(
             latitude=self.location_latitude, longitude=self.location_longitude,
         )
@@ -235,9 +245,10 @@ class FormData:
         """
         Return the outside temperature as a PiecewiseConstant in the destination
         timezone.
-
+    
         """
-        month = MONTH_NAMES.index(self.event_month) + 1
+
+        month = self.MONTHS.index(self.event_month) + 1
 
         wx_station = self.nearest_weather_station()
         temp_profile = farc.data.weather.mean_hourly_temperatures(wx_station[0], month)
@@ -339,61 +350,6 @@ class FormData:
         scenario_activity_and_expiration = {}
         for activity in ACTIVITY_TYPES :
             scenario_activity_and_expiration[activity['Id']] = (activity['Activity'], activity['Expiration'])
-            
-# Anciennes activités CARA
-#       scenario_activity_and_expiration = {
-#           'office': (
-#                'Seated',
-#                # Mostly silent in the office, but 1/3rd of time speaking.
-#                {'Speaking': 1, 'Breathing': 2}
-#            ),
-#            'controlroom-day': (
-#                'Seated',
-#                # Daytime control room shift, 50% speaking.
-#                {'Speaking': 1, 'Breathing': 1}
-#            ),
-#            'controlroom-night': (
-#                'Seated',
-#                # Nightshift control room, 10% speaking.
-#                {'Speaking': 1, 'Breathing': 9}
-#            ),
-#            'smallmeeting': (
-#                'Seated',
-#                # Conversation of N people is approximately 1/N% of the time speaking.
-#                {'Speaking': 1, 'Breathing': self.total_people - 1}
-#            ),
-#            'largemeeting': (
-#                'Standing',
-#                # each infected person spends 1/3 of time speaking.
-#                {'Speaking': 1, 'Breathing': 2}
-#            ),
-#            'callcentre': ('Seated', 'Speaking'),
-#            'library': ('Seated', 'Breathing'),
-#            'training': ('Standing', 'Speaking'),
-#            'lab': (
-#                'Light activity',
-#                #Model 1/2 of time spent speaking in a lab.
-#                {'Speaking': 1, 'Breathing': 1}),
-#            'workshop': (
-#                'Moderate activity',
-#                #Model 1/2 of time spent speaking in a workshop.
-#                {'Speaking': 1, 'Breathing': 1}),
-#            'gym':('Heavy exercise', 'Breathing'),
-#            'watch_seated': (
-#                # Manning a console seating in front of it
-#                'Seated',
-#                # Mostly silent, but 30% of time speaking quietly and 10% of time speaking loudly (answering orders).
-#                {'Shouting': 10, 'Speaking': 30, 'Breathing': 60}
-#            ),
-#            'watch_standing': (
-#                # Pacing and moving from station to station, giving orders and looking at data at stations
-#                'Light activity',
-#                # Mostly silent, but 30% of time speaking quietly and 20% of time speaking loudly (giving orders).
-#                {'Shouting': 20, 'Speaking': 30, 'Breathing': 50}
-#            ),
-#        }
-
-        # [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.activity_type]
         [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.infected_activity_type]
         activity = activity_distributions[activity_defn]
         expiration = build_expiration(expiration_defn)

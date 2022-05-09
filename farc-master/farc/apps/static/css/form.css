@@ -2,6 +2,15 @@
   background-color: silver;
 }
 
+.container.container--padding {
+  max-width: 100%;
+}
+
+.container {
+  margin-inline: auto;
+  width: min(90%, 90rem);
+}
+
 .red_border {
   box-shadow: 0px 0px 2px 1px red;
 }
@@ -126,11 +135,6 @@
 #DIVnatural_ventilation,
 #exposed_break_title {
   display: none
-}
-
-#DIVmasks_used {
-  pointer-events: none;
-  opacity: 0.4
 }
 
 #userGuideBtn {
