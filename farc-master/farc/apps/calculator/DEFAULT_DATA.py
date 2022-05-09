@@ -62,9 +62,9 @@ _DEFAULTS = {
         'mechanical_ventilation_type': 'mech_type_air_supply',
         'opening_distance': 0.5,
         'room_heating_option': 1, # 1: True, 0 : False
-        'room_number': _("Boardroom"),
+        'room_number': _("1"),
         'room_volume': 100,
-        'simulation_name': _("Workshop without masks"),
+        'simulation_name': _("My simulation"),
         'total_people': 10,
         'ventilation_type': 'mechanical_ventilation',
         'virus_type': "SARS_CoV_2_OMICRON",
@@ -138,11 +138,11 @@ MONTH_NAMES = {
 # ------------------ Text ----------------------
 
 TOOLTIPS = {'virus_data' : _('Choose the SARS-CoV-2 Variant of Concern (VOC).'),
-'room_data':_('The area you wish to study (choose one of the 2 options). Indicate if a central (radiator-type) heating system is in use.'),
-'ventilation_data':_('The available means of venting / filtration of indoor spaces.'),
+'room_data':_('The area you wish to study (choose one of the 2 options). Indicate if a heating/air conditionning system is in use.'),
+'ventilation_data':_('The available means of venting / bioventilation of indoor spaces.'),
 'window_open' : _("If 'Periodically' is selected, windows will be open during lunch and coffee breaks"),
 'bio_ventilation' : _("This value can be modified for alternative scenarios even if 'No' is checked"),
-'face_mask' : _('Masks worn at workstations or removed when a 2m physical distance is respected and proper venting is ensured.'),
+'face_mask' : _('Masks worn or removed when a 2m physical distance is respected and proper venting is ensured.'),
 'event_data' : _('The total no. of occupants in the room and how many of them you assume are infected.'),
 'activity_breaks' : _('Input breaks that, by default, are the same for infected/exposed person(s) unless specified otherwise.')
 }
@@ -201,9 +201,9 @@ def set_locale (locale):
             'mechanical_ventilation_type': 'mech_type_air_supply',
             'opening_distance': 0.5,
             'room_heating_option': 1, # 1: True, 0 : False
-            'room_number': _("Boardroom"),
+            'room_number': _("1"),
             'room_volume': 100,
-            'simulation_name': _("Workshop without masks"),
+            'simulation_name': _("My simulation"),
             'total_people': 10,
             'ventilation_type': 'mechanical_ventilation',
             'virus_type': "SARS_CoV_2_OMICRON",
@@ -220,7 +220,7 @@ def set_locale (locale):
 
     # ------------------ Activities ----------------------
 
-    ACTIVITY_TYPES = [{'Group':'Business','Id':'Office_worker', 'Name' : _('Office worker'), 'Activity' : _('Seated'), 'Expiration' : {_('Speaking'): 2, _('Breathing'): 8}},
+    ACTIVITY_TYPES = [{'Group':_('Business'),'Id':'Office_worker', 'Name' : _('Office worker'), 'Activity' : _('Seated'), 'Expiration' : {_('Speaking'): 2, _('Breathing'): 8}},
                     {'Group':_('Business'),'Id':'Workshop_worker', 'Name' : _('Workshop worker'), 'Activity' : _('Moderate activity'), 'Expiration' : {_('Speaking'):7, _('Breathing'):1.5, _('Shouting'):1.5}},
                     {'Group':_('Business'),'Id':'Meeting_participant', 'Name' : _('Meeting participant'), 'Activity' : _('Seated'), 'Expiration' : {_('Speaking'):1.5, _('Breathing'):8, _('Shouting'): 0.5 }},
                     {'Group':_('Business'),'Id':'Meeting_leader', 'Name' : _('Meeting leader'), 'Activity' : _('Standing'), 'Expiration' : {_('Breathing'):6,_('Speaking'):3,_('Shouting'):1}},
@@ -264,11 +264,11 @@ def set_locale (locale):
     # ------------------ Text ----------------------
 
     TOOLTIPS = {'virus_data' : _('Choose the SARS-CoV-2 Variant of Concern (VOC).'),
-    'room_data':_('The area you wish to study (choose one of the 2 options). Indicate if a central (radiator-type) heating system is in use.'),
-    'ventilation_data':_('The available means of venting / filtration of indoor spaces.'),
+    'room_data':_('The area you wish to study (choose one of the 2 options). Indicate if a heating or air conditionning device is in use.'),
+    'ventilation_data':_('The available means of venting / bioventilation of indoor spaces.'),
     'window_open' : _("If 'Periodically' is selected, windows will be open during lunch and coffee breaks"),
     'bio_ventilation' : _("This value can be modified for alternative scenarios even if 'No' is checked"),
-    'face_mask' : _('Masks worn at workstations or removed when a 2m physical distance is respected and proper venting is ensured.'),
+    'face_mask' : _('Masks worn or removed when a 2m physical distance is respected and proper venting is ensured.'),
     'event_data' : _('The total no. of occupants in the room and how many of them you assume are infected.'),
     'activity_breaks' : _('Input breaks that, by default, are the same for infected/exposed person(s) unless specified otherwise.')
     }
