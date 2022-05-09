@@ -403,7 +403,7 @@
                     </li>
                     <li>
                         <p class="data_text">
-                           {{_("Room Central Heating:")}} {{ "On" if form.room_heating_option == 1 else "Off" }}
+                           {{_("Room Heating/Air conditionning:")}} {{ "On" if form.room_heating_option == 1 else "Off" }}
                         </p>
                     </li>
                     <li>
@@ -512,13 +512,13 @@
 {% endif %}
 <li>
     <p class="data_text">
-       {{_("Bio-ventilation:")}} {{ _('Yes') if form.biov_option==1 else _('No') }}
+       {{_("Bioventilation:")}} {{ _('Yes') if form.biov_option==1 else _('No') }}
     </li>
     {% if form.biov_option==1 %}
         <ul>
             <li>
                 <p class="data_text">
-                    {{_("Bio-ventilation amount:")}} {{ form.biov_amount }} {{_("m³ / hour")}}
+                    {{_("Bioventilation flow rate:")}} {{ form.biov_amount }} {{_("m³ / hour")}}
                 </p>
             </li>
         </ul>

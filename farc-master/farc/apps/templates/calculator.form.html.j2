@@ -117,7 +117,7 @@
     </div>
 
     <div class="split">
-    <div>{{_("Central heating system in use:")}}</div>
+    <div>{{_("Heating/Air conditionning system in use:")}}</div>
     <div>
     <input class="ml-2 heating_option" type="radio" id="heating_no" name="room_heating_option" value='0'>
       <label for="heating_no">{{_("No")}}</label>
@@ -244,7 +244,7 @@
         <br>
     </div>
 
-    <div class='sub_title'>{{_("Bio ventilation:")}}
+    <div class='sub_title'>{{_("Bioventilation:")}}
     <div data-tooltip="{{TOOLTIPS.bio_ventilation}}">
         <span class="tooltip_text">?</span>
     </div>
@@ -269,14 +269,14 @@
     
     <br>
     
-    <div class='sub_title'>{{_("Are masks worn when occupants are at workstations?")}} </div>
+    <div class='sub_title'>{{_("Are masks worn when occupants ?")}} </div>
     <input type="radio" class ="mask_wearing_option" id="mask_on" name="mask_wearing_option" value="mask_on" onclick="enableMaskSelection()">
       <label for="mask_on">{{_("Yes")}} </label>
     <input class="ml-2 mask_wearing_option" type="radio" id="mask_off"  name="mask_wearing_option" value="mask_off" onclick="enableMaskSelection()">
       <label for="mask_off">{{_("No")}} </label><br>
       
     <div id="DIVmasks_used">
-      <div class='sub_title'>{{_("Type of masks used (necessary for alternative scenarios):")}} </div>
+      <div class='sub_title'>{{_("Type of masks used (requested for alternative scenarios):")}} </div>
       <div class='split'>
         <div>
           <input type="radio" class="mask_type_option" id="mask_type_1" name="mask_type" value="Type_I" onclick="require_fields(this)">
@@ -315,7 +315,10 @@
       <div class="col-sm-6 align-self-center"><input type="number" id="infected_people" class="form-control" name="infected_people" placeholder="{{PLACEHOLDERS.number}}" min=1 value='{{default.infected_people}}' required></div>
     </div>
 
+    <!-- removed vy VKO  
     <span id="training_limit_error" class="red_text" hidden>{{_("Conference/Training activities limited to 1 infected")}} <br></span>
+    -->
+    
     <hr width="80%">
 
     <!-- removed by OPE when introduced different activity types for infected and exposed
@@ -619,7 +622,7 @@
   <ul>
     <li>{{_("Mechanical ventilation = the HVAC supply of fresh air. Check the flow rates with the concerned technical department.")}} </li>
     <li>{{_("Natural ventilation = the type of window opening. The opening distance is between the fixed frame and movable part when open (commonly used values are window height of 1.6m and window opening between 0.15m and 0.6m). In case of periodic opening, specify the duration (e.g. for 10 min) and frequency (e.g. every 60 min).")}} </li>
-    <li>{{_("Bio-ventilation = the disinfected air flow of the device. The following values are based on the different fan velocities of a specific commercial device proposed by the Flow-R:")}} </li>
+    <li>{{_("Bioventilation = the clean air flow of the device. The following values are based on the different fan velocities of a specific commercial device proposed by the Flow-R:")}} </li>
     <ul>
         <li> Bio-V10000 = 4000 m<sup>3</sup>{{_("/h (noisy)")}}, 7000 m<sup>3</sup>{{_("/h (very noisy)")}}, 10000 m<sup>3</sup>{{_("/h (max, very noisy. Recommended without attendance)")}}, </li>
         <li> Bio-V5000  = 2500 m<sup>3</sup>{{_("/h (noisy)")}}, 4000 m<sup>3</sup>{{_("/h (very noisy)")}},  5000 m<sup>3</sup>{{_("/h (max, very noisy. Recommended without attendance)")}}, </li>
