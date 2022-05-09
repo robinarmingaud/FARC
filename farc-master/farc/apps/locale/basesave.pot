@@ -1,18 +1,17 @@
-# German (Germany) translations for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2022 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-05 17:42+0200\n"
+"POT-Creation-Date: 2022-05-05 10:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: de_DE\n"
-"Language-Team: de_DE <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,11 +23,11 @@ msgid "January"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:65 calculator/DEFAULT_DATA.py:204
-msgid "1"
+msgid "My simulation"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:67 calculator/DEFAULT_DATA.py:206
-msgid "My simulation"
+msgid "1"
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
@@ -455,14 +454,14 @@ msgstr ""
 msgid "Choose the SARS-CoV-2 Variant of Concern (VOC)."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:141
+#: calculator/DEFAULT_DATA.py:141 calculator/DEFAULT_DATA.py:267
 msgid ""
 "The area you wish to study (choose one of the 2 options). Indicate if a "
-"heating/air conditionning system is in use."
+"heating or air conditionning system is in use."
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:142 calculator/DEFAULT_DATA.py:268
-msgid "The available means of venting / bioventilation of indoor spaces."
+msgid "The available means of ventilation / bioventilation of indoor spaces."
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:143 calculator/DEFAULT_DATA.py:269
@@ -479,8 +478,8 @@ msgstr ""
 
 #: calculator/DEFAULT_DATA.py:145 calculator/DEFAULT_DATA.py:271
 msgid ""
-"Masks worn or removed when a 2m physical distance is respected and proper"
-" venting is ensured."
+"Masks worn at workstations or removed when a 2m physical distance is "
+"respected and proper venting is ensured."
 msgstr ""
 
 #: calculator/DEFAULT_DATA.py:146 calculator/DEFAULT_DATA.py:272
@@ -541,12 +540,6 @@ msgstr ""
 
 #: calculator/DEFAULT_DATA.py:160 calculator/DEFAULT_DATA.py:286
 msgid "Default"
-msgstr ""
-
-#: calculator/DEFAULT_DATA.py:267
-msgid ""
-"The area you wish to study (choose one of the 2 options). Indicate if a "
-"heating or air conditionning device is in use."
 msgstr ""
 
 #: calculator/__init__.py:61
@@ -749,7 +742,7 @@ msgstr ""
 
 #: templates/about.html.j2:48
 msgid ""
-"Adapt the maximum occupancy considering the effect of bio-ventilation "
+"Adapt the maximum occupancy considering the effect of bioventilation "
 "devices"
 msgstr ""
 
@@ -790,7 +783,7 @@ msgstr ""
 msgid "Room number:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:611
+#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:608
 msgid "Virus data:"
 msgstr ""
 
@@ -815,12 +808,12 @@ msgid "Ceiling height:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:120
-msgid "Heating/Air conditionning system in use:"
+msgid "Heating or air-conditionning system in use:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:255
-#: templates/calculator.form.html.j2:276 templates/calculator.form.html.j2:497
-#: templates/calculator.form.html.j2:545
+#: templates/calculator.form.html.j2:276 templates/calculator.form.html.j2:494
+#: templates/calculator.form.html.j2:542
 #: templates/calculator.report.html.j2:450
 #: templates/calculator.report.html.j2:509
 #: templates/calculator.report.html.j2:515
@@ -831,8 +824,8 @@ msgid "No"
 msgstr ""
 
 #: templates/calculator.form.html.j2:125 templates/calculator.form.html.j2:257
-#: templates/calculator.form.html.j2:274 templates/calculator.form.html.j2:499
-#: templates/calculator.form.html.j2:547
+#: templates/calculator.form.html.j2:274 templates/calculator.form.html.j2:496
+#: templates/calculator.form.html.j2:544
 #: templates/calculator.report.html.j2:435
 #: templates/calculator.report.html.j2:457
 #: templates/calculator.report.html.j2:515
@@ -846,7 +839,7 @@ msgstr ""
 msgid "Geographic location:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:145 templates/calculator.form.html.j2:621
+#: templates/calculator.form.html.j2:145 templates/calculator.form.html.j2:618
 #: templates/calculator.report.html.j2:427
 msgid "Ventilation data:"
 msgstr ""
@@ -937,7 +930,6 @@ msgid "Periodically:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:247
-#: templates/calculator.report.html.j2:515
 msgid "Bioventilation:"
 msgstr ""
 
@@ -946,7 +938,7 @@ msgid "Face masks:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:272
-msgid "Are masks worn when occupants ?"
+msgid "Are masks worn during event?"
 msgstr ""
 
 #: templates/calculator.form.html.j2:279
@@ -974,99 +966,99 @@ msgstr ""
 msgid "Number of infected people:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:319
-msgid "Conference/Training activities limited to 1 infected"
+#: templates/calculator.form.html.j2:318
+msgid ""
 msgstr ""
 
-#: templates/calculator.form.html.j2:349
+#: templates/calculator.form.html.j2:346
 msgid "Exposed person(s):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:351
+#: templates/calculator.form.html.j2:348
 #: templates/calculator.report.html.j2:551
 #: templates/calculator.report.html.j2:628
 msgid "Activity type:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:386 templates/calculator.form.html.j2:442
+#: templates/calculator.form.html.j2:383 templates/calculator.form.html.j2:439
 msgid "Mask wear ratio:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:390 templates/calculator.form.html.j2:445
+#: templates/calculator.form.html.j2:387 templates/calculator.form.html.j2:442
 msgid "Presence:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:393 templates/calculator.form.html.j2:448
-#: templates/calculator.form.html.j2:502 templates/calculator.form.html.j2:551
+#: templates/calculator.form.html.j2:390 templates/calculator.form.html.j2:445
+#: templates/calculator.form.html.j2:499 templates/calculator.form.html.j2:548
 #: templates/calculator.report.html.j2:752
 #: templates/calculator.report.html.j2:798
 msgid "Start:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:397 templates/calculator.form.html.j2:452
-#: templates/calculator.form.html.j2:505 templates/calculator.form.html.j2:554
+#: templates/calculator.form.html.j2:394 templates/calculator.form.html.j2:449
+#: templates/calculator.form.html.j2:502 templates/calculator.form.html.j2:551
 msgid "Finish:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:405
+#: templates/calculator.form.html.j2:402
 msgid "Infected person(s):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:407
+#: templates/calculator.form.html.j2:404
 msgid "Activity:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:463
+#: templates/calculator.form.html.j2:460
 msgid "Which month is the event?"
 msgstr ""
 
-#: templates/calculator.form.html.j2:480 templates/calculator.form.html.j2:652
+#: templates/calculator.form.html.j2:477 templates/calculator.form.html.j2:649
 msgid "Activity breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:489
+#: templates/calculator.form.html.j2:486
 msgid "Input separate breaks for infected and exposed person(s)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:493
+#: templates/calculator.form.html.j2:490
 msgid "Exposed person(s) breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:495 templates/calculator.form.html.j2:543
+#: templates/calculator.form.html.j2:492 templates/calculator.form.html.j2:540
 #: templates/calculator.report.html.j2:720
 #: templates/calculator.report.html.j2:766
 msgid "Lunch break:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:512 templates/calculator.form.html.j2:561
+#: templates/calculator.form.html.j2:509 templates/calculator.form.html.j2:558
 msgid "Coffee Breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:516 templates/calculator.form.html.j2:565
+#: templates/calculator.form.html.j2:513 templates/calculator.form.html.j2:562
 msgid "No breaks"
 msgstr ""
 
-#: templates/calculator.form.html.j2:526 templates/calculator.form.html.j2:575
+#: templates/calculator.form.html.j2:523 templates/calculator.form.html.j2:572
 msgid "Duration (minutes):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:541
+#: templates/calculator.form.html.j2:538
 msgid "Infected person(s) breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:590
+#: templates/calculator.form.html.j2:587
 msgid "Coffee breaks are spread evenly throughout the day."
 msgstr ""
 
-#: templates/calculator.form.html.j2:601
+#: templates/calculator.form.html.j2:598
 msgid "Generate report"
 msgstr ""
 
-#: templates/calculator.form.html.j2:608
+#: templates/calculator.form.html.j2:605
 msgid "Quick Guide:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:609
+#: templates/calculator.form.html.j2:606
 msgid ""
 "FARC stands for Flow-R Airborne Risk Calculator.\n"
 "  This tool simulates the long range airborne spread SARS-CoV-2 virus in "
@@ -1075,45 +1067,45 @@ msgid ""
 "of different mitigation measures."
 msgstr ""
 
-#: templates/calculator.form.html.j2:612
+#: templates/calculator.form.html.j2:609
 msgid ""
 "SARS-CoV-2 covers the original 'wild type' strain of the virus and three "
 "variants of concern (VOC):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:614
+#: templates/calculator.form.html.j2:611
 msgid "Alpha (also known as B.1.1.7, first identified in UK, Sept 2020),"
 msgstr ""
 
-#: templates/calculator.form.html.j2:615
+#: templates/calculator.form.html.j2:612
 msgid "Beta (also known as B.1.351, first identified in South Africa, May 2020)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:616
+#: templates/calculator.form.html.j2:613
 msgid "Gamma (also known as P.1, first identified in Brazil/Japan, Jan 2021)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:617
+#: templates/calculator.form.html.j2:614
 msgid "Delta (also known as B.1.617.2, first identified in India, Oct 2020)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:618
+#: templates/calculator.form.html.j2:615
 msgid ""
 "Omicron (also known as B.1.1.529, first identified in South Africa, "
 "November 2021)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:620
+#: templates/calculator.form.html.j2:617
 msgid "Modify the default as necessary, according to local area prevalence."
 msgstr ""
 
-#: templates/calculator.form.html.j2:623
+#: templates/calculator.form.html.j2:620
 msgid ""
 "Mechanical ventilation = the HVAC supply of fresh air. Check the flow "
 "rates with the concerned technical department."
 msgstr ""
 
-#: templates/calculator.form.html.j2:624
+#: templates/calculator.form.html.j2:621
 msgid ""
 "Natural ventilation = the type of window opening. The opening distance is"
 " between the fixed frame and movable part when open (commonly used values"
@@ -1122,68 +1114,68 @@ msgid ""
 "frequency (e.g. every 60 min)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:625
+#: templates/calculator.form.html.j2:622
 msgid ""
-"Bioventilation = the clean air flow of the device. The following values "
-"are based on the different fan velocities of a specific commercial device"
-" proposed by the Flow-R:"
+"Bioventilation = the disinfected air flow of the device. The following "
+"values are based on the different fan velocities of a specific commercial"
+" device proposed by the Flow-R:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:627 templates/calculator.form.html.j2:628
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:624 templates/calculator.form.html.j2:625
+#: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
 msgid "/h (noisy)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:627 templates/calculator.form.html.j2:628
+#: templates/calculator.form.html.j2:624 templates/calculator.form.html.j2:625
 msgid "/h (very noisy)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:627 templates/calculator.form.html.j2:628
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:624 templates/calculator.form.html.j2:625
+#: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
 msgid "/h (max, very noisy. Recommended without attendance)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
 msgid "/h (ultra silent)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:626 templates/calculator.form.html.j2:627
 msgid "/h (silent)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:633
+#: templates/calculator.form.html.j2:630
 msgid "Activity types:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:634
+#: templates/calculator.form.html.j2:631
 msgid ""
 "The type of activity applies to the infected and exposed persons "
 "separately."
 msgstr ""
 
-#: templates/calculator.form.html.j2:653
+#: templates/calculator.form.html.j2:650
 msgid ""
 "If coffee breaks are included, they are spread out evenly throughout the "
 "day, in addition to any lunch break (if applicable)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:655
+#: templates/calculator.form.html.j2:652
 msgid "Refer to"
 msgstr ""
 
-#: templates/calculator.form.html.j2:655
+#: templates/calculator.form.html.j2:652
 msgid "FARC user guide"
 msgstr ""
 
-#: templates/calculator.form.html.j2:656
+#: templates/calculator.form.html.j2:653
 msgid "for more detailed explanations on how to use this tool."
 msgstr ""
 
-#: templates/calculator.form.html.j2:661
+#: templates/calculator.form.html.j2:658
 msgid "User guide"
 msgstr ""
 
-#: templates/calculator.form.html.j2:664 templates/userguide.html.j2:27
+#: templates/calculator.form.html.j2:661 templates/userguide.html.j2:27
 msgid "Disclaimer"
 msgstr ""
 
@@ -1207,7 +1199,7 @@ msgstr ""
 msgid "Print Report"
 msgstr ""
 
-#: templates/calculator.report.html.j2:63 templates/userguide.html.j2:299
+#: templates/calculator.report.html.j2:63 templates/userguide.html.j2:297
 msgid "Results"
 msgstr ""
 
@@ -1326,7 +1318,7 @@ msgstr ""
 
 #: templates/calculator.report.html.j2:290
 msgid ""
-"If you have selected more sophisticated options, such as bio-ventilation "
+"If you have selected more sophisticated options, such as bioventilation "
 "or FFP2 masks, this will be indicated in the plot as the 'base scenario',"
 " representing the inputs inserted in the form."
 msgstr ""
@@ -1378,7 +1370,7 @@ msgid "Room Volume:"
 msgstr ""
 
 #: templates/calculator.report.html.j2:406
-msgid "Room Heating/Air conditionning:"
+msgid "Room heating or air conditionning:"
 msgstr ""
 
 #: templates/calculator.report.html.j2:411
@@ -1435,8 +1427,12 @@ msgstr ""
 msgid "based on historical data for the month selected."
 msgstr ""
 
+#: templates/calculator.report.html.j2:515
+msgid "Bioventilation:"
+msgstr ""
+
 #: templates/calculator.report.html.j2:521
-msgid "Bioventilation flow rate:"
+msgid "Bioventilation amount:"
 msgstr ""
 
 #: templates/calculator.report.html.j2:521
@@ -1715,7 +1711,7 @@ msgstr ""
 msgid ""
 "The model used is based on scientific publications relating to airborne "
 "transmission of infectious diseases, dose-response exposures and aerosol "
-"science, as of February 2021.\n"
+"science, as of February 2022.\n"
 "        It can be used to compare the effectiveness of different "
 "airborne-related risk mitigation measures."
 msgstr ""
@@ -1729,8 +1725,8 @@ msgid ""
 " risk of infection is uncertain, as it will depend on the probability "
 "that someone infected attends the event.\n"
 "        The model is most useful for comparing the impact and "
-"effectiveness of different mitigation measures such as ventilation, "
-"bioventilation, exposure time, physical activity and\n"
+"effectiveness of different mitigation measures such as ventilation, air "
+"disinfecion devices, exposure time, physical activity and\n"
 "        the size of the room, only considering long-range airborne "
 "transmission of COVID-19 in indoor settings."
 msgstr ""
@@ -2024,15 +2020,15 @@ msgid ""
 msgstr ""
 
 #: templates/userguide.html.j2:90
-msgid "Room heating system"
+msgid "Room heating or air conditionning system"
 msgstr ""
 
 #: templates/userguide.html.j2:93
 msgid ""
-"The use of central heating (e.g. radiators) reduces relative humidity of "
+"The use of heating (e.g. radiators) or air conditionning reduces relative humidity of "
 "the indoor air, which can decrease the decay rate of viral infectivity. "
-"If your space is heated with such water radiators, select 'Yes'. If your "
-"space does not have such heating, or they are not in use in the period of"
+"If your space is equiped with such devices, select 'Yes'. If your "
+"space does not have such devices, or they are not in use in the period of"
 " the simulation (e.g. summer), select 'No'."
 msgstr ""
 
@@ -2159,7 +2155,7 @@ msgid ""
 "biological clean air (UVC device or filter).\n"
 "    The calculator allows you to simulate the installation of a "
 "disinfection device within the room.\n"
-"    The recommended airflow rate for the Bio ventilkation device should "
+"    The recommended airflow rate for the Bioventilation device should "
 "correspond to a total air exchange rate of 3 - 10 ACH (the higher the "
 "better, even beyond 10)."
 msgstr ""
@@ -2333,8 +2329,7 @@ msgstr ""
 msgid ""
 "The model allows for a simulation with either a continuous wearing of "
 "face masks throughout the duration of the event, or have the removed at "
-"all times. It is however possible to modify this input using the mask "
-"wear ratio.\n"
+"all times. However, the wear mask ratio can be used to simulate different events.\n"
 "    Please bear in mind the user inputs shall be aligned with the current"
 " applicable public health"
 msgstr ""
@@ -2346,10 +2341,10 @@ msgid ""
 "assumptions are used for the simulation."
 msgstr ""
 
-#: templates/userguide.html.j2:273
+#: templates/userguide.html.j2:272
 msgid ""
 "If you have selected the Conference/Training activity type, this equates "
-"to the speakr/trainer and all participants either wearing masks "
+"to the speaker/trainer and all participants either wearing masks "
 "throughout the conference/training (Yes), or removing them when "
 "seated/standing at their socially distanced positions within the "
 "conference/training room (No).\n"
@@ -2357,28 +2352,28 @@ msgid ""
 "assumptions are used for the simulation"
 msgstr ""
 
-#: templates/userguide.html.j2:278
+#: templates/userguide.html.j2:276
 msgid ""
 "For the time being only the Type 1 surgical and FFP2 masks can be "
 "selected."
 msgstr ""
 
-#: templates/userguide.html.j2:282
+#: templates/userguide.html.j2:280
 msgid "Generate Report"
 msgstr ""
 
-#: templates/userguide.html.j2:286
+#: templates/userguide.html.j2:284
 msgid ""
 "When you have entered all the necessary information, please click on the "
 "Generate Report button to execute the model. With the implementation of "
 "Monte Carlo simulations, the browser might take a few secounds to react."
 msgstr ""
 
-#: templates/userguide.html.j2:290
+#: templates/userguide.html.j2:288
 msgid "Report"
 msgstr ""
 
-#: templates/userguide.html.j2:294
+#: templates/userguide.html.j2:292
 msgid ""
 "The report will open in your web browser.\n"
 "    It contains a summary of all the input data, which will allow the "
@@ -2386,15 +2381,15 @@ msgid ""
 "model."
 msgstr ""
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:301
 msgid "This part of the report shows the"
 msgstr ""
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:301
 msgid "P(I)"
 msgstr ""
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:301
 msgid ""
 "or probability of one exposed person getting infected.\n"
 "It is estimated based on the emission rate of virus into the simulated "
@@ -2407,74 +2402,74 @@ msgid ""
 "The"
 msgstr ""
 
-#: templates/userguide.html.j2:307
+#: templates/userguide.html.j2:305
 msgid "expected number of new cases"
 msgstr ""
 
-#: templates/userguide.html.j2:307
+#: templates/userguide.html.j2:305
 msgid ""
 "for the simulation is calculated based on the probability of infection, "
 "multiplied by the number of exposed occupants."
 msgstr ""
 
-#: templates/userguide.html.j2:309
+#: templates/userguide.html.j2:307
 msgid ""
 "The reports also analyses different alternative scenarii related to the "
 "base case."
 msgstr ""
 
-#: templates/userguide.html.j2:311
+#: templates/userguide.html.j2:309
 msgid ""
 "The graph shows the variation in the concentration of virions within the "
 "simulated volume.\n"
 "    It is determined by:"
 msgstr ""
 
-#: templates/userguide.html.j2:316
+#: templates/userguide.html.j2:314
 msgid ""
 "The presence of the infected person, who emits airborne viruses in the "
 "volume."
 msgstr ""
 
-#: templates/userguide.html.j2:319
+#: templates/userguide.html.j2:317
 msgid ""
 "The emission rate is related to the type of activity of the infected "
 "person (sitting, light exercise), their level of vocalisation (breathing,"
 " speaking or shouting)."
 msgstr ""
 
-#: templates/userguide.html.j2:322
+#: templates/userguide.html.j2:320
 msgid ""
 "The accumulation of virions in the volume, which is driven, among other "
 "factors, by ventilation (if applicable)."
 msgstr ""
 
-#: templates/userguide.html.j2:325
+#: templates/userguide.html.j2:323
 msgid ""
 "In a mechanical ventilation scenario, the removal rate is constant, based"
 " on fresh airflow supply in and out of the simulated space."
 msgstr ""
 
-#: templates/userguide.html.j2:328
+#: templates/userguide.html.j2:326
 msgid ""
 "Under natural ventilation conditions, the effectiveness of ventilation "
 "relies upon the hourly temperature difference between the inside and "
 "outside air temperature."
 msgstr ""
 
-#: templates/userguide.html.j2:331
+#: templates/userguide.html.j2:329
 msgid ""
 "A Bioventilation device removes virions from the air at a constant rate "
 "and is modelled in the same way as mechanical ventilation, however air "
-"passed through a Bio ventilation device is recycled (i.e. it is not fresh"
+"passed through a Bioventilation device is recycled (i.e. it is not fresh"
 " air)."
 msgstr ""
 
-#: templates/userguide.html.j2:338
+#: templates/userguide.html.j2:336
 msgid "QR code"
 msgstr ""
 
-#: templates/userguide.html.j2:342
+#: templates/userguide.html.j2:340
 msgid ""
 "At the end of the report you can find a unique QR code / hyperlink for "
 "this report. This provides an automatic way to review the calculator form"
@@ -2482,23 +2477,23 @@ msgid ""
 "    This allows for:"
 msgstr ""
 
-#: templates/userguide.html.j2:347
+#: templates/userguide.html.j2:345
 msgid ""
 "sharing reports by either scanning or clicking on the QR code to obtain a"
 " shareable link."
 msgstr ""
 
-#: templates/userguide.html.j2:350
+#: templates/userguide.html.j2:348
 msgid ""
 "easily regenerating reports with any new versions of the FARC model "
 "released in the future."
 msgstr ""
 
-#: templates/userguide.html.j2:355
+#: templates/userguide.html.j2:353
 msgid "Conclusion"
 msgstr ""
 
-#: templates/userguide.html.j2:359
+#: templates/userguide.html.j2:357
 msgid ""
 "This tool provides informative comparisons for COVID-19 (long-range) "
 "airborne risk only - see Disclaimer\n"
@@ -2506,175 +2501,7 @@ msgid ""
 " potential improvements, please share them with the development team"
 msgstr ""
 
-#: templates/userguide.html.j2:360
+#: templates/userguide.html.j2:358
 msgid "Send email"
 msgstr ""
-
-#~ msgid "NO bio-ventilation and"
-#~ msgstr ""
-
-#~ msgid "masks with a"
-#~ msgstr ""
-
-#~ msgid "wear ratio for exposed people and a"
-#~ msgstr ""
-
-#~ msgid "wear ratio for infected people"
-#~ msgstr ""
-
-#~ msgid "m3/h bio-ventilation and NO masks"
-#~ msgstr ""
-
-#~ msgid "m3/h bio-ventilation and"
-#~ msgstr ""
-
-#~ msgid "Type of masks used:"
-#~ msgstr ""
-
-#~ msgid "Expiration : "
-#~ msgstr ""
-
-#~ msgid "Please send feedback to"
-#~ msgstr ""
-
-#~ msgid "Central heating system in use:"
-#~ msgstr ""
-
-#~ msgid "Bio ventilation:"
-#~ msgstr ""
-
-#~ msgid "Are masks worn when occupants are at workstations?"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Bio-ventilation = the disinfected air"
-#~ " flow of the device. The following"
-#~ " values are based on the different"
-#~ " fan velocities of a specific "
-#~ "commercial device proposed by the "
-#~ "Flow-R:"
-#~ msgstr ""
-
-#~ msgid "Room Central Heating:"
-#~ msgstr ""
-
-#~ msgid "Bio-ventilation:"
-#~ msgstr ""
-
-#~ msgid "Bio-ventilation amount:"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Note that this model applies a "
-#~ "deterministic approach, i.e., it is "
-#~ "assumed at least one person is "
-#~ "infected and shedding viruses into the"
-#~ " simulated volume.\n"
-#~ "        Nonetheless, it is also "
-#~ "important to understand that the "
-#~ "absolute risk of infection is uncertain,"
-#~ " as it will depend on the "
-#~ "probability that someone infected attends "
-#~ "the event.\n"
-#~ "        The model is most useful "
-#~ "for comparing the impact and "
-#~ "effectiveness of different mitigation measures"
-#~ " such as ventilation, air disinfecion "
-#~ "devices, exposure time, physical activity "
-#~ "and\n"
-#~ "        the size of the room, only"
-#~ " considering long-range airborne "
-#~ "transmission of COVID-19 in indoor "
-#~ "settings."
-#~ msgstr ""
-
-#~ msgid "Bio Ventilation"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Bio ventilation assumes there is a "
-#~ "desinfection device producing biological clean"
-#~ " air (UVC device or BIOV filter)."
-#~ "\n"
-#~ "    The calculator allows you to "
-#~ "simulate the installation of a "
-#~ "disinfection device within the room.\n"
-#~ "    The recommended airflow rate for "
-#~ "the Bio ventilkation device should "
-#~ "correspond to a total air exchange "
-#~ "rate of 3 - 10 ACH (the "
-#~ "higher the better, even beyond 10)."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "A Bio ventilation device removes virions"
-#~ " from the air at a constant "
-#~ "rate and is modelled in the same"
-#~ " way as mechanical ventilation, however "
-#~ "air passed through a Bio ventilation "
-#~ "device is recycled (i.e. it is not"
-#~ " fresh air)."
-#~ msgstr ""
-
-#~ msgid "Boardroom"
-#~ msgstr ""
-
-#~ msgid "Workshop without masks"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The area you wish to study (choose"
-#~ " one of the 2 options). Indicate "
-#~ "if a central (radiator-type) heating "
-#~ "system is in use."
-#~ msgstr ""
-
-#~ msgid "The available means of venting / filtration of indoor spaces."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Masks worn at workstations or removed"
-#~ " when a 2m physical distance is "
-#~ "respected and proper venting is ensured."
-#~ msgstr ""
-
-#~ msgid "NO bio-ventilation and NO masks"
-#~ msgstr ""
-
-#~ msgid "NO bio-ventilation and "
-#~ msgstr ""
-
-#~ msgid " m3/h bio-ventilation and NO masks"
-#~ msgstr ""
-
-#~ msgid " m3/h bio-ventilation and "
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Although the user is able to "
-#~ "calculate the infection probability of a"
-#~ " stand-alone event with a pre-"
-#~ "defined set of protection measures, the"
-#~ " main utility of CARA is to "
-#~ "compare the relative impact of different"
-#~ " measures and/or combination of measure."
-#~ " For example:"
-#~ msgstr ""
-
-#~ msgid "Type of masks used (necessary for alternative scenarios):"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "The model allows for a simulation "
-#~ "with either a continuous wearing of "
-#~ "face masks throughout the duration of"
-#~ " the event, or have the removed "
-#~ "at all times - i.e. all occupants"
-#~ " (infected and exposed alike) wear or"
-#~ " not masks for the duration of "
-#~ "the simulation.\n"
-#~ "    Please bear in mind the user"
-#~ " inputs shall be aligned with the "
-#~ "current applicable public health"
-#~ msgstr ""
 
