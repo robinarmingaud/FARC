@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-09 16:23+0200\n"
+"POT-Creation-Date: 2022-05-10 15:11+0200\n"
 "PO-Revision-Date: 2022-05-09 15:26+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -367,7 +367,7 @@ msgstr "Vendeur debout"
 #: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:252
 #: calculator/DEFAULT_DATA.py:253 calculator/DEFAULT_DATA.py:254
 msgid "Sport"
-msgstr "sport"
+msgstr "Sport"
 
 #: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:252
 msgid "Musculation"
@@ -600,7 +600,7 @@ msgstr ""
 
 #: calculator/report_generator.py:216
 msgid "NO bioventilation and NO masks"
-msgstr "Pas de bioventilation et pas de masques"
+msgstr "Pas de bioventilation et pas de masque"
 
 #: calculator/report_generator.py:221
 msgid "NO bioventilation and "
@@ -608,7 +608,7 @@ msgstr "pas de bioventilation et "
 
 #: calculator/report_generator.py:221 calculator/report_generator.py:231
 msgid " masks with a "
-msgstr " Masques avec un taux de port de "
+msgstr " masques avec un taux de port de "
 
 #: calculator/report_generator.py:221 calculator/report_generator.py:231
 msgid " wear ratio for exposed people and a "
@@ -659,7 +659,7 @@ msgid ""
 "check out the special issue on the Interface Focus journal from Royal "
 "Society publishing:"
 msgstr ""
-"Pour plus d'informations sur la transmission aéroportée de SARS-CoV-2, "
+"Pour plus d'informations sur la transmission aéroportée du SARS-CoV-2, "
 "n'hésitez pas à consulter le numéro spécial Interface Focus du Journal de"
 " Royal Society Publishing:"
 
@@ -713,7 +713,7 @@ msgstr ""
 "résultats de ce modèle ne sont valables que lorsque les autres "
 "instructions de santé publique et de sécurité recommandées sont "
 "observées, comme une distanciation physique adéquate, une bonne hygiène "
-"des mains et d'autres mesures de barrière."
+"des mains et d'autres mesures barrières."
 
 #: templates/about.html.j2:27
 msgid ""
@@ -728,7 +728,7 @@ msgid ""
 "Modelling airborne transmission of SARS-CoV-2 using CARA: risk assessment"
 " for enclosed spaces"
 msgstr ""
-"Modélisation de la transmission aéroportée de SARS-CoV-2 en utilisant "
+"Modélisation de la transmission aéroportée du SARS-CoV-2 en utilisant "
 "CARA: évaluation des risques pour les espaces fermés"
 
 #: templates/about.html.j2:29
@@ -929,7 +929,7 @@ msgstr "Données de ventilation:"
 msgid "Ventilation type:"
 msgstr "Type de ventilation:"
 
-#: templates/calculator.form.html.j2:157 templates/userguide.html.j2:160
+#: templates/calculator.form.html.j2:157 templates/userguide.html.j2:162
 msgid "No ventilation"
 msgstr "Pas de ventilation"
 
@@ -1027,7 +1027,7 @@ msgstr "Masques faciaux:"
 
 #: templates/calculator.form.html.j2:272
 msgid "Are masks worn when occupants ?"
-msgstr "Ports des masques ?"
+msgstr "Port du masque ?"
 
 #: templates/calculator.form.html.j2:279
 msgid "Type of masks used (requested for alternative scenarios):"
@@ -1124,7 +1124,7 @@ msgstr "Pauses café:"
 
 #: templates/calculator.form.html.j2:516 templates/calculator.form.html.j2:565
 msgid "No breaks"
-msgstr "Pas de pauses"
+msgstr "Pas de pause"
 
 #: templates/calculator.form.html.j2:526 templates/calculator.form.html.j2:575
 msgid "Duration (minutes):"
@@ -1158,7 +1158,7 @@ msgstr ""
 "  Cet outil simule le virus SARS-CoV-2 par propagation aéroportée à "
 "longue portée dans un volume fini et estime le risque d'infection "
 "Covid-19. Il est basé sur des données scientifiques actuels et peut être "
-"utilisé pour comparer l'efficacité de différentes mesures d'atténuation."
+"utilisé pour comparer l'efficacité de différentes mesures de prévention."
 
 #: templates/calculator.form.html.j2:612
 msgid ""
@@ -1321,7 +1321,7 @@ msgstr "Utilisation de FARC"
 msgid "Print Report"
 msgstr "Imprimer le rapport"
 
-#: templates/calculator.report.html.j2:63 templates/userguide.html.j2:299
+#: templates/calculator.report.html.j2:63 templates/userguide.html.j2:302
 msgid "Results"
 msgstr "Résultats"
 
@@ -1350,13 +1350,13 @@ msgid ""
 "this scenario, the"
 msgstr ""
 "Compte tenu des incertitudes liées aux variables du modèle, dans ce "
-"scénario, le"
+"scénario, la"
 
 #: templates/calculator.report.html.j2:145
 #: templates/calculator.report.html.j2:150
 #: templates/calculator.report.html.j2:155
 msgid "probability of one exposed occupant getting infected is"
-msgstr "La probabilité qu'un occupant exposé soit infecté est"
+msgstr "probabilité qu'un occupant exposé soit infecté est de"
 
 #: templates/calculator.report.html.j2:145
 #: templates/calculator.report.html.j2:150
@@ -1368,7 +1368,7 @@ msgstr "et le"
 #: templates/calculator.report.html.j2:150
 #: templates/calculator.report.html.j2:155
 msgid "expected number of new cases is"
-msgstr "Le nombre attendu de nouveaux cas est"
+msgstr "nombre attendu de nouveaux cas est"
 
 #: templates/calculator.report.html.j2:149
 msgid "Attention:"
@@ -1395,7 +1395,7 @@ msgid ""
 "prior to activity. This level of risk is not recommended for repeatable "
 "activities or during high level of virus circulation."
 msgstr ""
-"Cette activité a un niveau élevé de risque, des actions d'atténuation "
+"Cette activité a un niveau élevé de risque, des actions de prévention "
 "telles que la réduction de la jauge ou l'augmentation de la ventilation "
 "devraient être entreprises avant l'activité. Ce niveau de risque n'est "
 "pas recommandé pour des activités reproductibles ou pendant un niveau "
@@ -1718,19 +1718,19 @@ msgstr ""
 #: templates/calculator.report.html.j2:873
 #: templates/calculator.report.html.j2:876
 msgid "Events with a"
-msgstr "Événements avec un"
+msgstr "Les événements avec une"
 
 #: templates/calculator.report.html.j2:870
 msgid "P(i) less than 2%"
-msgstr "P (i) moins de 2%"
+msgstr "P(i) inférieure à 2%"
 
 #: templates/calculator.report.html.j2:870
 msgid "may go ahead without further mitigation measures."
-msgstr "peut se dérouler sans d'autres mesures d'atténuation."
+msgstr "peuvent se dérouler sans d'autres mesures de prévention."
 
 #: templates/calculator.report.html.j2:873
 msgid "P(i) between 2% and 10%"
-msgstr "P (i) entre 2% et 10%"
+msgstr "P(i) entre 2% et 10%"
 
 #: templates/calculator.report.html.j2:873
 msgid ""
@@ -1738,24 +1738,22 @@ msgid ""
 "circulation. Mitigation measures to minimise the risk before proceeding "
 "are recommended."
 msgstr ""
-"ne doit pas être effectué régulièrement ou pendant un niveau élevé de "
-"circulation virale. Des mesures d'atténuation pour minimiser le risque "
+"ne doivent pas être effectué régulièrement ou pendant un niveau élevé de "
+"circulation virale. Des mesures de prévention pour minimiser le risque "
 "avant l'évènement sont recommandées."
 
 #: templates/calculator.report.html.j2:876
 #, python-format
 msgid "P(i) exceeding 10% or a number of expected new cases that exceeds 1"
-msgstr ""
-"P (i) dépassant 10% ou un certain nombre de nouveaux cas attendus qui "
-"dépassent 1"
+msgstr "P (i) dépassant 10% ou un nombre de nouveaux cas attendus qui dépasse 1"
 
 #: templates/calculator.report.html.j2:876
 msgid ""
 "should not take place until additional measures are in place and a risk "
 "reduction has been performed."
 msgstr ""
-"ne devrait pas avoir lieu tant que des mesures supplémentaires n'ont pas "
-"été mises en place et qu'une réduction des risques ait été effectuée."
+"ne devraientt pas avoir lieu tant que des mesures supplémentaires n'ont "
+"pas été mises en place et qu'une réduction des risques ait été effectuée."
 
 #: templates/calculator.report.html.j2:893
 msgid "Disclaimer:"
@@ -1832,8 +1830,8 @@ msgid ""
 " and from other organisations all around the world for their great work "
 "on this tool"
 msgstr ""
-"Nous souhaitons remercier tous les contributeurs FARC d'Ingenica et de l'"
-" IMT Atlantique, mais aussi et en particulier l'équipe de CARA et les "
+"Nous souhaitons remercier tous les contributeurs FARC d'Ingenica et de "
+"IMT Atlantique, mais aussi et en particulier l'équipe de CARA et les "
 "contributeurs du CERN à Genève et d'autres organisations du monde entier "
 "pour leur excellent travail sur cet outil"
 
@@ -1930,7 +1928,7 @@ msgstr ""
 " absolu d'infection est incertain, car il dépendra de la probabilité "
 "qu'une personne infectée assiste à l'événement.\n"
 "        Le modèle est très utile pour comparer l'impact et l'efficacité "
-"de différentes mesures d'atténuation telles que la ventilation, la "
+"de différentes mesures de prévention telles que la ventilation, la "
 "bioventilation, le temps d'exposition, l'activité physique et\n"
 "        la taille de la pièce, en ne tenant compte que de la transmission"
 " aéroportée à longue distance du COVID-19 en intérieur."
@@ -1959,7 +1957,7 @@ msgstr ""
 "population, la notion de «risque zéro» ou de «scénario complètement sûr» "
 "n'existe pas.\n"
 "        Chaque événement modélisé est unique, et les résultats qui y sont"
-" générés ne sont que justes quen fonction des données d'entrées et des "
+" générés ne sont que justes qu'en fonction des données d'entrées et des "
 "hypothèses du modèle."
 
 #: templates/common_text.md.j2:73
@@ -1996,11 +1994,10 @@ msgstr ""
 "FARC est un outil d'évaluation des risques développé pour modéliser la "
 "concentration des virus dans les espaces fermés, afin d'éclairer les "
 "décisions de gestion de l'espace.\n"
-"                    Il le fait en simulant le virus SARS-CoV-2 à "
-"propagation aéroportée à longue portée dans un volume fini, en supposant "
-"un mélange homogène, et il estime le risque de transmission aéroportée "
-"Covid-19.\n"
-"                Veuillez voir le "
+"                    Il le fait en simulant la propagation aéroportée du "
+"virus SARS-CoV-2 à longue portée dans un volume fini, en supposant un "
+"mélange homogène, et il estime le risque de transmission aéroportée \n"
+"                Veuillez voir la page "
 
 #: templates/index.html.j2:24 templates/layout.html.j2:82
 msgid "About"
@@ -2012,7 +2009,7 @@ msgid ""
 "FARC."
 msgstr ""
 " pour plus de détails sur la méthodologie, les hypothèses et les limites "
-"des FARC."
+"du FARC."
 
 #: templates/index.html.j2:27
 msgid "FARC is based on CARA tool and released under Apache 2.0 licence."
@@ -2095,7 +2092,7 @@ msgstr "Home"
 
 #: templates/layout.html.j2:53
 msgid "Apps"
-msgstr "applications"
+msgstr "Applications"
 
 #: templates/layout.html.j2:65 templates/layout.html.j2:77
 msgid "User Guide"
@@ -2155,7 +2152,7 @@ msgid ""
 "For more information on the Airborne Transmission of SARS-CoV-2, feel "
 "free to check out this HSE Seminar:"
 msgstr ""
-"Pour plus d'informations sur la transmission aéroportée de SARS-CoV-2, "
+"Pour plus d'informations sur la transmission aéroportée du SARS-CoV-2, "
 "n'hésitez pas à consulter ce séminaire HSE:"
 
 #: templates/userguide.html.j2:17
@@ -2176,7 +2173,7 @@ msgstr "Nom de simulation"
 
 #: templates/userguide.html.j2:36
 msgid "Room number"
-msgstr "Numéro de chambre"
+msgstr "Numéro du local"
 
 #: templates/userguide.html.j2:39
 msgid ""
@@ -2232,7 +2229,7 @@ msgid ""
 "first identified in the UK at the end of 2020 which is found to be "
 "approximately 1.5x more transmissible compared to the non-VOCs"
 msgstr ""
-"Identifié d'abord au Royaume-Uni à la fin de 2020, qui est environ 1,5 "
+"identifié d'abord au Royaume-Uni à la fin de 2020, qui est environ 1,5 "
 "fois plus transmissible par rapport à la souche d'origine"
 
 #: templates/userguide.html.j2:62
@@ -2248,7 +2245,7 @@ msgid ""
 "first identified in Brazil in January 2021 which is found to be "
 "approximately 2.2x more transmissible compared to the non-VOCs."
 msgstr ""
-"Identifié pour la première fois au Brésil en janvier 2021, qui est "
+"identifié pour la première fois au Brésil en janvier 2021, qui est "
 "environ 2,2x plus transmissible par rapport à la souche d'origine."
 
 #: templates/userguide.html.j2:68
@@ -2256,7 +2253,7 @@ msgid ""
 "first identified in India towards the end of 2020 which is found to be "
 "approximately 60% more transmissible compared to the ALPHA VOC."
 msgstr ""
-"Identifié d'abord en Inde vers la fin de 2020, qui est environ 60% plus "
+"identifié d'abord en Inde vers la fin de 2020, qui est environ 60% plus "
 "transmissible par rapport au variant alpha."
 
 #: templates/userguide.html.j2:71
@@ -2264,7 +2261,7 @@ msgid ""
 "first identified in South Africa in November 2021 which is found to be at"
 " least 2.53x more transmissible compared to the DELTA VOC."
 msgstr ""
-"Identifié pour la première fois en Afrique du Sud en novembre 2021, qui "
+"identifié pour la première fois en Afrique du Sud en novembre 2021, qui "
 "est au moins 2,53x plus transmissible par rapport au variant Delta."
 
 #: templates/userguide.html.j2:75
@@ -2273,8 +2270,8 @@ msgid ""
 "the prevalence of the different variants in the local area. Access to "
 "this information can be found here:"
 msgstr ""
-"L'utilisateur peut modifier ld variant sélectionné par défaut, selon la "
-"prévalence des différentes variantes dans la zone locale."
+"L'utilisateur peut modifier le variant sélectionné par défaut, selon la "
+"prévalence des différents variants dans la zone locale."
 
 #: templates/userguide.html.j2:78
 msgid ""
@@ -2307,7 +2304,7 @@ msgstr ""
 "a été augmenté, pour tenir compte de la propagation dans une population "
 "avec une immunité importante acquise de Covid-19).\n"
 "    Cependant, cette valeur peut être révisée à l'avenir à mesure que de "
-"plus en plus d'études sur la transmission du varaint gamma dans "
+"plus en plus d'études sur la transmission du variant Gamma dans "
 "différents emplacements géographiques deviendront disponibles."
 
 #: templates/userguide.html.j2:84
@@ -2319,12 +2316,12 @@ msgid ""
 "Please enter either the room volume (in m³) or both the floor area (m²) "
 "and the room height (m)."
 msgstr ""
-"Veuillez saisir soit le volume de la pièce (en m³) ou les deux surface au"
-" sol (m²) et la hauteur de la pièce (m)."
+"Veuillez saisir soit le volume de la pièce (en m³) ou la surface au sol "
+"(m²) et la hauteur de la pièce (m)."
 
 #: templates/userguide.html.j2:90
 msgid "Room heating system"
-msgstr ""
+msgstr "Chauffage central ou climatisation"
 
 #: templates/userguide.html.j2:93
 msgid ""
@@ -2415,7 +2412,7 @@ msgid ""
 "    If there are multiple windows of different sizes, you should take an "
 "average."
 msgstr ""
-"Veuillez saisir le numéro, la hauteur et la largeur et la distance "
+"Veuillez saisir le nombre, la hauteur et la largeur et la distance "
 "d'ouverture des fenêtres (en m).\n"
 "    S'il y a plusieurs fenêtres de différentes tailles, vous devez "
 "prendre une moyenne."
@@ -2427,16 +2424,18 @@ msgstr "La distance d'ouverture de la fenêtre (en m) est:"
 #: templates/userguide.html.j2:140
 msgid ""
 "In the case of Sliding or Side-Hung option, the length the window is "
-"moved open.\n"
-"        <em>Window opening distance example (image of open window and "
-"measuring tape):"
+"moved open."
 msgstr ""
-"Dans le cas de l'option coulissante ou halte latérale, la longueur de la "
-"fenêtre est ouverte.\n"
-"        <em> Exemple de distance d'ouverture de la fenêtre (image de la "
-"fenêtre ouverte et de la prise de mesure):"
+"Dans le cas de l'option coulissante ou charnière latérale, la longueur de"
+" la fenêtre est mesurée ouverte.\n"
 
-#: templates/userguide.html.j2:148
+#: templates/userguide.html.j2:147
+msgid "Window opening distance example (image of open window and measuring tape)"
+msgstr ""
+"Exemple de distance d'ouverture de la fenêtre (image de la fenêtre "
+"ouverte et de la prise de mesure):"
+
+#: templates/userguide.html.j2:150
 msgid ""
 "In case of Top- or Bottom-Hung, the distance between the fixed frame and "
 "the movable glazed part when open."
@@ -2444,11 +2443,11 @@ msgstr ""
 "En cas de charnière supérieure ou inférieure, la distance entre le cadre "
 "fixe et la partie vitrée mobile lorsqu'elle est ouverte."
 
-#: templates/userguide.html.j2:151
+#: templates/userguide.html.j2:153
 msgid "Notes"
 msgstr "Remarques"
 
-#: templates/userguide.html.j2:151
+#: templates/userguide.html.j2:153
 msgid ""
 "If you are unsure about the opening distance for the window, it is "
 "recommended to choose a conservative value (5 cms, 0.05m or 10cms, "
@@ -2462,7 +2461,7 @@ msgstr ""
 "Si vous ouvrez la fenêtre à différentes distances tout au long de la "
 "journée, choisissez une valeur moyenne."
 
-#: templates/userguide.html.j2:155
+#: templates/userguide.html.j2:157
 msgid ""
 "When using natural ventilation, the circulation of air is simulated as a "
 "function of the difference between the temperature inside the room and "
@@ -2487,10 +2486,10 @@ msgstr ""
 "    Enfin, vous devez spécifier si les fenêtres sont ouvertes de façon "
 "permanente (en tout temps), ou périodiquement (par intervalles pour une "
 "certaine durée et une certaine fréquence - les deux en minutes) - par ex."
-" Ouvrez la fenêtre pendant 10 minutes (durée) toutes les 60 minutes "
-"(fréquence)."
+" si vous ouvrez la fenêtre pendant 10 minutes (durée) toutes les 60 "
+"minutes (fréquence)."
 
-#: templates/userguide.html.j2:163
+#: templates/userguide.html.j2:165
 msgid ""
 "This option assumes there is neither Mechanical nor Natural ventilation "
 "in the simulation."
@@ -2498,11 +2497,11 @@ msgstr ""
 "Cette option suppose qu'il n'y a ni ventilation mécanique ni naturelle "
 "dans la simulation."
 
-#: templates/userguide.html.j2:166
+#: templates/userguide.html.j2:168
 msgid "Bioventilation"
 msgstr "Bioventilation"
 
-#: templates/userguide.html.j2:169
+#: templates/userguide.html.j2:171
 msgid ""
 "Bioventilation assumes there is a desinfection device producing "
 "biological clean air (UVC device or filter).\n"
@@ -2516,15 +2515,15 @@ msgstr ""
 "produisant de l'air biologiquement propre (appareil UVC ou filtre).\n"
 "    Le calculateur permet de simuler l'installation d'un dispositif de "
 "désinfection dans la pièce.\n"
-"    Le débit d'air recommandé pour le dispositif de ventilation Bio doit "
+"    Le débit d'air recommandé pour le dispositif de bioventilation doit "
 "correspondre à un taux de renouvellement d'air total de 3 à 10 ACH (plus "
 "il est élevé, mieux c'est, même au-delà de 10)."
 
-#: templates/userguide.html.j2:174
+#: templates/userguide.html.j2:176
 msgid "Event Data"
 msgstr "Données de l'événement"
 
-#: templates/userguide.html.j2:177
+#: templates/userguide.html.j2:179
 msgid ""
 "Here we capture the information about the event being simulated.\n"
 "    First enter the number of occupants in the space, if you have a "
@@ -2536,9 +2535,9 @@ msgstr ""
 "    Entrez d'abord le nombre d'occupants dans l'espace, si vous avez une "
 "(petite) variation du nombre de personnes, veuillez saisir la moyenne.\n"
 "    Dans le nombre de personnes occupant l'espace, vous devez spécifier "
-"le nombre d'infects."
+"le nombre d'infectés."
 
-#: templates/userguide.html.j2:182
+#: templates/userguide.html.j2:184
 msgid ""
 "As an example, for a shared office with 4 people, where one person is "
 "infected, we enter 4 occupants and 1 infected person."
@@ -2546,19 +2545,19 @@ msgstr ""
 "Par exemple, pour un bureau partagé avec 4 personnes, où une personne est"
 " infectée, nous entrons dans 4 occupants et 1 personne infectée."
 
-#: templates/userguide.html.j2:185
+#: templates/userguide.html.j2:187
 msgid "Activity type"
 msgstr "Type d'activité"
 
-#: templates/userguide.html.j2:188
+#: templates/userguide.html.j2:190
 msgid "There are predefined activities and roles in the tool at present."
 msgstr "Il existe actuellement des activités et des rôles prédéfinis dans l'outil."
 
-#: templates/userguide.html.j2:191
+#: templates/userguide.html.j2:193
 msgid "Timings"
 msgstr "Horaires"
 
-#: templates/userguide.html.j2:193
+#: templates/userguide.html.j2:196
 msgid ""
 "You should enter the time (hours:minutes) for the start and end of the "
 "simulation period (i.e. 8:30 to 17:30 for a typical office day).\n"
@@ -2577,14 +2576,14 @@ msgstr ""
 "    Il est possible de spécifier un moment différent pour l'entrée et la "
 "sortie de la personne exposée et infectée, mais pour la plupart des cas "
 "(où nous ne savons pas lequel des occupants est infecté), il est "
-"recommandé de les définir sur les mêmes valeurs À mesure que l'activité "
+"recommandé de les définir sur les mêmes valeurs à mesure que l'activité "
 "commence et finit."
 
-#: templates/userguide.html.j2:198
+#: templates/userguide.html.j2:201
 msgid "When is the event?"
 msgstr "Quand est l'événement?"
 
-#: templates/userguide.html.j2:201
+#: templates/userguide.html.j2:204
 msgid ""
 "This is included for completeness in all simulations, however it is of "
 "particular relevance to those using natural ventilation because of "
@@ -2594,7 +2593,7 @@ msgstr ""
 "est particulièrement pertinent pour ceux qui utilisent une ventilation "
 "naturelle en raison des variations de la température extérieure de l'air."
 
-#: templates/userguide.html.j2:204
+#: templates/userguide.html.j2:207
 msgid ""
 "Only the month is used by the model to retrieve the average outdoor air "
 "temperatures."
@@ -2602,15 +2601,15 @@ msgstr ""
 "Le mois est utilisé par le modèle pour récupérer les températures "
 "moyennes de l'air extérieur."
 
-#: templates/userguide.html.j2:207
+#: templates/userguide.html.j2:210
 msgid "Breaks"
 msgstr "Pauses"
 
-#: templates/userguide.html.j2:209
+#: templates/userguide.html.j2:212
 msgid "Lunch Break"
 msgstr "Heure du déjeuner"
 
-#: templates/userguide.html.j2:212
+#: templates/userguide.html.j2:215
 msgid ""
 "You have the option to specify a lunch break.\n"
 "    This will be useful if you plan to simulate a typical full working "
@@ -2636,7 +2635,7 @@ msgstr ""
 "    Voir «Split Breaks» si les occupants ne prennent pas leurs pauses en "
 "même temps."
 
-#: templates/userguide.html.j2:219 templates/userguide.html.j2:237
+#: templates/userguide.html.j2:222 templates/userguide.html.j2:240
 msgid ""
 "It should also be noted that the infection probabilities presented in the"
 " report does not take into account any potential exposures during the "
@@ -2646,11 +2645,11 @@ msgstr ""
 "présentées dans le rapport ne prennent en compte aucune exposition "
 "potentielle pendant les temps de pause."
 
-#: templates/userguide.html.j2:222
+#: templates/userguide.html.j2:225
 msgid "Coffee Breaks"
 msgstr "Pauses café"
 
-#: templates/userguide.html.j2:225
+#: templates/userguide.html.j2:228
 msgid ""
 "You have the option to choose 0(No breaks), 2 or 4 coffee breaks during "
 "the simulated period.\n"
@@ -2666,7 +2665,7 @@ msgstr ""
 "    Si les pauses-café sont prises in situ, cette option doit être "
 "définie sur «pas de pauses»."
 
-#: templates/userguide.html.j2:230
+#: templates/userguide.html.j2:233
 msgid ""
 "When enabled, the breaks are spread equally throughout the day - for "
 "example if we simulate the period from 9:00 to 18:00, with a lunch break "
@@ -2686,25 +2685,25 @@ msgstr ""
 "Lorsqu'elles sont activées, les pauses sont réparties également tout au "
 "long de la journée - par exemple si nous simulons la période de 9h00 à "
 "18h00, avec une pause déjeuner de 13h00 à 14h00 et en considérant 2 "
-"pauses-café, l'outil planifiera La première pause-café vers 11h00 et la "
+"pauses-café, l'outil planifiera la première pause-café vers 11h00 et la "
 "seconde vers 16h00.\n"
 "    Le moment exact des pauses dans la journée n'est pas particulièrement"
 " essentiel à une simulation précise, vous n'avez donc pas besoin de vous "
 "soucier des différences majeures si vous prenez une pause-café à 10h00 au"
 " lieu de 11h00.\n"
-"    La variation des cassures de café peut être modifiée par incréments "
-"de 5 minutes jusqu'à 30 minutes.\n"
-"    Notez que cela ne doit pas nécessairement être une pause-café, il "
+"    La variation des pauses café peut être modifiée par incréments de 5 "
+"minutes jusqu'à 30 minutes.\n"
+"    Notez que cela ne doit pas nécessairement être une pause-café, cela "
 "peut représenter n'importe quelle période où l'espace simulé est libéré."
 "\n"
-"    Voir «Split Breaks» si les occupants ne prennent pas leurs pauses en "
-"même temps."
-
-#: templates/userguide.html.j2:240
-msgid "Split breaks"
-msgstr "Pauses"
+"    Voir «Pauses séparées» si les occupants ne prennent pas leurs pauses "
+"en même temps."
 
 #: templates/userguide.html.j2:243
+msgid "Split breaks"
+msgstr "Pauses séparées"
+
+#: templates/userguide.html.j2:246
 msgid ""
 "You have the option to specify whether the exposed and infected person(s)"
 " break at the same time.\n"
@@ -2715,11 +2714,11 @@ msgstr ""
 "Vous avez la possibilité de spécifier si la ou les personnes exposées et "
 "infectées prennent leurs pauses en même temps.\n"
 "    Sinon, vous pouvez saisir des pauses séparées. Ceci est "
-"particulièrement différent lors de la spécification des pauses de café "
-"car ils sont répartis uniformément tout au long des temps d'activité "
+"particulièrement différent lors de la spécification des pauses café car "
+"elles sont réparties uniformément tout au long des temps d'activité "
 "spécifiés."
 
-#: templates/userguide.html.j2:247
+#: templates/userguide.html.j2:250
 msgid ""
 "If we take an example where the exposed person(s) activity time is from "
 "9:00 to 18:00 and the infected person(s) is from 10:00 to 17:00, with "
@@ -2728,22 +2727,22 @@ msgid ""
 msgstr ""
 "Si nous prenons un exemple où le temps d'activité de la personne exposée "
 "est de 9h00 à 18h00 et que la  personne infectée est de 10h00 à 17h00, "
-"les deux ont une pause déjeuner à partir de 13h00 à 14h00 et avoir 2 "
-"pauses café chacun, nous pouvons avoir deux résultats différents:"
+"les deux ont une pause déjeuner à partir de 13h00 à 14h00 et ont 2 pauses"
+" café chacun, nous pouvons avoir deux résultats différents:"
 
-#: templates/userguide.html.j2:252
+#: templates/userguide.html.j2:255
 msgid ""
 "Specify the default situtaion where both exposed and infected persons(s) "
 "have their breaks at the same time: in this case the coffee break times "
 "are calculated based on the activity time of the exposed - both will have"
 " their first coffee break around 11:00 and the second around 16:00."
 msgstr ""
-"Spécifiez la situtaion par défaut où les personnes exposées et infectées "
-"ont leurs pauses en même temps: dans ce cas, les temps de pause de café "
-"sont calculés en fonction du temps d'activité des exposés - les deux "
-"auront leur première pause au café vers 11h00 et le second vers 16h00."
+"Spécifiez la situation par défaut où les personnes exposées et infectées "
+"ont leurs pauses en même temps: dans ce cas, les temps de pause café sont"
+" calculés en fonction du temps d'activité des exposés - les deux auront "
+"leur première pause vers 11h00 et la seconde vers 16h00."
 
-#: templates/userguide.html.j2:257
+#: templates/userguide.html.j2:260
 msgid ""
 "Specify separate breaks for the infected person(s): in this case the "
 "coffee breaks will be calculated based on the different activity times "
@@ -2753,17 +2752,17 @@ msgid ""
 "break around 11:30 and the second around 15:30."
 msgstr ""
 "Spécifiez des pauses distinctes pour les personnes infectées: dans ce "
-"cas, les pauses café seront calculés sur la base des différents temps "
+"cas, les pauses café seront calculées sur la base des différents temps "
 "d'activité (c'est-à-dire exposés de 9h00 à 18h00 et infectés de 10h00 à "
-"17h00) - les personnes exposées auront leur première pause-café vers "
+"17h00) - les personnes exposées auront leur première pause café vers "
 "11h00 et la seconde vers 16h00, tandis que l'infecté aura sa première "
-"pause-café vers 11h30 et la seconde vers 15h30."
+"pause café vers 11h30 et la seconde vers 15h30."
 
-#: templates/userguide.html.j2:263
+#: templates/userguide.html.j2:266
 msgid "Face Masks"
 msgstr "Masques faciaux"
 
-#: templates/userguide.html.j2:267
+#: templates/userguide.html.j2:270
 msgid ""
 "The model allows for a simulation with either a continuous wearing of "
 "face masks throughout the duration of the event, or have the removed at "
@@ -2777,9 +2776,9 @@ msgstr ""
 "moment. Il est cependant possible de modifier cette saisie à l'aide du "
 "taux de port du masque.\n"
 "    Veuillez garder à l'esprit que les entrées des utilisateurs doivent "
-"être alignées sur les normes de santé publique applicables en vigueur."
+"être alignées sur les normes de santé publique applicables en vigueur"
 
-#: templates/userguide.html.j2:268
+#: templates/userguide.html.j2:271
 msgid ""
 "safety instructions.\n"
 "    Please check what are the applicable rules, before deciding which "
@@ -2789,7 +2788,7 @@ msgstr ""
 "    Veuillez vérifier quelles sont les règles applicables, avant de "
 "décider quelles hypothèses sont utilisées pour la simulation."
 
-#: templates/userguide.html.j2:273
+#: templates/userguide.html.j2:276
 msgid ""
 "If you have selected the Conference/Training activity type, this equates "
 "to the speakr/trainer and all participants either wearing masks "
@@ -2800,7 +2799,7 @@ msgid ""
 "assumptions are used for the simulation"
 msgstr "NA"
 
-#: templates/userguide.html.j2:278
+#: templates/userguide.html.j2:281
 msgid ""
 "For the time being only the Type 1 surgical and FFP2 masks can be "
 "selected."
@@ -2808,11 +2807,11 @@ msgstr ""
 "Pour le moment, seuls les masques chirurgicaux de type 1 et FFP2 peuvent "
 "être sélectionnés."
 
-#: templates/userguide.html.j2:282
+#: templates/userguide.html.j2:285
 msgid "Generate Report"
 msgstr "Générer un rapport"
 
-#: templates/userguide.html.j2:286
+#: templates/userguide.html.j2:289
 msgid ""
 "When you have entered all the necessary information, please click on the "
 "Generate Report button to execute the model. With the implementation of "
@@ -2823,11 +2822,11 @@ msgstr ""
 "œuvre des simulations de Monte Carlo, le navigateur pourrait prendre "
 "quelques secondes pour réagir."
 
-#: templates/userguide.html.j2:290
+#: templates/userguide.html.j2:293
 msgid "Report"
 msgstr "Rapport"
 
-#: templates/userguide.html.j2:294
+#: templates/userguide.html.j2:297
 msgid ""
 "The report will open in your web browser.\n"
 "    It contains a summary of all the input data, which will allow the "
@@ -2839,15 +2838,15 @@ msgstr ""
 "permettra de répéter la simulation si nécessaire à l'avenir, car nous "
 "améliorons le modèle."
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:306
 msgid "This part of the report shows the"
 msgstr "Cette partie du rapport montre la"
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:306
 msgid "P(I)"
 msgstr "P(I)"
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:306
 msgid ""
 "or probability of one exposed person getting infected.\n"
 "It is estimated based on the emission rate of virus into the simulated "
@@ -2868,19 +2867,19 @@ msgstr ""
 "valable que pour le mois sélectionné, car le mois suivant ou précédent "
 "aura un profil de température moyen différent."
 
-#: templates/userguide.html.j2:307
+#: templates/userguide.html.j2:310
 msgid "expected number of new cases"
-msgstr "Nombre attendu de nouveaux cas"
+msgstr "Le nombre attendu de nouveaux cas"
 
-#: templates/userguide.html.j2:307
+#: templates/userguide.html.j2:310
 msgid ""
 "for the simulation is calculated based on the probability of infection, "
 "multiplied by the number of exposed occupants."
 msgstr ""
-"car la simulation est calculée en fonction de la probabilité d'infection,"
-" multipliée par le nombre d'occupants exposés."
+"est calculé en fonction de la probabilité d'infection, multipliée par le "
+"nombre d'occupants exposés."
 
-#: templates/userguide.html.j2:309
+#: templates/userguide.html.j2:312
 msgid ""
 "The reports also analyses different alternative scenarii related to the "
 "base case."
@@ -2888,7 +2887,7 @@ msgstr ""
 "Les rapports analysent également différents scénarios alternatifs liés au"
 " cas de base."
 
-#: templates/userguide.html.j2:311
+#: templates/userguide.html.j2:314
 msgid ""
 "The graph shows the variation in the concentration of virions within the "
 "simulated volume.\n"
@@ -2898,7 +2897,7 @@ msgstr ""
 "volume simulé.\n"
 "    Il est déterminé par:"
 
-#: templates/userguide.html.j2:316
+#: templates/userguide.html.j2:319
 msgid ""
 "The presence of the infected person, who emits airborne viruses in the "
 "volume."
@@ -2906,7 +2905,7 @@ msgstr ""
 "La présence de la personne infectée, qui émet des virus aéroportés dans "
 "le volume."
 
-#: templates/userguide.html.j2:319
+#: templates/userguide.html.j2:322
 msgid ""
 "The emission rate is related to the type of activity of the infected "
 "person (sitting, light exercise), their level of vocalisation (breathing,"
@@ -2916,7 +2915,7 @@ msgstr ""
 "(exercice assis, à l'exercice léger), leur niveau de vocalisation "
 "(respiration, parler, parler fort ou crier)."
 
-#: templates/userguide.html.j2:322
+#: templates/userguide.html.j2:325
 msgid ""
 "The accumulation of virions in the volume, which is driven, among other "
 "factors, by ventilation (if applicable)."
@@ -2924,7 +2923,7 @@ msgstr ""
 "L'accumulation de virions dans le volume, qui est entraînée, entre autres"
 " facteurs, par ventilation (le cas échéant)."
 
-#: templates/userguide.html.j2:325
+#: templates/userguide.html.j2:328
 msgid ""
 "In a mechanical ventilation scenario, the removal rate is constant, based"
 " on fresh airflow supply in and out of the simulated space."
@@ -2932,7 +2931,7 @@ msgstr ""
 "Dans un scénario de ventilation mécanique, le taux d'élimination est "
 "constant, basé sur le débit d'air frais dans et hors de l'espace simulé."
 
-#: templates/userguide.html.j2:328
+#: templates/userguide.html.j2:331
 msgid ""
 "Under natural ventilation conditions, the effectiveness of ventilation "
 "relies upon the hourly temperature difference between the inside and "
@@ -2942,7 +2941,7 @@ msgstr ""
 "ventilation repose sur la différence de température horaire entre la "
 "température intérieure et extérieure de l'air."
 
-#: templates/userguide.html.j2:331
+#: templates/userguide.html.j2:334
 msgid ""
 "A Bioventilation device removes virions from the air at a constant rate "
 "and is modelled in the same way as mechanical ventilation, however air "
@@ -2954,11 +2953,11 @@ msgstr ""
 " mais l'air qui passe à travers un appareil de bioventilation est recyclé"
 " (c'est-à-dire qu'il ne s'agit pas d'air frais).\n"
 
-#: templates/userguide.html.j2:338
+#: templates/userguide.html.j2:341
 msgid "QR code"
 msgstr "QR Code"
 
-#: templates/userguide.html.j2:342
+#: templates/userguide.html.j2:345
 msgid ""
 "At the end of the report you can find a unique QR code / hyperlink for "
 "this report. This provides an automatic way to review the calculator form"
@@ -2970,7 +2969,7 @@ msgstr ""
 "calculateur avec les paramètres spécifiés correspondants.\n"
 "    Cela permet:"
 
-#: templates/userguide.html.j2:347
+#: templates/userguide.html.j2:350
 msgid ""
 "sharing reports by either scanning or clicking on the QR code to obtain a"
 " shareable link."
@@ -2978,7 +2977,7 @@ msgstr ""
 "de partager des rapports en numérisant ou en cliquant sur le QR code pour"
 " obtenir un lien partageable."
 
-#: templates/userguide.html.j2:350
+#: templates/userguide.html.j2:353
 msgid ""
 "easily regenerating reports with any new versions of the FARC model "
 "released in the future."
@@ -2986,11 +2985,11 @@ msgstr ""
 "de régénérer facilement les rapports avec toutes les nouvelles versions "
 "du modèle FARC publiées à l'avenir."
 
-#: templates/userguide.html.j2:355
+#: templates/userguide.html.j2:358
 msgid "Conclusion"
 msgstr "Conclusion"
 
-#: templates/userguide.html.j2:359
+#: templates/userguide.html.j2:362
 msgid ""
 "This tool provides informative comparisons for COVID-19 (long-range) "
 "airborne risk only - see Disclaimer\n"
@@ -2998,12 +2997,12 @@ msgid ""
 " potential improvements, please share them with the development team"
 msgstr ""
 "Cet outil fournit des comparaisons informatives pour le risque aéroporté "
-"de Covid-19 (à longue portée) uniquement - voir l'avertissement\n"
+"de Covid-19 (à longue portée) uniquement - voir l'avertissement.\n"
 "Si vous avez des commentaires sur votre expérience avec l'application ou "
 "des commentaires pour des améliorations potentielles, veuillez les "
 "partager avec l'équipe de développement"
 
-#: templates/userguide.html.j2:360
+#: templates/userguide.html.j2:363
 msgid "Send email"
 msgstr "Envoyer un e-mail"
 
