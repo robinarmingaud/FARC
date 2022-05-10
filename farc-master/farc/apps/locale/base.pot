@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-05 17:42+0200\n"
+"POT-Creation-Date: 2022-05-10 15:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.8.0\n"
+"Generated-By: Babel 2.10.1\n"
 
 #: calculator/DEFAULT_DATA.py:44 calculator/DEFAULT_DATA.py:134
 #: calculator/DEFAULT_DATA.py:183 calculator/DEFAULT_DATA.py:260
@@ -62,8 +62,8 @@ msgstr ""
 
 #: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:85
 #: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
-#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:225
-#: calculator/DEFAULT_DATA.py:226
+#: calculator/DEFAULT_DATA.py:223 calculator/DEFAULT_DATA.py:224
+#: calculator/DEFAULT_DATA.py:225 calculator/DEFAULT_DATA.py:226
 msgid "Business"
 msgstr ""
 
@@ -820,6 +820,7 @@ msgstr ""
 #: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:255
 #: templates/calculator.form.html.j2:276 templates/calculator.form.html.j2:497
 #: templates/calculator.form.html.j2:545
+#: templates/calculator.report.html.j2:406
 #: templates/calculator.report.html.j2:450
 #: templates/calculator.report.html.j2:509
 #: templates/calculator.report.html.j2:515
@@ -832,6 +833,7 @@ msgstr ""
 #: templates/calculator.form.html.j2:125 templates/calculator.form.html.j2:257
 #: templates/calculator.form.html.j2:274 templates/calculator.form.html.j2:499
 #: templates/calculator.form.html.j2:547
+#: templates/calculator.report.html.j2:406
 #: templates/calculator.report.html.j2:435
 #: templates/calculator.report.html.j2:457
 #: templates/calculator.report.html.j2:515
@@ -854,7 +856,7 @@ msgstr ""
 msgid "Ventilation type:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:157 templates/userguide.html.j2:160
+#: templates/calculator.form.html.j2:157 templates/userguide.html.j2:162
 msgid "No ventilation"
 msgstr ""
 
@@ -1206,7 +1208,7 @@ msgstr ""
 msgid "Print Report"
 msgstr ""
 
-#: templates/calculator.report.html.j2:63 templates/userguide.html.j2:299
+#: templates/calculator.report.html.j2:63 templates/userguide.html.j2:302
 msgid "Results"
 msgstr ""
 
@@ -2103,22 +2105,24 @@ msgstr ""
 #: templates/userguide.html.j2:140
 msgid ""
 "In the case of Sliding or Side-Hung option, the length the window is "
-"moved open.\n"
-"        <em>Window opening distance example (image of open window and "
-"measuring tape):"
+"moved open."
 msgstr ""
 
-#: templates/userguide.html.j2:148
+#: templates/userguide.html.j2:147
+msgid "Window opening distance example (image of open window and measuring tape)"
+msgstr ""
+
+#: templates/userguide.html.j2:150
 msgid ""
 "In case of Top- or Bottom-Hung, the distance between the fixed frame and "
 "the movable glazed part when open."
 msgstr ""
 
-#: templates/userguide.html.j2:151
+#: templates/userguide.html.j2:153
 msgid "Notes"
 msgstr ""
 
-#: templates/userguide.html.j2:151
+#: templates/userguide.html.j2:153
 msgid ""
 "If you are unsure about the opening distance for the window, it is "
 "recommended to choose a conservative value (5 cms, 0.05m or 10cms, "
@@ -2127,7 +2131,7 @@ msgid ""
 "an average value."
 msgstr ""
 
-#: templates/userguide.html.j2:155
+#: templates/userguide.html.j2:157
 msgid ""
 "When using natural ventilation, the circulation of air is simulated as a "
 "function of the difference between the temperature inside the room and "
@@ -2142,17 +2146,17 @@ msgid ""
 "(duration) every 60 minutes (frequency)."
 msgstr ""
 
-#: templates/userguide.html.j2:163
+#: templates/userguide.html.j2:165
 msgid ""
 "This option assumes there is neither Mechanical nor Natural ventilation "
 "in the simulation."
 msgstr ""
 
-#: templates/userguide.html.j2:166
+#: templates/userguide.html.j2:168
 msgid "Bioventilation"
 msgstr ""
 
-#: templates/userguide.html.j2:169
+#: templates/userguide.html.j2:171
 msgid ""
 "Bioventilation assumes there is a desinfection device producing "
 "biological clean air (UVC device or filter).\n"
@@ -2163,11 +2167,11 @@ msgid ""
 "better, even beyond 10)."
 msgstr ""
 
-#: templates/userguide.html.j2:174
+#: templates/userguide.html.j2:176
 msgid "Event Data"
 msgstr ""
 
-#: templates/userguide.html.j2:177
+#: templates/userguide.html.j2:179
 msgid ""
 "Here we capture the information about the event being simulated.\n"
 "    First enter the number of occupants in the space, if you have a "
@@ -2176,25 +2180,25 @@ msgid ""
 "how many are infected."
 msgstr ""
 
-#: templates/userguide.html.j2:182
+#: templates/userguide.html.j2:184
 msgid ""
 "As an example, for a shared office with 4 people, where one person is "
 "infected, we enter 4 occupants and 1 infected person."
 msgstr ""
 
-#: templates/userguide.html.j2:185
+#: templates/userguide.html.j2:187
 msgid "Activity type"
 msgstr ""
 
-#: templates/userguide.html.j2:188
+#: templates/userguide.html.j2:190
 msgid "There are predefined activities and roles in the tool at present."
 msgstr ""
 
-#: templates/userguide.html.j2:191
+#: templates/userguide.html.j2:193
 msgid "Timings"
 msgstr ""
 
-#: templates/userguide.html.j2:193
+#: templates/userguide.html.j2:196
 msgid ""
 "You should enter the time (hours:minutes) for the start and end of the "
 "simulation period (i.e. 8:30 to 17:30 for a typical office day).\n"
@@ -2206,32 +2210,32 @@ msgid ""
 "to set these to the same values as the activity start and end."
 msgstr ""
 
-#: templates/userguide.html.j2:198
+#: templates/userguide.html.j2:201
 msgid "When is the event?"
 msgstr ""
 
-#: templates/userguide.html.j2:201
+#: templates/userguide.html.j2:204
 msgid ""
 "This is included for completeness in all simulations, however it is of "
 "particular relevance to those using natural ventilation because of "
 "variations in outside air temperature."
 msgstr ""
 
-#: templates/userguide.html.j2:204
+#: templates/userguide.html.j2:207
 msgid ""
 "Only the month is used by the model to retrieve the average outdoor air "
 "temperatures."
 msgstr ""
 
-#: templates/userguide.html.j2:207
+#: templates/userguide.html.j2:210
 msgid "Breaks"
 msgstr ""
 
-#: templates/userguide.html.j2:209
+#: templates/userguide.html.j2:212
 msgid "Lunch Break"
 msgstr ""
 
-#: templates/userguide.html.j2:212
+#: templates/userguide.html.j2:215
 msgid ""
 "You have the option to specify a lunch break.\n"
 "    This will be useful if you plan to simulate a typical full working "
@@ -2246,18 +2250,18 @@ msgid ""
 "    See 'Split Breaks' if the occupants do not break at the same time."
 msgstr ""
 
-#: templates/userguide.html.j2:219 templates/userguide.html.j2:237
+#: templates/userguide.html.j2:222 templates/userguide.html.j2:240
 msgid ""
 "It should also be noted that the infection probabilities presented in the"
 " report does not take into account any potential exposures during the "
 "break times."
 msgstr ""
 
-#: templates/userguide.html.j2:222
+#: templates/userguide.html.j2:225
 msgid "Coffee Breaks"
 msgstr ""
 
-#: templates/userguide.html.j2:225
+#: templates/userguide.html.j2:228
 msgid ""
 "You have the option to choose 0(No breaks), 2 or 4 coffee breaks during "
 "the simulated period.\n"
@@ -2267,7 +2271,7 @@ msgid ""
 "breaks'."
 msgstr ""
 
-#: templates/userguide.html.j2:230
+#: templates/userguide.html.j2:233
 msgid ""
 "When enabled, the breaks are spread equally throughout the day - for "
 "example if we simulate the period from 9:00 to 18:00, with a lunch break "
@@ -2285,11 +2289,11 @@ msgid ""
 "    See 'Split Breaks' if the occupants do not break at the same time."
 msgstr ""
 
-#: templates/userguide.html.j2:240
+#: templates/userguide.html.j2:243
 msgid "Split breaks"
 msgstr ""
 
-#: templates/userguide.html.j2:243
+#: templates/userguide.html.j2:246
 msgid ""
 "You have the option to specify whether the exposed and infected person(s)"
 " break at the same time.\n"
@@ -2298,7 +2302,7 @@ msgid ""
 "throughout the activity times specified."
 msgstr ""
 
-#: templates/userguide.html.j2:247
+#: templates/userguide.html.j2:250
 msgid ""
 "If we take an example where the exposed person(s) activity time is from "
 "9:00 to 18:00 and the infected person(s) is from 10:00 to 17:00, with "
@@ -2306,7 +2310,7 @@ msgid ""
 "each, we can have two different results:"
 msgstr ""
 
-#: templates/userguide.html.j2:252
+#: templates/userguide.html.j2:255
 msgid ""
 "Specify the default situtaion where both exposed and infected persons(s) "
 "have their breaks at the same time: in this case the coffee break times "
@@ -2314,7 +2318,7 @@ msgid ""
 " their first coffee break around 11:00 and the second around 16:00."
 msgstr ""
 
-#: templates/userguide.html.j2:257
+#: templates/userguide.html.j2:260
 msgid ""
 "Specify separate breaks for the infected person(s): in this case the "
 "coffee breaks will be calculated based on the different activity times "
@@ -2324,11 +2328,11 @@ msgid ""
 "break around 11:30 and the second around 15:30."
 msgstr ""
 
-#: templates/userguide.html.j2:263
+#: templates/userguide.html.j2:266
 msgid "Face Masks"
 msgstr ""
 
-#: templates/userguide.html.j2:267
+#: templates/userguide.html.j2:270
 msgid ""
 "The model allows for a simulation with either a continuous wearing of "
 "face masks throughout the duration of the event, or have the removed at "
@@ -2338,14 +2342,14 @@ msgid ""
 " applicable public health"
 msgstr ""
 
-#: templates/userguide.html.j2:268
+#: templates/userguide.html.j2:271
 msgid ""
 "safety instructions.\n"
 "    Please check what are the applicable rules, before deciding which "
 "assumptions are used for the simulation."
 msgstr ""
 
-#: templates/userguide.html.j2:273
+#: templates/userguide.html.j2:276
 msgid ""
 "If you have selected the Conference/Training activity type, this equates "
 "to the speakr/trainer and all participants either wearing masks "
@@ -2356,28 +2360,28 @@ msgid ""
 "assumptions are used for the simulation"
 msgstr ""
 
-#: templates/userguide.html.j2:278
+#: templates/userguide.html.j2:281
 msgid ""
 "For the time being only the Type 1 surgical and FFP2 masks can be "
 "selected."
 msgstr ""
 
-#: templates/userguide.html.j2:282
+#: templates/userguide.html.j2:285
 msgid "Generate Report"
 msgstr ""
 
-#: templates/userguide.html.j2:286
+#: templates/userguide.html.j2:289
 msgid ""
 "When you have entered all the necessary information, please click on the "
 "Generate Report button to execute the model. With the implementation of "
 "Monte Carlo simulations, the browser might take a few secounds to react."
 msgstr ""
 
-#: templates/userguide.html.j2:290
+#: templates/userguide.html.j2:293
 msgid "Report"
 msgstr ""
 
-#: templates/userguide.html.j2:294
+#: templates/userguide.html.j2:297
 msgid ""
 "The report will open in your web browser.\n"
 "    It contains a summary of all the input data, which will allow the "
@@ -2385,15 +2389,15 @@ msgid ""
 "model."
 msgstr ""
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:306
 msgid "This part of the report shows the"
 msgstr ""
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:306
 msgid "P(I)"
 msgstr ""
 
-#: templates/userguide.html.j2:303
+#: templates/userguide.html.j2:306
 msgid ""
 "or probability of one exposed person getting infected.\n"
 "It is estimated based on the emission rate of virus into the simulated "
@@ -2406,62 +2410,62 @@ msgid ""
 "The"
 msgstr ""
 
-#: templates/userguide.html.j2:307
+#: templates/userguide.html.j2:310
 msgid "expected number of new cases"
 msgstr ""
 
-#: templates/userguide.html.j2:307
+#: templates/userguide.html.j2:310
 msgid ""
 "for the simulation is calculated based on the probability of infection, "
 "multiplied by the number of exposed occupants."
 msgstr ""
 
-#: templates/userguide.html.j2:309
+#: templates/userguide.html.j2:312
 msgid ""
 "The reports also analyses different alternative scenarii related to the "
 "base case."
 msgstr ""
 
-#: templates/userguide.html.j2:311
+#: templates/userguide.html.j2:314
 msgid ""
 "The graph shows the variation in the concentration of virions within the "
 "simulated volume.\n"
 "    It is determined by:"
 msgstr ""
 
-#: templates/userguide.html.j2:316
+#: templates/userguide.html.j2:319
 msgid ""
 "The presence of the infected person, who emits airborne viruses in the "
 "volume."
 msgstr ""
 
-#: templates/userguide.html.j2:319
+#: templates/userguide.html.j2:322
 msgid ""
 "The emission rate is related to the type of activity of the infected "
 "person (sitting, light exercise), their level of vocalisation (breathing,"
 " speaking or shouting)."
 msgstr ""
 
-#: templates/userguide.html.j2:322
+#: templates/userguide.html.j2:325
 msgid ""
 "The accumulation of virions in the volume, which is driven, among other "
 "factors, by ventilation (if applicable)."
 msgstr ""
 
-#: templates/userguide.html.j2:325
+#: templates/userguide.html.j2:328
 msgid ""
 "In a mechanical ventilation scenario, the removal rate is constant, based"
 " on fresh airflow supply in and out of the simulated space."
 msgstr ""
 
-#: templates/userguide.html.j2:328
+#: templates/userguide.html.j2:331
 msgid ""
 "Under natural ventilation conditions, the effectiveness of ventilation "
 "relies upon the hourly temperature difference between the inside and "
 "outside air temperature."
 msgstr ""
 
-#: templates/userguide.html.j2:331
+#: templates/userguide.html.j2:334
 msgid ""
 "A Bioventilation device removes virions from the air at a constant rate "
 "and is modelled in the same way as mechanical ventilation, however air "
@@ -2469,11 +2473,11 @@ msgid ""
 " air)."
 msgstr ""
 
-#: templates/userguide.html.j2:338
+#: templates/userguide.html.j2:341
 msgid "QR code"
 msgstr ""
 
-#: templates/userguide.html.j2:342
+#: templates/userguide.html.j2:345
 msgid ""
 "At the end of the report you can find a unique QR code / hyperlink for "
 "this report. This provides an automatic way to review the calculator form"
@@ -2481,23 +2485,23 @@ msgid ""
 "    This allows for:"
 msgstr ""
 
-#: templates/userguide.html.j2:347
+#: templates/userguide.html.j2:350
 msgid ""
 "sharing reports by either scanning or clicking on the QR code to obtain a"
 " shareable link."
 msgstr ""
 
-#: templates/userguide.html.j2:350
+#: templates/userguide.html.j2:353
 msgid ""
 "easily regenerating reports with any new versions of the FARC model "
 "released in the future."
 msgstr ""
 
-#: templates/userguide.html.j2:355
+#: templates/userguide.html.j2:358
 msgid "Conclusion"
 msgstr ""
 
-#: templates/userguide.html.j2:359
+#: templates/userguide.html.j2:362
 msgid ""
 "This tool provides informative comparisons for COVID-19 (long-range) "
 "airborne risk only - see Disclaimer\n"
@@ -2505,7 +2509,7 @@ msgid ""
 " potential improvements, please share them with the development team"
 msgstr ""
 
-#: templates/userguide.html.j2:360
+#: templates/userguide.html.j2:363
 msgid "Send email"
 msgstr ""
 
