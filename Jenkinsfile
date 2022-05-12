@@ -1,7 +1,10 @@
-pipeline {  environment {
+pipeline {  
+  environment {
     registry = "ingenicaflowr/FARC"
     registryCredential = 'Dockerhub'
-  }  agent any  stages {
+  }  
+  agent any  
+  stages {
     stage('Building image') {
       steps{
         script {
@@ -18,5 +21,5 @@ pipeline {  environment {
         }
       }
     }
-}
+  }
 }
