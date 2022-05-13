@@ -9,7 +9,7 @@ pipeline {
       steps{
         sleep 3
         script {
-          dockerImage = docker.build("ingenicaflowr/FARC:latest")
+          dockerImage = docker.build("ingenicaflowr/farc:latest")
         }
       }
     }
