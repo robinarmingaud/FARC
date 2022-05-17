@@ -5,9 +5,13 @@ pipeline {
   }  
   agent any  
   stages {
+    stage('Checkout') {
+      steps{
+        checkout scm
+      }
+    }
     stage('Building image') {
       steps{
-        checkout
         script {
           dockerImage = docker.build("ingenicaflowr/farc:latest")
         }
