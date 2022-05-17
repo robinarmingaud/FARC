@@ -5,29 +5,16 @@ pipeline {
   }  
   agent any  
   stages {
-    stage('Checkout') {
+    stage('Build and Deploy') {
             steps {
                 script {
                     checkout scm
-                    sh "git-lfs pull"
+                    dockerImage = docker.build("ingenicaflowr/farc:latest")
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
                 }
             }
         }
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build("ingenicaflowr/farc:latest")
-        }
       }
     }
-    stage('Deploy Image') {
-      steps{
-         script {
-            docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
-  }
 }
