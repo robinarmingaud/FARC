@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Building image') {
       steps{
-        sleep 3
+        checkout
         script {
           dockerImage = docker.build("ingenicaflowr/farc:latest")
         }
