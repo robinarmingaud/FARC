@@ -5,6 +5,13 @@ pipeline {
   }  
   agent any  
   stages {
+    stage('Clean') {
+      steps {
+        script {
+          cleanWs()
+        }
+      }
+    }
     stage('Build and Deploy') {
             steps {
                 script {
