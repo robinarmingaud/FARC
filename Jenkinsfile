@@ -25,7 +25,9 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-            dockerImage.push("fl-git-213.flow-r.me:5000/farc:latest")
+            docker.withRegistry('') {
+                    dockerImage.push()
+                }
           }
         }
       }
