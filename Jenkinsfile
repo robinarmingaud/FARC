@@ -18,7 +18,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build fl-git-213.flow-r.me:5000/farc:latest
+          dockerImage = docker.build(fl-git-213.flow-r.me:5000/farc:latest)
         }
       }
     }
