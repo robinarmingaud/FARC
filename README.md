@@ -23,31 +23,31 @@ The objective is to facilitate targeted decision-making and investment through c
 While the SARS-CoV-2 virus is in circulation among the population, the notion of 'zero risk' or 'completely safe scenario' does not exist.
 Each event modelled is unique, and the results generated therein are only as accurate as the inputs and assumptions.
 
-##FARC modifications
-###Major Changes
--Added a mask wear ratio 
--Added new activities
--Added separate activities for infected and exposed people
--More detailed report with additional graphs : probability of infection and cumulative dose comparison 
--When windows opening is selected, we now consider windows opened suring breaks and intervals are computed from the last time windows were opened
+## FARC modifications
+### Major Changes
+- Added a mask wear ratio 
+- Added new activities
+- Added separate activities for infected and exposed people
+- More detailed report with additional graphs : probability of infection and cumulative dose comparison 
+- When windows opening is selected, we now consider windows opened suring breaks and intervals are computed from the last time windows were opened
 
-###Internationalization
--Made all the application translatable and provided a French translation
--Automatic language choice based on browser preferences
+### Internationalization
+- Made all the application translatable and provided a French translation
+- Automatic language choice based on browser preferences
 
-###Code
--Separation of HTML/CSS/JS
--Gathering default form data in a single file
--Deletion of unused templates
--Reduced Monte-Carlo draws from 250 000 to 60 000
--Bug patch (window opening not working, interface bugs, colors in report printing)
+### Code
+- Separation of HTML/CSS/JS
+- Gathering default form data in a single file
+- Deletion of unused templates
+- Reduced Monte-Carlo draws from 250 000 to 60 000
+- Bug patch (window opening not working, interface bugs, colors in report printing)
 
-###Interface
--Bug patch
--Minor changes in style sheets
+### Interface
+- Bug patch
+- Minor changes in style sheets
 
-###CI
--Added automatic docker image build and push to FARC registry
+### CI
+- Added automatic docker image build and push to FARC registry
 
 ## Authors
 CARA was developed by following members of CERN - European Council for Nuclear Research (visit https://home.cern/):
