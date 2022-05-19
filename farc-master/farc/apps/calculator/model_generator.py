@@ -276,7 +276,7 @@ class FormData:
         
         if self.ventilation_type == 'natural_ventilation':
             if self.window_opening_regime == 'windows_open_periodically':
-                window_interval_boundaries = models.PeriodicInterval(self.windows_frequency, self.windows_duration, min(self.infected_start, self.exposed_start), max(self.infected_finish, self.exposed_finish)).boundaries() 
+                window_interval_boundaries = models.PeriodicInterval(self.windows_frequency, self.windows_duration, min(self.infected_start, self.exposed_start)/60).boundaries() 
                 breaks_interval_boundaries = self.exposed_lunch_break_times()+self.infected_lunch_break_times()+self.exposed_coffee_break_times()
                 for t1, t2 in breaks_interval_boundaries : 
                         window_interval_boundaries = window_interval_boundaries + ((t1/60, t2/60),)
