@@ -2,23 +2,32 @@ pipeline {
   environment {
     registry = "fl-git-213.flow-r.me:5000"
   }  
-  agent any  
+  agent any
   stages {
-    stage('Clean') {
+    stage('Checkout') {
+      steps{
+        checkout scm
+      }
+    }
+    stage('Cloning Git') {
       steps {
+        git([url: 'http://fl-git-213.flow-r.me:11180/CI/FARC.git', branch: 'main'])
+ 
+      }
+    }
+    stage('Building image') {
+      steps{
         script {
-          cleanWs()
+          dockerImage = docker.build fl-git-213.flow-r.me:5000/farc:latest
         }
       }
     }
-    stage('Build and Deploy') {
-            steps {
-                script {
-                    sh 'git lfs pull'
-                    sh 'docker build -t fl-git-213.flow-r.me:5000/farc:latest .'
-                    sh 'docker push fl-git-213.flow-r.me:5000/farc:latest'
-                }
-            }
+    stage('Deploy Image') {
+      steps{
+        script {
+            dockerImage.push(fl-git-213.flow-r.me:5000/farc:latest)
+          }
         }
       }
-  }
+    }
+}
