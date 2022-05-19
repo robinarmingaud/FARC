@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Cloning Git') {
       steps {
-        git([url: 'http://fl-git-213.flow-r.me:11180/CI/FARC.git', branch: 'main'])
+        git([url: 'http://fl-git-213.flow-r.me:11180/CI/FARC.git', branch: 'main', credentialsId: "472a59da-9b35-42cb-bf03-6996a91c0551"])
  
       }
     }
