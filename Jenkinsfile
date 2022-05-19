@@ -14,10 +14,10 @@ pipeline {
     stage('Build and Deploy') {
             steps {
                 script {
-                    checkout scm
-                    dockerImage = docker.build("fl-git-213.flow-r.me:5000/farc:latest")
-                    docker.withRegistry( '') {
-                    dockerImage.push()
+                    sh 'apt-get install git-lfs'
+                    sh 'git lfs pull'
+                    sh 'docker build -t fl-git-213.flow-r.me:5000/farc:latest .'
+                    sh 'docker push fl-git-213.flow-r.me:5000/farc:latest'
                 }
             }
         }
