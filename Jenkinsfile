@@ -1,7 +1,6 @@
 pipeline {  
   environment {
-    registry = "ingenicaflowr/FARC"
-    registryCredential = 'Dockerhub'
+    registry = "fl-git-213.flow-r.me:5000"
   }  
   agent any  
   stages {
@@ -16,8 +15,8 @@ pipeline {
             steps {
                 script {
                     checkout scm
-                    dockerImage = docker.build("ingenicaflowr/farc:latest")
-                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage = docker.build("fl-git-213.flow-r.me:5000/farc:latest")
+                    docker.withRegistry( '') {
                     dockerImage.push()
                 }
             }
