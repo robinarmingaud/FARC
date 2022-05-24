@@ -128,14 +128,11 @@ class PeriodicInterval(Interval):
     #: Time at which the first person (infected or exposed) arrives at the enclosed space.
     start: float = 0.0
 
-    #: Duration of the event (min)
-    end: float = 1440.0
-
     def boundaries(self) -> BoundarySequence_t:
         if self.period == 0 or self.duration == 0:
             return tuple()
         result = []
-        for i in np.arange((self.start / 60)+ self.period/60 , self.end/60 , self.period / 60):
+        for i in np.arange(self.start, 24, self.period / 60):
             # NOTE: It is important that the time type is float, not np.float, in
             # order to allow hashability (for caching).
             result.append((float(i), float(i + self.duration / 60)))
@@ -1152,7 +1149,8 @@ class ExposureModel:
             # we compute first the mean of all diameter-dependent quantities
             # to perform properly the Monte-Carlo integration over
             # particle diameters (doing things in another order would
-            # lead to wrong results).
+            # lead to wrong results). NB : taking the mean of the exposure corresponds 
+            # to integrating
             dep_exposure_integrated = np.array(self._normed_exposure_between_bounds(time1, time2) *
                                                aerosols *
                                                fdep).mean()

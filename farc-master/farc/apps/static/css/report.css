@@ -151,6 +151,10 @@ p.notes {
         visibility: inherit !important;
     }
 
+    #download-pdf{
+        display : none !important
+    }
+    
     .collapse {
         display: block !important;
     }
