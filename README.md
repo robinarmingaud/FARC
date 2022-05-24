@@ -29,7 +29,7 @@ Each event modelled is unique, and the results generated therein are only as acc
 - Added new activities
 - Added separate activities for infected and exposed people
 - More detailed report with additional graphs : probability of infection and cumulative dose comparison 
-- When windows opening is selected, we now consider windows opened suring breaks and intervals are computed from the last time windows were opened
+- When windows opening is selected, we now consider windows opened during breaks
 
 ### Internationalization
 - Made all the application translatable and provided a French translation
