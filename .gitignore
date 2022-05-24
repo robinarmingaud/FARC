@@ -12,6 +12,7 @@ __pycache__
 env*
 venv
 support
+Jenkinsfile
 
 # openshift config check folder
 app-config/openshift/test-cara
