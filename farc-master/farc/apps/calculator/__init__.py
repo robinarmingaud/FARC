@@ -182,6 +182,18 @@ class AboutPage(BaseRequestHandler):
         self.finish(report)
 
 
+
+class MultiRoomForm(BaseRequestHandler):
+    def get(self):
+        template_environment = self.settings["template_environment"]
+        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        template = template_environment.get_template("multi_room_form.html.j2")
+        report = template.render(user=self.current_user,
+            xsrf_form_html=self.xsrf_form_html(),
+            calculator_prefix=self.settings["calculator_prefix"])
+        self.finish(report)
+
+
 class CalculatorForm(BaseRequestHandler):
     def get(self):
         with open('farc/apps/static/js/form.js', 'r') as original: data = original.read().splitlines(True)
@@ -254,6 +266,7 @@ def make_app(
         (calculator_prefix + r'/baseline-model/result', StaticModel),
         (calculator_prefix + r'/user-guide', ReadmeHandler),
         (calculator_prefix + r'/static/(.*)', StaticFileHandler, {'path': calculator_static_dir}),
+        (calculator_prefix + r'/multi_room', MultiRoomForm),
     ]
     cara_templates = Path(__file__).parent.parent / "templates"
     calculator_templates = Path(__file__).parent / "templates"
