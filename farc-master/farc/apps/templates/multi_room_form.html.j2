@@ -29,9 +29,11 @@
 
 <h1>Rooms</h1>
 <form action="" method="get">
+<div>
+<div class="RoomForm">
 <table>
-<tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th><br></tr>
-<tr class="row_to_clone">
+<tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th></tr>
+<tr>
   <td><div>0</div>
   <td><input type="text" name="name[0]"></td>
   <td><input type="text" name="volume[0]"></td>
@@ -42,11 +44,32 @@
   <td><input type="radio" name="ventilation[0]">Natural</td>
   <td><input type="text" name="duration[0]"></td>
   <td><input type="text" name="frequency[0]"></td>
+</tr>
+</tbody></table>
+<table>
+<tbody><tr><th>Window height</th><th>Window width</th><th>Window number</th><th>Window opening regime</th><th></th><th>Opening distance</th><th>Month</th><th></th></tr>
+<tr>
   <td><input type="text" name="height[0]"></td>
   <td><input type="text" name="width[0]"></td>
   <td><input type="text" name="number[0]"></td>
+  <td><input type="radio" name="openingRegime[0]">Periodically</td>
+  <td><input type="radio" name="openingRegime[0]">Permanently</td>
+  <td><input type="text" name="openingDistance[0]"></td>
+  <td><input type="text" name="month[0]"></td>
+  <td><input type="checkbox" name="openingRegime[0]">Room heating</td>
 </tr>
 </tbody></table>
+<table>
+<tbody><tr><th>Air supply</th><th></th><th>Biov Amount</th></tr>
+<tr>
+  <td><input type="text" name="airSupply[0]"></td>
+  <td><input type="checkbox" name="biovOption[0]">Biov option</td>
+  <td><input type="text" name="biovAmount[0]"></td>
+</tr>
+</tbody></table>
+<br>
+</div>
+</div>
 
 <div><input type="submit"></div>
 

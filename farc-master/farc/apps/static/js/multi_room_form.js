@@ -7,7 +7,7 @@ function addRow() {
      * be serve as a template. */
     if (!document.getElementsByTagName)
         return false; /* DOM not supported */
-    elements = document.getElementsByTagName("tr");
+    elements = document.getElementsByClassName("RoomForm");
     templateRow = null;
     rowCount = 0;
     for (i = 0; i < elements.length; i++) {
@@ -28,7 +28,7 @@ function addRow() {
         } 
         
         /* This is not one of the rows we're looking for.    Move along. */
-        if (className != "row_to_clone")
+        if (className != "RoomForm")
             continue;
         
         /* This *is* a row we're looking for. */

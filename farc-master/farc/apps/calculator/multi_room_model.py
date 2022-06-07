@@ -20,11 +20,9 @@ class Ventilation:
     window_width: float
     windows_number: int
     window_opening_regime: str
-    mechanical_ventilation_type: str
     opening_distance: float
     event_month: str
     room_heating_option: int
-    air_changes: float
     air_supply: float
     biov_amount: float
     biov_option: int
