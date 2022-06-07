@@ -1,6 +1,6 @@
 pipeline {  
   environment {
-    registry = "fl-git-213.flow-r.fr:5000"
+    registry = "dockerhub.flow-r.fr"
   }  
   agent any
   stages {
@@ -18,7 +18,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build("fl-git-213.flow-r.fr:5000/farc:latest")
+          dockerImage = docker.build("dockerhub.flow-r.fr/farc:latest")
         }
       }
     }
