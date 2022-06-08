@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from re import I
 import numpy as np
 
 from farc import models
@@ -148,6 +147,12 @@ class Schedule:
                 end = event.end
         return start,end 
 
+    def get_event_by_time(self, time):
+        for event in self.events:
+            if event.start <= time and event.end >= time :
+                return event
+        raise ValueError
+
 
 @dataclass
 class Person(Role):
@@ -181,6 +186,7 @@ class Room(RoomType):
     temperature : float
     occupants: np.ndarray = np.array([], dtype= Person)
     building: Building = None
+    virus_concentration: float = 0
 
     def get_occupant_id(self, person : Person):
         i=0
@@ -201,9 +207,45 @@ class Room(RoomType):
         occupant.location = None
 
 
+@dataclass
+class Simulation:
+    rooms: np.ndarray = np.array([], dtype= Room)
+    people: np.ndarray = np.array([], dtype= Person)
 
+    def get_room_id(self, room : Room):
+        i=0
+        for element in self.rooms :
+            if element == room :
+                return i
+            i += 1
 
-#tests
-room1 = Room(id = 1, humidity = 0.4, type_name = 'Office1', volume = 30, ventilation= models.PeriodicInterval(period=120, duration=120))
+    def add_room(self, room : Room): 
+        self.rooms = np.append(self.rooms, room)
 
-person_test = Person(id=1, infected = False, name = 'Office_worker')
+    def delete_room(self, room : Room):
+        self.rooms = np.delete(self.rooms, self.get_room_id(room))
+
+    def get_person_id(self, person : Person):
+        i=0
+        for element in self.people :
+            if element == person :
+                return i
+            i += 1
+
+    def add_person(self, person : Person):
+        self.people = np.append(self.people, person)
+
+    def delete_person(self, person: Person):
+        self.people = np.delete(self.people, self.get_person_id(person))
+
+    def getAllEvents(self):
+        events = np.array([], dtype=Event)
+        for person in self.people:
+            for event in person.schedule.events:
+                events = np.append(events, event)
+        
+
+@dataclass
+class Report:
+    simulations: np.ndarray = np.array([], dtype= Simulation)
+
