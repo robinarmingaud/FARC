@@ -1,7 +1,23 @@
 from dataclasses import dataclass
 import numpy as np
+import datetime
+import html
+import logging
+import os
+import typing
 
+import numpy as np
+import tornado
+
+from farc.apps.calculator import model_generator
 from farc import models
+from farc import data
+import farc.data.weather
+import farc.monte_carlo as mc
+from .. import calculator
+from farc.monte_carlo.data import activity_distributions, virus_distributions, mask_distributions
+from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factors, expiration_distributions
+from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES, set_locale
 
 
 @dataclass
@@ -27,7 +43,7 @@ class Ventilation:
     biov_option: int
 
     def ventilation(self) -> models._VentilationBase:
-        #FormData ventilation function
+        """FormData ventilation function from CARA model"""
         always_on = models.PeriodicInterval(period=120, duration=120)
         # Initializes a ventilation instance as a window if 'natural_ventilation' is selected, or as a BIOV-filter otherwise
         # If natural_ventilation and windows_open_periodically are selected, windows will be open during lunch and coffee breaks
@@ -99,10 +115,6 @@ class Role:
     name: str
 
 
-@dataclass
-class Action:
-    expiration : models._ExpirationBase
-    activity : models.Activity
 
 @dataclass
 class Mask:
@@ -118,7 +130,7 @@ class Event:
     end : int
     location : RoomType
     mask : Mask
-    activity : Action
+    activity : str
 
 @dataclass
 class Schedule:
@@ -158,9 +170,11 @@ class Schedule:
 class Person(Role):
     id:int 
     infected: bool
+    schedule: Schedule
+    current_event: Event = None
     cumulative_dose: float = 0
     location: RoomType = None
-    schedule = Schedule
+    
 
     def __init__(self, name : str, id:int, infected: bool, cumulative_dose: float = 0, location: RoomType = None):
         self.id = id
@@ -177,6 +191,32 @@ class Person(Role):
             self.location.delete_occupant(self)
         room.add_occupant(self)
         self.location = room
+
+    def set_event(self, event: Event):
+        self.current_event = event
+
+    def infected_population(self, simulation):
+        """Adaptation of infected population from model_generator"""
+        virus = virus_distributions[simulation.virus_type]
+        scenario_activity_and_expiration = {}
+        for activity in ACTIVITY_TYPES :
+            scenario_activity_and_expiration[activity['Id']] = (activity['Activity'], activity['Expiration'])
+        [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.current_event.activity]
+        activity = activity_distributions[activity_defn]
+        expiration = model_generator.build_expiration(expiration_defn)
+
+        """TODO infected = mc.InfectedPopulation(
+            number=1,
+            virus=virus,
+            presence=models.PeriodicInterval(120,120),
+            mask=self.mask(),
+            mask_wear_ratio=self.infected_mask_wear_ratio,
+            activity=activity,
+            expiration=expiration,
+            host_immunity=0.,
+        )"""
+        return """infected"""
+        
 
 
 @dataclass
@@ -207,8 +247,16 @@ class Room(RoomType):
         occupant.location = None
 
 
+
+    def build_model(self, time, infected : Person, simulation):
+        room = models.Room(self.volume,self.humidity)
+        ventilation = self.ventilation.ventilation()
+        infected_population = infected.infected_population(simulation)
+
+
 @dataclass
 class Simulation:
+    virus_type : str
     rooms: np.ndarray = np.array([], dtype= Room)
     people: np.ndarray = np.array([], dtype= Person)
 

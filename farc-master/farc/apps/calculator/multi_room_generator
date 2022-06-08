@@ -13,6 +13,7 @@ class MultiGenerator:
     n = simulation.people.size
 
     def interesting_times(self):
+        """Return every moment someone change room"""
         times = []
         for person in self.simulation.people:
             for event in person.schedule.events:
@@ -27,14 +28,20 @@ class MultiGenerator:
             simulation_copy = deepcopy(self.simulation)
             times = self.interesting_times()
             for time1, time2 in zip(times[:-1], times[1:]):
-                self.calculate_event(time1,time2,simulation_copy)
+                self.calculate_event(time1,time2,simulation_copy, infected = person)
 
 
-    def calculate_event(time1, time2, simulation : multi_room_model.Simulation):
+    def calculate_event(self, time1, time2, simulation : multi_room_model.Simulation, infected: multi_room_model.Person):
         for person in simulation.people:
             try :
-                person.set_location(person.schedule.get_event_by_time(time1).location)
+                current_event = person.schedule.get_event_by_time(time1)
+                person.set_location(current_event.location)
+                person.set_event(current_event)
             except ValueError :
                 if person.location != None :
                     person.location.delete_occupant(person)
+        for room in simulation.rooms:
+            model = room.build_model(infected, simulation)
+            for person in room.occupants:
+                return """TODO"""
             
