@@ -9,7 +9,7 @@ import typing
 import numpy as np
 import tornado
 
-from farc.apps.calculator import model_generator
+from farc.apps.calculator import ConcentrationModel, model_generator
 from farc import models
 from farc import data
 import farc.data.weather
@@ -114,22 +114,13 @@ class RoomType:
 class Role:
     name: str
 
-
-
-@dataclass
-class Mask:
-    type: str
-    ratio: float = 0
-
-    def is_worn(self) : 
-        return self.ratio > 0
-
 @dataclass
 class Event:
     start : int
     end : int
     location : RoomType
-    mask : Mask
+    mask_ratio : int
+    mask_type : str
     activity : str
 
 @dataclass
@@ -171,17 +162,20 @@ class Person(Role):
     id:int 
     infected: bool
     schedule: Schedule
+    exposure_model: models.ExposureModel = None
     current_event: Event = None
     cumulative_dose: float = 0
     location: RoomType = None
-    
 
-    def __init__(self, name : str, id:int, infected: bool, cumulative_dose: float = 0, location: RoomType = None):
+
+    def __init__(self, name : str, id:int, infected: bool, cumulative_dose: float = 0, location: RoomType = None, current_event: Event = None, exposure_model = None):
         self.id = id
         self.name = name
         self.infected = infected
         self.cumulative_dose = cumulative_dose
         self.location = location
+        self.current_event = current_event
+        self.exposure_model = exposure_model
         if self.location is not None:
             self.location.add_occupant(self)
 
@@ -195,7 +189,17 @@ class Person(Role):
     def set_event(self, event: Event):
         self.current_event = event
 
-    def infected_population(self, simulation):
+    def mask(self) -> models.Mask:
+    # Initializes the mask type if mask wearing is "continuous", otherwise instantiates the mask attribute as
+    # the "No mask"-mask
+    # Adaptation from FormData mask method
+        if self.current_event.mask_ratio > 0:
+            mask = mask_distributions[self.current_event.mask_type]
+        else:
+            mask = models.Mask.types['No mask']
+        return mask
+
+    def infected_population(self, simulation, time1, time2):
         """Adaptation of infected population from model_generator"""
         virus = virus_distributions[simulation.virus_type]
         scenario_activity_and_expiration = {}
@@ -205,19 +209,37 @@ class Person(Role):
         activity = activity_distributions[activity_defn]
         expiration = model_generator.build_expiration(expiration_defn)
 
-        """TODO infected = mc.InfectedPopulation(
+        return mc.InfectedPopulation(
             number=1,
             virus=virus,
-            presence=models.PeriodicInterval(120,120),
+            presence=models.SpecificInterval(time1/60, time2/60),
             mask=self.mask(),
-            mask_wear_ratio=self.infected_mask_wear_ratio,
+            mask_wear_ratio=self.current_event.mask_ratio,
             activity=activity,
             expiration=expiration,
-            host_immunity=0.,
-        )"""
-        return """infected"""
-        
+            host_immunity=0.,)
 
+    def exposed_population(self, time1, time2):
+        scenario_activity = {}
+        for activity in ACTIVITY_TYPES : 
+            scenario_activity[activity['Id']] = activity['Activity']
+
+        exposed_activity_defn = scenario_activity[self.current_event.activity]
+        activity = activity_distributions[exposed_activity_defn]
+
+        exposed = mc.Population(
+            number=1,
+            presence= models.SpecificInterval(time1/60, time2/60),
+            activity= activity,
+            mask=self.mask(),
+            mask_wear_ratio=self.current_event.mask_ratio,
+            host_immunity=0.,
+        )
+        return exposed
+
+    def calculate_data(self, times):
+        if self.infected :
+            """TODO"""
 
 @dataclass
 class Room(RoomType):
@@ -226,7 +248,8 @@ class Room(RoomType):
     temperature : float
     occupants: np.ndarray = np.array([], dtype= Person)
     building: Building = None
-    virus_concentration: float = 0
+    virus_concentration: models._VectorisedFloat = 0
+    cumulative_exposure: models._VectorisedFloat = 0
 
     def get_occupant_id(self, person : Person):
         i=0
@@ -234,6 +257,7 @@ class Room(RoomType):
             if element == person :
                 return i
             i += 1
+        return "Not in this room"
 
     def set_building(self, building : Building):
         self.building = building
@@ -243,16 +267,29 @@ class Room(RoomType):
         occupant.location = self
 
     def delete_occupant(self, occupant: Person):
-        self.occupants = np.delete(self.occupants, self.get_occupant_id(occupant))
-        occupant.location = None
+        id = self.get_occupant_id(occupant)
+        if id == "Not in this room":
+            return id
+        else :
+            self.occupants = np.delete(self.occupants, id)
+            occupant.location = None
 
-
-
-    def build_model(self, time, infected : Person, simulation):
+    def build_model(self, infected : Person, simulation, time1 : int, time2: int):
         room = models.Room(self.volume,self.humidity)
         ventilation = self.ventilation.ventilation()
-        infected_population = infected.infected_population(simulation)
+        infected_population = infected.infected_population(simulation, time1, time2)
+        concentration_model = mc.ConcentrationModel(
+                room=room,
+                ventilation=ventilation,
+                infected=infected_population,
+                evaporation_factor=0.3,
+                previous_concentration=self.virus_concentration
+        )
+        for person in self.occupants :
+            exposed_population = person.exposed_population(time1, time2)
+            person.exposure_model = mc.ExposureModel(concentration_model, exposed_population)
 
+ 
 
 @dataclass
 class Simulation:

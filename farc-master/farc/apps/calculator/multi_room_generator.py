@@ -5,6 +5,8 @@ import numpy as np
 
 import multi_room_model
 
+import report_generator
+
 
 @dataclass 
 class MultiGenerator:
@@ -31,6 +33,8 @@ class MultiGenerator:
                 self.calculate_event(time1,time2,simulation_copy, infected = person)
 
 
+            person.infected = False
+
     def calculate_event(self, time1, time2, simulation : multi_room_model.Simulation, infected: multi_room_model.Person):
         for person in simulation.people:
             try :
@@ -40,8 +44,13 @@ class MultiGenerator:
             except ValueError :
                 if person.location != None :
                     person.location.delete_occupant(person)
+
+        
+        # Low resolution to try to improve performances            
+        times = report_generator.interesting_times(infected.exposure_model, 5)
+
         for room in simulation.rooms:
-            model = room.build_model(infected, simulation)
+            room.build_model(infected, simulation, time1, time2)
             for person in room.occupants:
-                return """TODO"""
-            
+                # Could be optimized, room concentration calculated size(room.occupants) times
+                person.calculate_data(times)
