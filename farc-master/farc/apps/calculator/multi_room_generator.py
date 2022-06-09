@@ -3,9 +3,8 @@ from dataclasses import dataclass
 
 import numpy as np
 
-import multi_room_model
+import farc.apps.calculator.multi_room_model as multi_room_model
 
-import report_generator
 
 
 @dataclass 
