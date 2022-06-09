@@ -17,8 +17,8 @@ class MultiGenerator:
         times = []
         for person in self.simulation.people:
             for event in person.schedule.events:
-                times += event.start
-                times += event.end
+                times.append(event.start)
+                times.append(event.end)
         unique_times = np.unique(np.array(times))
         return np.sort(unique_times)
     
@@ -54,8 +54,9 @@ class MultiGenerator:
         for person in self.simulation.people:
             person.infected = True
             simulation_copy = deepcopy(self.simulation)
+            infected = simulation_copy.get_infected()
             for time1, time2 in zip(times[:-1], times[1:]):
-                self.calculate_event(time1,time2,simulation_copy, infected = person)
+                self.calculate_event(time1,time2,simulation_copy, infected = infected)
             person.infected = False
             self.calculate_means(simulation_copy)
             self.report.simulations = np.append(self.report.simulations, simulation_copy)

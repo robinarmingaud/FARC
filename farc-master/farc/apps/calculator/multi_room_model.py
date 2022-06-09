@@ -28,6 +28,7 @@ class Ventilation:
     opening_distance: float
     event_month: str
     room_heating_option: int
+    mechanical_ventilation_type: str
     air_supply: float
     biov_amount: float
     biov_option: int
@@ -109,7 +110,7 @@ class Event:
     start : int
     end : int
     location : RoomType
-    mask_ratio : int
+    mask_ratio : float
     mask_type : str
     activity : str
 
@@ -150,18 +151,19 @@ class Schedule:
 @dataclass
 class Person(Role):
     id:int 
-    infected: bool
     schedule: Schedule
     exposure_model: models.ExposureModel = None
     current_event: Event = None
     cumulative_dose: models._VectorisedFloat = 0.
     location: RoomType = None
     infection_probability : float = 0
+    infected: bool = False
 
 
-    def __init__(self, name : str, id:int, infected: bool, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model = None, infection_probability : float = 0):
+    def __init__(self, name : str, id:int,schedule : Schedule, infected: bool = False, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model = None, infection_probability : float = 0):
         self.id = id
         self.name = name
+        self.schedule = schedule
         self.infected = infected
         self.cumulative_dose = cumulative_dose
         self.location = location
@@ -204,7 +206,7 @@ class Person(Role):
         return mc.InfectedPopulation(
             number=1,
             virus=virus,
-            presence=models.SpecificInterval(time1/60, time2/60),
+            presence= models.SpecificInterval(((time1/60, time2/60),)),
             mask=self.mask(),
             mask_wear_ratio=self.current_event.mask_ratio,
             activity=activity,
@@ -221,7 +223,7 @@ class Person(Role):
 
         exposed = mc.Population(
             number=1,
-            presence= models.SpecificInterval(time1/60, time2/60),
+            presence= models.SpecificInterval(((time1/60, time2/60),)),
             activity= activity,
             mask=self.mask(),
             mask_wear_ratio=self.current_event.mask_ratio,
@@ -283,7 +285,7 @@ class Room(RoomType):
         room = models.Room(self.volume,self.humidity)
         ventilation = self.ventilation.ventilation()
         infected_population = infected.infected_population(simulation, time1, time2)
-        concentration_model = models.ConcentrationModel(
+        concentration_model = mc.ConcentrationModel(
                 room=room,
                 ventilation=ventilation,
                 infected=infected_population,
@@ -292,7 +294,7 @@ class Room(RoomType):
         )
         for person in self.occupants :
             exposed_population = person.exposed_population(time1, time2)
-            person.exposure_model = models.ExposureModel(concentration_model, exposed_population)
+            person.exposure_model = mc.ExposureModel(concentration_model, exposed_population).build_model(size=250000)
 
     def calculate_cumulative_dose(self):
         self.cumulative_exposure = np.array(self.cumulative_exposure).mean()
@@ -337,6 +339,11 @@ class Simulation:
         for person in self.people:
             for event in person.schedule.events:
                 events = np.append(events, event)
+
+    def get_infected(self):
+        for person in self.people:
+            if person.infected:
+                return person
         
 
 @dataclass
