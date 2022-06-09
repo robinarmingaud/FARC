@@ -164,11 +164,12 @@ class Person(Role):
     schedule: Schedule
     exposure_model: models.ExposureModel = None
     current_event: Event = None
-    cumulative_dose: float = 0
+    cumulative_dose: models._VectorisedFloat = 0.
     location: RoomType = None
+    infection_probability : float = 0
 
 
-    def __init__(self, name : str, id:int, infected: bool, cumulative_dose: float = 0, location: RoomType = None, current_event: Event = None, exposure_model = None):
+    def __init__(self, name : str, id:int, infected: bool, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model = None, infection_probability : float = 0):
         self.id = id
         self.name = name
         self.infected = infected
@@ -176,6 +177,7 @@ class Person(Role):
         self.location = location
         self.current_event = current_event
         self.exposure_model = exposure_model
+        self.infection_probability = infection_probability
         if self.location is not None:
             self.location.add_occupant(self)
 
@@ -237,9 +239,22 @@ class Person(Role):
         )
         return exposed
 
-    def calculate_data(self, times):
+    def calculate_data(self):
         if self.infected :
-            """TODO"""
+            virus_dose = self.exposure_model.deposited_exposure()
+            self.cumulative_dose += virus_dose
+            return virus_dose
+        else :
+            return 0
+
+    def calculate_infection_probability(self):
+        self.infection_probability = np.array(self.exposure_model.infection_probability()).mean()
+
+    def clear_data(self):
+        """Free memory"""
+        self.cumulative_dose = 0
+        self.exposure_model = None
+
 
 @dataclass
 class Room(RoomType):
@@ -248,8 +263,8 @@ class Room(RoomType):
     temperature : float
     occupants: np.ndarray = np.array([], dtype= Person)
     building: Building = None
-    virus_concentration: models._VectorisedFloat = 0
-    cumulative_exposure: models._VectorisedFloat = 0
+    virus_concentration: models._VectorisedFloat = 0.
+    cumulative_exposure: models._VectorisedFloat = 0.
 
     def get_occupant_id(self, person : Person):
         i=0
@@ -278,7 +293,7 @@ class Room(RoomType):
         room = models.Room(self.volume,self.humidity)
         ventilation = self.ventilation.ventilation()
         infected_population = infected.infected_population(simulation, time1, time2)
-        concentration_model = mc.ConcentrationModel(
+        concentration_model = models.ConcentrationModel(
                 room=room,
                 ventilation=ventilation,
                 infected=infected_population,
@@ -287,10 +302,14 @@ class Room(RoomType):
         )
         for person in self.occupants :
             exposed_population = person.exposed_population(time1, time2)
-            person.exposure_model = mc.ExposureModel(concentration_model, exposed_population)
+            person.exposure_model = models.ExposureModel(concentration_model, exposed_population)
 
- 
+    def calculate_cumulative_dose(self):
+        self.cumulative_exposure = np.array(self.cumulative_exposure).mean()
 
+    def clear_data(self):    
+        self.virus_concentration = 0.
+    
 @dataclass
 class Simulation:
     virus_type : str

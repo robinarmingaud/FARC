@@ -1047,7 +1047,7 @@ class ConcentrationModel:
         normalized by the emission rate.
         """
         if stop <= self._first_presence_time():
-            return 100
+            return 0.
         state_change_times = self.state_change_times()
         req_start, req_stop = start, stop
         total_normed_concentration = 0.
