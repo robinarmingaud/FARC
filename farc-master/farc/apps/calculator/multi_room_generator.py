@@ -29,25 +29,25 @@ class MultiGenerator:
                 person.set_location(current_event.location)
                 person.set_event(current_event)
             except ValueError :
+                person.set_event(None)
                 if person.location != None :
                     person.location.delete_occupant(person)
-
         for room in simulation.rooms:
-            room.build_model(infected, simulation, time1, time2)
-            for person in room.occupants:
-                # Could be optimized, room concentration calculated size(room.occupants) times
-                virus_dose = person.calculate_data()
-                room.virus_concentration = infected.exposure_model.concentration_model.concentration(time2)
-                room.cumulative_exposure += virus_dose
+                room.build_model(infected, simulation, time1, time2)
+                for person in room.occupants:
+                    # Could be optimized, room concentration calculated size(room.occupants) times
+                        virus_dose = person.calculate_data()
+                        for model in person.exposure_model :
+                            room.virus_concentration = person.exposure_model.concentration_model.concentration(float(time2))
+                        print(np.array(room.virus_concentration).mean())
+                        room.cumulative_exposure += virus_dose
 
     def calculate_means(self, simulation : multi_room_model.Simulation):
         """TODO : Add concentration/time and cumulative dose/time ?"""
         for person in simulation.people :
             person.calculate_infection_probability()
-            person.clear_data()
         for room in simulation.rooms :
             room.calculate_cumulative_dose()
-            room.clear_data()
 
     def calculate_simulation_data(self):
         times = self.interesting_times()

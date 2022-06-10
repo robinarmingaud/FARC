@@ -44,7 +44,7 @@ class Ventilation:
                 window_interval_boundaries = models.PeriodicInterval(self.windows_frequency, self.windows_duration, min(self.infected_start, self.exposed_start)/60).boundaries() 
                 breaks_interval_boundaries = self.exposed_lunch_break_times()+self.infected_lunch_break_times()+self.exposed_coffee_break_times()
                 for t1, t2 in breaks_interval_boundaries : 
-                        window_interval_boundaries = window_interval_boundaries + ((t1/60, t2/60),)
+                        window_interval_boundaries = window_interval_boundaries + ((t1, t2),)
 
                 window_interval = models.SpecificInterval(window_interval_boundaries)
 
@@ -152,7 +152,7 @@ class Schedule:
 class Person(Role):
     id:int 
     schedule: Schedule
-    exposure_model: models.ExposureModel = None
+    exposure_model: np.ndarray = np.array([], dtype= models.ExposureModel )
     current_event: Event = None
     cumulative_dose: models._VectorisedFloat = 0.
     location: RoomType = None
@@ -160,7 +160,7 @@ class Person(Role):
     infected: bool = False
 
 
-    def __init__(self, name : str, id:int,schedule : Schedule, infected: bool = False, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model = None, infection_probability : float = 0):
+    def __init__(self, name : str, id:int,schedule : Schedule, infected: bool = False, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model : np.ndarray = np.array([], dtype= models.ExposureModel ), infection_probability : float = 0):
         self.id = id
         self.name = name
         self.schedule = schedule
@@ -202,11 +202,10 @@ class Person(Role):
         [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.current_event.activity]
         activity = activity_distributions[activity_defn]
         expiration = model_generator.build_expiration(expiration_defn)
-
         return mc.InfectedPopulation(
             number=1,
             virus=virus,
-            presence= models.SpecificInterval(((time1/60, time2/60),)),
+            presence= models.SpecificInterval(((time1, time2),)),
             mask=self.mask(),
             mask_wear_ratio=self.current_event.mask_ratio,
             activity=activity,
@@ -223,7 +222,7 @@ class Person(Role):
 
         exposed = mc.Population(
             number=1,
-            presence= models.SpecificInterval(((time1/60, time2/60),)),
+            presence= models.SpecificInterval(((time1, time2),)),
             activity= activity,
             mask=self.mask(),
             mask_wear_ratio=self.current_event.mask_ratio,
@@ -232,20 +231,19 @@ class Person(Role):
         return exposed
 
     def calculate_data(self):
-        if self.infected :
-            virus_dose = self.exposure_model.deposited_exposure()
-            self.cumulative_dose += virus_dose
+        if not self.infected and self.exposure_model.size > 0 :
+            for model in self.exposure_model :
+                virus_dose = model.deposited_exposure()
+                self.cumulative_dose += virus_dose
             return virus_dose
         else :
-            return 0
+            return 0.
 
     def calculate_infection_probability(self):
-        self.infection_probability = np.array(self.exposure_model.infection_probability()).mean()
-
-    def clear_data(self):
-        """Free memory"""
-        self.cumulative_dose = 0
-        self.exposure_model = None
+        if not self.infected and self.exposure_model.size > 0 :
+            self.infection_probability = np.array(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose)).mean()
+        else :
+            return 0.
 
 
 @dataclass
@@ -257,6 +255,8 @@ class Room(RoomType):
     building: Building = None
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.
+    #All concentrations models from infected people who went to this room and left virus particles
+    concentrationModels: np.ndarray = np.array([], dtype = models.ConcentrationModel)
 
     def get_occupant_id(self, person : Person):
         i=0
@@ -284,23 +284,23 @@ class Room(RoomType):
     def build_model(self, infected : Person, simulation, time1 : int, time2: int):
         room = models.Room(self.volume,self.humidity)
         ventilation = self.ventilation.ventilation()
-        infected_population = infected.infected_population(simulation, time1, time2)
-        concentration_model = mc.ConcentrationModel(
+        if infected.location.id == self.id:
+            infected_population = infected.infected_population(simulation, time1, time2)
+            np.append(self.concentrationModels, mc.ConcentrationModel(
                 room=room,
                 ventilation=ventilation,
                 infected=infected_population,
                 evaporation_factor=0.3,
                 previous_concentration=self.virus_concentration
-        )
+            ))
         for person in self.occupants :
             exposed_population = person.exposed_population(time1, time2)
-            person.exposure_model = mc.ExposureModel(concentration_model, exposed_population).build_model(size=250000)
+            for model in self.concentrationModels :
+                np.append(person.exposure_model, mc.ExposureModel(model, exposed_population).build_model(size=250000))
 
     def calculate_cumulative_dose(self):
         self.cumulative_exposure = np.array(self.cumulative_exposure).mean()
 
-    def clear_data(self):    
-        self.virus_concentration = 0.
     
 @dataclass
 class Simulation:

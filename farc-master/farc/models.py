@@ -910,7 +910,7 @@ class ConcentrationModel:
     evaporation_factor: float = 0.3
 
     #previous event concentration for multi simulation : default is 0
-    previous_concentration: _VectorisedFloat = 0.01
+    previous_concentration: _VectorisedFloat = 0.
 
     @property
     def virus(self):
@@ -1018,7 +1018,7 @@ class ConcentrationModel:
         # The model always starts at t=0, but we avoid running concentration calculations
         # before the first presence as an optimisation.
         if time <= self._first_presence_time():
-            return 0.
+            return self.previous_concentration
         next_state_change_time = self._next_state_change(time)
         IVRR = self.infectious_virus_removal_rate(next_state_change_time)
         conc_limit = self._normed_concentration_limit(next_state_change_time)
