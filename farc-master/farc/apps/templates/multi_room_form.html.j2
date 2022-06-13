@@ -128,17 +128,11 @@
             <div class="form-group row">
             <div class="col-sm-4"><label class="col-form-label">{{_("Activity:")}}</label></div>
             <div class="col-sm-6">
-                <select id="infected_activity_type" name="infected_activity_type" class="form-control">
-                      {% set default_infected_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', default.infected_activity_type) | first %}
-                    <optgroup label="---- {{PLACEHOLDERS.default}} ----">
-                      <option selected value="{{default_infected_activity.Id}}">{{default_infected_activity.Name}}</option>
-                    </optgroup>
+                <select id="eventActivity" name="eventActivity" class="form-control">
                   {% for group in ACTIVITY_TYPES | map(attribute = 'Group') | unique %}
                       <optgroup label="---- {{group}} ----">
                         {%for activity in ACTIVITY_TYPES | selectattr('Group', 'equalto', group) %}
-                          {% if activity.Id != default.infected_activity_type %}
                             <option value="{{activity.Id}}">{{activity.Name}}</option>
-                          {% endif %}
                       {%endfor%}
                       </optgroup>
                       {%endfor%}
@@ -156,7 +150,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" id="saveEvent" class="btn btn-primary" data-dismiss="modal" >Save changes</button>
           </div>
         </div>
       </div>

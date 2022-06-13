@@ -151,7 +151,23 @@ document.addEventListener('DOMContentLoaded', function() {
     $('a[href="#people_data_form"]').on('shown.bs.tab',function(){
         calendar.render();
     });
+
+    var eventId = 0;
+    $('#saveEvent').on('click', function() {
+        var start = new Date();
+        var end = new Date();
+        start.setHours(6,30)
+        end.setHours(18,30)
+        calendar.addEvent({id: "test",
+        start : start,
+        end : end,
+        allDay: false,
+        eventDisplay: 'list-item',
+        description: "Musculation"}
+        );
+
+
+    })
   });
 
-  
   
