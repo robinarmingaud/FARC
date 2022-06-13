@@ -1,0 +1,16 @@
+.fc-scroller.fc-day-grid-container {
+    overflow: auto !important;
+    height: auto !important;
+  }
+
+#calendar {
+    max-width: 70%;
+    height: 500px;
+  }
+
+.schedule {
+    max-width: 100%;
+    margin: 40px auto;
+    justify-content: space-between;
+    align-content: space-between;
+}

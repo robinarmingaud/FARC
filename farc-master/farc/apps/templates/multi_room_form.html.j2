@@ -4,12 +4,14 @@
 {% set active_page="multi_room/" %}
 
 {% block extra_headers %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/multi_room.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
 {% endblock extra_headers %}
 
 {% block body_scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
     <script src="/static/js/multi_room_form.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -21,7 +23,6 @@
 <ul class="nav justify-content-center">
   <li class = "nav-item"><a data-toggle="pill" href="#rooms_data_form">Rooms</a></li>
   <li class = "nav-item"><a data-toggle="pill" href="#people_data_form">People</a></li>
-  <li class = "nav-item"><a data-toggle="pill" href="#schedule_data_form">Schedules</a></li>
 </ul>
 
 <div class="tab-content" id="myTabContent">
@@ -74,7 +75,7 @@
 
 <div><input type="submit"></div>
 
-<div><a onclick="addRow(); return false;" href="#">Add Row</a></div>
+<div><a onclick="addRoom(); return false;" href="#">Add Row</a></div>
 
 </form>
 
@@ -82,16 +83,97 @@
 
 
 <div id="people_data_form" class="tab-pane fade">
-    <h3>Menu 1</h3>
-    <p>Some content in menu 1.</p>
-</div>
-<div id="schedule_data_form" class="tab-pane fade">
-    <h3>Menu 2</h3>
-    <p>Some content in menu 2.</p>
-</div>
+    <h1>People</h1>
+    <form action="" method="get">
+    <div>
+    <div class="PeopleForm">
+    <table>
+    <tbody><tr><th>Id</th><th>Name</th><th>Role</th><th>Number</th></tr>
+    <tr>
+      <td><div>0</div>
+      <td><input type="text" name="name[0]"></td>
+      <td><input type="text" name="role[0]"></td>
+      <td><input type="text" name="number[0]"></td>
+    </tr>
+    </tbody></table>
+    <br>
+    <div class="schedule"> 
+    <div id='calendar'></div>
+    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#eventModal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
+        </svg>
+    </button>
 
-</div>
+    <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New event</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="split">
+              <div>
+                <label class="tabbed mb-0">Start:</label>
+                <input type="time" id="event_start" class="start_time" value="08:30" required="">
+              </div>
+              <div>
+                <label class="tabbed mb-0">End: </label>
+                <input type="time" id="event_finish" class="finish_time" value="17:30" required="">
+              </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-sm-4"><label class="col-form-label">{{_("Activity:")}}</label></div>
+            <div class="col-sm-6">
+                <select id="infected_activity_type" name="infected_activity_type" class="form-control">
+                      {% set default_infected_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', default.infected_activity_type) | first %}
+                    <optgroup label="---- {{PLACEHOLDERS.default}} ----">
+                      <option selected value="{{default_infected_activity.Id}}">{{default_infected_activity.Name}}</option>
+                    </optgroup>
+                  {% for group in ACTIVITY_TYPES | map(attribute = 'Group') | unique %}
+                      <optgroup label="---- {{group}} ----">
+                        {%for activity in ACTIVITY_TYPES | selectattr('Group', 'equalto', group) %}
+                          {% if activity.Id != default.infected_activity_type %}
+                            <option value="{{activity.Id}}">{{activity.Name}}</option>
+                          {% endif %}
+                      {%endfor%}
+                      </optgroup>
+                      {%endfor%}
+                      </select>
+                </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-sm-4"><label class="col-form-label">{{_("Room id:")}}</label></div>
+            <div class="col-sm-6">
+              <input type="number" step="any" id="roomid" class="non_zero form-control" min="0"  value="0" required="">
+                </div>
+            </div>
+              
+            </div>
 
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <div class="d-flex justify-content-center">------------------------------------------------------------------------------------------------------------------</div>
+    </div>
+    </div>
+
+    <div><input type="submit"></div>
+
+    <div><a onclick="addPerson(); return false;" href="#">Add Row</a></div>
+
+    </form>
+</div>
+</div>
 
 
 {%endblock main%}

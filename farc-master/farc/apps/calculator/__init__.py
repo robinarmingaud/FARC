@@ -188,9 +188,13 @@ class MultiRoomForm(BaseRequestHandler):
         template_environment = self.settings["template_environment"]
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template("multi_room_form.html.j2")
+        data = set_locale(tornado.locale.get(self.locale.code))
         report = template.render(user=self.current_user,
             xsrf_form_html=self.xsrf_form_html(),
-            calculator_prefix=self.settings["calculator_prefix"])
+            calculator_prefix=self.settings["calculator_prefix"],
+            default = data['_DEFAULTS'],
+            PLACEHOLDERS = data['PLACEHOLDERS'],
+            ACTIVITY_TYPES = data['ACTIVITY_TYPES'])
         self.finish(report)
 
 
