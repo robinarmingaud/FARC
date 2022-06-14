@@ -156,8 +156,10 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#saveEvent').on('click', function() {
         var start = new Date();
         var end = new Date();
-        start.setHours(6,30)
-        end.setHours(18,30)
+        start_hour = document.getElementById('event_start').value.split(':');
+        end_hour = document.getElementById('event_finish').value.split(':');
+        start.setHours(start_hour[0], start_hour[1]);
+        end.setHours(end_hour[0], end_hour[1]);
         calendar.addEvent({id: "test",
         start : start,
         end : end,
