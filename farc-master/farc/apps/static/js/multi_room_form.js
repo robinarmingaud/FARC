@@ -110,9 +110,8 @@ function addPerson() {
 
     newRow.getElementsByTagName("div")[0].innerText = rowCount;
 
-
     /* Change the form variables e.g. price[x] -> price[rowCount] */
-    elements = newRow.getElementsByTagName("input");
+    elements = newRow.querySelectorAll("*");
     for (i = 0; i < elements.length; i++) {
         element = elements.item(i);
         s = null;
@@ -126,14 +125,84 @@ function addPerson() {
         element.setAttribute("name", s);
         element.value = "";
     }
-    
+    for (i = 0; i < elements.length; i++) {
+        element = elements.item(i);
+        s = null;
+        s = element.getAttribute("id");
+        if (s == null)
+            continue;
+        t = s.split("[");
+        if (t.length < 2)
+            continue;
+        s = t[0] + "[" + rowCount.toString() + "]";
+        element.setAttribute("id", s);
+        element.value = "";
+    }
+    for (i = 0; i < elements.length; i++) {
+        element = elements.item(i);
+        s = null;
+        s = element.getAttribute("data-target");
+        if (s == null)
+            continue;
+        t = s.split("[");
+        if (t.length < 2)
+            continue;
+        s = t[0] + "[" + rowCount.toString() + "\\]";
+        element.setAttribute("data-target", s);
+        element.value = "";
+    }
     /* Add the newly-created row to the table */
     templateRow.parentNode.appendChild(newRow);
+
+
+    document.getElementById('calendar['+ rowCount +']').innerHTML = "";
+
+        var calendarEl = document.getElementById('calendar['+ rowCount +']');
+      
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'timeGridDay',
+          headerToolbar: false,
+          dayHeaders: false,
+          slotDuration: '00:15:00',
+          slotMinTime:  "06:00:00",
+          slotMaxTime:  "21:00:00",
+          aspectRatio: 2,
+          dateClick: function(info) {
+            alert('Clicked on: ' + info.dateStr);
+          }
+        });
+
+        calendar.render();
+    
+        $('a[href="#people_data_form"]').on('shown.bs.tab',function(){
+            calendar.render();
+        });
+    
+        var eventId = 0;
+        $('#saveEvent\\['+ rowCount + '\\]').on('click', function() {
+            var start = new Date();
+            var end = new Date();
+            start_hour = document.getElementById('event_start['+ rowCount +']').value.split(':');
+            end_hour = document.getElementById('event_finish['+ rowCount +']').value.split(':');
+            start.setHours(start_hour[0], start_hour[1]);
+            end.setHours(end_hour[0], end_hour[1]);
+            calendar.addEvent({id: ""+eventId,
+            title: "test",
+            start : start,
+            end : end,
+            allDay: false,
+            eventDisplay: 'list-item',
+            description: "Musculation"}
+            );
+    
+            eventId = eventId + 1;
+        });
+
     return true;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+    var calendarEl = document.getElementById('calendar[0]');
   
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'timeGridDay',
@@ -153,14 +222,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var eventId = 0;
-    $('#saveEvent').on('click', function() {
+    $('#saveEvent\\[0\\]').on('click', function() {
         var start = new Date();
         var end = new Date();
-        start_hour = document.getElementById('event_start').value.split(':');
-        end_hour = document.getElementById('event_finish').value.split(':');
+        start_hour = document.getElementById('event_start[0]').value.split(':');
+        end_hour = document.getElementById('event_finish[0]').value.split(':');
         start.setHours(start_hour[0], start_hour[1]);
         end.setHours(end_hour[0], end_hour[1]);
-        calendar.addEvent({id: "test",
+        calendar.addEvent({id: ""+eventId,
+        title: "test",
         start : start,
         end : end,
         allDay: false,
@@ -168,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         description: "Musculation"}
         );
 
-
+        eventId = eventId + 1;
     })
   });
 

@@ -3,7 +3,7 @@
     height: auto !important;
   }
 
-#calendar {
+.calendar {
     max-width: 70%;
     height: 500px;
   }

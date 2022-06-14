@@ -347,15 +347,15 @@ $ cd farc-master/farc/apps
 $ pybabel extract -F babel-mapping.ini -o locale/base.pot ./
 ```
 
--Cette commande crée un fichier de template de traduction dans le dossier locale
--Update les traductions dans les différentes langues :
+- Cette commande crée un fichier de template de traduction dans le dossier locale
+- Update les traductions dans les différentes langues :
 
 ```console
 $ pybabel update -i locale/base.pot -d locale
 ```
 
--Les fichiers pot sont des dictionnaires comprenant les champs de textes venant du template de traduction et leur traduction. Un éditeur en ligne efficace pour renseigner ces traductions : https://pofile.net/
--Ensuite, compiler les fichiers pot en fichier mo :
+- Les fichiers pot sont des dictionnaires comprenant les champs de textes venant du template de traduction et leur traduction. Un éditeur en ligne efficace pour renseigner ces traductions : https://pofile.net/
+- Ensuite, compiler les fichiers pot en fichier mo :
 
 ```console
 $ pybabel compile -d locale    
