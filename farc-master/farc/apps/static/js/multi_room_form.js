@@ -12,6 +12,42 @@ function addRoom() {
     rowCount = 0;
     for (i = 0; i < elements.length; i++) {
         row = elements.item(i);
+        elementsrow = row.querySelectorAll("*");
+        for (j = 0; j < elementsrow.length; j++) {
+            element = elementsrow.item(j);
+            s = null;
+            s = element.getAttribute("name");
+            if (s == null)
+                continue;
+            t = s.split("[");
+            if (t.length < 2)
+                continue;
+            s = t[0] + "[" + i.toString() + "]";
+            element.setAttribute("name", s);
+            element.value = "";
+        }
+        for (j = 0; j < elementsrow.length; j++) {
+            element = elementsrow.item(j);
+            s = null;
+            s = element.getAttribute("id");
+            if (s == null)
+                continue;
+            t = s.split("[");
+            if (t.length < 2)
+                continue;
+            s = t[0] + "[" + i.toString() + "]";
+            element.setAttribute("id", s);
+            element.value = "";
+        }
+        row.getElementsByTagName("div")[1].innerText = i;
+
+        $('#deleteRoom\\['+ i + '\\]').on('click', function() {
+            var room = document.getElementById('roomFormContainer['+ i + ']');
+            if (document.getElementsByClassName('RoomForm').length>1){
+                room.parentNode.remove();
+            }
+        })
+
         
         /* Get the "class" attribute of the row. */
         className = null;
@@ -25,7 +61,7 @@ function addRoom() {
                 // MSIE 6
                 className = className.value;
             }
-        } 
+        }
         
         /* This is not one of the rows we're looking for.    Move along. */
         if (className != "RoomForm")
@@ -41,11 +77,11 @@ function addRoom() {
     /* Make a copy of the template row */
     newRow = templateRow.cloneNode(true);
 
-    newRow.getElementsByTagName("div")[0].innerText = rowCount;
+    newRow.getElementsByTagName("div")[1].innerText = rowCount;
 
 
     /* Change the form variables e.g. price[x] -> price[rowCount] */
-    elements = newRow.getElementsByTagName("input");
+    elements = newRow.querySelectorAll("*");
     for (i = 0; i < elements.length; i++) {
         element = elements.item(i);
         s = null;
@@ -59,9 +95,32 @@ function addRoom() {
         element.setAttribute("name", s);
         element.value = "";
     }
-    
+    for (i = 0; i < elements.length; i++) {
+        element = elements.item(i);
+        s = null;
+        s = element.getAttribute("id");
+        if (s == null)
+            continue;
+        t = s.split("[");
+        if (t.length < 2)
+            continue;
+        s = t[0] + "[" + rowCount.toString() + "]";
+        element.setAttribute("id", s);
+        element.value = "";
+    }
+
+
     /* Add the newly-created row to the table */
     templateRow.parentNode.appendChild(newRow);
+
+    
+    $('#deleteRoom\\['+ rowCount + '\\]').on('click', function() {
+        var room = document.getElementById('roomFormContainer['+ rowCount + ']');
+        if (document.getElementsByClassName('RoomForm').length>1){
+            room.parentNode.remove();
+        }
+    })
+
     return true;
 }
 
@@ -187,7 +246,7 @@ function addPerson() {
             start.setHours(start_hour[0], start_hour[1]);
             end.setHours(end_hour[0], end_hour[1]);
             calendar.addEvent({id: ""+eventId,
-            title: "test",
+            title: document.getElementById('eventActivity['+ rowCount +']').value,
             start : start,
             end : end,
             allDay: false,
@@ -197,6 +256,8 @@ function addPerson() {
     
             eventId = eventId + 1;
         });
+
+        
 
     return true;
 }
@@ -230,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
         start.setHours(start_hour[0], start_hour[1]);
         end.setHours(end_hour[0], end_hour[1]);
         calendar.addEvent({id: ""+eventId,
-        title: "test",
+        title: document.getElementById('eventActivity[0]').value,
         start : start,
         end : end,
         allDay: false,
@@ -241,5 +302,12 @@ document.addEventListener('DOMContentLoaded', function() {
         eventId = eventId + 1;
     })
   });
+
+  $('#deleteRoom\\[0\\]').on('click', function() {
+    var room = document.getElementById('roomFormContainer[0]');
+    if (document.getElementsByClassName('RoomForm').length>1){
+        room.parentNode.remove();
+    }
+})
 
   
