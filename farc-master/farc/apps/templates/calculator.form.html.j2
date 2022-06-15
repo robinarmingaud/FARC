@@ -387,6 +387,30 @@
              <div class="col-sm-6 align-self-center"><input type="number" id="exposed_mask_wear_ratio" class="form-control" name="exposed_mask_wear_ratio" min=0.0 max=1.0 value={{default.exposed_mask_wear_ratio}} step=0.1 required></div>
         </div>
 
+        <div id="exposedExpiration" class='sub_title'>{{_("Expiration :")}}</div>
+        <div class="split">
+          <div class="form-group row" >
+            <label class="tabbed mb-0"> {{_("Breathing")}} : </label>
+            {% if _('Breathing') in default_exposed_activity.Expiration %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_breathing" class="form-control" name="exposed_mask_wear_ratio" value={{default_exposed_activity.Expiration[_('Breathing')]}} min=0.0 step=0.1 required></div>
+            {% else %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_breathing" class="form-control" name="exposed_mask_wear_ratio" value=0 min=0.0 step=0.1 required></div>
+            {% endif %}
+            <label class="tabbed mb-0"> {{_("Speaking")}} : </label>
+            {% if _('Speaking') in default_exposed_activity.Expiration %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_speaking" class="form-control" name="exposed_mask_wear_ratio" value={{default_exposed_activity.Expiration[_('Speaking')]}} min=0.0 step=0.1 required></div>
+            {% else %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_speaking" class="form-control" name="exposed_mask_wear_ratio" value=0 min=0.0 step=0.1 required></div>
+            {% endif %}
+            <label class="tabbed mb-0"> {{_("Shouting")}} : </label>
+            {% if _('Shouting') in default_exposed_activity.Expiration %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_shouting" class="form-control" name="exposed_mask_wear_ratio" value={{default_exposed_activity.Expiration[_('Shouting')]}} min=0.0 step=0.1 required></div>
+            {% else %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_shouting" class="form-control" name="exposed_mask_wear_ratio" value=0 min=0.0 step=0.1 required></div>
+            {% endif %}
+          </div>        
+        </div>
+
         <div class='sub_title'>{{_("Presence:")}}</div>
         <div class="split">
         <div>
@@ -442,6 +466,31 @@
             <div class="col-sm-4"><label class="col-form-label">{{_("Mask wear ratio:")}} </label></div>
             <div class="col-sm-6 align-self-center"><input type="number" id="infected_mask_wear_ratio" class="form-control" name="infected_mask_wear_ratio" min=0.0 max=1.0 value={{default.infected_mask_wear_ratio}} step=0.1 required></div>
         </div>
+
+        <div id="infectedExpiration" class='sub_title'>{{_("Expiration :")}}</div>
+        <div class="split">
+          <div class="form-group row" >
+            <label class="tabbed mb-0"> {{_("Breathing")}} : </label>
+            {% if _('Breathing') in default_infected_activity.Expiration %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_breathing" class="form-control" name="infected_mask_wear_ratio" value={{default_infected_activity.Expiration[_('Breathing')]}} min=0.0 step=0.1 required></div>
+            {% else %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_breathing" class="form-control" name="infected_mask_wear_ratio" value=0 min=0.0 step=0.1 required></div>
+            {% endif %}
+            <label class="tabbed mb-0"> {{_("Speaking")}} : </label>
+            {% if _('Speaking') in default_infected_activity.Expiration %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_speaking" class="form-control" name="infected_mask_wear_ratio" value={{default_infected_activity.Expiration[_('Speaking')]}} min=0.0 step=0.1 required></div>
+            {% else %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_speaking" class="form-control" name="infected_mask_wear_ratio" value=0 min=0.0 step=0.1 required></div>
+            {% endif %}
+            <label class="tabbed mb-0"> {{_("Shouting")}} : </label>
+            {% if _('Shouting') in default_infected_activity.Expiration %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_shouting" class="form-control" name="infected_mask_wear_ratio" value={{default_infected_activity.Expiration[_('Shouting')]}} min=0.0 step=0.1 required></div>
+            {% else %}
+              <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_shouting" class="form-control" name="infected_mask_wear_ratio" value=0 min=0.0 step=0.1 required></div>
+            {% endif %}
+          </div>        
+        </div>
+
         <div class='sub_title'>{{_("Presence:")}}</div>
         <div class="split">
         <div>

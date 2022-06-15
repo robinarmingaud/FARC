@@ -298,6 +298,17 @@ function validate_form(form) {
     });
   }
 
+  //Validate expiration
+
+  if (submit) {
+    if (!validateExpiration("exposed")) {
+      submit = false;
+    }
+    if (!validateExpiration("infected")) {
+      submit = false;
+    }
+  }
+
   //Check if breaks length >= activity length
   if (submit) {
     $("[data-lunch-for]").each(function() {
@@ -373,6 +384,7 @@ function validate_form(form) {
       `<span id="loading_spinner" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...`
     );
   }
+
 
   return submit;
 }
@@ -461,6 +473,17 @@ function validateLunchBreak(lunchGroup) {
   }
 
   return valid;
+}
+
+function validateExpiration(infected_state) {
+  removeErrorFor(document.getElementById(infected_state + 'Expiration'));
+  if (document.getElementById(infected_state + '_activity_breathing').value + document.getElementById(infected_state + '_activity_speaking').value +  document.getElementById(infected_state + '_activity_shouting').value == 0){
+    insertErrorFor(document.getElementById(infected_state + 'Expiration'),"Expiration sum must be > 0")
+    return false
+  } 
+
+  return true
+
 }
 
 //Check if exposed/infected lunch time within exposed/infected presence times
@@ -604,6 +627,14 @@ $(document).ready(function () {
   $("input[required].finish_time").each(function() {validateFinishTime(this)});
   $(".finish_time").change(function() {validateFinishTime(this)});
   $(".start_time").change(function() {validateFinishTime(this)});
+
+  //Validate expiration
+  $("#exposed_activity_breathing").change(function(){validateExpiration("exposed")});
+  $("#exposed_activity_speaking").change(function(){validateExpiration("exposed")});
+  $("#exposed_activity_shouting").change(function(){validateExpiration("exposed")});
+  $("#infected_activity_breathing").change(function(){validateExpiration("infected")});
+  $("#infected_activity_speaking").change(function(){validateExpiration("infected")});
+  $("#infected_activity_shouting").change(function(){validateExpiration("infected")});
 
   //Validate lunch times
   $(".start_time[data-lunch-for]").each(function() {validateLunchBreak($(this).data('time-group'))});
