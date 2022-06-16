@@ -25,8 +25,16 @@ minutes_since_midnight = typing.NewType('minutes_since_midnight', int)
 class FormData:
     # activity_type: str
     exposed_activity_type: str
+    exposed_activity_level : str
+    exposed_breathing : float
+    exposed_speaking : float
+    exposed_shouting : float
+    infected_breathing : float
+    infected_speaking : float
+    infected_shouting : float
     exposed_mask_wear_ratio: float
     infected_activity_type: str
+    infected_activity_level : str
     infected_mask_wear_ratio: float
     air_changes: float
     air_supply: float
@@ -347,12 +355,8 @@ class FormData:
     def infected_population(self) -> mc.InfectedPopulation:
         # Initializes the virus
         virus = virus_distributions[self.virus_type]
-        scenario_activity_and_expiration = {}
-        for activity in ACTIVITY_TYPES :
-            scenario_activity_and_expiration[activity['Id']] = (activity['Activity'], activity['Expiration'])
-        [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.infected_activity_type]
-        activity = activity_distributions[activity_defn]
-        expiration = build_expiration(expiration_defn)
+        activity = activity_distributions[self.infected_activity_level]
+        expiration = build_expiration({'Breathing' : self.infected_breathing, 'Speaking' : self.infected_speaking, 'Shouting' : self.infected_shouting})
 
         infected_occupants = self.infected_people
 
@@ -369,13 +373,8 @@ class FormData:
         return infected
 
     def exposed_population(self) -> mc.Population:
-        scenario_activity = {}
-        for activity in ACTIVITY_TYPES : 
-            scenario_activity[activity['Id']] = activity['Activity']
-
-        # activity_defn = scenario_activity[self.activity_type]
-        exposed_activity_defn = scenario_activity[self.exposed_activity_type]
-        activity = activity_distributions[exposed_activity_defn]
+        
+        activity = activity_distributions[self.exposed_activity_level]
 
         infected_occupants = self.infected_people
         # The number of exposed occupants is the total number of occupants

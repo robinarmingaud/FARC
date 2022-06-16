@@ -258,22 +258,22 @@ function show_disclaimer() {
 function updateExpiration(expiration_dict) {
     // Update expiration on change
     $("#exposed_activity_type").change(function() {
-      document.getElementById('exposed_activity_breathing').setAttribute('value', expiration_dict[this.value+"_breathing"] || 0 )
+      document.getElementById('exposed_activity_breathing').value = expiration_dict[this.value+"_breathing"] || 0 
     })
     $("#exposed_activity_type").change(function() {
-      document.getElementById('exposed_activity_speaking').setAttribute('value', expiration_dict[this.value+"_speaking"] || 0 )
+      document.getElementById('exposed_activity_speaking').value = expiration_dict[this.value+"_speaking"] || 0 
     })
     $("#exposed_activity_type").change(function() {
-      document.getElementById('exposed_activity_shouting').setAttribute('value', expiration_dict[this.value+"_shouting"]  || 0)
+      document.getElementById('exposed_activity_shouting').value = expiration_dict[this.value+"_shouting"]  || 0
     })
     $("#infected_activity_type").change(function() {
-      document.getElementById('infected_activity_breathing').setAttribute('value', expiration_dict[this.value+"_breathing"] || 0 )
+      document.getElementById('infected_activity_breathing').value = expiration_dict[this.value+"_breathing"] || 0 
     })
     $("#infected_activity_type").change(function() {
-      document.getElementById('infected_activity_speaking').setAttribute('value', expiration_dict[this.value+"_speaking"] || 0 )
+      document.getElementById('infected_activity_speaking').value = expiration_dict[this.value+"_speaking"] || 0 
     })
     $("#infected_activity_type").change(function() {
-      document.getElementById('infected_activity_shouting').setAttribute('value', expiration_dict[this.value+"_shouting"]  || 0)
+      document.getElementById('infected_activity_shouting').value = expiration_dict[this.value+"_shouting"]  || 0
     })
     $("#exposed_activity_type").change(function() {
       document.getElementById('exposed_activity_level').value = expiration_dict[this.value+"_activity_level"]
