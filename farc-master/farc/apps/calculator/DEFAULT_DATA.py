@@ -250,8 +250,8 @@ def set_locale (locale):
                     {'Group':_('Store and Retail'),'Id':'Cashier_sitting', 'Name' : _('Cashier sitting'), 'Activity' : _('Seated'), 'Expiration' : {_('Speaking'):5,_('Breathing'):5}},
                     {'Group':_('Store and Retail'),'Id':'Vendor_standing', 'Name' : _('Vendor standing'), 'Activity' : _('Standing'), 'Expiration' : {_('Speaking'):5,_('Breathing'):5}},
                     {'Group':_('Sport'),'Id':'Musculation', 'Name' : _('Musculation'), 'Activity' : _('Heavy exercise'), 'Expiration' : {_('Speaking'):1,_('Breathing'):9}},
-                    {'Group':_('Sport'),'Id':'Floor_gymnastics', 'Name' : _('Floor gymnastics'), 'Activity' : _('Moderate activity'), 'Expiration' : {_('Speaking'):1,_('Breathing'):8, "Shouting":1}},
-                    {'Group':_('Sport'),'Id':'Team_competition', 'Name' : _('Team competition'), 'Activity' : _('Heavy exercise'), 'Expiration' : {_('Speaking'):0.5,_('Breathing'):8, "Shouting":1.5}},
+                    {'Group':_('Sport'),'Id':'Floor_gymnastics', 'Name' : _('Floor gymnastics'), 'Activity' : _('Moderate activity'), 'Expiration' : {_('Speaking'):1,_('Breathing'):8, _("Shouting"):1}},
+                    {'Group':_('Sport'),'Id':'Team_competition', 'Name' : _('Team competition'), 'Activity' : _('Heavy exercise'), 'Expiration' : {_('Speaking'):0.5,_('Breathing'):8, _("Shouting"):1.5}},
                     {'Group':_('Miscellaneous'),'Id':'Trip_in_elevator', 'Name' : _('Trip in elevator'), 'Activity' : _('Standing'), 'Expiration' : {_('Speaking'):1,_('Breathing'):9}},
                     {'Group':_('Navy'),'Id':'Watch_seated', 'Name' : _('Watch seated'), 'Activity' : _('Seated'), 'Expiration' : {_('Shouting'): 10, _('Speaking'): 30, _('Breathing'): 60}}, # Manning a console seating in front of it
                     {'Group':_('Navy'),'Id':'Watch_standing', 'Name' : _('Watch standing'), 'Activity' : _('Light activity'), 'Expiration' : {_('Shouting'): 20, _('Speaking'): 30, _('Breathing'): 50}}] # Pacing and moving from station to station, giving orders and looking at data at stations
