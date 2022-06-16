@@ -25,7 +25,7 @@ from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import __version__, _DEFAULTS as d, set_locale
+from .DEFAULT_DATA import __version__, _DEFAULTS as d
 import tornado
 
 
@@ -68,7 +68,7 @@ class BaseRequestHandler(RequestHandler):
             calculator_prefix=self.settings["calculator_prefix"],
             active_page='Error',
             contents=contents,
-            default = set_locale(tornado.locale.get(self.locale.code))['_DEFAULTS']
+            default = DEFAULT_DATA._DEFAULTS
         ))
 
 
@@ -104,7 +104,6 @@ class ConcentrationModel(BaseRequestHandler):
 
         try:
             form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
-            form.set_locale(tornado.locale.get(self.locale.code))
         except Exception as err:
             if self.settings.get("debug", False):
                 import traceback
@@ -138,7 +137,6 @@ class StaticModel(BaseRequestHandler):
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         _ = tornado.locale.get(self.locale.code).translate
         form = model_generator.FormData.from_dict(model_generator.baseline_raw_form_data())
-        form.set_locale(tornado.locale.get(self.locale.code))
         base_url = self.request.protocol + "://" + self.request.host
         report_generator: ReportGenerator = self.settings['report_generator']
         report_generator.set_locale(tornado.locale.get(self.locale.code))
@@ -191,18 +189,17 @@ class CalculatorForm(BaseRequestHandler):
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template(
             "calculator.form.html.j2")
-        data = set_locale(tornado.locale.get(self.locale.code))
         report = template.render(
             user=self.current_user,
             xsrf_form_html=self.xsrf_form_html(),
             calculator_prefix=self.settings["calculator_prefix"],
             calculator_version=__version__,
-            default = data['_DEFAULTS'],
-            ACTIVITY_TYPES = data['ACTIVITY_TYPES'],
-            PLACEHOLDERS = data['PLACEHOLDERS'],
-            TOOLTIPS = data['TOOLTIPS'],
+            default = DEFAULT_DATA._DEFAULTS,
+            ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES,
+            PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
+            TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
             text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-            MONTH_NAMES = data['MONTH_NAMES']
+            MONTH_NAMES = DEFAULT_DATA.MONTH_NAMES
         )
         self.finish(report)
 

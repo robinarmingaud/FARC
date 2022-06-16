@@ -31,7 +31,7 @@
                 <div id="reportHeaderTitle" class='align-self-center mr-auto'>
                     <h2 class="header_text mb-0"> 
                         <a href="{{ permalink.link }}">
-                           {{_("REPORT")}} {{form.simulation_name}}
+                           {{_("REPORT")}} {{_(form.simulation_name)}}
                         </a>
                     </h1>
                     <p class="mb-0" id="report_version">
@@ -89,7 +89,7 @@
                     {% block report_results %}
                         <div class="card bg-light mb-3" id="results-div">
                             <div class="card-header">
-                                <strong>Results</strong>
+                                <strong>{{_("Results")}}</strong>
                                 <button class="icon_button p-0 float-right"
                                         data-toggle="collapse"
                                         href="#collapseResults"
@@ -364,10 +364,10 @@
             </div>
             <div class="card-body">
                 <p>
-                   {{_("Simulation Name:")}} {{ form.simulation_name }}
+                   {{_("Simulation Name:")}} {{ _(form.simulation_name) }}
                 </p>
                 <p>
-                  {{_("Room Number:")}} {{ form.room_number }}
+                  {{_("Room Number:")}} {{ _(form.room_number) }}
                 </p>
             </div>
         </div>
@@ -408,7 +408,7 @@
                     </li>
                     <li>
                         <p class="data_text">
-                           {{_("Geographic Location:")}} {{ form.location_name }}
+                           {{_("Geographic Location:")}} {{ _(form.location_name) }}
                         </p>
                     </li>
                     {% if form.ventilation_type == 'natural_ventilation' %}
@@ -548,7 +548,7 @@
                     <li>
                         <p class="data_text">
                             {% set exposed_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', form.exposed_activity_type) | first %}
-                            {{_("Activity type:")}} {{ exposed_activity['Name'] }}
+                            {{_("Activity type:")}} {{ _(exposed_activity['Name']) }}
                             <!--{% if form.exposed_activity_type == "watch_seated" %}
                                     Watch seated – typical scenario for someone seating in front of a console, speaking quietly for 30% and loudly for 10% of the time.
                                     {% elif form.exposed_activity_type == "watch_standing" %}
@@ -583,7 +583,7 @@
                             <p class="data_text">
                             {{_("Expiration type: ")}} 
                             {% for key,value in exposed_activity["Expiration"].items() %}
-                             {{key}} : {{value}},
+                             {{_(key)}} : {{value}},
                             {%endfor%}
                             </p>
                         </li>
@@ -625,7 +625,7 @@
                         <li>
                             <p class="data_text">
                                 {% set infected_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', form.infected_activity_type) | first %}
-                                {{_("Activity type:")}} {{ infected_activity['Name'] }}
+                                {{_("Activity type:")}} {{ _(infected_activity['Name']) }}
 
                                 <!--
                                     {% if form.infected_activity_type == "watch_seated" %}
@@ -661,7 +661,7 @@
                             <p class="data_text">
                             {{_("Expiration type: ")}} 
                             {% for key,value in infected_activity["Expiration"].items() %}
-                             {{key}} : {{value}},
+                             {{_(key)}} : {{value}},
                             {%endfor%}
                             </p>
                         </li>
@@ -697,7 +697,7 @@
                     </ul>
                     <li>
                         <p class="data_text">
-                           {{_("Event for the month of")}} {{ MONTH_NAMES[form.event_month] }}
+                           {{_("Event for the month of")}} {{ _(MONTH_NAMES[form.event_month]) }}
                         </p>
                     </li>
                 </ul>

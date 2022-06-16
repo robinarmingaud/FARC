@@ -15,7 +15,7 @@ import farc.monte_carlo as mc
 from .. import calculator
 from farc.monte_carlo.data import activity_distributions, virus_distributions, mask_distributions
 from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factors, expiration_distributions
-from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES, set_locale
+from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES 
 
 LOG = logging.getLogger(__name__)
 
@@ -90,23 +90,12 @@ class FormData:
     _DEFAULTS = d
     MONTHS = list(MONTH_NAMES.keys())
     activities = { activity['Id'] for activity in ACTIVITY_TYPES}
-
-
-
-    def set_locale(self,locale):
-        self.locale = locale
-        self._ = locale.translate
-        data = set_locale(self.locale)
-        self._DEFAULTS = data['_DEFAULTS']
-        self.MONTHS = list(data['MONTH_NAMES'].keys())
-        self.activities = { activity['Id'] for activity in  data['ACTIVITY_TYPES']}
     
     @classmethod
     def from_dict(cls, form_data: typing.Dict, locale) -> "FormData":
         # Take a copy of the form data so that we can mutate it.
         form_data = form_data.copy()
         form_data.pop('_xsrf', None)
-        FormData.set_locale(cls, locale)
 
         # Don't let arbitrary unescaped HTML through the net.
         for key, value in form_data.items():
