@@ -27,10 +27,7 @@
     <script src="/static/js/ScrollMagic.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js" integrity="sha512-8qmis31OQi6hIRgvkht0s6mCOittjMa9GMqtK9hes5iEQBQE/Ca6yGE5FsW36vyipGoWQswBj/QBm2JR086Rkw==" crossorigin="anonymous"></script>
     <script src="/static/js/usage-tracking.js"></script>
-    <!-- Popper JS -->
-    <script src="/static/js/popper.min.js"></script>
-    <!-- Font Awesome -->
-    <script src="/static/js/all.min.js"></script>
+    <script src="/static/js/layout.js"></script>
     {% block body_scripts %}
     {% endblock body_scripts %}
         <nav class="navbar navbar-dark navbar-expand-lg">
@@ -92,6 +89,14 @@
                         <li class="nav-link">
                             <a href="/about"
                                class="{{ "header-navbar nav-link active" if "about" == active_page else "header-navbar nav-link" }}">{{_("About")}}</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#" onclick="set_fr()">
+                                <img src="/static/images/lg/lg_fr.png" style="background:transparent; height : 30px" alt="fr">
+                            </a>
+                            <a href="#" onclick="set_en()">
+                                <img src="/static/images/lg/lg_en.png" style="background:transparent; height : 30px" alt="en">
+                            </a>                        
                         </li>
                         {% if user.is_authenticated() %}
                             <li class="nav-item dropdown p-2">

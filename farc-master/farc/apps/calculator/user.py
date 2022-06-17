@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 
-
 class User:
     """Defines basic User functionalities."""
 
@@ -15,7 +14,6 @@ class User:
     def domain(self) -> str:
         """Return a domain for this user. The domain must not be specific enough to identify a single user."""
         return 'other'
-
 
 @dataclass
 class AuthenticatedUser(User):
