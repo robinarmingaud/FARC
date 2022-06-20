@@ -180,7 +180,6 @@ class StaticModel(BaseRequestHandler):
             _ = tornado.locale.get(language ).translate    
             locale_code = tornado.locale.get(language ) 
         form = model_generator.FormData.from_dict(model_generator.baseline_raw_form_data())
-        form.set_locale(tornado.locale.get(self.locale.code))
         base_url = self.request.protocol + "://" + self.request.host
         report_generator: ReportGenerator = self.settings['report_generator']
         report_generator.set_locale(locale_code)

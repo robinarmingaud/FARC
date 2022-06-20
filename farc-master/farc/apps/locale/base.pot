@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-20 13:44+0200\n"
+"POT-Creation-Date: 2022-06-20 14:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -442,33 +442,33 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: calculator/__init__.py:76
+#: calculator/__init__.py:79
 msgid ""
 "Unfortunately an error occurred when processing your request. Please let "
 "us know about this issue with as much detail as possible at"
 msgstr ""
 
-#: calculator/__init__.py:76
+#: calculator/__init__.py:79
 msgid "reporting status code"
 msgstr ""
 
-#: calculator/__init__.py:76
+#: calculator/__init__.py:79
 msgid "the error id of :"
 msgstr ""
 
-#: calculator/__init__.py:76
+#: calculator/__init__.py:79
 msgid "and the time of the request"
 msgstr ""
 
-#: calculator/__init__.py:109
+#: calculator/__init__.py:115
 msgid "Unfortunately the page you were looking for does not exist."
 msgstr ""
 
-#: calculator/__init__.py:140
+#: calculator/__init__.py:146
 msgid "Your request was invalid"
 msgstr ""
 
-#: calculator/__init__.py:279
+#: calculator/__init__.py:285
 msgid ""
 "Invalid calculator data: it seems incomplete. Was there an error copying "
 "& pasting the URL?"

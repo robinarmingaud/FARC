@@ -98,7 +98,6 @@ class FormData:
         # Take a copy of the form data so that we can mutate it.
         form_data = form_data.copy()
         form_data.pop('_xsrf', None)
-        FormData.set_locale(cls, locale)
 
         # Don't let arbitrary unescaped HTML through the net.
         for key, value in form_data.items():
