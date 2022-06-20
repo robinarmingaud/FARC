@@ -1,4 +1,4 @@
-var js_default = JSON.parse('{"exposed_activity_type": "Office_worker", "exposed_mask_wear_ratio": 0.7, "infected_activity_type": "Office_worker", "infected_mask_wear_ratio": 0.7, "air_changes": 1.0, "air_supply": 100, "calculator_version": "1.0.2", "ceiling_height": 2.5, "exposed_coffee_break_option": "coffee_break_0", "exposed_coffee_duration": 5, "exposed_finish": "17:30", "exposed_lunch_finish": "13:30", "exposed_lunch_option": 1, "exposed_lunch_start": "12:30", "exposed_start": "08:30", "event_month": "January", "floor_area": 40, "biov_amount": 1000, "biov_option": 0, "infected_coffee_break_option": "coffee_break_0", "infected_coffee_duration": 5, "infected_dont_have_breaks_with_exposed": 0, "infected_finish": "17:30", "infected_lunch_finish": "13:30", "infected_lunch_option": 1, "infected_lunch_start": "12:30", "infected_people": 1, "infected_start": "08:30", "location_latitude": 47.21725, "location_longitude": -1.55336, "location_name": "Nantes, Loire-Atlantique, Pays de la Loire, FRA", "mask_type": "Type_I", "mask_wearing_option": "mask_off", "mechanical_ventilation_type": "mech_type_air_supply", "opening_distance": 0.5, "room_heating_option": 1, "room_number": "1", "room_volume": 100, "simulation_name": "My simulation", "total_people": 10, "ventilation_type": "mechanical_ventilation", "virus_type": "SARS_CoV_2_OMICRON", "viruses": {"SARS_CoV_2": "SARS-CoV-2 (nominal strain)", "SARS_CoV_2_ALPHA": "SARS-CoV-2 (Alpha VOC)", "SARS_CoV_2_BETA": "SARS-CoV-2 (Beta VOC)", "SARS_CoV_2_GAMMA": "SARS-CoV-2 (Gamma VOC)", "SARS_CoV_2_DELTA": "SARS-CoV-2 (Delta VOC)", "SARS_CoV_2_OMICRON": "SARS-CoV-2 (Omicron VOC)"}, "volume_type": "room_volume_explicit", "window_type": "window_sliding", "window_height": 1.0, "window_width": 1.0, "windows_duration": 15, "windows_frequency": 60, "windows_number": 1, "window_opening_regime": "windows_open_permanently"}');
+var js_default = JSON.parse('{"exposed_activity_type": "Office_worker", "exposed_activity_level": "Seated", "exposed_breathing": 8, "exposed_speaking": 2, "exposed_shouting": 0, "exposed_mask_wear_ratio": 0.7, "infected_activity_type": "Office_worker", "infected_activity_level": "Seated", "infected_breathing": 8, "infected_speaking": 2, "infected_shouting": 0, "infected_mask_wear_ratio": 0.7, "air_changes": 1.0, "air_supply": 100, "calculator_version": "1.0.3", "ceiling_height": 2.5, "humidity": "", "inside_temp": 20, "exposed_coffee_break_option": "coffee_break_0", "exposed_coffee_duration": 5, "exposed_finish": "17:30", "exposed_lunch_finish": "13:30", "exposed_lunch_option": 1, "exposed_lunch_start": "12:30", "exposed_start": "08:30", "event_month": "January", "floor_area": 40, "biov_amount": 1000, "biov_option": 0, "infected_coffee_break_option": "coffee_break_0", "infected_coffee_duration": 5, "infected_dont_have_breaks_with_exposed": 0, "infected_finish": "17:30", "infected_lunch_finish": "13:30", "infected_lunch_option": 1, "infected_lunch_start": "12:30", "infected_people": 1, "infected_start": "08:30", "location_latitude": 47.21725, "location_longitude": -1.55336, "location_name": "Nantes, Loire-Atlantique, Pays de la Loire, FRA", "mask_type": "Type_I", "mask_wearing_option": "mask_off", "mechanical_ventilation_type": "mech_type_air_supply", "opening_distance": 0.5, "room_heating_option": 1, "room_number": "1", "room_volume": 100, "simulation_name": "My simulation", "total_people": 10, "ventilation_type": "mechanical_ventilation", "virus_type": "SARS_CoV_2_OMICRON", "viruses": {"SARS_CoV_2": "SARS-CoV-2 (nominal strain)", "SARS_CoV_2_ALPHA": "SARS-CoV-2 (Alpha VOC)", "SARS_CoV_2_BETA": "SARS-CoV-2 (Beta VOC)", "SARS_CoV_2_GAMMA": "SARS-CoV-2 (Gamma VOC)", "SARS_CoV_2_DELTA": "SARS-CoV-2 (Delta VOC)", "SARS_CoV_2_OMICRON": "SARS-CoV-2 (Omicron VOC)"}, "volume_type": "room_volume_explicit", "window_type": "window_sliding", "window_height": 1.0, "window_width": 1.0, "windows_duration": 15, "windows_frequency": 60, "windows_number": 1, "window_opening_regime": "windows_open_permanently"}');
 
 /* -------HTML structure------- */
 function getChildElement(elem) {
@@ -255,6 +255,34 @@ function show_disclaimer() {
   }
 }
 
+function updateExpiration(expiration_dict) {
+    // Update expiration on change
+    $("#exposed_activity_type").change(function() {
+      document.getElementById('exposed_activity_breathing').value = expiration_dict[this.value+"_breathing"] || 0 
+    })
+    $("#exposed_activity_type").change(function() {
+      document.getElementById('exposed_activity_speaking').value = expiration_dict[this.value+"_speaking"] || 0 
+    })
+    $("#exposed_activity_type").change(function() {
+      document.getElementById('exposed_activity_shouting').value = expiration_dict[this.value+"_shouting"]  || 0
+    })
+    $("#infected_activity_type").change(function() {
+      document.getElementById('infected_activity_breathing').value = expiration_dict[this.value+"_breathing"] || 0 
+    })
+    $("#infected_activity_type").change(function() {
+      document.getElementById('infected_activity_speaking').value = expiration_dict[this.value+"_speaking"] || 0 
+    })
+    $("#infected_activity_type").change(function() {
+      document.getElementById('infected_activity_shouting').value = expiration_dict[this.value+"_shouting"]  || 0
+    })
+    $("#exposed_activity_type").change(function() {
+      document.getElementById('exposed_activity_level').value = expiration_dict[this.value+"_activity_level"]
+    })
+    $("#infected_activity_type").change(function() {
+      document.getElementById('infected_activity_level').value = expiration_dict[this.value+"_activity_level"]
+    })
+}
+
 $("[data-has-radio]").on('click', function(event){
   $($(this).data("has-radio")).click();
 });
@@ -296,6 +324,17 @@ function validate_form(form) {
         }
       }
     });
+  }
+
+  //Validate expiration
+
+  if (submit) {
+    if (!validateExpiration("exposed")) {
+      submit = false;
+    }
+    if (!validateExpiration("infected")) {
+      submit = false;
+    }
   }
 
   //Check if breaks length >= activity length
@@ -373,6 +412,7 @@ function validate_form(form) {
       `<span id="loading_spinner" class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...`
     );
   }
+
 
   return submit;
 }
@@ -463,6 +503,17 @@ function validateLunchBreak(lunchGroup) {
   return valid;
 }
 
+function validateExpiration(infected_state) {
+  removeErrorFor(document.getElementById(infected_state + 'Expiration'));
+  if (document.getElementById(infected_state + '_activity_breathing').value + document.getElementById(infected_state + '_activity_speaking').value +  document.getElementById(infected_state + '_activity_shouting').value == 0){
+    insertErrorFor(document.getElementById(infected_state + 'Expiration'),"Expiration sum must be > 0")
+    return false
+  } 
+
+  return true
+
+}
+
 //Check if exposed/infected lunch time within exposed/infected presence times
 function validateLunchTime(obj) {
   var activityGroup = $(obj).data('lunch-for');
@@ -526,6 +577,27 @@ $(document).ready(function () {
   $('.infected_lunch_option[value='+infected_lunch_option+']').attr('checked', 'checked');
   var infected_coffee_break_option = js_default['infected_coffee_break_option']
   $('.infected_coffee_break_option[value='+infected_coffee_break_option+']').attr('checked', 'checked');
+
+    //Set humidity value according to heating option
+
+  if($("#heating_no").is(':checked')){
+      $("#humidity").val(0.5)
+    }
+  if($("#heating_yes").is(':checked')){
+      $("#humidity").val(0.3)
+    }
+  
+  $("#heating_no").change(function() {
+      if(this.checked) {
+          $("#humidity").val(0.5)
+      }
+    });
+  
+  $("#heating_yes").change(function() {
+      if(this.checked) {
+          $("#humidity").val(0.3)
+      }
+    });
 
   var url = new URL(decodeURIComponent(window.location.href));
   //Pre-fill form with known values
@@ -604,6 +676,14 @@ $(document).ready(function () {
   $("input[required].finish_time").each(function() {validateFinishTime(this)});
   $(".finish_time").change(function() {validateFinishTime(this)});
   $(".start_time").change(function() {validateFinishTime(this)});
+
+  //Validate expiration
+  $("#exposed_activity_breathing").change(function(){validateExpiration("exposed")});
+  $("#exposed_activity_speaking").change(function(){validateExpiration("exposed")});
+  $("#exposed_activity_shouting").change(function(){validateExpiration("exposed")});
+  $("#infected_activity_breathing").change(function(){validateExpiration("infected")});
+  $("#infected_activity_speaking").change(function(){validateExpiration("infected")});
+  $("#infected_activity_shouting").change(function(){validateExpiration("infected")});
 
   //Validate lunch times
   $(".start_time[data-lunch-for]").each(function() {validateLunchBreak($(this).data('time-group'))});

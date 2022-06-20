@@ -21,7 +21,7 @@ from farc.apps.calculator import markdown_tools
 
 from ... import monte_carlo as mc
 from .model_generator import FormData, _DEFAULT_MC_SAMPLE_SIZE
-from .DEFAULT_DATA import ACTIVITY_TYPES, MONTH_NAMES, set_locale
+from .DEFAULT_DATA import ACTIVITY_TYPES, MONTH_NAMES
 from ... import dataclass_utils
 
 
@@ -321,8 +321,6 @@ class ReportGenerator:
     def set_locale(self, locale):
         self.locale = locale
         self._ = locale.translate
-        self.ACTIVITY_TYPES = set_locale(locale)['ACTIVITY_TYPES']
-        self.MONTH_NAMES = set_locale(locale)['MONTH_NAMES']
 
     def build_report(
             self,

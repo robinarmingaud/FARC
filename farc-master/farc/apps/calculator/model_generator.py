@@ -15,7 +15,7 @@ import farc.monte_carlo as mc
 from .. import calculator
 from farc.monte_carlo.data import activity_distributions, virus_distributions, mask_distributions
 from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factors, expiration_distributions
-from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES, set_locale
+from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES 
 
 LOG = logging.getLogger(__name__)
 
@@ -24,9 +24,19 @@ minutes_since_midnight = typing.NewType('minutes_since_midnight', int)
 @dataclasses.dataclass
 class FormData:
     # activity_type: str
+    humidity: str
+    inside_temp: float
     exposed_activity_type: str
+    exposed_activity_level : str
+    exposed_breathing : float
+    exposed_speaking : float
+    exposed_shouting : float
+    infected_breathing : float
+    infected_speaking : float
+    infected_shouting : float
     exposed_mask_wear_ratio: float
     infected_activity_type: str
+    infected_activity_level : str
     infected_mask_wear_ratio: float
     air_changes: float
     air_supply: float
@@ -82,23 +92,12 @@ class FormData:
     _DEFAULTS = d
     MONTHS = list(MONTH_NAMES.keys())
     activities = { activity['Id'] for activity in ACTIVITY_TYPES}
-
-
-
-    def set_locale(self,locale):
-        self.locale = locale
-        self._ = locale.translate
-        data = set_locale(self.locale)
-        self._DEFAULTS = data['_DEFAULTS']
-        self.MONTHS = list(data['MONTH_NAMES'].keys())
-        self.activities = { activity['Id'] for activity in  data['ACTIVITY_TYPES']}
     
     @classmethod
     def from_dict(cls, form_data: typing.Dict, locale) -> "FormData":
         # Take a copy of the form data so that we can mutate it.
         form_data = form_data.copy()
         form_data.pop('_xsrf', None)
-        FormData.set_locale(cls, locale)
 
         # Don't let arbitrary unescaped HTML through the net.
         for key, value in form_data.items():
@@ -202,11 +201,14 @@ class FormData:
             volume = self.room_volume
         else:
             volume = self.floor_area * self.ceiling_height
-        if self.room_heating_option == 1:
-            humidity = 0.3
+        if self.humidity == '':
+            if self.room_heating_option:
+                humidity = 0.3
+            else:
+                humidity = 0.5
         else:
-            humidity = 0.5
-        room = models.Room(volume=volume, humidity=humidity)
+            humidity = float(self.humidity)
+        room = models.Room(volume=volume, inside_temp=models.PiecewiseConstant((0, 24), (self.inside_temp+273,)), humidity=humidity)
         # Initializes and returns a model with the attributes defined above
         return mc.ExposureModel(
             concentration_model=mc.ConcentrationModel(
@@ -287,7 +289,7 @@ class FormData:
                 window_interval = always_on
 
             outside_temp = self.outside_temp()
-            inside_temp = models.PiecewiseConstant((0, 24), (293,))
+            inside_temp = models.PiecewiseConstant((0, 24), (self.inside_temp+273,))
 
             ventilation: models.Ventilation
             if self.window_type == 'window_sliding':
@@ -347,12 +349,8 @@ class FormData:
     def infected_population(self) -> mc.InfectedPopulation:
         # Initializes the virus
         virus = virus_distributions[self.virus_type]
-        scenario_activity_and_expiration = {}
-        for activity in ACTIVITY_TYPES :
-            scenario_activity_and_expiration[activity['Id']] = (activity['Activity'], activity['Expiration'])
-        [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.infected_activity_type]
-        activity = activity_distributions[activity_defn]
-        expiration = build_expiration(expiration_defn)
+        activity = activity_distributions[self.infected_activity_level]
+        expiration = build_expiration({'Breathing' : self.infected_breathing, 'Speaking' : self.infected_speaking, 'Shouting' : self.infected_shouting})
 
         infected_occupants = self.infected_people
 
@@ -369,13 +367,8 @@ class FormData:
         return infected
 
     def exposed_population(self) -> mc.Population:
-        scenario_activity = {}
-        for activity in ACTIVITY_TYPES : 
-            scenario_activity[activity['Id']] = activity['Activity']
-
-        # activity_defn = scenario_activity[self.activity_type]
-        exposed_activity_defn = scenario_activity[self.exposed_activity_type]
-        activity = activity_distributions[exposed_activity_defn]
+        
+        activity = activity_distributions[self.exposed_activity_level]
 
         infected_occupants = self.infected_people
         # The number of exposed occupants is the total number of occupants
