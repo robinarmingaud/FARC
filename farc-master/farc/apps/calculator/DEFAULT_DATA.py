@@ -23,7 +23,7 @@ _DEFAULT_MC_SAMPLE_SIZE = 60000
 # calculator version. If the calculator needs to make breaking changes (e.g. change
 # form attributes) then it can also increase its MAJOR version without needing to
 # increase the overall CARA version (found at ``farc.__version__``).
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 _DEFAULTS = {
         'exposed_activity_type': 'Office_worker',
         'exposed_activity_level' : 'Seated',
@@ -41,6 +41,8 @@ _DEFAULTS = {
         'air_supply': 100,
         'calculator_version': __version__,
         'ceiling_height': 2.5,
+        'humidity': "",
+        'inside_temp': 20,
         'exposed_coffee_break_option': 'coffee_break_0',
         'exposed_coffee_duration': 5,
         'exposed_finish': '17:30',
@@ -151,7 +153,8 @@ TOOLTIPS = {'virus_data' : _('Choose the SARS-CoV-2 Variant of Concern (VOC).'),
 'bio_ventilation' : _("This value can be modified for alternative scenarios even if 'No' is checked"),
 'face_mask' : _('Masks worn or removed when a 2m physical distance is respected and proper venting is ensured.'),
 'event_data' : _('The total no. of occupants in the room and how many of them you assume are infected.'),
-'activity_breaks' : _('Input breaks that, by default, are the same for infected/exposed person(s) unless specified otherwise.')
+'activity_breaks' : _('Input breaks that, by default, are the same for infected/exposed person(s) unless specified otherwise.'),
+'activity_level' : _('Percentage of time spent breathing, talking or shouting')
 }
 PLACEHOLDERS = {'room_volume':_('Room volume (m³)'),
 'room_floor_area':_('Room floor area (m²)'),

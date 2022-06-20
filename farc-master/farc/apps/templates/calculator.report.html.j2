@@ -582,9 +582,9 @@
                         </p>
                             <p class="data_text">
                             {{_("Expiration type: ")}} 
-                            {% for key,value in exposed_activity["Expiration"].items() %}
-                             {{_(key)}} : {{value}},
-                            {%endfor%}
+                            {{_("breathing") + ":"}} {{form.exposed_breathing}},
+                            {{_("speaking") + ":"}} {{form.exposed_speaking}},
+                            {{_("shouting") + ":"}} {{form.exposed_shouting}}
                             </p>
                         </li>
                     <li>
@@ -660,9 +660,9 @@
                         </p>
                             <p class="data_text">
                             {{_("Expiration type: ")}} 
-                            {% for key,value in infected_activity["Expiration"].items() %}
-                             {{_(key)}} : {{value}},
-                            {%endfor%}
+                            {{_("breathing") + ":"}} {{form.infected_breathing}},
+                            {{_("speaking") + ":"}} {{form.infected_speaking}},
+                            {{_("shouting") + ":"}} {{form.infected_shouting}}
                             </p>
                         </li>
                         <li>

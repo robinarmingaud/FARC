@@ -24,6 +24,8 @@ minutes_since_midnight = typing.NewType('minutes_since_midnight', int)
 @dataclasses.dataclass
 class FormData:
     # activity_type: str
+    humidity: str
+    inside_temp: float
     exposed_activity_type: str
     exposed_activity_level : str
     exposed_breathing : float
@@ -199,11 +201,14 @@ class FormData:
             volume = self.room_volume
         else:
             volume = self.floor_area * self.ceiling_height
-        if self.room_heating_option == 1:
-            humidity = 0.3
+        if self.humidity == '':
+            if self.room_heating_option:
+                humidity = 0.3
+            else:
+                humidity = 0.5
         else:
-            humidity = 0.5
-        room = models.Room(volume=volume, humidity=humidity)
+            humidity = float(self.humidity)
+        room = models.Room(volume=volume, inside_temp=models.PiecewiseConstant((0, 24), (self.inside_temp+273,)), humidity=humidity)
         # Initializes and returns a model with the attributes defined above
         return mc.ExposureModel(
             concentration_model=mc.ConcentrationModel(
@@ -284,7 +289,7 @@ class FormData:
                 window_interval = always_on
 
             outside_temp = self.outside_temp()
-            inside_temp = models.PiecewiseConstant((0, 24), (293,))
+            inside_temp = models.PiecewiseConstant((0, 24), (self.inside_temp+273,))
 
             ventilation: models.Ventilation
             if self.window_type == 'window_sliding':
