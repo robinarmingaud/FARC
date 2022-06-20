@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-20 14:23+0200\n"
+"POT-Creation-Date: 2022-06-20 15:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de_DE\n"
@@ -85,7 +85,7 @@ msgstr ""
 #: calculator/DEFAULT_DATA.py:122 calculator/DEFAULT_DATA.py:123
 #: calculator/DEFAULT_DATA.py:124 calculator/DEFAULT_DATA.py:125
 #: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
-#: templates/calculator.form.html.j2:403 templates/calculator.form.html.j2:518
+#: templates/calculator.form.html.j2:408 templates/calculator.form.html.j2:523
 msgid "Speaking"
 msgstr ""
 
@@ -106,8 +106,8 @@ msgstr ""
 #: calculator/DEFAULT_DATA.py:121 calculator/DEFAULT_DATA.py:122
 #: calculator/DEFAULT_DATA.py:123 calculator/DEFAULT_DATA.py:124
 #: calculator/DEFAULT_DATA.py:125 calculator/DEFAULT_DATA.py:126
-#: calculator/DEFAULT_DATA.py:127 templates/calculator.form.html.j2:397
-#: templates/calculator.form.html.j2:512
+#: calculator/DEFAULT_DATA.py:127 templates/calculator.form.html.j2:402
+#: templates/calculator.form.html.j2:517
 msgid "Breathing"
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 #: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
 #: calculator/DEFAULT_DATA.py:123 calculator/DEFAULT_DATA.py:124
 #: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
-#: templates/calculator.form.html.j2:409 templates/calculator.form.html.j2:524
+#: templates/calculator.form.html.j2:414 templates/calculator.form.html.j2:529
 msgid "Shouting"
 msgstr ""
 
@@ -896,11 +896,11 @@ msgstr ""
 msgid "Mask wear ratio:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:394 templates/calculator.form.html.j2:509
+#: templates/calculator.form.html.j2:395 templates/calculator.form.html.j2:510
 msgid "Expiration :"
 msgstr ""
 
-#: templates/calculator.form.html.j2:419 templates/calculator.form.html.j2:534
+#: templates/calculator.form.html.j2:423 templates/calculator.form.html.j2:538
 msgid "Activity level :"
 msgstr ""
 
