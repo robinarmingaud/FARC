@@ -57,20 +57,9 @@ oneoverln2 = 1 / np.log(2)
 _VectorisedFloat = typing.Union[float, np.ndarray]
 _VectorisedInt = typing.Union[int, np.ndarray]
 
-
-@dataclass(frozen=True)
-class Room:
-    #: The total volume of the room
-    volume: _VectorisedFloat
-
-    #: The humidity in the room (from 0 to 1 - e.g. 0.5 is 50% humidity)
-    humidity: _VectorisedFloat = 0.5
-
-
 Time_t = typing.TypeVar('Time_t', float, int)
 BoundaryPair_t = typing.Tuple[Time_t, Time_t]
 BoundarySequence_t = typing.Union[typing.Tuple[BoundaryPair_t, ...], typing.Tuple]
-
 
 @dataclass(frozen=True)
 class Interval:
@@ -195,6 +184,20 @@ class PiecewiseConstant:
             tuple(float(time) for time in refined_times),
             tuple(interpolator(refined_times)[:-1]),
         )
+
+@dataclass(frozen=True)
+class Room:
+    #: The total volume of the room
+    volume: _VectorisedFloat
+
+
+    #: The temperature inside the room (Kelvin).
+    inside_temp: PiecewiseConstant = PiecewiseConstant((0, 24), (293,))
+
+
+    #: The humidity in the room (from 0 to 1 - e.g. 0.5 is 50% humidity)
+    humidity: _VectorisedFloat = 0.5
+
 
 
 @dataclass(frozen=True)
@@ -448,23 +451,32 @@ class Virus:
         # dependent and function of humidity
         raise NotImplementedError
 
-    def decay_constant(self, humidity: _VectorisedFloat) -> _VectorisedFloat:
+    def decay_constant(self, humidity: _VectorisedFloat, inside_temp: _VectorisedFloat) -> _VectorisedFloat:
         # Viral inactivation per hour (h^-1) (function of humidity)
-        return np.log(2) / self.halflife(humidity)
+        return np.log(2) / self.halflife(humidity, inside_temp)
 
 
 @dataclass(frozen=True)
 class SARSCoV2(Virus):
 
-    def halflife(self, humidity: _VectorisedFloat) -> _VectorisedFloat:
+    def halflife(self, humidity: _VectorisedFloat, inside_temp: _VectorisedFloat) -> _VectorisedFloat:
         """
         Half-life changes with humidity level. Here is implemented a simple
         piecewise constant model (for more details see A. Henriques et al,
         CERN-OPEN-2021-004, DOI: 10.17181/CERN.1GDQ.5Y75)
         """
-        # Taken from Morris et al (https://doi.org/10.7554/eLife.65902) data at T = 22°C and RH = 40 %,
-        # and from Doremalen et al (https://www.nejm.org/doi/10.1056/NEJMc2004973).
-        return np.piecewise(humidity, [humidity <= 0.4, humidity > 0.4], [6.43, 1.1])
+        # Updated to use the formula from Dabish et al. with correction https://doi.org/10.1080/02786826.2020.1829536
+        # with a maximum at hl = 6.43 (compensate for the negative decay values in the paper). 
+        # Note that humidity is in percentage and inside_temp in °C.
+        # factor np.log(2) -> decay rate to half-life; factor 60 -> minutes to hours
+        hl_calc = ((np.log(2)/((0.16030 + 0.04018*(((inside_temp-273.15)-20.615)/10.585)
+                                       +0.02176*(((humidity*100)-45.235)/28.665)
+                                       -0.14369
+                                       -0.02636*((inside_temp-273.15)-20.615)/10.585)))/60)
+        
+        return np.where(hl_calc <= 0, 6.43, np.minimum(6.43, hl_calc))
+
+
 
 
 Virus.types = {
@@ -922,7 +934,7 @@ class ConcentrationModel:
         k = (vg * 3600) / h
 
         return (
-                k + self.virus.decay_constant(self.room.humidity)
+                k + self.virus.decay_constant(self.room.humidity, self.room.inside_temp.value(time))
                 + self.ventilation.air_exchange(self.room, time)
         )
 

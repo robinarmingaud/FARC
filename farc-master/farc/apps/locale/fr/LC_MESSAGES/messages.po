@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-10 15:11+0200\n"
+"POT-Creation-Date: 2022-06-20 13:44+0200\n"
 "PO-Revision-Date: 2022-05-09 15:26+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -18,444 +18,340 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.1\n"
 
-#: calculator/DEFAULT_DATA.py:44 calculator/DEFAULT_DATA.py:134
-#: calculator/DEFAULT_DATA.py:183 calculator/DEFAULT_DATA.py:260
+#: calculator/DEFAULT_DATA.py:53 calculator/DEFAULT_DATA.py:143
 msgid "January"
 msgstr "Janvier"
 
-#: calculator/DEFAULT_DATA.py:65 calculator/DEFAULT_DATA.py:204
+#: calculator/DEFAULT_DATA.py:74
 msgid "1"
 msgstr "1"
 
-#: calculator/DEFAULT_DATA.py:67 calculator/DEFAULT_DATA.py:206
+#: calculator/DEFAULT_DATA.py:76
 msgid "My simulation"
 msgstr "Ma simulation"
 
-#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
-#: templates/calculator.report.html.j2:385 templates/userguide.html.j2:56
+#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:385
+#: templates/userguide.html.j2:56
 msgid "SARS-CoV-2 (nominal strain)"
 msgstr "SARS-CoV-2 (souche nominale)"
 
-#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
-#: templates/calculator.report.html.j2:387 templates/userguide.html.j2:59
+#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:387
+#: templates/userguide.html.j2:59
 msgid "SARS-CoV-2 (Alpha VOC)"
 msgstr "SARS-CoV-2 (Variant Alpha)"
 
-#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
-#: templates/calculator.report.html.j2:389 templates/userguide.html.j2:62
+#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:389
+#: templates/userguide.html.j2:62
 msgid "SARS-CoV-2 (Beta VOC)"
 msgstr "SARS-CoV-2 (Variant Beta)"
 
-#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
-#: templates/calculator.report.html.j2:391 templates/userguide.html.j2:65
+#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:391
+#: templates/userguide.html.j2:65
 msgid "SARS-CoV-2 (Gamma VOC)"
 msgstr "SARS-CoV-2 (Variant Gamma)"
 
-#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
-#: templates/calculator.report.html.j2:393 templates/userguide.html.j2:68
+#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:393
+#: templates/userguide.html.j2:68
 msgid "SARS-CoV-2 (Delta VOC)"
 msgstr "SARS-CoV-2 (Variant Delta)"
 
-#: calculator/DEFAULT_DATA.py:71 calculator/DEFAULT_DATA.py:210
-#: templates/calculator.report.html.j2:395 templates/userguide.html.j2:71
+#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:395
+#: templates/userguide.html.j2:71
 msgid "SARS-CoV-2 (Omicron VOC)"
 msgstr "SARS-CoV-2 (Variant Omicron)"
 
-#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:85
-#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
-#: calculator/DEFAULT_DATA.py:223 calculator/DEFAULT_DATA.py:224
-#: calculator/DEFAULT_DATA.py:225 calculator/DEFAULT_DATA.py:226
+#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:94
+#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:96
 msgid "Business"
 msgstr "Entreprise"
 
-#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:223
+#: calculator/DEFAULT_DATA.py:93
 msgid "Office worker"
 msgstr "Travailleur de bureau"
 
-#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:86
-#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:91
-#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:100
-#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:105
-#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:111
-#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:223
-#: calculator/DEFAULT_DATA.py:225 calculator/DEFAULT_DATA.py:227
-#: calculator/DEFAULT_DATA.py:230 calculator/DEFAULT_DATA.py:237
-#: calculator/DEFAULT_DATA.py:239 calculator/DEFAULT_DATA.py:242
-#: calculator/DEFAULT_DATA.py:244 calculator/DEFAULT_DATA.py:248
-#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:256
-msgid "Seated"
-msgstr "Assis"
-
-#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:85
-#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
-#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:89
-#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:91
-#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:93
-#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
-#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
-#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:99
-#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:102
+#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:94
+#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:96
+#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:98
+#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:100
+#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:102
 #: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
 #: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:110
+#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:108
+#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:111
+#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:113
+#: calculator/DEFAULT_DATA.py:114 calculator/DEFAULT_DATA.py:115
+#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:119
+#: calculator/DEFAULT_DATA.py:120 calculator/DEFAULT_DATA.py:121
+#: calculator/DEFAULT_DATA.py:122 calculator/DEFAULT_DATA.py:123
+#: calculator/DEFAULT_DATA.py:124 calculator/DEFAULT_DATA.py:125
+#: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
+#: templates/calculator.form.html.j2:403 templates/calculator.form.html.j2:518
+msgid "Speaking"
+msgstr "Parlant"
+
+#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:94
+#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:96
+#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:98
+#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:100
+#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:102
+#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
+#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
+#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:108
+#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:110
 #: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:112
 #: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:114
 #: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:116
 #: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
-#: calculator/DEFAULT_DATA.py:223 calculator/DEFAULT_DATA.py:224
-#: calculator/DEFAULT_DATA.py:225 calculator/DEFAULT_DATA.py:226
-#: calculator/DEFAULT_DATA.py:227 calculator/DEFAULT_DATA.py:228
-#: calculator/DEFAULT_DATA.py:229 calculator/DEFAULT_DATA.py:230
-#: calculator/DEFAULT_DATA.py:231 calculator/DEFAULT_DATA.py:232
-#: calculator/DEFAULT_DATA.py:233 calculator/DEFAULT_DATA.py:234
-#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:236
-#: calculator/DEFAULT_DATA.py:237 calculator/DEFAULT_DATA.py:238
-#: calculator/DEFAULT_DATA.py:239 calculator/DEFAULT_DATA.py:241
-#: calculator/DEFAULT_DATA.py:242 calculator/DEFAULT_DATA.py:243
-#: calculator/DEFAULT_DATA.py:244 calculator/DEFAULT_DATA.py:245
-#: calculator/DEFAULT_DATA.py:246 calculator/DEFAULT_DATA.py:249
-#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:251
-#: calculator/DEFAULT_DATA.py:252 calculator/DEFAULT_DATA.py:253
-#: calculator/DEFAULT_DATA.py:254 calculator/DEFAULT_DATA.py:255
-#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
-msgid "Speaking"
-msgstr "Parlant"
-
-#: calculator/DEFAULT_DATA.py:84 calculator/DEFAULT_DATA.py:85
-#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:87
-#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:89
-#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:91
-#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:93
-#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
-#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
-#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:99
-#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:101
-#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:103
-#: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:105
-#: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:107
-#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:109
-#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:111
-#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:113
-#: calculator/DEFAULT_DATA.py:114 calculator/DEFAULT_DATA.py:115
-#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:117
-#: calculator/DEFAULT_DATA.py:118 calculator/DEFAULT_DATA.py:223
-#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:225
-#: calculator/DEFAULT_DATA.py:226 calculator/DEFAULT_DATA.py:227
-#: calculator/DEFAULT_DATA.py:228 calculator/DEFAULT_DATA.py:229
-#: calculator/DEFAULT_DATA.py:230 calculator/DEFAULT_DATA.py:231
-#: calculator/DEFAULT_DATA.py:232 calculator/DEFAULT_DATA.py:233
-#: calculator/DEFAULT_DATA.py:234 calculator/DEFAULT_DATA.py:235
-#: calculator/DEFAULT_DATA.py:236 calculator/DEFAULT_DATA.py:237
-#: calculator/DEFAULT_DATA.py:238 calculator/DEFAULT_DATA.py:239
-#: calculator/DEFAULT_DATA.py:240 calculator/DEFAULT_DATA.py:241
-#: calculator/DEFAULT_DATA.py:242 calculator/DEFAULT_DATA.py:243
-#: calculator/DEFAULT_DATA.py:244 calculator/DEFAULT_DATA.py:245
-#: calculator/DEFAULT_DATA.py:246 calculator/DEFAULT_DATA.py:247
-#: calculator/DEFAULT_DATA.py:248 calculator/DEFAULT_DATA.py:249
-#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:251
-#: calculator/DEFAULT_DATA.py:252 calculator/DEFAULT_DATA.py:253
-#: calculator/DEFAULT_DATA.py:254 calculator/DEFAULT_DATA.py:255
-#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
+#: calculator/DEFAULT_DATA.py:119 calculator/DEFAULT_DATA.py:120
+#: calculator/DEFAULT_DATA.py:121 calculator/DEFAULT_DATA.py:122
+#: calculator/DEFAULT_DATA.py:123 calculator/DEFAULT_DATA.py:124
+#: calculator/DEFAULT_DATA.py:125 calculator/DEFAULT_DATA.py:126
+#: calculator/DEFAULT_DATA.py:127 templates/calculator.form.html.j2:397
+#: templates/calculator.form.html.j2:512
 msgid "Breathing"
 msgstr "Respirant"
 
-#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:224
+#: calculator/DEFAULT_DATA.py:94
 msgid "Workshop worker"
 msgstr "Travailleur en atelier"
 
-#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:95
+#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
 #: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:101
-#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:114
-#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:234
-#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:240
-#: calculator/DEFAULT_DATA.py:247 calculator/DEFAULT_DATA.py:253
-msgid "Moderate activity"
-msgstr "Activité modérée"
-
-#: calculator/DEFAULT_DATA.py:85 calculator/DEFAULT_DATA.py:86
-#: calculator/DEFAULT_DATA.py:87 calculator/DEFAULT_DATA.py:92
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:95
-#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
-#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:100
-#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:102
-#: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:107
-#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:109
+#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:104
+#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
+#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:109
+#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:111
+#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:116
 #: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
-#: calculator/DEFAULT_DATA.py:224 calculator/DEFAULT_DATA.py:225
-#: calculator/DEFAULT_DATA.py:226 calculator/DEFAULT_DATA.py:231
-#: calculator/DEFAULT_DATA.py:232 calculator/DEFAULT_DATA.py:234
-#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:236
-#: calculator/DEFAULT_DATA.py:237 calculator/DEFAULT_DATA.py:239
-#: calculator/DEFAULT_DATA.py:240 calculator/DEFAULT_DATA.py:241
-#: calculator/DEFAULT_DATA.py:243 calculator/DEFAULT_DATA.py:246
-#: calculator/DEFAULT_DATA.py:247 calculator/DEFAULT_DATA.py:248
-#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
+#: calculator/DEFAULT_DATA.py:123 calculator/DEFAULT_DATA.py:124
+#: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
+#: templates/calculator.form.html.j2:409 templates/calculator.form.html.j2:524
 msgid "Shouting"
 msgstr "Criant"
 
-#: calculator/DEFAULT_DATA.py:86 calculator/DEFAULT_DATA.py:225
+#: calculator/DEFAULT_DATA.py:95
 msgid "Meeting participant"
 msgstr "Participant à la réunion"
 
-#: calculator/DEFAULT_DATA.py:87 calculator/DEFAULT_DATA.py:226
+#: calculator/DEFAULT_DATA.py:96
 msgid "Meeting leader"
 msgstr "Leader de la réunion"
 
-#: calculator/DEFAULT_DATA.py:87 calculator/DEFAULT_DATA.py:90
-#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:94
-#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:104
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:110
-#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:116
-#: calculator/DEFAULT_DATA.py:226 calculator/DEFAULT_DATA.py:229
-#: calculator/DEFAULT_DATA.py:231 calculator/DEFAULT_DATA.py:233
-#: calculator/DEFAULT_DATA.py:238 calculator/DEFAULT_DATA.py:243
-#: calculator/DEFAULT_DATA.py:246 calculator/DEFAULT_DATA.py:249
-#: calculator/DEFAULT_DATA.py:251 calculator/DEFAULT_DATA.py:255
-msgid "Standing"
-msgstr "Debout"
-
-#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:89
-#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:227
-#: calculator/DEFAULT_DATA.py:228 calculator/DEFAULT_DATA.py:229
+#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:98
+#: calculator/DEFAULT_DATA.py:99
 msgid "Hospital"
 msgstr "Hôpital"
 
-#: calculator/DEFAULT_DATA.py:88 calculator/DEFAULT_DATA.py:227
+#: calculator/DEFAULT_DATA.py:97
 msgid "Hospital patient"
 msgstr "Patient d'hôpital"
 
-#: calculator/DEFAULT_DATA.py:89 calculator/DEFAULT_DATA.py:228
+#: calculator/DEFAULT_DATA.py:98
 msgid "Nurse working"
 msgstr "Infirmière"
 
-#: calculator/DEFAULT_DATA.py:89 calculator/DEFAULT_DATA.py:93
-#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:102
-#: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:118
-#: calculator/DEFAULT_DATA.py:228 calculator/DEFAULT_DATA.py:232
-#: calculator/DEFAULT_DATA.py:236 calculator/DEFAULT_DATA.py:241
-#: calculator/DEFAULT_DATA.py:245 calculator/DEFAULT_DATA.py:257
-msgid "Light activity"
-msgstr "Activité légère"
-
-#: calculator/DEFAULT_DATA.py:90 calculator/DEFAULT_DATA.py:229
+#: calculator/DEFAULT_DATA.py:99
 msgid "Physician working"
 msgstr "Médecin"
 
-#: calculator/DEFAULT_DATA.py:91 calculator/DEFAULT_DATA.py:92
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:230
-#: calculator/DEFAULT_DATA.py:231 calculator/DEFAULT_DATA.py:232
+#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:101
+#: calculator/DEFAULT_DATA.py:102
 msgid "Education"
 msgstr "Éducation"
 
-#: calculator/DEFAULT_DATA.py:91 calculator/DEFAULT_DATA.py:230
+#: calculator/DEFAULT_DATA.py:100
 msgid "Student sitting"
 msgstr "Étudiant assis"
 
-#: calculator/DEFAULT_DATA.py:92 calculator/DEFAULT_DATA.py:231
+#: calculator/DEFAULT_DATA.py:101
 msgid "Professor teaching"
 msgstr "Professeur enseignant"
 
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:232
+#: calculator/DEFAULT_DATA.py:102
 msgid "Professor conferencing"
 msgstr "Professeur en conférence"
 
-#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
-#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:97
-#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:99
-#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:101
-#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:103
-#: calculator/DEFAULT_DATA.py:233 calculator/DEFAULT_DATA.py:234
-#: calculator/DEFAULT_DATA.py:235 calculator/DEFAULT_DATA.py:236
-#: calculator/DEFAULT_DATA.py:237 calculator/DEFAULT_DATA.py:238
-#: calculator/DEFAULT_DATA.py:239 calculator/DEFAULT_DATA.py:240
-#: calculator/DEFAULT_DATA.py:241 calculator/DEFAULT_DATA.py:242
+#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
+#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
+#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:108
+#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:110
+#: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:112
 msgid "Events"
 msgstr "Événements"
 
-#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:233
+#: calculator/DEFAULT_DATA.py:103
 msgid "Concert musician (soft music)"
 msgstr "Musicien de concert (musique douce)"
 
-#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:234
+#: calculator/DEFAULT_DATA.py:104
 msgid "Concert musician (rock)"
 msgstr "Musicien de concert (rock)"
 
-#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:235
+#: calculator/DEFAULT_DATA.py:105
 msgid "Concert singer (rock)"
 msgstr "Chanteur de concert (rock)"
 
-#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:236
+#: calculator/DEFAULT_DATA.py:106
 msgid "Concert spectator (standing)"
 msgstr "Spectateur de concert (debout)"
 
-#: calculator/DEFAULT_DATA.py:98 calculator/DEFAULT_DATA.py:237
+#: calculator/DEFAULT_DATA.py:107
 msgid "Concert spectator (sitting)"
 msgstr "Spectateur de concert (assis)"
 
-#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:238
+#: calculator/DEFAULT_DATA.py:108
 msgid "Museum visitor"
 msgstr "Visiteur de musée"
 
-#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:239
+#: calculator/DEFAULT_DATA.py:109
 msgid "Theater spectator"
 msgstr "Spectateur de théâtre"
 
-#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:240
+#: calculator/DEFAULT_DATA.py:110
 msgid "Theater actor"
 msgstr "Acteur de théâtre"
 
-#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:241
+#: calculator/DEFAULT_DATA.py:111
 msgid "Conferencer"
 msgstr "Conférencier"
 
-#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:242
+#: calculator/DEFAULT_DATA.py:112
 msgid "Conference attendee"
 msgstr "Participant à la conférence"
 
-#: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:105
-#: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:107
-#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:109
-#: calculator/DEFAULT_DATA.py:243 calculator/DEFAULT_DATA.py:244
-#: calculator/DEFAULT_DATA.py:245 calculator/DEFAULT_DATA.py:246
-#: calculator/DEFAULT_DATA.py:247 calculator/DEFAULT_DATA.py:248
+#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:114
+#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:116
+#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
 msgid "Restaurant and Bar"
 msgstr "Restaurant et bar"
 
-#: calculator/DEFAULT_DATA.py:104 calculator/DEFAULT_DATA.py:243
+#: calculator/DEFAULT_DATA.py:113
 msgid "Guest standing"
 msgstr "Client debout"
 
-#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:244
+#: calculator/DEFAULT_DATA.py:114
 msgid "Guest sitting"
 msgstr "Client assis"
 
-#: calculator/DEFAULT_DATA.py:106 calculator/DEFAULT_DATA.py:245
+#: calculator/DEFAULT_DATA.py:115
 msgid "Server"
 msgstr "Serveur"
 
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:246
+#: calculator/DEFAULT_DATA.py:116
 msgid "Barrista"
 msgstr "Barrista"
 
-#: calculator/DEFAULT_DATA.py:108 calculator/DEFAULT_DATA.py:247
+#: calculator/DEFAULT_DATA.py:117
 msgid "Nightclub dancing"
 msgstr "Boîte de nuit dansant"
 
-#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:248
+#: calculator/DEFAULT_DATA.py:118
 msgid "Nightclub sitting"
 msgstr "Boîte de nuit assis"
 
-#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:111
-#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:249
-#: calculator/DEFAULT_DATA.py:250 calculator/DEFAULT_DATA.py:251
+#: calculator/DEFAULT_DATA.py:119 calculator/DEFAULT_DATA.py:120
+#: calculator/DEFAULT_DATA.py:121
 msgid "Store and Retail"
 msgstr "Commerce et vente au détail"
 
-#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:249
+#: calculator/DEFAULT_DATA.py:119
 msgid "Customer standing"
 msgstr "Client debout"
 
-#: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:250
+#: calculator/DEFAULT_DATA.py:120
 msgid "Cashier sitting"
 msgstr "Caissier assis"
 
-#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:251
+#: calculator/DEFAULT_DATA.py:121
 msgid "Vendor standing"
 msgstr "Vendeur debout"
 
-#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:114
-#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:252
-#: calculator/DEFAULT_DATA.py:253 calculator/DEFAULT_DATA.py:254
+#: calculator/DEFAULT_DATA.py:122 calculator/DEFAULT_DATA.py:123
+#: calculator/DEFAULT_DATA.py:124
 msgid "Sport"
 msgstr "Sport"
 
-#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:252
+#: calculator/DEFAULT_DATA.py:122
 msgid "Musculation"
 msgstr "Musculation"
 
-#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:115
-#: calculator/DEFAULT_DATA.py:252 calculator/DEFAULT_DATA.py:254
-msgid "Heavy exercise"
-msgstr "Exercice soutenu"
-
-#: calculator/DEFAULT_DATA.py:114 calculator/DEFAULT_DATA.py:253
+#: calculator/DEFAULT_DATA.py:123
 msgid "Floor gymnastics"
 msgstr "Gymnastique au sol"
 
-#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:254
+#: calculator/DEFAULT_DATA.py:124
 msgid "Team competition"
 msgstr "Sport collectif"
 
-#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:125
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:255
+#: calculator/DEFAULT_DATA.py:125
 msgid "Trip in elevator"
 msgstr "Parcours en ascenseur"
 
-#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
-#: calculator/DEFAULT_DATA.py:256 calculator/DEFAULT_DATA.py:257
+#: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
 msgid "Navy"
 msgstr "Marine"
 
-#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:256
+#: calculator/DEFAULT_DATA.py:126
 msgid "Watch seated"
 msgstr "Quart assis"
 
-#: calculator/DEFAULT_DATA.py:118 calculator/DEFAULT_DATA.py:257
+#: calculator/DEFAULT_DATA.py:127
 msgid "Watch standing"
 msgstr "Quart debout"
 
-#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
+#: calculator/DEFAULT_DATA.py:143
 msgid "February"
 msgstr "Février"
 
-#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
+#: calculator/DEFAULT_DATA.py:143
 msgid "March"
 msgstr "Mars"
 
-#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
+#: calculator/DEFAULT_DATA.py:143
 msgid "April"
 msgstr "Avril"
 
-#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
+#: calculator/DEFAULT_DATA.py:143
 msgid "May"
 msgstr "Mai"
 
-#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
+#: calculator/DEFAULT_DATA.py:143
 msgid "June"
 msgstr "Juin"
 
-#: calculator/DEFAULT_DATA.py:134 calculator/DEFAULT_DATA.py:260
+#: calculator/DEFAULT_DATA.py:143
 msgid "July"
 msgstr "Juillet"
 
-#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
+#: calculator/DEFAULT_DATA.py:144
 msgid "August"
 msgstr "Août"
 
-#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
+#: calculator/DEFAULT_DATA.py:144
 msgid "September"
 msgstr "Septembre"
 
-#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
+#: calculator/DEFAULT_DATA.py:144
 msgid "October"
 msgstr "Octobre"
 
-#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
+#: calculator/DEFAULT_DATA.py:144
 msgid "November"
 msgstr "Novembre"
 
-#: calculator/DEFAULT_DATA.py:135 calculator/DEFAULT_DATA.py:261
+#: calculator/DEFAULT_DATA.py:144
 msgid "December"
 msgstr "Décembre"
 
-#: calculator/DEFAULT_DATA.py:140 calculator/DEFAULT_DATA.py:266
+#: calculator/DEFAULT_DATA.py:149
 msgid "Choose the SARS-CoV-2 Variant of Concern (VOC)."
 msgstr "Choisissez le variant SARS-CoV-2."
 
-#: calculator/DEFAULT_DATA.py:141
+#: calculator/DEFAULT_DATA.py:150
 msgid ""
 "The area you wish to study (choose one of the 2 options). Indicate if a "
 "heating/air conditionning system is in use."
@@ -463,11 +359,11 @@ msgstr ""
 "Local étudié. Indiquer si du chauffage ou de l'air conditionné sont "
 "utilisés."
 
-#: calculator/DEFAULT_DATA.py:142 calculator/DEFAULT_DATA.py:268
+#: calculator/DEFAULT_DATA.py:151
 msgid "The available means of venting / bioventilation of indoor spaces."
 msgstr "Moyens de ventilation / Bioventilation du local."
 
-#: calculator/DEFAULT_DATA.py:143 calculator/DEFAULT_DATA.py:269
+#: calculator/DEFAULT_DATA.py:152
 msgid ""
 "If 'Periodically' is selected, windows will be open during lunch and "
 "coffee breaks"
@@ -475,7 +371,7 @@ msgstr ""
 "Si «périodiquement» est sélectionné, les fenêtres seront ouvertes pendant"
 " les pauses déjeuner et café"
 
-#: calculator/DEFAULT_DATA.py:144 calculator/DEFAULT_DATA.py:270
+#: calculator/DEFAULT_DATA.py:153
 msgid ""
 "This value can be modified for alternative scenarios even if 'No' is "
 "checked"
@@ -483,13 +379,13 @@ msgstr ""
 "Cette valeur peut être modifiée pour des scénarios alternatifs même si "
 "«non» est coché"
 
-#: calculator/DEFAULT_DATA.py:145 calculator/DEFAULT_DATA.py:271
+#: calculator/DEFAULT_DATA.py:154
 msgid ""
 "Masks worn or removed when a 2m physical distance is respected and proper"
 " venting is ensured."
 msgstr "Masques portés ou non"
 
-#: calculator/DEFAULT_DATA.py:146 calculator/DEFAULT_DATA.py:272
+#: calculator/DEFAULT_DATA.py:155
 msgid ""
 "The total no. of occupants in the room and how many of them you assume "
 "are infected."
@@ -497,7 +393,7 @@ msgstr ""
 "Nombre total des occupants dans le local et combien d'entre eux sont "
 "infectés."
 
-#: calculator/DEFAULT_DATA.py:147 calculator/DEFAULT_DATA.py:273
+#: calculator/DEFAULT_DATA.py:156
 msgid ""
 "Input breaks that, by default, are the same for infected/exposed "
 "person(s) unless specified otherwise."
@@ -505,63 +401,59 @@ msgstr ""
 "Pauses qui, par défaut, sont les mêmes pour les personnes infectées / "
 "exposées, sauf indication contraire"
 
-#: calculator/DEFAULT_DATA.py:149 calculator/DEFAULT_DATA.py:275
+#: calculator/DEFAULT_DATA.py:157
+msgid "Percentage of time spent breathing, talking or shouting"
+msgstr "Pourcentage du temps passé à respirer, parler ou crier"
+
+#: calculator/DEFAULT_DATA.py:159
 msgid "Room volume (m³)"
 msgstr "Volume de chambre (m³)"
 
-#: calculator/DEFAULT_DATA.py:150 calculator/DEFAULT_DATA.py:276
+#: calculator/DEFAULT_DATA.py:160
 msgid "Room floor area (m²)"
 msgstr "Surface du local (m²)"
 
-#: calculator/DEFAULT_DATA.py:151 calculator/DEFAULT_DATA.py:277
+#: calculator/DEFAULT_DATA.py:161
 msgid "Room ceiling height (m)"
 msgstr "Hauteur du plafond du local (m)"
 
-#: calculator/DEFAULT_DATA.py:152 calculator/DEFAULT_DATA.py:278
+#: calculator/DEFAULT_DATA.py:162
 msgid "Flow rate (m³ / hour)"
 msgstr "Débit (m³ / heure)"
 
-#: calculator/DEFAULT_DATA.py:153 calculator/DEFAULT_DATA.py:279
+#: calculator/DEFAULT_DATA.py:163
 msgid "Air exchange (h⁻¹)"
 msgstr "Renouvellements d'air (h⁻¹)"
 
-#: calculator/DEFAULT_DATA.py:154 calculator/DEFAULT_DATA.py:280
+#: calculator/DEFAULT_DATA.py:164
 msgid "Number (#)"
 msgstr "Numéro (#)"
 
-#: calculator/DEFAULT_DATA.py:155 calculator/DEFAULT_DATA.py:281
+#: calculator/DEFAULT_DATA.py:165
 msgid "Height (m)"
 msgstr "Hauteur (m)"
 
-#: calculator/DEFAULT_DATA.py:156 calculator/DEFAULT_DATA.py:282
+#: calculator/DEFAULT_DATA.py:166
 msgid "Width (m)"
 msgstr "Largeur (m)"
 
-#: calculator/DEFAULT_DATA.py:157 calculator/DEFAULT_DATA.py:283
+#: calculator/DEFAULT_DATA.py:167
 msgid "Opening distance (m)"
 msgstr "Distance d'ouverture (m)"
 
-#: calculator/DEFAULT_DATA.py:158 calculator/DEFAULT_DATA.py:284
+#: calculator/DEFAULT_DATA.py:168
 msgid "Duration (min)"
 msgstr "Durée (min)"
 
-#: calculator/DEFAULT_DATA.py:159 calculator/DEFAULT_DATA.py:285
+#: calculator/DEFAULT_DATA.py:169
 msgid "Frequency (min)"
 msgstr "Fréquence (min)"
 
-#: calculator/DEFAULT_DATA.py:160 calculator/DEFAULT_DATA.py:286
+#: calculator/DEFAULT_DATA.py:170
 msgid "Default"
 msgstr "Défaut"
 
-#: calculator/DEFAULT_DATA.py:267
-msgid ""
-"The area you wish to study (choose one of the 2 options). Indicate if a "
-"heating or air conditionning device is in use."
-msgstr ""
-"Local étudié. Indiquer si du chauffage ou de l'air conditionné sont "
-"utilisés."
-
-#: calculator/__init__.py:61
+#: calculator/__init__.py:76
 msgid ""
 "Unfortunately an error occurred when processing your request. Please let "
 "us know about this issue with as much detail as possible at"
@@ -570,27 +462,27 @@ msgstr ""
 "demande. Veuillez nous informer de ce problème avec autant de détails que"
 " possible à"
 
-#: calculator/__init__.py:61
+#: calculator/__init__.py:76
 msgid "reporting status code"
 msgstr "Code d'état de rapport"
 
-#: calculator/__init__.py:61
+#: calculator/__init__.py:76
 msgid "the error id of :"
 msgstr "L'ID d'erreur de:"
 
-#: calculator/__init__.py:61
+#: calculator/__init__.py:76
 msgid "and the time of the request"
 msgstr "Et l'heure de la demande"
 
-#: calculator/__init__.py:88
+#: calculator/__init__.py:109
 msgid "Unfortunately the page you were looking for does not exist."
 msgstr "Malheureusement, la page que vous recherchiez n'existe pas."
 
-#: calculator/__init__.py:112
+#: calculator/__init__.py:140
 msgid "Your request was invalid"
 msgstr "Votre demande n'était pas valide"
 
-#: calculator/__init__.py:221
+#: calculator/__init__.py:279
 msgid ""
 "Invalid calculator data: it seems incomplete. Was there an error copying "
 "& pasting the URL?"
@@ -849,8 +741,8 @@ msgstr "Remerciements:"
 msgid "Please send feedback to "
 msgstr "Veuillez envoyer vos commentaires à "
 
-#: templates/calculator.form.html.j2:26 templates/layout.html.j2:60
-#: templates/layout.html.j2:73
+#: templates/calculator.form.html.j2:26 templates/layout.html.j2:69
+#: templates/layout.html.j2:82
 msgid "FARC Calculator"
 msgstr "Calculateur FARC"
 
@@ -862,7 +754,7 @@ msgstr "Nom de la simulation:"
 msgid "Room number:"
 msgstr "Numéro du local:"
 
-#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:611
+#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:716
 msgid "Virus data:"
 msgstr "Données du virus:"
 
@@ -874,25 +766,25 @@ msgstr "Variant:"
 msgid "Room data:"
 msgstr "Données du local:"
 
-#: templates/calculator.form.html.j2:93
+#: templates/calculator.form.html.j2:91
 msgid "Room volume:"
 msgstr "Volume du local:"
 
-#: templates/calculator.form.html.j2:104
+#: templates/calculator.form.html.j2:102
 msgid "Floor area:"
 msgstr "Surface au sol:"
 
-#: templates/calculator.form.html.j2:112
+#: templates/calculator.form.html.j2:110
 msgid "Ceiling height:"
 msgstr "Hauteur de plafond:"
 
-#: templates/calculator.form.html.j2:120
+#: templates/calculator.form.html.j2:118
 msgid "Heating/Air conditionning system in use:"
 msgstr "Chauffage/ Air conditionné en cours d'utilisation."
 
-#: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:255
-#: templates/calculator.form.html.j2:276 templates/calculator.form.html.j2:497
-#: templates/calculator.form.html.j2:545
+#: templates/calculator.form.html.j2:121 templates/calculator.form.html.j2:259
+#: templates/calculator.form.html.j2:280 templates/calculator.form.html.j2:602
+#: templates/calculator.form.html.j2:650
 #: templates/calculator.report.html.j2:406
 #: templates/calculator.report.html.j2:450
 #: templates/calculator.report.html.j2:509
@@ -903,9 +795,9 @@ msgstr "Chauffage/ Air conditionné en cours d'utilisation."
 msgid "No"
 msgstr "Non"
 
-#: templates/calculator.form.html.j2:125 templates/calculator.form.html.j2:257
-#: templates/calculator.form.html.j2:274 templates/calculator.form.html.j2:499
-#: templates/calculator.form.html.j2:547
+#: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:261
+#: templates/calculator.form.html.j2:278 templates/calculator.form.html.j2:604
+#: templates/calculator.form.html.j2:652
 #: templates/calculator.report.html.j2:406
 #: templates/calculator.report.html.j2:435
 #: templates/calculator.report.html.j2:457
@@ -916,36 +808,44 @@ msgstr "Non"
 msgid "Yes"
 msgstr "Oui"
 
-#: templates/calculator.form.html.j2:129
+#: templates/calculator.form.html.j2:127
 msgid "Geographic location:"
 msgstr "Position géographique:"
 
-#: templates/calculator.form.html.j2:145 templates/calculator.form.html.j2:621
+#: templates/calculator.form.html.j2:131
+msgid "Humidity:"
+msgstr "Humidité:"
+
+#: templates/calculator.form.html.j2:133
+msgid "Temperature:"
+msgstr "Température:"
+
+#: templates/calculator.form.html.j2:149 templates/calculator.form.html.j2:726
 #: templates/calculator.report.html.j2:427
 msgid "Ventilation data:"
 msgstr "Données de ventilation:"
 
-#: templates/calculator.form.html.j2:152
+#: templates/calculator.form.html.j2:156
 msgid "Ventilation type:"
 msgstr "Type de ventilation:"
 
-#: templates/calculator.form.html.j2:157 templates/userguide.html.j2:162
+#: templates/calculator.form.html.j2:161 templates/userguide.html.j2:162
 msgid "No ventilation"
 msgstr "Pas de ventilation"
 
-#: templates/calculator.form.html.j2:159
+#: templates/calculator.form.html.j2:163
 msgid "Mechanical"
 msgstr "Mécanique"
 
-#: templates/calculator.form.html.j2:161
+#: templates/calculator.form.html.j2:165
 msgid "Natural"
 msgstr "Naturelle"
 
-#: templates/calculator.form.html.j2:170
+#: templates/calculator.form.html.j2:174
 msgid "Natural Ventilation"
 msgstr "Ventilation naturelle"
 
-#: templates/calculator.form.html.j2:176
+#: templates/calculator.form.html.j2:180
 msgid ""
 "Single-sided ventilation is assumed in the model and is typically "
 "effective for room depths up to a depth 2.5 x the ceiling height. \n"
@@ -960,193 +860,221 @@ msgstr ""
 "pourrait ne pas être homogène produisant un risque artificiellement plus "
 "bas plus loin de la fenêtre."
 
-#: templates/calculator.form.html.j2:190
+#: templates/calculator.form.html.j2:194
 msgid "Air supply flow rate"
 msgstr "Débit d'air neuf"
 
-#: templates/calculator.form.html.j2:199
+#: templates/calculator.form.html.j2:203
 msgid "Air changes per hour"
 msgstr "Changements d'air par heure"
 
-#: templates/calculator.form.html.j2:209
+#: templates/calculator.form.html.j2:213
 #: templates/calculator.report.html.j2:463
 msgid "Number of windows:"
 msgstr "Nombre de fenêtres:"
 
-#: templates/calculator.form.html.j2:213
+#: templates/calculator.form.html.j2:217
 #: templates/calculator.report.html.j2:468
 msgid "Height of window:"
 msgstr "Hauteur de fenêtre:"
 
-#: templates/calculator.form.html.j2:216
+#: templates/calculator.form.html.j2:220
 #: templates/calculator.report.html.j2:473
 msgid "Window type:"
 msgstr "Type de fenêtre:"
 
-#: templates/calculator.form.html.j2:218
+#: templates/calculator.form.html.j2:222
 #: templates/calculator.report.html.j2:484
 msgid "Sliding / Side-Hung"
 msgstr "Coulissante / latérale"
 
-#: templates/calculator.form.html.j2:220
+#: templates/calculator.form.html.j2:224
 #: templates/calculator.report.html.j2:475
 msgid "Top- or Bottom-Hung"
 msgstr "Charnière haute ou basse"
 
-#: templates/calculator.form.html.j2:222
+#: templates/calculator.form.html.j2:226
 #: templates/calculator.report.html.j2:480
 msgid "Width of window:"
 msgstr "Largeur de la fenêtre:"
 
-#: templates/calculator.form.html.j2:226
+#: templates/calculator.form.html.j2:230
 #: templates/calculator.report.html.j2:490
 msgid "Opening distance:"
 msgstr "Distance d'ouverture:"
 
-#: templates/calculator.form.html.j2:229
+#: templates/calculator.form.html.j2:233
 msgid "Window open"
 msgstr "Fenêtre ouverte"
 
-#: templates/calculator.form.html.j2:236
+#: templates/calculator.form.html.j2:240
 #: templates/calculator.report.html.j2:500
 msgid "Permanently"
 msgstr "En permanence"
 
-#: templates/calculator.form.html.j2:240
+#: templates/calculator.form.html.j2:244
 msgid "Periodically:"
 msgstr "Périodique:"
 
-#: templates/calculator.form.html.j2:247
+#: templates/calculator.form.html.j2:251
 #: templates/calculator.report.html.j2:515
 msgid "Bioventilation:"
 msgstr "Bioventilation:"
 
-#: templates/calculator.form.html.j2:265
+#: templates/calculator.form.html.j2:269
 msgid "Face masks:"
 msgstr "Masques faciaux:"
 
-#: templates/calculator.form.html.j2:272
+#: templates/calculator.form.html.j2:276
 msgid "Are masks worn when occupants ?"
 msgstr "Port du masque ?"
 
-#: templates/calculator.form.html.j2:279
+#: templates/calculator.form.html.j2:283
 msgid "Type of masks used (requested for alternative scenarios):"
 msgstr "Type de masque (utilisé aussi pour les scénarios alternatifs)"
 
-#: templates/calculator.form.html.j2:284
+#: templates/calculator.form.html.j2:288
 msgid "Surgical/Type I"
 msgstr "Chirurgie / type I"
 
-#: templates/calculator.form.html.j2:291
+#: templates/calculator.form.html.j2:295
 msgid "Respirator/FFP2"
 msgstr "FFP2 ou similaire"
 
-#: templates/calculator.form.html.j2:303
+#: templates/calculator.form.html.j2:307
 #: templates/calculator.report.html.j2:532
 msgid "Event data:"
 msgstr "Données sur l'événement:"
 
-#: templates/calculator.form.html.j2:309
+#: templates/calculator.form.html.j2:313
 msgid "Total number of occupants:"
 msgstr "Nombre total d'occupants:"
 
-#: templates/calculator.form.html.j2:314
+#: templates/calculator.form.html.j2:318
 msgid "Number of infected people:"
 msgstr "Nombre de personnes infectées:"
 
-#: templates/calculator.form.html.j2:319
+#: templates/calculator.form.html.j2:323
 msgid "Conference/Training activities limited to 1 infected"
 msgstr "NA commentaire"
 
-#: templates/calculator.form.html.j2:349
+#: templates/calculator.form.html.j2:353
 msgid "Exposed person(s):"
 msgstr "Personnes exposées:"
 
-#: templates/calculator.form.html.j2:351
+#: templates/calculator.form.html.j2:355
 #: templates/calculator.report.html.j2:551
 #: templates/calculator.report.html.j2:628
 msgid "Activity type:"
 msgstr "Type d'activité:"
 
-#: templates/calculator.form.html.j2:386 templates/calculator.form.html.j2:442
+#: templates/calculator.form.html.j2:390 templates/calculator.form.html.j2:486
 msgid "Mask wear ratio:"
 msgstr "Ratio de port du masque:"
 
-#: templates/calculator.form.html.j2:390 templates/calculator.form.html.j2:445
+#: templates/calculator.form.html.j2:394 templates/calculator.form.html.j2:509
+msgid "Expiration :"
+msgstr "Type d'expiration: "
+
+#: templates/calculator.form.html.j2:419 templates/calculator.form.html.j2:534
+msgid "Activity level :"
+msgstr "Niveau d'activité: "
+
+#: templates/calculator.form.html.j2:426 templates/calculator.form.html.j2:541
+msgid "Seated"
+msgstr "Assis"
+
+#: templates/calculator.form.html.j2:427 templates/calculator.form.html.j2:542
+msgid "Standing"
+msgstr "Debout"
+
+#: templates/calculator.form.html.j2:428 templates/calculator.form.html.j2:543
+msgid "Light activity"
+msgstr "Activité légère"
+
+#: templates/calculator.form.html.j2:429 templates/calculator.form.html.j2:544
+msgid "Moderate activity"
+msgstr "Activité modérée"
+
+#: templates/calculator.form.html.j2:430 templates/calculator.form.html.j2:545
+msgid "Heavy exercise"
+msgstr "Exercice soutenu"
+
+#: templates/calculator.form.html.j2:434 templates/calculator.form.html.j2:550
 msgid "Presence:"
 msgstr "Présence:"
 
-#: templates/calculator.form.html.j2:393 templates/calculator.form.html.j2:448
-#: templates/calculator.form.html.j2:502 templates/calculator.form.html.j2:551
+#: templates/calculator.form.html.j2:437 templates/calculator.form.html.j2:553
+#: templates/calculator.form.html.j2:607 templates/calculator.form.html.j2:656
 #: templates/calculator.report.html.j2:752
 #: templates/calculator.report.html.j2:798
 msgid "Start:"
 msgstr "Début:"
 
-#: templates/calculator.form.html.j2:397 templates/calculator.form.html.j2:452
-#: templates/calculator.form.html.j2:505 templates/calculator.form.html.j2:554
+#: templates/calculator.form.html.j2:441 templates/calculator.form.html.j2:557
+#: templates/calculator.form.html.j2:610 templates/calculator.form.html.j2:659
 msgid "Finish:"
 msgstr "Fin:"
 
-#: templates/calculator.form.html.j2:405
+#: templates/calculator.form.html.j2:449
 msgid "Infected person(s):"
 msgstr "Personnes infectées:"
 
-#: templates/calculator.form.html.j2:407
+#: templates/calculator.form.html.j2:451
 msgid "Activity:"
 msgstr "Activité:"
 
-#: templates/calculator.form.html.j2:463
+#: templates/calculator.form.html.j2:568
 msgid "Which month is the event?"
 msgstr "Mois de l'événement"
 
-#: templates/calculator.form.html.j2:480 templates/calculator.form.html.j2:652
+#: templates/calculator.form.html.j2:585 templates/calculator.form.html.j2:757
 msgid "Activity breaks:"
 msgstr "Pauses dans l'activité:"
 
-#: templates/calculator.form.html.j2:489
+#: templates/calculator.form.html.j2:594
 msgid "Input separate breaks for infected and exposed person(s)"
 msgstr "Pauses séparées pour les personnes infectées et exposées"
 
-#: templates/calculator.form.html.j2:493
+#: templates/calculator.form.html.j2:598
 msgid "Exposed person(s) breaks:"
 msgstr "Pauses des personnes exposées:"
 
-#: templates/calculator.form.html.j2:495 templates/calculator.form.html.j2:543
+#: templates/calculator.form.html.j2:600 templates/calculator.form.html.j2:648
 #: templates/calculator.report.html.j2:720
 #: templates/calculator.report.html.j2:766
 msgid "Lunch break:"
 msgstr "Heure du déjeuner:"
 
-#: templates/calculator.form.html.j2:512 templates/calculator.form.html.j2:561
+#: templates/calculator.form.html.j2:617 templates/calculator.form.html.j2:666
 msgid "Coffee Breaks:"
 msgstr "Pauses café:"
 
-#: templates/calculator.form.html.j2:516 templates/calculator.form.html.j2:565
+#: templates/calculator.form.html.j2:621 templates/calculator.form.html.j2:670
 msgid "No breaks"
 msgstr "Pas de pause"
 
-#: templates/calculator.form.html.j2:526 templates/calculator.form.html.j2:575
+#: templates/calculator.form.html.j2:631 templates/calculator.form.html.j2:680
 msgid "Duration (minutes):"
 msgstr "Durée (minutes):"
 
-#: templates/calculator.form.html.j2:541
+#: templates/calculator.form.html.j2:646
 msgid "Infected person(s) breaks:"
 msgstr "Pauses des personnes infectées:"
 
-#: templates/calculator.form.html.j2:590
+#: templates/calculator.form.html.j2:695
 msgid "Coffee breaks are spread evenly throughout the day."
 msgstr "Les pauses café sont réparties uniformément tout au long de la journée."
 
-#: templates/calculator.form.html.j2:601
+#: templates/calculator.form.html.j2:706
 msgid "Generate report"
 msgstr "Générer un rapport"
 
-#: templates/calculator.form.html.j2:608
+#: templates/calculator.form.html.j2:713
 msgid "Quick Guide:"
 msgstr "Guide rapide:"
 
-#: templates/calculator.form.html.j2:609
+#: templates/calculator.form.html.j2:714
 msgid ""
 "FARC stands for Flow-R Airborne Risk Calculator.\n"
 "  This tool simulates the long range airborne spread SARS-CoV-2 virus in "
@@ -1160,7 +1088,7 @@ msgstr ""
 "Covid-19. Il est basé sur des données scientifiques actuels et peut être "
 "utilisé pour comparer l'efficacité de différentes mesures de prévention."
 
-#: templates/calculator.form.html.j2:612
+#: templates/calculator.form.html.j2:717
 msgid ""
 "SARS-CoV-2 covers the original 'wild type' strain of the virus and three "
 "variants of concern (VOC):"
@@ -1168,31 +1096,31 @@ msgstr ""
 "SARS-CoV-2 couvre la souche d'origine du virus «wild strain» et "
 "différents variants préoccupants:"
 
-#: templates/calculator.form.html.j2:614
+#: templates/calculator.form.html.j2:719
 msgid "Alpha (also known as B.1.1.7, first identified in UK, Sept 2020),"
 msgstr ""
 "Alpha (également connu sous le nom de B.1.1.7, identifié pour la première"
 " fois au Royaume-Uni, septembre 2020),"
 
-#: templates/calculator.form.html.j2:615
+#: templates/calculator.form.html.j2:720
 msgid "Beta (also known as B.1.351, first identified in South Africa, May 2020)."
 msgstr ""
 "Beta (également connu sous le nom de 1.351, identifié pour la première "
 "fois en Afrique du Sud, mai 2020)."
 
-#: templates/calculator.form.html.j2:616
+#: templates/calculator.form.html.j2:721
 msgid "Gamma (also known as P.1, first identified in Brazil/Japan, Jan 2021)."
 msgstr ""
 "Gamma (également connu sous le nom de P.1, identifié pour la première "
 "fois au Brésil / Japon, janvier 2021)."
 
-#: templates/calculator.form.html.j2:617
+#: templates/calculator.form.html.j2:722
 msgid "Delta (also known as B.1.617.2, first identified in India, Oct 2020)."
 msgstr ""
 "Delta (également connu sous le nom de 1.617.2, identifié pour la première"
 " fois en Inde, octobre 2020)."
 
-#: templates/calculator.form.html.j2:618
+#: templates/calculator.form.html.j2:723
 msgid ""
 "Omicron (also known as B.1.1.529, first identified in South Africa, "
 "November 2021)."
@@ -1200,13 +1128,13 @@ msgstr ""
 "Omicron (également connu sous le nom de B.1.1.529, identifié pour la "
 "première fois en Afrique du Sud, novembre 2021)."
 
-#: templates/calculator.form.html.j2:620
+#: templates/calculator.form.html.j2:725
 msgid "Modify the default as necessary, according to local area prevalence."
 msgstr ""
 "Modifiez la valeur par défaut si nécessaire, selon le taux d'incidence "
 "local."
 
-#: templates/calculator.form.html.j2:623
+#: templates/calculator.form.html.j2:728
 msgid ""
 "Mechanical ventilation = the HVAC supply of fresh air. Check the flow "
 "rates with the concerned technical department."
@@ -1214,7 +1142,7 @@ msgstr ""
 "Ventilation mécanique = l'alimentation HVAC en l'air frais. Vérifiez les "
 "débits avec le service technique concerné."
 
-#: templates/calculator.form.html.j2:624
+#: templates/calculator.form.html.j2:729
 msgid ""
 "Natural ventilation = the type of window opening. The opening distance is"
 " between the fixed frame and movable part when open (commonly used values"
@@ -1229,7 +1157,7 @@ msgstr ""
 "d'ouverture périodique, spécifiez la durée (par exemple pendant 10 min) "
 "et la fréquence (par exemple toutes les 60 min)."
 
-#: templates/calculator.form.html.j2:625
+#: templates/calculator.form.html.j2:730
 msgid ""
 "Bioventilation = the clean air flow of the device. The following values "
 "are based on the different fan velocities of a specific commercial device"
@@ -1239,33 +1167,33 @@ msgstr ""
 "suivantes sont basées sur les différentes vitesses de ventilation d'un "
 "appareil commercial spécifique proposé par Flow-R :"
 
-#: templates/calculator.form.html.j2:627 templates/calculator.form.html.j2:628
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:732 templates/calculator.form.html.j2:733
+#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
 msgid "/h (noisy)"
 msgstr "/h (bruyant)"
 
-#: templates/calculator.form.html.j2:627 templates/calculator.form.html.j2:628
+#: templates/calculator.form.html.j2:732 templates/calculator.form.html.j2:733
 msgid "/h (very noisy)"
 msgstr "/h (très bruyant)"
 
-#: templates/calculator.form.html.j2:627 templates/calculator.form.html.j2:628
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:732 templates/calculator.form.html.j2:733
+#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
 msgid "/h (max, very noisy. Recommended without attendance)"
 msgstr "/h (Max, très bruyant. Recommandé sans présence)"
 
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
 msgid "/h (ultra silent)"
 msgstr "/h (ultra silencieux)"
 
-#: templates/calculator.form.html.j2:629 templates/calculator.form.html.j2:630
+#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
 msgid "/h (silent)"
 msgstr "/h (silencieux)"
 
-#: templates/calculator.form.html.j2:633
+#: templates/calculator.form.html.j2:738
 msgid "Activity types:"
 msgstr "Types d'activités:"
 
-#: templates/calculator.form.html.j2:634
+#: templates/calculator.form.html.j2:739
 msgid ""
 "The type of activity applies to the infected and exposed persons "
 "separately."
@@ -1273,7 +1201,7 @@ msgstr ""
 "Le type d'activité s'applique séparément aux personnes infectées et "
 "exposées."
 
-#: templates/calculator.form.html.j2:653
+#: templates/calculator.form.html.j2:758
 msgid ""
 "If coffee breaks are included, they are spread out evenly throughout the "
 "day, in addition to any lunch break (if applicable)."
@@ -1281,23 +1209,23 @@ msgstr ""
 "Si les pauses café sont inclues, elles sont réparties uniformément tout "
 "au long de la journée, en plus de toute pause déjeuner (le cas échéant)."
 
-#: templates/calculator.form.html.j2:655
+#: templates/calculator.form.html.j2:760
 msgid "Refer to"
 msgstr "Consulter le "
 
-#: templates/calculator.form.html.j2:655
+#: templates/calculator.form.html.j2:760
 msgid "FARC user guide"
 msgstr "Mode d'emploi du FARC"
 
-#: templates/calculator.form.html.j2:656
+#: templates/calculator.form.html.j2:761
 msgid "for more detailed explanations on how to use this tool."
 msgstr " pour des explications plus détaillées sur la façon d'utiliser cet outil."
 
-#: templates/calculator.form.html.j2:661
+#: templates/calculator.form.html.j2:766
 msgid "User guide"
 msgstr "Mode d'emploi"
 
-#: templates/calculator.form.html.j2:664 templates/userguide.html.j2:27
+#: templates/calculator.form.html.j2:769 templates/userguide.html.j2:27
 msgid "Disclaimer"
 msgstr "Avertissement"
 
@@ -1321,7 +1249,8 @@ msgstr "Utilisation de FARC"
 msgid "Print Report"
 msgstr "Imprimer le rapport"
 
-#: templates/calculator.report.html.j2:63 templates/userguide.html.j2:302
+#: templates/calculator.report.html.j2:63
+#: templates/calculator.report.html.j2:92 templates/userguide.html.j2:302
 msgid "Results"
 msgstr "Résultats"
 
@@ -1618,6 +1547,21 @@ msgstr "Occupant exposés:"
 #: templates/calculator.report.html.j2:662
 msgid "Expiration type: "
 msgstr "Type d'expiration: "
+
+#: templates/calculator.report.html.j2:585
+#: templates/calculator.report.html.j2:663
+msgid "breathing"
+msgstr "respirant"
+
+#: templates/calculator.report.html.j2:586
+#: templates/calculator.report.html.j2:664
+msgid "speaking"
+msgstr "parlant"
+
+#: templates/calculator.report.html.j2:587
+#: templates/calculator.report.html.j2:665
+msgid "shouting"
+msgstr "criant"
 
 #: templates/calculator.report.html.j2:593
 #: templates/calculator.report.html.j2:671
@@ -1999,7 +1943,7 @@ msgstr ""
 "mélange homogène, et il estime le risque de transmission aéroportée \n"
 "                Veuillez voir la page "
 
-#: templates/index.html.j2:24 templates/layout.html.j2:82
+#: templates/index.html.j2:24 templates/layout.html.j2:91
 msgid "About"
 msgstr "A propos"
 
@@ -2086,27 +2030,27 @@ msgstr ""
 msgid "FARC | Flow-R Airborne Risk Calculator"
 msgstr "FARC | Calculateur de risque aéroporté Flow-R"
 
-#: templates/layout.html.j2:42
+#: templates/layout.html.j2:51
 msgid "Home"
 msgstr "Home"
 
-#: templates/layout.html.j2:53
+#: templates/layout.html.j2:62
 msgid "Apps"
 msgstr "Applications"
 
-#: templates/layout.html.j2:65 templates/layout.html.j2:77
+#: templates/layout.html.j2:74 templates/layout.html.j2:86
 msgid "User Guide"
 msgstr "Mode d'emploi"
 
-#: templates/layout.html.j2:93
+#: templates/layout.html.j2:110
 msgid "Signed in as:"
 msgstr "Connecté en tant que:"
 
-#: templates/layout.html.j2:99
+#: templates/layout.html.j2:116
 msgid "Sign out"
 msgstr "Déconnexion"
 
-#: templates/layout.html.j2:120
+#: templates/layout.html.j2:137
 msgid ""
 "Flow-R FARC Team strives to deploy its know-how and technologies to help "
 "solve\n"
@@ -2130,7 +2074,7 @@ msgstr ""
 "\n"
 "                            garantie."
 
-#: templates/layout.html.j2:127
+#: templates/layout.html.j2:144
 msgid ""
 "FARC is based on CARA tool developed at CERN.\n"
 "                            FARC and CARA are Apache 2.0 licensed."
@@ -3005,4 +2949,14 @@ msgstr ""
 #: templates/userguide.html.j2:363
 msgid "Send email"
 msgstr "Envoyer un e-mail"
+
+#~ msgid ""
+#~ "The area you wish to study (choose"
+#~ " one of the 2 options). Indicate "
+#~ "if a heating or air conditionning "
+#~ "device is in use."
+#~ msgstr ""
+#~ "Local étudié. Indiquer si du chauffage"
+#~ " ou de l'air conditionné sont "
+#~ "utilisés."
 
