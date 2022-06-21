@@ -143,7 +143,7 @@ class Schedule:
 
     def get_event_by_time(self, time):
         for event in self.events:
-            if event.start <= time and event.end >= time :
+            if event.start <= time and event.end > time :
                 return event
         raise ValueError
 
@@ -232,10 +232,12 @@ class Person(Role):
 
     def calculate_data(self):
         if not self.infected and self.exposure_model.size > 0 :
+            total_dose : models._VectorisedFloat = 0
             for model in self.exposure_model :
-                virus_dose = model.deposited_exposure()
-                self.cumulative_dose += virus_dose
-            return virus_dose
+                virus_dose = np.sort(model.deposited_exposure())
+                self.cumulative_dose = np.add(self.cumulative_dose, virus_dose)
+                total_dose = np.add(total_dose, virus_dose)
+            return total_dose
         else :
             return 0.
 
@@ -244,6 +246,9 @@ class Person(Role):
             self.infection_probability = np.array(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose)).mean()
         else :
             return 0.
+
+    def add_model(self, model : models.ExposureModel):
+        self.exposure_model = np.append(self.exposure_model, model)
 
 
 @dataclass
@@ -282,24 +287,26 @@ class Room(RoomType):
             occupant.location = None
 
     def build_model(self, infected : Person, simulation, time1 : int, time2: int):
-        room = models.Room(self.volume,self.humidity)
+        room = models.Room(volume = self.volume,humidity = self.humidity)
         ventilation = self.ventilation.ventilation()
-        if infected.location.id == self.id:
+        if infected.location and infected.location.id == self.id:
             infected_population = infected.infected_population(simulation, time1, time2)
-            np.append(self.concentrationModels, mc.ConcentrationModel(
+            self.concentrationModels = np.append(self.concentrationModels, mc.ConcentrationModel(
                 room=room,
                 ventilation=ventilation,
                 infected=infected_population,
                 evaporation_factor=0.3,
-                previous_concentration=self.virus_concentration
             ))
         for person in self.occupants :
             exposed_population = person.exposed_population(time1, time2)
+            person.exposure_model = np.array([], dtype= models.ExposureModel )
             for model in self.concentrationModels :
-                np.append(person.exposure_model, mc.ExposureModel(model, exposed_population).build_model(size=250000))
+                person.add_model(mc.ExposureModel(model, exposed_population).build_model(size=250000))
+ 
+
 
     def calculate_cumulative_dose(self):
-        self.cumulative_exposure = np.array(self.cumulative_exposure).mean()
+        self.cumulative_exposure = np.array(self.cumulative_exposure)
 
     
 @dataclass

@@ -303,11 +303,13 @@ document.addEventListener('DOMContentLoaded', function() {
     })
   });
 
-  $('#deleteRoom\\[0\\]').on('click', function() {
+  $(document).ready(function () {
+    $('#deleteRoom\\[0\\]').on('click', function() {
     var room = document.getElementById('roomFormContainer[0]');
     if (document.getElementsByClassName('RoomForm').length>1){
         room.parentNode.remove();
     }
+})
 })
 
   

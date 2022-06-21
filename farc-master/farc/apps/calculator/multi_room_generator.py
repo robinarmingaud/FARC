@@ -37,10 +37,8 @@ class MultiGenerator:
                 for person in room.occupants:
                     # Could be optimized, room concentration calculated size(room.occupants) times
                         virus_dose = person.calculate_data()
-                        for model in person.exposure_model :
-                            room.virus_concentration = person.exposure_model.concentration_model.concentration(float(time2))
-                        print(np.array(room.virus_concentration).mean())
                         room.cumulative_exposure += virus_dose
+                        
 
     def calculate_means(self, simulation : multi_room_model.Simulation):
         """TODO : Add concentration/time and cumulative dose/time ?"""
