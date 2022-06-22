@@ -301,7 +301,7 @@ class Room(RoomType):
             exposed_population = person.exposed_population(time1, time2)
             person.exposure_model = np.array([], dtype= models.ExposureModel )
             for model in self.concentrationModels :
-                person.add_model(mc.ExposureModel(model, exposed_population).build_model(size=250000))
+                person.add_model(mc.ExposureModel(model, exposed_population).build_model(size=60000))
  
 
 
