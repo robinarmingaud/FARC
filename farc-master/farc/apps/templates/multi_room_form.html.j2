@@ -20,6 +20,23 @@
 
 {%block main%}
 
+<span class="cara_version">v{{ calculator_version }}</span>
+<span class="ml-2 feedback">{{_("Please send feedback to ")}}<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a></span>
+<header class= "bg-light">
+  <div class="container container--padding">
+    <div class="d-flex header-height">
+      <h1 class="align-self-center">{{_("FARC Calculator")}}</h1>
+      <img src="/static/images/Logo_Flow-R_Couleur@2x.png" class="logo_form align-self-center ml-3">
+    </div>
+  </div>
+</header>
+
+
+<form id="covid_calculator" name="covid_calculator" action="{{ calculator_prefix }}/multi_room" method="POST">
+{{ xsrf_form_html }}
+
+<input type="hidden" name="calculator_version" value="{{ calculator_version }}">
+
 <ul class="nav justify-content-center">
   <li class = "nav-item"><a data-toggle="pill" href="#rooms_data_form">Rooms</a></li>
   <li class = "nav-item"><a data-toggle="pill" href="#people_data_form">People</a></li>
@@ -29,29 +46,31 @@
 <div id="rooms_data_form" class="tab-pane fade show active">
 
 <h1>Rooms</h1>
-<form action="" method="get">
 <div id="RoomList">
 
 </div>
 
 <button type="button" class="btn btn-secondary" onclick="addRoom(); return false;">{{_("Add room")}}</button>
 
-</form>
 
 </div>
 
 
 <div id="people_data_form" class="tab-pane fade">
     <h1>People</h1>
-    <form action="" method="get">
     <div id ="PeopleList">
     
     </div>
     <button type="button" class="btn btn-secondary" onclick="addPerson(); return false;">{{_("Add person")}}</button>
 
-    </form>
 </div>
 </div>
+
+
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
 
 
 {%endblock main%}

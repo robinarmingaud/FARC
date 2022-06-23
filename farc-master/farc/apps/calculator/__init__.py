@@ -27,7 +27,7 @@ from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
 from .DEFAULT_DATA import __version__, _DEFAULTS as d
 import tornado
-
+from . import multi_room_generator
 tornado.locale.set_default_locale("en")
 
 
@@ -244,10 +244,43 @@ class MultiRoomForm(BaseRequestHandler):
         report = template.render(user=self.current_user,
             xsrf_form_html=self.xsrf_form_html(),
             calculator_prefix=self.settings["calculator_prefix"],
+            calculator_version=__version__,
             default = DEFAULT_DATA._DEFAULTS,
             PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
             ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES)
         self.finish(report)
+
+
+    async def post(self):
+        language = self.get_cookie('language') or 'null'
+        if language == "null" : 
+            template_environment = self.settings["template_environment"]
+            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            _ = tornado.locale.get(self.locale.code).translate
+            locale_code = tornado.locale.get(language )
+        else :
+            template_environment = self.settings["template_environment"]
+            template_environment.globals['_']=tornado.locale.get(language ).translate
+            _ = tornado.locale.get(language ).translate    
+            locale_code = tornado.locale.get(language )    
+        requested_model_config = {
+            name: self.get_argument(name) for name in self.request.arguments
+        }
+        if self.settings.get("debug", False):
+            from pprint import pprint
+            pprint(requested_model_config)
+            start = datetime.datetime.now()
+
+            try:
+                form = multi_room_generator.FormData.from_dict(requested_model_config)
+            except Exception as err:
+                if self.settings.get("debug", False):
+                    import traceback
+                    print(traceback.format_exc())
+                response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
+                self.set_status(400)
+                self.finish(json.dumps(response_json))
+                return
 
 
 class CalculatorForm(BaseRequestHandler):

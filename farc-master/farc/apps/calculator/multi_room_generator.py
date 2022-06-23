@@ -1,11 +1,14 @@
 from copy import deepcopy
 from dataclasses import dataclass
+import dataclasses
+import html
+import typing
 
 import numpy as np
 
 import farc.apps.calculator.multi_room_model as multi_room_model
 
-
+minutes_since_midnight = typing.NewType('minutes_since_midnight', int)
 
 @dataclass 
 class MultiGenerator:
@@ -59,3 +62,98 @@ class MultiGenerator:
             self.calculate_means(simulation_copy)
             self.report.simulations = np.append(self.report.simulations, simulation_copy)
 
+
+
+@dataclasses.dataclass
+class FormData:
+    people : list
+    rooms : list
+    events : list
+    
+    
+    @classmethod
+    def from_dict(cls, form_data: typing.Dict) -> "FormData":
+        # Take a copy of the form data so that we can mutate it.
+        form_data = form_data.copy()
+        form_data.pop('_xsrf', None)
+
+        # Don't let arbitrary unescaped HTML through the net.
+        for key, value in form_data.items():
+            if isinstance(value, str):
+                form_data[key] = html.escape(value)
+
+        for key, value in form_data.items():
+            if key in _CAST_RULES_FORM_ARG_TO_NATIVE:
+                form_data[key] = _CAST_RULES_FORM_ARG_TO_NATIVE[key](value)
+
+        instance = cls(**form_data)
+        return instance
+
+    @classmethod
+    def to_dict(cls, form: "FormData", strip_defaults: bool = False) -> dict:
+        form_dict = {
+            field.name: getattr(form, field.name)
+            for field in dataclasses.fields(form)
+        }
+
+        for attr, value in form_dict.items():
+            if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
+                form_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
+
+        if strip_defaults:
+            del form_dict['calculator_version']
+
+        return form_dict
+
+#: Mapping of field name to a callable which can convert values from form
+#: input (URL encoded arguments / string) into the correct type.
+_CAST_RULES_FORM_ARG_TO_NATIVE: typing.Dict[str, typing.Callable] = {}
+
+#: Mapping of field name to callable which can convert native type to values
+#: that can be encoded to URL arguments.
+_CAST_RULES_NATIVE_TO_FORM_ARG: typing.Dict[str, typing.Callable] = {}
+
+def _hours2timestring(hours: float):
+    # Convert times like 14.5 to strings, like "14:30"
+    return f"{int(np.floor(hours)):02d}:{int(np.round((hours % 1) * 60)):02d}"
+
+
+def time_string_to_minutes(time: str) -> minutes_since_midnight:
+    """
+    Converts time from string-format to an integer number of minutes after 00:00
+    :param time: A string of the form "HH:MM" representing a time of day
+    :return: The number of minutes between 'time' and 00:00
+    """
+    return minutes_since_midnight(60 * int(time[:2]) + int(time[3:]))
+
+
+def time_minutes_to_string(time: int) -> str:
+    """
+    Converts time from an integer number of minutes after 00:00 to string-format
+    :param time: The number of minutes between 'time' and 00:00
+    :return: A string of the form "HH:MM" representing a time of day
+    """
+    return "{0:0=2d}".format(int(time/60)) + ":" + "{0:0=2d}".format(time%60)
+
+
+def _safe_int_cast(value) -> int:
+    if isinstance(value, int):
+        return value
+    elif isinstance(value, float) and int(value) == value:
+        return int(value)
+    elif isinstance(value, str) and value.isdecimal():
+        return int(value)
+    else:
+        raise TypeError(f"Unable to safely cast {value} ({type(value)} type) to int")
+ 
+for _field in dataclasses.fields(FormData):
+    if _field.type is minutes_since_midnight:
+        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = time_string_to_minutes
+        _CAST_RULES_NATIVE_TO_FORM_ARG[_field.name] = time_minutes_to_string
+    elif _field.type is int:
+        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = _safe_int_cast
+    elif _field.type is float:
+        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = float
+    elif _field.type is bool:
+        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = lambda v: v == '1'
+        _CAST_RULES_NATIVE_TO_FORM_ARG[_field.name] = int

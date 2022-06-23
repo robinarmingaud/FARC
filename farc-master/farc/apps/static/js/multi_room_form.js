@@ -7,36 +7,36 @@ function addRoom() {
     <tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th></tr>
     <tr>
       <td><div>` + RoomId + `</div>
-      <td><input type="text" name="name[` + RoomId + `]"></td>
-      <td><input type="text" name="volume[` + RoomId + `]"></td>
-      <td><input type="text" name="humidity[` + RoomId + `]"></td>
-      <td><input type="text" name="temperature[` + RoomId + `]"></td>
-      <td><input type="radio" name="ventilation[` + RoomId + `]">No ventilation</td>
-      <td><input type="radio" name="ventilation[` + RoomId + `]">Mechanical</td>
-      <td><input type="radio" name="ventilation[` + RoomId + `]">Natural</td>
-      <td><input type="text" name="duration[` + RoomId + `]"></td>
-      <td><input type="text" name="frequency[` + RoomId + `]"></td>
+      <td><input class="col-sm-8 form-control" type="text" name="name[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="volume[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="humidity[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="temperature[` + RoomId + `]" required></td>
+      <td><input type="radio" name="ventilation[` + RoomId + `]" required>No ventilation</td>
+      <td><input type="radio" name="ventilation[` + RoomId + `]" required>Mechanical</td>
+      <td><input type="radio" name="ventilation[` + RoomId + `]" required>Natural</td>
+      <td><input class="col-sm-8 form-control" type="text" name="duration[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="frequency[` + RoomId + `]" required></td>
     </tr>
     </tbody></table>
     <table>
     <tbody><tr><th>Window height</th><th>Window width</th><th>Window number</th><th>Window opening regime</th><th></th><th>Opening distance</th><th>Month</th><th></th></tr>
     <tr>
-      <td><input type="text" name="height[` + RoomId + `]"></td>
-      <td><input type="text" name="width[` + RoomId + `]"></td>
-      <td><input type="text" name="number[` + RoomId + `]"></td>
-      <td><input type="radio" name="openingRegime[` + RoomId + `]">Periodically</td>
-      <td><input type="radio" name="openingRegime[` + RoomId + `]">Permanently</td>
-      <td><input type="text" name="openingDistance[` + RoomId + `]"></td>
-      <td><input type="text" name="month[` + RoomId + `]"></td>
-      <td><input type="checkbox" name="openingRegime[` + RoomId + `]">Room heating</td>
+      <td><input class="col-sm-8 form-control" type="text" name="height[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="width[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="number[` + RoomId + `]" required></td>
+      <td><input type="radio" name="openingRegime[` + RoomId + `]" required>Periodically</td>
+      <td><input type="radio" name="openingRegime[` + RoomId + `]" required >Permanently</td>
+      <td><input class="col-sm-8 form-control" type="text" name="openingDistance[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="month[` + RoomId + `]" required ></td>
+      <td><input type="checkbox" name="openingRegime[` + RoomId + `]" required>Room heating</td>
     </tr>
     </tbody></table>
     <table>
     <tbody><tr><th>Air supply</th><th></th><th>Biov Amount</th></tr>
     <tr>
-      <td><input type="text" name="airSupply[` + RoomId + `]"></td>
-      <td><input type="checkbox" name="biovOption[` + RoomId + `]">Biov option</td>
-      <td><input type="text" name="biovAmount[` + RoomId + `]"></td>
+      <td><input class="col-sm-8 form-control" type="text" name="airSupply[` + RoomId + `]" required></td>
+      <td><input type="checkbox" name="biovOption[` + RoomId + `]" required>Biov option</td>
+      <td><input class="col-sm-8 form-control" type="text" name="biovAmount[` + RoomId + `]" required></td>
     </tr>
     </tbody></table>
     <button type="button" id="deleteRoom[` + RoomId + `]" class="btn btn-secondary" onclick=deleteRoom(` + RoomId + `)>
@@ -68,9 +68,9 @@ function addPerson() {
     <tbody><tr><th>Id</th><th>Name</th><th>Role</th><th>Number</th></tr>
     <tr>
       <td><div>` + PersonId + `</div>
-      <td><input type="text" name="name[` + PersonId + `]"></td>
-      <td><input type="text" name="role[` + PersonId + `]"></td>
-      <td><input type="text" name="number[` + PersonId + `]"></td>
+      <td><input class="col-sm-8 form-control" type="text" name="name[` + PersonId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="role[` + PersonId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="number[` + PersonId + `]" required></td>
     </tr>
     </tbody></table>
     <br>
@@ -113,7 +113,7 @@ function addPerson() {
             <div class="form-group row">
             <div class="col-sm-4"><label class="col-form-label">Activity:</label></div>
             <div class="col-sm-6">
-                <select id="eventActivity[` + PersonId + `]" name="eventActivity[` + PersonId + `]" class="form-control" required>
+                <select id="event_activity[` + PersonId + `]" name="event_activity[` + PersonId + `]" class="form-control" required>
                       
                 <optgroup label="---- Default ----">
                   <option selected="" value="Office_worker">Office worker</option>
@@ -302,6 +302,25 @@ function addPerson() {
               <input type="number" step="any" id="roomid[` + PersonId + `]" class="non_zero form-control" min="0"  value="0"  max="` + RoomId + `" required="">
                 </div>
             </div>
+
+            <div class="form-group row">
+             <div class="col-sm-4"><label class="col-form-label">Mask wear ratio: </label></div>
+             <div class="col-sm-6 align-self-center"><input type="number" id="event_mask_ratio[` + PersonId + `]" class="form-control" name="event_mask_ratio[` + PersonId + `]" min="0.0" max="1.0" value="0.7" step="0.1" required=""></div>
+            </div>
+            <div>
+            <input type="radio" id="mask_type_1" name="event_mask_type[` + PersonId + `]" value="Type I" checked="checked">
+              <label for="mask_type_1">
+                Surgical/Type I
+                <img class="mask_icons" src="/static/images/masks/t1.png">
+              </label>
+            </div>
+            <div>
+            <input type="radio" id="mask_type_ffp2"  name="event_mask_type[` + PersonId + `]" value="FFP2" >
+                <label for="mask_type_ffp2">
+                Respirator/FFP2
+                <img class="mask_icons" src="/static/images/masks/ffp2.png">
+                </label>
+            </div>
               
             </div>
 
@@ -352,7 +371,11 @@ function saveEvent(i){
     start_hour = document.getElementById('event_start['+i+']').value.split(':');
     end_hour = document.getElementById('event_finish['+i+']').value.split(':');
     start.setHours(start_hour[0], start_hour[1]);
+    start.setSeconds(0)
+    start.setMilliseconds(0)
     end.setHours(end_hour[0], end_hour[1]);
+    end.setSeconds(0)
+    end.setMilliseconds(0)
 
     //Validate event
     if (start>=end){
@@ -361,29 +384,46 @@ function saveEvent(i){
 
     //Prevent simultaneous events
     for(var el of events){
-        if ((el.start < start && el.end > start)||(el.start < end && el.end > end)||(el.start>start && el.end<end)){
+        if ((el.start < start && el.end > start)||(el.start < end && el.end > end)||(el.start>=start && el.end<=end)){
             return false
         }
     }
     Calendars[i].addEvent({id: ""+EventId,
-    title: document.getElementById('eventActivity['+i+']').value,
+    title: document.getElementById('event_activity['+i+']').options[document.getElementById('event_activity['+i+']').selectedIndex].text,
     start : start,
     end : end,
     allDay: false,
     eventDisplay: 'list-item',
     description: "Test"}
     );
+    $('#peopleFormContainer\\[' + i + '\\]').append(`
+    <input type="hidden" name="event_start[`+EventId+`]" value="`+document.getElementById('event_start['+i+']').value+`">
+    <input type="hidden" name="event_person[`+EventId+`]" value="`+i+`">
+    <input type="hidden" name="event_finish[`+EventId+`]" value="`+document.getElementById('event_finish['+i+']').value+`">
+    <input type="hidden" name="event_location[`+EventId+`]" value="`+document.getElementById('roomid['+i+']').value+`">
+    <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+document.getElementById('event_mask_ratio['+i+']').value+`">
+    <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+document.querySelector('input[name="event_mask_type['+i+']"]:checked').value+`">
+    <input type="hidden" name="event_activity[`+EventId+`]" value="`+document.getElementById('event_activity['+i+']').value+`">`)
+
+    
     EventId = EventId + 1;
     Calendars[i].render()
 }
 
 function deletePerson(i) {
-    document.getElementById("peopleFormContainer[" + i + "]").remove()
+    try {
+        document.getElementById("peopleFormContainer[" + i + "]").remove()
+    }
+    catch(error){}
+    
 }
 
 function deleteEvent(e){
     for (var calendar of Calendars){
-        calendar.getEventById(e).remove()
+        try{
+            calendar.getEventById(e).remove()
+        }
+        catch(error){}
     }
     
 }
