@@ -56,6 +56,7 @@ function deleteRoom(i) {
     document.getElementById("roomFormContainer[" + i + "]").remove()
 }
 
+var EventId = 0
 var PersonId = 0
 var Calendars = [] 
 
@@ -74,6 +75,7 @@ function addPerson() {
     </tbody></table>
     <br>
     <div class="schedule"> 
+    <label>Schedule:</label>
     <div class="calendar" id='calendar[` + PersonId + `]'></div>
     <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#eventModal\\[` + PersonId + `\\]">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
@@ -322,17 +324,26 @@ function addPerson() {
       headerToolbar: false,
       dayHeaders: false,
       slotDuration: '00:15:00',
-      slotMinTime:  "06:00:00",
-      slotMaxTime:  "21:00:00",
+      slotMinTime:  "00:00:00",
+      slotMaxTime:  "23:59:59",
       aspectRatio: 2,
+      allDaySlot: false,
+      eventDidMount: function(arg) { 
+        arg.el.querySelector('.fc-event-title').innerHTML = `<button type="button" id="deleteEvent[` + EventId + `]" class="btn btn-secondary" onclick=deleteEvent(` + EventId + `)>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
+        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
+        </svg>
+        </button>`},
     });
-    calendar.render();
-    Calendars[PersonId] = calendar
 
+    Calendars[PersonId] = calendar
+    
     PersonId += 1
+
+    calendar.render();
 }
 
-var EventId = 0
 
 function saveEvent(i){
     var events = Calendars[i].getEvents()
@@ -343,9 +354,14 @@ function saveEvent(i){
     start.setHours(start_hour[0], start_hour[1]);
     end.setHours(end_hour[0], end_hour[1]);
 
+    //Validate event
+    if (start>=end){
+        return false
+    }
+
     //Prevent simultaneous events
     for(var el of events){
-        if ((el.start <= start && el.end >= start)||(el.start <= end && el.end >= end)){
+        if ((el.start < start && el.end > start)||(el.start < end && el.end > end)||(el.start>start && el.end<end)){
             return false
         }
     }
@@ -355,12 +371,19 @@ function saveEvent(i){
     end : end,
     allDay: false,
     eventDisplay: 'list-item',
-    description: "Test",
-    overlap: false}
+    description: "Test"}
     );
     EventId = EventId + 1;
+    Calendars[i].render()
 }
 
 function deletePerson(i) {
     document.getElementById("peopleFormContainer[" + i + "]").remove()
+}
+
+function deleteEvent(e){
+    for (var calendar of Calendars){
+        calendar.getEventById(e).remove()
+    }
+    
 }
