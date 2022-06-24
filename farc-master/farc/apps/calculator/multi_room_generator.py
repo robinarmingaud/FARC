@@ -66,9 +66,7 @@ class MultiGenerator:
 
 @dataclasses.dataclass
 class FormData:
-    people : list
-    rooms : list
-    events : list
+    simulation = multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON')
     
     
     @classmethod
@@ -86,8 +84,20 @@ class FormData:
             if key in _CAST_RULES_FORM_ARG_TO_NATIVE:
                 form_data[key] = _CAST_RULES_FORM_ARG_TO_NATIVE[key](value)
 
-        instance = cls(**form_data)
-        return instance
+
+            if key.startswith('room_name'):
+                room_id = get_element_id(key)
+                cls.simulation.add_room(build_room_from_form(form_data, room_id))
+
+            if key.startswith('person_name'):
+                person_id = get_element_id(key)
+                cls.simulation.add_person(build_person_from_form(form_data, person_id))
+
+            if key.startswith('event_start'):
+                event_id = get_element_id(key) 
+
+        
+        return 
 
     @classmethod
     def to_dict(cls, form: "FormData", strip_defaults: bool = False) -> dict:
@@ -135,6 +145,45 @@ def time_minutes_to_string(time: int) -> str:
     """
     return "{0:0=2d}".format(int(time/60)) + ":" + "{0:0=2d}".format(time%60)
 
+
+def build_ventilation_from_form(form_data, index):
+    return multi_room_model.Ventilation(get_form_data_value(form_data, 'ventilation', index),
+                                        get_form_data_value(form_data, 'duration', index),
+                                        get_form_data_value(form_data, 'frequency', index),
+                                        get_form_data_value(form_data, 'height', index),
+                                        get_form_data_value(form_data, 'window_type', index),
+                                        get_form_data_value(form_data, 'width', index),
+                                        get_form_data_value(form_data, 'number', index),
+                                        get_form_data_value(form_data, 'opening_regime', index),
+                                        get_form_data_value(form_data, 'opening_distance', index),
+                                        get_form_data_value(form_data, 'month', index),
+                                        get_form_data_value(form_data, 'room_heating_option', index),
+                                        'mech_type_air_supply',
+                                        get_form_data_value(form_data, 'air_supply', index),
+                                        get_form_data_value(form_data, 'biov_amount', index),
+                                        get_form_data_value(form_data, 'biov_option', index)
+                                        )
+
+
+def build_room_from_form(form_data, index):
+    return multi_room_model.Room(get_form_data_value(form_data, 'room_name', index), 
+                                get_form_data_value(form_data, 'volume', index),
+                                build_ventilation_from_form(form_data,index),
+                                index, #TODO : humidity and temperature in form or using room heating option
+                                0.3,
+                                20
+                                )
+
+def build_person_from_form(form_data, index):
+    return multi_room_model.Person(get_form_data_value(form_data, 'person_name', index),
+                                index
+                                )
+
+def get_element_id(key: str):
+    return int(key.split('[')[1][:-1])
+
+def get_form_data_value(form_data, key: str, index: int):
+    return form_data[key+'['+str(index)+']']
 
 def _safe_int_cast(value) -> int:
     if isinstance(value, int):
