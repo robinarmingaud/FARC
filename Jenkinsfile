@@ -1,4 +1,5 @@
 pipeline {  
+  agent any
   environment {
     registry = "dockerhub.flow-r.fr"
   }  
