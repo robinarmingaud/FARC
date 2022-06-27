@@ -31,12 +31,11 @@ pipeline {
           }
         }
       }
-    stage('Clean repository'){
+  }
     post {
     always {
       sh"docker system prune -f" 
     }
   }
 }
-  }
 
