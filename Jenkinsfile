@@ -2,7 +2,14 @@ pipeline {
   environment {
     registry = "dockerhub.flow-r.fr"
   }  
-  agent any
+  agent {
+        docker {
+        image 'dockerhub.flow-r.fr/farc:latest'
+        registryUrl 'https://dockerhub.flow-r.fr'
+        registryCredentialsId 'd0bade82-5e11-4667-b326-9d6fda0a08b2'
+        args '-v /var/jenkins_home/.m2:/root/.m2'
+    }
+  }
   stages {
     stage('Checkout') {
       steps{
