@@ -28,6 +28,7 @@ from .user import AuthenticatedUser, AnonymousUser
 from .DEFAULT_DATA import __version__, _DEFAULTS as d
 import tornado
 from . import multi_room_generator
+from . import multi_room_model
 tornado.locale.set_default_locale("en")
 
 
@@ -272,7 +273,7 @@ class MultiRoomForm(BaseRequestHandler):
             start = datetime.datetime.now()
 
             try:
-                form = multi_room_generator.FormData.from_dict(requested_model_config)
+                simulation = multi_room_generator.FormData.from_dict(requested_model_config)
             except Exception as err:
                 if self.settings.get("debug", False):
                     import traceback
@@ -281,6 +282,14 @@ class MultiRoomForm(BaseRequestHandler):
                 self.set_status(400)
                 self.finish(json.dumps(response_json))
                 return
+
+            Report = multi_room_model.Report()
+            MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
+            MultiReport.calculate_simulation_data()
+            print(MultiReport.report.simulations[0].people[1].infection_probability)
+
+
+
 
 
 class CalculatorForm(BaseRequestHandler):

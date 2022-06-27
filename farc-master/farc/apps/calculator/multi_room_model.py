@@ -160,7 +160,7 @@ class Person(Role):
     infected: bool = False
 
 
-    def __init__(self, name : str, id:int,schedule : Schedule, infected: bool = False, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model : np.ndarray = np.array([], dtype= models.ExposureModel ), infection_probability : float = 0):
+    def __init__(self, name : str, id:int,schedule : Schedule = Schedule(), infected: bool = False, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model : np.ndarray = np.array([], dtype= models.ExposureModel ), infection_probability : float = 0):
         self.id = id
         self.name = name
         self.schedule = schedule

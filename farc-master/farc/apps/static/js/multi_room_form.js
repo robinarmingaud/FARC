@@ -300,7 +300,7 @@ function addPerson() {
             <div class="form-group row">
             <div class="col-sm-4"><label class="col-form-label">Room id:</label></div>
             <div class="col-sm-6">
-              <input type="number" step="any" id="roomid[` + PersonId + `]" class="non_zero form-control" min="0"  value="0"  max="` + RoomId + `" required="">
+              <input type="number" step="any" id="event_room_id[` + PersonId + `]" class="non_zero form-control" min="0"  value="0"  max="` + RoomId + `" required="">
                 </div>
             </div>
 
@@ -309,7 +309,7 @@ function addPerson() {
              <div class="col-sm-6 align-self-center"><input type="number" id="event_mask_ratio[` + PersonId + `]" class="form-control" name="event_mask_ratio[` + PersonId + `]" min="0.0" max="1.0" value="0.7" step="0.1" required=""></div>
             </div>
             <div>
-            <input type="radio" id="mask_type_1" name="event_mask_type[` + PersonId + `]" value="Type I" checked="checked">
+            <input type="radio" id="mask_type_1" name="event_mask_type[` + PersonId + `]" value="Type_I" checked="checked">
               <label for="mask_type_1">
                 Surgical/Type I
                 <img class="mask_icons" src="/static/images/masks/t1.png">
@@ -401,7 +401,7 @@ function saveEvent(i){
     <input type="hidden" name="event_start[`+EventId+`]" value="`+document.getElementById('event_start['+i+']').value+`">
     <input type="hidden" name="event_person[`+EventId+`]" value="`+i+`">
     <input type="hidden" name="event_finish[`+EventId+`]" value="`+document.getElementById('event_finish['+i+']').value+`">
-    <input type="hidden" name="event_location[`+EventId+`]" value="`+document.getElementById('roomid['+i+']').value+`">
+    <input type="hidden" name="event_location[`+EventId+`]" value="`+document.getElementById('event_room_id['+i+']').value+`">
     <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+document.getElementById('event_mask_ratio['+i+']').value+`">
     <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+document.querySelector('input[name="event_mask_type['+i+']"]:checked').value+`">
     <input type="hidden" name="event_activity[`+EventId+`]" value="`+document.getElementById('event_activity['+i+']').value+`">`)
