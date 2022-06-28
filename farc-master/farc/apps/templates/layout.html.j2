@@ -32,7 +32,7 @@
     {% endblock body_scripts %}
         <nav class="navbar navbar-dark navbar-expand-lg">
             <div class="container">
-                <a href="/" class="navbar-brand">
+                <a href="https://www.flow-r.fr/" class="navbar-brand">
                     <img src="/static/images/Logo_Flow-R_Blanc@2x.png" alt="Logo" title="Logo">
                 </a>
                 <button class="navbar-toggler"
@@ -101,7 +101,6 @@
                         {% if user.is_authenticated() %}
                             <li class="nav-item dropdown p-2">
                                 <a class="nav-link active dropdown-toggle d-inline-block"
-                                   href="https://cern.ch/users-portal"
                                    id="navbarDropdown"
                                    role="button"
                                    data-toggle="dropdown"
@@ -113,11 +112,9 @@
                                     id ="ulAuthentification"
                                     aria-labelledby="navbarDropdown">
                                     <li>
-                                        <a href="/auth/logout" class="nav-link ml-2">{{_("Sign out")}}</a>
+                                        <a href="https://www.flow-r.fr/PHP/logout.php" class="nav-link ml-2">{{_("Sign out")}}</a>
                                     </li>
                                 </ul>
-                                {# Sent to Piwik for statistics #}
-                                <script>var AuthUserDomain = "{{ user.domain() }}";</script>
                             {% endif %}
                         </li>
                     </ul>
