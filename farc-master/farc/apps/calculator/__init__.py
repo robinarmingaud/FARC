@@ -33,17 +33,14 @@ tornado.locale.set_default_locale("en")
 username = os.environ.get("db_username")
 password = os.environ.get("db_psswd")
 
-connection = database.connect(
-    user=username,
-    password=password,
-    host="fl-ubu-212.flow-r.fr",
-    database="flow_r")
-
-cursor = connection.cursor()
-
-
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
+        connection = database.connect(
+        user=username,
+        password=password,
+        host="fl-ubu-212.flow-r.fr",
+        database="flow_r")
+        cursor = connection.cursor()
         template_environment = self.settings["template_environment"]
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         _ = tornado.locale.get(self.locale.code).translate
@@ -69,6 +66,8 @@ class BaseRequestHandler(RequestHandler):
         except database.Error as e:
             print(f"Error retrieving entry from database: {e}")
             self.current_user = AnonymousUser()
+
+        connection.close()
 
         language = self.get_cookie('language') or 'null'
         if language == "null" : 
