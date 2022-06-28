@@ -80,9 +80,6 @@ class BaseRequestHandler(RequestHandler):
             _ = tornado.locale.get(language ).translate
 
     def write_error(self, status_code: int, **kwargs) -> None:
-        if not self.current_user.is_authenticated() :
-            self.redirect('https://www.flow-r.fr/')
-        else :
             language = self.get_cookie('language') or 'null'
             if language == "null" : 
                 template_environment = self.settings["template_environment"]
@@ -113,9 +110,6 @@ class BaseRequestHandler(RequestHandler):
 
 class Missing404Handler(BaseRequestHandler):
     async def prepare(self):
-        if not self.current_user.is_authenticated() :
-            self.redirect('https://www.flow-r.fr/')
-        else :
             template_environment = self.settings["template_environment"]
             template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
             _ = tornado.locale.get(self.locale.code).translate
