@@ -15,7 +15,6 @@ import traceback
 import typing
 import uuid
 import zlib
-from httplib2 import Authentication
 import mysql.connector as database
 import jinja2
 import loky
