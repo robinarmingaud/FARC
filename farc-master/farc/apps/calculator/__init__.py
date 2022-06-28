@@ -39,7 +39,7 @@ connection = database.connect(
     host="fl-ubu-212.flow-r.fr",
     database="flow_r")
 
-cursor = connection.cursor(buffered=True)
+cursor = connection.cursor()
 
 
 class BaseRequestHandler(RequestHandler):
@@ -57,6 +57,7 @@ class BaseRequestHandler(RequestHandler):
             cursor.execute("SELECT prenom, email, nom  FROM utilisateurs WHERE token='"+token_browser+"' LIMIT 1")
             current_user = cursor.fetchone()
             if current_user :
+                    print('connect to'+current_user[0]+' '+current_user[2])
                     self.current_user = AuthenticatedUser(
                     username=current_user[0],
                     email=current_user[1],
