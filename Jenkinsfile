@@ -18,7 +18,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build("dockerhub.flow-r.fr/farc:dev")
+          dockerImage = docker.build("dockerhub.flow-r.fr/farc:latest")
         }
       }
     }
