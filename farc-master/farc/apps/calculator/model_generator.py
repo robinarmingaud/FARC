@@ -9,10 +9,8 @@ import numpy as np
 import tornado
 
 from farc import models
-from farc import data
 import farc.data.weather
 import farc.monte_carlo as mc
-from .. import calculator
 from farc.monte_carlo.data import activity_distributions, virus_distributions, mask_distributions
 from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factors, expiration_distributions
 from .DEFAULT_DATA import _NO_DEFAULT, _DEFAULT_MC_SAMPLE_SIZE, _DEFAULTS as d, ACTIVITY_TYPES, MECHANICAL_VENTILATION_TYPES, MASK_TYPES,MASK_WEARING_OPTIONS,VENTILATION_TYPES,VIRUS_TYPES,VOLUME_TYPES,WINDOWS_OPENING_REGIMES,WINDOWS_TYPES,COFFEE_OPTIONS_INT,MONTH_NAMES 

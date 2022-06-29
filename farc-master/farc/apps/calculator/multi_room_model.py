@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import numpy as np
 
 import numpy as np
@@ -116,8 +116,7 @@ class Event:
 
 @dataclass
 class Schedule:
-    events = np.ndarray = np.array([], dtype= Event)
-
+    events : np.ndarray 
     def add_event(self, event):
         self.events = np.append(self.events, event)
     
@@ -152,7 +151,7 @@ class Schedule:
 class Person(Role):
     id:int 
     schedule: Schedule
-    exposure_model: np.ndarray = np.array([], dtype= models.ExposureModel )
+    exposure_model: np.ndarray 
     current_event: Event = None
     cumulative_dose: models._VectorisedFloat = 0.
     location: RoomType = None
@@ -160,7 +159,7 @@ class Person(Role):
     infected: bool = False
 
 
-    def __init__(self, name : str, id:int,schedule : Schedule = Schedule(), infected: bool = False, cumulative_dose:  models._VectorisedFloat = 0., location: RoomType = None, current_event: Event = None, exposure_model : np.ndarray = np.array([], dtype= models.ExposureModel ), infection_probability : float = 0):
+    def __init__(self, name : str, id:int, exposure_model : np.ndarray, schedule : Schedule = Schedule(np.array([])), infected: bool = False, cumulative_dose:  models._VectorisedFloat = 0.,  location: RoomType = None, current_event: Event = None, infection_probability : float = 0):
         self.id = id
         self.name = name
         self.schedule = schedule
@@ -256,12 +255,13 @@ class Room(RoomType):
     id:int
     humidity:float
     temperature : float
-    occupants: np.ndarray = np.array([], dtype= Person)
+    occupants: np.ndarray 
+    concentrationModels: np.ndarray 
     building: Building = None
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.
     #All concentrations models from infected people who went to this room and left virus particles
-    concentrationModels: np.ndarray = np.array([], dtype = models.ConcentrationModel)
+    
 
     def get_occupant_id(self, person : Person):
         i=0
@@ -299,7 +299,7 @@ class Room(RoomType):
             ))
         for person in self.occupants :
             exposed_population = person.exposed_population(time1, time2)
-            person.exposure_model = np.array([], dtype= models.ExposureModel )
+            person.exposure_model = np.empty(0, dtype= models.ExposureModel )
             for model in self.concentrationModels :
                 person.add_model(mc.ExposureModel(model, exposed_population).build_model(size=60000))
  
@@ -312,8 +312,8 @@ class Room(RoomType):
 @dataclass
 class Simulation:
     virus_type : str
-    rooms: np.ndarray = np.array([], dtype= Room)
-    people: np.ndarray = np.array([], dtype= Person)
+    rooms: np.ndarray 
+    people: np.ndarray
 
     def get_room_id(self, room : Room):
         i=0
@@ -341,12 +341,6 @@ class Simulation:
     def delete_person(self, person: Person):
         self.people = np.delete(self.people, self.get_person_id(person))
 
-    def getAllEvents(self):
-        events = np.array([], dtype=Event)
-        for person in self.people:
-            for event in person.schedule.events:
-                events = np.append(events, event)
-
     def get_infected(self):
         for person in self.people:
             if person.infected:
@@ -355,5 +349,5 @@ class Simulation:
 
 @dataclass
 class Report:
-    simulations: np.ndarray = np.array([], dtype= Simulation)
+    simulations: np.ndarray
 

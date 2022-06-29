@@ -62,16 +62,17 @@ class MultiGenerator:
             self.report.simulations = np.append(self.report.simulations, simulation_copy)
 
 
-
-@dataclasses.dataclass
+@dataclass
 class FormData:
-    simulation = multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON')
+    simulation : multi_room_model.Simulation = multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON', rooms= np.array([]), people=np.array([]))
     
     
     @classmethod
-    def from_dict(cls, form_data: typing.Dict) -> "FormData":
+    def from_dict(cls, form_data: typing.Dict):
+        form_data = form_data.copy()
         form_data.pop('_xsrf', None)
-        instance = FormData()
+        instance = FormData(multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON', rooms= np.array([]), people=np.array([])))
+
 
         # Don't let arbitrary unescaped HTML through the net.
         for key, value in form_data.items():
@@ -96,8 +97,7 @@ class FormData:
                 room_id = get_form_data_value(form_data, 'event_location', event_id)
                 person_id = get_form_data_value(form_data, 'event_person', event_id)
                 instance.get_person_by_id(person_id).schedule.add_event(build_event_from_form(form_data, event_id, instance.get_room_by_id(room_id)))
-
-        return instance.simulation
+        return instance
 
     @classmethod
     def to_dict(cls, form: "FormData", strip_defaults: bool = False) -> dict:
@@ -181,12 +181,16 @@ def build_room_from_form(form_data, index):
                                 build_ventilation_from_form(form_data,index),
                                 index, #TODO : humidity and temperature in form or using room heating option
                                 0.3,
-                                20
+                                20, 
+                                np.array([]),
+                                np.array([])
                                 )
 
 def build_person_from_form(form_data, index):
     return multi_room_model.Person(get_form_data_value(form_data, 'person_name', index),
-                                index
+                                index, 
+                                np.array([]),
+                                multi_room_model.Schedule(np.array([]))
                                 )
 
 

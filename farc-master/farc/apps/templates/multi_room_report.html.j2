@@ -1,0 +1,33 @@
+{% extends "layout.html.j2" %}
+
+{% set DEBUG=False %}
+{% set active_page="calculator/" %}
+
+{% block extra_headers %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
+{% endblock extra_headers %}
+
+{% block body_scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
+    <script src="/static/js/form.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock body_scripts %}
+
+
+{% block main %}
+<div class="container container--padding">
+{% for simulation in data.report.simulations%}
+    {% set expected_cases = namespace(total_cases=0) %}
+    {% for person in simulation.people %}
+        {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability/100 %}
+    {% endfor %}
+    {% set infected = simulation.get_infected() %}
+    <div>{{infected.id}} : {{infected.name}}</div><br>
+    <div> Expected cases : {{ expected_cases.total_cases }}</div>
+    <br>
+    
+{% endfor%}
+</div>
+{% endblock main %}

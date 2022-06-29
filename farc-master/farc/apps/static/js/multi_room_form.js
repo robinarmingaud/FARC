@@ -7,37 +7,37 @@ function addRoom() {
     <tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th></tr>
     <tr>
       <td><div>` + RoomId + `</div>
-      <td><input class="col-sm-8 form-control" type="text" name="room_name[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="volume[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="humidity[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="temperature[` + RoomId + `]" required></td>
-      <td><input type="radio" name="ventilation[` + RoomId + `]" value="no_ventilation" required>No ventilation</td>
+      <td><input class="col-sm-8 form-control" type="text" name="room_name[` + RoomId + `]" value="Room" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="volume[` + RoomId + `]" value="100" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="humidity[` + RoomId + `]" value="0.3" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="temperature[` + RoomId + `]" value="20" required></td>
+      <td><input type="radio" name="ventilation[` + RoomId + `]" value="no_ventilation" checked required>No ventilation</td>
       <td><input type="radio" name="ventilation[` + RoomId + `]" value="mechanical_ventilation" required>Mechanical</td>
       <td><input type="radio" name="ventilation[` + RoomId + `]" value="natural_ventilation" required>Natural</td>
-      <td><input class="col-sm-8 form-control" type="text" name="duration[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="frequency[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="duration[` + RoomId + `]" value="15" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="frequency[` + RoomId + `]" value="60" required></td>
     </tr>
     </tbody></table>
     <table>
     <tbody><tr><th>Window height</th><th>Window width</th><th>Window number</th><th>Window opening regime</th><th></th><th>Window type</th><th>Opening distance</th><th>Month</th><th></th></tr>
     <tr>
-      <td><input class="col-sm-8 form-control" type="text" name="height[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="width[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="number[` + RoomId + `]" required></td>
-      <td><input type="radio" name="opening_regime[` + RoomId + `]" value="windows_open_periodically" required>Periodically</td>
+      <td><input class="col-sm-8 form-control" type="text" name="height[` + RoomId + `]" value="1" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="width[` + RoomId + `]" value="1" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="number[` + RoomId + `]" value="1" required></td>
+      <td><input type="radio" name="opening_regime[` + RoomId + `]" value="windows_open_periodically" checked required>Periodically</td>
       <td><input type="radio" name="opening_regime[` + RoomId + `]" value = "windows_open_permanently" required >Permanently</td>
-      <td><input class="col-sm-8 form-control" type="text" name="window_type[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="opening_distance[` + RoomId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="month[` + RoomId + `]" required ></td>
-      <td><input type="checkbox" name="room_heating_option[` + RoomId + `]" value = "1" required>Room heating</td>
+      <td><input class="col-sm-8 form-control" type="text" name="window_type[` + RoomId + `]" value='window_sliding' required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="opening_distance[` + RoomId + `]" value="1" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="month[` + RoomId + `]" value="January" required ></td>
+      <td><input type="checkbox" name="room_heating_option[` + RoomId + `]" value = "1" checked>Room heating</td>
     </tr>
     </tbody></table>
     <table>
     <tbody><tr><th>Air supply</th><th></th><th>Biov Amount</th></tr>
     <tr>
-      <td><input class="col-sm-8 form-control" type="text" name="air_supply[` + RoomId + `]" required></td>
-      <td><input type="checkbox" name="biov_option[` + RoomId + `]" value = "1" required>Biov option</td>
-      <td><input class="col-sm-8 form-control" type="text" name="biov_amount[` + RoomId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="air_supply[` + RoomId + `]" value="100" required></td>
+      <td><input type="checkbox" name="biov_option[` + RoomId + `]" value = "1" checked >Biov option</td>
+      <td><input class="col-sm-8 form-control" type="text" name="biov_amount[` + RoomId + `]" value="1000" required></td>
     </tr>
     </tbody></table>
     <button type="button" id="deleteRoom[` + RoomId + `]" class="btn btn-secondary" onclick=deleteRoom(` + RoomId + `)>
@@ -66,12 +66,11 @@ function addPerson() {
     <div id = "peopleFormContainer[` + PersonId + `]">
     <div class="PeopleForm">
     <table>
-    <tbody><tr><th>Id</th><th>Name</th><th>Role</th><th>Number</th></tr>
+    <tbody><tr><th>Id</th><th>Name</th><th>Role</th></tr>
     <tr>
       <td><div>` + PersonId + `</div>
-      <td><input class="col-sm-8 form-control" type="text" name="person_name[` + PersonId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="role[` + PersonId + `]" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="number[` + PersonId + `]" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="person_name[` + PersonId + `]" value="Person" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="role[` + PersonId + `]" value="Office" required></td>
     </tr>
     </tbody></table>
     <br>

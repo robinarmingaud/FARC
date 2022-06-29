@@ -18,6 +18,7 @@ import zlib
 
 import jinja2
 import loky
+import numpy as np
 from tornado.web import Application, RequestHandler, StaticFileHandler
 import tornado.log
 
@@ -252,6 +253,10 @@ class MultiRoomForm(BaseRequestHandler):
         self.finish(report)
 
 
+
+
+
+class MultiReport(BaseRequestHandler):
     async def post(self):
         language = self.get_cookie('language') or 'null'
         if language == "null" : 
@@ -273,7 +278,7 @@ class MultiRoomForm(BaseRequestHandler):
             start = datetime.datetime.now()
 
             try:
-                simulation = multi_room_generator.FormData.from_dict(requested_model_config)
+                simulation = multi_room_generator.FormData.from_dict(requested_model_config).simulation
             except Exception as err:
                 if self.settings.get("debug", False):
                     import traceback
@@ -283,12 +288,19 @@ class MultiRoomForm(BaseRequestHandler):
                 self.finish(json.dumps(response_json))
                 return
 
-            Report = multi_room_model.Report()
+            Report = multi_room_model.Report(np.array([]))
             MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
             MultiReport.calculate_simulation_data()
-            print(MultiReport.report.simulations[0].people[1].infection_probability)
-
-
+            template = template_environment.get_template(
+            "multi_room_report.html.j2")
+            report = template.render(
+                user=self.current_user,
+                calculator_prefix=self.settings["calculator_prefix"],
+                calculator_version=__version__,
+                text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
+                data = MultiReport
+            )
+            self.finish(report)
 
 
 
@@ -381,6 +393,7 @@ def make_app(
         (calculator_prefix + r'/user-guide', ReadmeHandler),
         (calculator_prefix + r'/static/(.*)', StaticFileHandler, {'path': calculator_static_dir}),
         (calculator_prefix + r'/multi_room', MultiRoomForm),
+        (calculator_prefix + r'/multi_room_report', MultiReport),
     ]
     cara_templates = Path(__file__).parent.parent / "templates"
     calculator_templates = Path(__file__).parent / "templates"
