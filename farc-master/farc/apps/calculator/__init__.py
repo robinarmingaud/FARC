@@ -33,6 +33,11 @@ from . import multi_room_model
 tornado.locale.set_default_locale("en")
 
 
+
+
+
+
+
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
         template_environment = self.settings["template_environment"]
@@ -258,6 +263,7 @@ class MultiRoomForm(BaseRequestHandler):
 
 class MultiReport(BaseRequestHandler):
     async def post(self):
+
         language = self.get_cookie('language') or 'null'
         if language == "null" : 
             template_environment = self.settings["template_environment"]
@@ -288,9 +294,13 @@ class MultiReport(BaseRequestHandler):
                 self.finish(json.dumps(response_json))
                 return
 
-            Report = multi_room_model.Report(np.array([]))
+            Report = multi_room_model.Report()
             MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
-            MultiReport.calculate_simulation_data()
+            executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'], timeout= 10)
+            report_task = executor.submit(
+            MultiReport.calculate_simulation_data
+            )
+            report = await asyncio.wrap_future(report_task)
             template = template_environment.get_template(
             "multi_room_report.html.j2")
             report = template.render(
@@ -298,7 +308,7 @@ class MultiReport(BaseRequestHandler):
                 calculator_prefix=self.settings["calculator_prefix"],
                 calculator_version=__version__,
                 text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-                data = MultiReport
+                data = report
             )
             self.finish(report)
 
@@ -437,3 +447,4 @@ def make_app(
             int(os.environ.get('REPORT_PARALLELISM', 0)) or None
         ),
     )
+

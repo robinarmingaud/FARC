@@ -29,17 +29,15 @@ class MultiGenerator:
         for person in simulation.people:
             try :
                 current_event = person.schedule.get_event_by_time(time1)
-                person.set_location(current_event.location)
                 person.set_event(current_event)
             except ValueError :
-                if person.location != None :
-                    person.location.delete_occupant(person)
+                pass
         for room in simulation.rooms:
                 room.build_model(infected, simulation, time1, time2)
-                for person in room.occupants:
+                for person in room.get_occupants(simulation):
                     # Could be optimized, room concentration calculated size(room.occupants) times
                         virus_dose = person.calculate_data()
-                        room.cumulative_exposure += virus_dose
+                        room.cumulative_exposure = room.cumulative_exposure + virus_dose
                         
 
     def calculate_means(self, simulation : multi_room_model.Simulation):
@@ -59,19 +57,21 @@ class MultiGenerator:
                 self.calculate_event(time1,time2,simulation_copy, infected = infected)
             person.infected = False
             self.calculate_means(simulation_copy)
-            self.report.simulations = np.append(self.report.simulations, simulation_copy)
+            self.report.simulations.append(simulation_copy)
+
+        return self
 
 
 @dataclass
 class FormData:
-    simulation : multi_room_model.Simulation = multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON', rooms= np.array([]), people=np.array([]))
+    simulation : multi_room_model.Simulation = multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON')
     
     
     @classmethod
     def from_dict(cls, form_data: typing.Dict):
         form_data = form_data.copy()
         form_data.pop('_xsrf', None)
-        instance = FormData(multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON', rooms= np.array([]), people=np.array([])))
+        instance = FormData(multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON'))
 
 
         # Don't let arbitrary unescaped HTML through the net.
@@ -181,16 +181,13 @@ def build_room_from_form(form_data, index):
                                 build_ventilation_from_form(form_data,index),
                                 index, #TODO : humidity and temperature in form or using room heating option
                                 0.3,
-                                20, 
-                                np.array([]),
-                                np.array([])
+                                20,
                                 )
 
 def build_person_from_form(form_data, index):
     return multi_room_model.Person(get_form_data_value(form_data, 'person_name', index),
                                 index, 
-                                np.array([]),
-                                multi_room_model.Schedule(np.array([]))
+                                multi_room_model.Schedule()
                                 )
 
 
