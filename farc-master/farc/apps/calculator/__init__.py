@@ -34,10 +34,6 @@ tornado.locale.set_default_locale("en")
 
 
 
-
-
-
-
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
         template_environment = self.settings["template_environment"]
@@ -311,6 +307,7 @@ class MultiReport(BaseRequestHandler):
                 data = report
             )
             self.finish(report)
+
 
 
 

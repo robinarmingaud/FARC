@@ -674,7 +674,6 @@ class Expiration(_ExpirationBase):
         return Particle(diameter=self.diameter)
 
     # OPE : factor in mask_wear_ratio, adding new parameter
-    @cached()
     def aerosols(self, mask: Mask, mask_wear_ratio: float = 1.0):
         """ Result is in mL.cm^-3 """
 

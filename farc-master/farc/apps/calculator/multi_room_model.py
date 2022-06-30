@@ -229,12 +229,18 @@ class Person(Role):
 
     def calculate_infection_probability(self):
         if not self.infected and self.exposure_model :
-            self.infection_probability = np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))
+            self.infection_probability = np.round(np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))/100, 4)
+            self.cumulative_dose = np.round(np.mean(self.cumulative_dose), 2)
         else :
             return 0.
 
     def add_model(self, model : models.ExposureModel):
         self.exposure_model.append(model)
+
+    def clear_data(self):
+        self.exposure_model = []
+
+
 
 
 @dataclass
@@ -271,14 +277,17 @@ class Room(RoomType):
                 evaporation_factor=0.3,
             ))
         for person in self.get_occupants(simulation) :
+            person.clear_data()
             exposed_population = person.exposed_population(time1, time2)
             for model in self.concentrationModels :
                 person.add_model(mc.ExposureModel(model, exposed_population).build_model(size=60000))
- 
-
 
     def calculate_cumulative_dose(self):
-        self.cumulative_exposure = np.mean(self.cumulative_exposure)
+        self.cumulative_exposure = np.round(np.mean(self.cumulative_exposure), 2)
+        self.virus_concentration = np.round(np.mean(self.virus_concentration), 2)
+
+    def clear_data(self):
+        self.concentrationModels=[]
 
     
 @dataclass

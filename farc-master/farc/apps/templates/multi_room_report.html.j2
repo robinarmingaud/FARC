@@ -21,12 +21,24 @@
 {% for simulation in data.report.simulations%}
     {% set expected_cases = namespace(total_cases=0) %}
     {% for person in simulation.people %}
-        {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability/100 %}
+        {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability %}
     {% endfor %}
     {% set infected = simulation.get_infected() %}
-    <div>{{infected.id}} : {{infected.name}}</div><br>
+    <h5>{{infected.name}} {{infected.id}} infected</h5>
+    <div class="split">
+    <div>
     <div> Expected cases : {{ expected_cases.total_cases }}</div>
+    </div>
+    <div>
+    {% for room in simulation.rooms %}
+        <div>Room {{room.id}} :</div><br>
+        <div> Total virus exposure : {{ room.cumulative_exposure }}</div>
+        <br>
+    {% endfor %}
+    </div>
+    </div>
     <br>
+    <hr width="95%">
 {% endfor%}
 </div>
 {% endblock main %}

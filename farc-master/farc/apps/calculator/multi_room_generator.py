@@ -2,6 +2,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 import dataclasses
 import html
+import tracemalloc
 import typing
 
 import numpy as np
@@ -31,7 +32,7 @@ class MultiGenerator:
                 current_event = person.schedule.get_event_by_time(time1)
                 person.set_event(current_event)
             except ValueError :
-                pass
+                person.set_event(None)
         for room in simulation.rooms:
                 room.build_model(infected, simulation, time1, time2)
                 for person in room.get_occupants(simulation):
@@ -41,14 +42,16 @@ class MultiGenerator:
                         
 
     def calculate_means(self, simulation : multi_room_model.Simulation):
-        """TODO : Add concentration/time and cumulative dose/time ?"""
         for person in simulation.people :
             person.calculate_infection_probability()
+            person.clear_data()
         for room in simulation.rooms :
             room.calculate_cumulative_dose()
+            room.clear_data()
 
     def calculate_simulation_data(self):
         times = self.interesting_times()
+        tracemalloc.start()
         for person in self.simulation.people:
             person.infected = True
             simulation_copy = deepcopy(self.simulation)
@@ -58,6 +61,13 @@ class MultiGenerator:
             person.infected = False
             self.calculate_means(simulation_copy)
             self.report.simulations.append(simulation_copy)
+
+            snapshot = tracemalloc.take_snapshot()
+            top_stats = snapshot.statistics('lineno')
+
+            print("[ Top 20 ]")
+            for stat in top_stats[:20]:
+                print(stat)
 
         return self
 
