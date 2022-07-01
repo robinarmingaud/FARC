@@ -18,7 +18,6 @@ import zlib
 
 import jinja2
 import loky
-import numpy as np
 from tornado.web import Application, RequestHandler, StaticFileHandler
 import tornado.log
 
@@ -292,9 +291,12 @@ class MultiReport(BaseRequestHandler):
 
             Report = multi_room_model.Report()
             MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
-            executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'], timeout= 10)
+            executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
             report_task = executor.submit(
-            MultiReport.calculate_simulation_data
+                MultiReport.calculate_simulation_data, executor_factory=functools.partial(
+                    concurrent.futures.ThreadPoolExecutor,
+                    32,
+            )
             )
             report = await asyncio.wrap_future(report_task)
             template = template_environment.get_template(

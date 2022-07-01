@@ -157,6 +157,7 @@ class Person(Role):
     cumulative_dose:  models._VectorisedFloat = 0.
     current_event: Event = None
     infection_probability : float = 0
+    virus_dose = models._VectorisedFloat = 0.
 
 
 
@@ -223,9 +224,9 @@ class Person(Role):
                 virus_dose = np.sort(model.deposited_exposure())
                 self.cumulative_dose = self.cumulative_dose + virus_dose
                 total_dose = total_dose + virus_dose
-            return total_dose
+            self.virus_dose = total_dose
         else :
-            return 0.
+            self.virus_dose = 0
 
     def calculate_infection_probability(self):
         if not self.infected and self.exposure_model :
@@ -239,6 +240,7 @@ class Person(Role):
 
     def clear_data(self):
         self.exposure_model = []
+        self.virus_dose = 0
 
 
 

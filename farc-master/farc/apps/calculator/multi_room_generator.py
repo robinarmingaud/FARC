@@ -2,7 +2,6 @@ from copy import deepcopy
 from dataclasses import dataclass
 import dataclasses
 import html
-import tracemalloc
 import typing
 
 import numpy as np
@@ -35,10 +34,10 @@ class MultiGenerator:
                 person.set_event(None)
         for room in simulation.rooms:
                 room.build_model(infected, simulation, time1, time2)
-                for person in room.get_occupants(simulation):
-                    # Could be optimized, room concentration calculated size(room.occupants) times
-                        virus_dose = person.calculate_data()
-                        room.cumulative_exposure = room.cumulative_exposure + virus_dose
+                occupants = room.get_occupants(simulation)
+                for person in occupants:
+                    person.calculate_data()
+                    room.cumulative_exposure = room.cumulative_exposure + person.virus_dose
                         
 
     def calculate_means(self, simulation : multi_room_model.Simulation):
@@ -49,26 +48,20 @@ class MultiGenerator:
             room.calculate_cumulative_dose()
             room.clear_data()
 
-    def calculate_simulation_data(self):
+
+
+    def calculate_simulation_data(self, executor_factory):
         times = self.interesting_times()
-        tracemalloc.start()
         for person in self.simulation.people:
             person.infected = True
             simulation_copy = deepcopy(self.simulation)
             infected = simulation_copy.get_infected()
-            for time1, time2 in zip(times[:-1], times[1:]):
-                self.calculate_event(time1,time2,simulation_copy, infected = infected)
+            with executor_factory() as executor :
+                for time1, time2 in zip(times[:-1], times[1:]):
+                    executor.submit(self.calculate_event, time1, time2, simulation_copy, infected)
             person.infected = False
             self.calculate_means(simulation_copy)
             self.report.simulations.append(simulation_copy)
-
-            snapshot = tracemalloc.take_snapshot()
-            top_stats = snapshot.statistics('lineno')
-
-            print("[ Top 20 ]")
-            for stat in top_stats[:20]:
-                print(stat)
-
         return self
 
 
