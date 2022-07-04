@@ -61,7 +61,7 @@ class MultiGenerator:
                     executor.submit(self.calculate_event, time1, time2, simulation_copy, infected)
             person.infected = False
             self.calculate_means(simulation_copy)
-            self.report.simulations.append(simulation_copy)
+            self.report.simulations = np.append(self.report.simulations, simulation_copy)
         return self
 
 

@@ -116,9 +116,9 @@ class Event:
 
 @dataclass
 class Schedule:
-    events : list = field(default_factory=lambda: [])
+    events : np.ndarray = np.array([])
     def add_event(self, event):
-        self.events.append(event)
+        self.events = np.append(self.events, event)
     
     def get_event_id(self, event):
         i=0
@@ -152,7 +152,7 @@ class Person(Role):
     name : str
     id:int 
     schedule : Schedule = Schedule()
-    exposure_model : list = field(default_factory=lambda: [])
+    exposure_model : np.ndarray = np.array([])
     infected: bool = False
     cumulative_dose:  models._VectorisedFloat = 0.
     current_event: Event = None
@@ -236,7 +236,7 @@ class Person(Role):
             return 0.
 
     def add_model(self, model : models.ExposureModel):
-        self.exposure_model.append(model)
+        self.exposure_model = np.append(self.exposure_model, model)
 
     def clear_data(self):
         self.exposure_model = []
@@ -250,7 +250,7 @@ class Room(RoomType):
     id:int
     humidity:float
     temperature : float
-    concentrationModels: list = field(default_factory=lambda: [])
+    concentrationModels: np.ndarray = np.array([])
     building: Building = None
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.
@@ -260,10 +260,10 @@ class Room(RoomType):
         self.building = building
 
     def get_occupants(self, simulation):
-        occupants = []
+        occupants = np.array([])
         for person in simulation.people :
             if person.get_location() == self :
-                occupants.append(person)
+                occupants = np.append(occupants , person)
 
         return occupants
 
@@ -272,7 +272,7 @@ class Room(RoomType):
         ventilation = self.ventilation.ventilation()
         if infected.get_location() and infected.get_location().id == self.id:
             infected_population = infected.infected_population(simulation, time1, time2)
-            self.concentrationModels.append(mc.ConcentrationModel(
+            self.concentrationModels = np.append(self.concentrationModels, mc.ConcentrationModel(
                 room=room,
                 ventilation=ventilation,
                 infected=infected_population,
@@ -295,8 +295,8 @@ class Room(RoomType):
 @dataclass
 class Simulation:
     virus_type : str
-    rooms: list = field(default_factory=lambda: [])
-    people: list = field(default_factory=lambda: [])
+    rooms: np.ndarray = np.array([])
+    people: np.ndarray = np.array([])
 
     def get_room_id(self, room : Room):
         i=0
@@ -306,7 +306,7 @@ class Simulation:
             i += 1
 
     def add_room(self, room : Room): 
-        self.rooms.append(room)
+        self.rooms = np.append(self.rooms, room)
 
     def delete_room(self, room : Room):
         self.rooms.pop(self.get_room_id(room))
@@ -319,7 +319,7 @@ class Simulation:
             i += 1
 
     def add_person(self, person : Person):
-        self.people.append(person)
+        self.people = np.append(self.people, person)
 
     def delete_person(self, person: Person):
         self.people.pop(self.get_person_id(person))
@@ -332,5 +332,5 @@ class Simulation:
 
 @dataclass
 class Report:
-    simulations: list = field(default_factory=lambda: [])
+    simulations: np.ndarray = np.array([])
 

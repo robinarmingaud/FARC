@@ -258,7 +258,6 @@ class MultiRoomForm(BaseRequestHandler):
 
 class MultiReport(BaseRequestHandler):
     async def post(self):
-
         language = self.get_cookie('language') or 'null'
         if language == "null" : 
             template_environment = self.settings["template_environment"]
@@ -295,7 +294,7 @@ class MultiReport(BaseRequestHandler):
             report_task = executor.submit(
                 MultiReport.calculate_simulation_data, executor_factory=functools.partial(
                     concurrent.futures.ThreadPoolExecutor,
-                    32,
+                    self.settings['report_generation_parallelism'],
             )
             )
             report = await asyncio.wrap_future(report_task)
