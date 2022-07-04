@@ -1,7 +1,7 @@
 var RoomId = 0
 
 function addRoom() {
-    $("#RoomList").append(`<div id = "roomFormContainer[` + RoomId + `]">
+    $("#Room_list").append(`<div id = "roomFormContainer[` + RoomId + `]">
     <div class="RoomForm">
     <table>
     <tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th></tr>
@@ -427,3 +427,24 @@ function deleteEvent(e){
     }
     
 }
+
+/* -------On Load------- */
+$(document).ready(function () {
+  var url = new URL(decodeURIComponent(window.location.href));
+  //Pre-fill form with known values
+  url.searchParams.forEach((value, name) => {
+          var elemObj = document.getElementById(name);
+          if (name == 'Room_list') {
+            console.log(value)
+            for (const room of JSON.parse(value)) {
+
+              addRoom();
+
+
+
+            }
+
+    
+    }
+  })
+})

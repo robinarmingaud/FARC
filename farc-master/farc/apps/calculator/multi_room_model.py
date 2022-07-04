@@ -157,7 +157,7 @@ class Person(Role):
     cumulative_dose:  models._VectorisedFloat = 0.
     current_event: Event = None
     infection_probability : float = 0
-    virus_dose = models._VectorisedFloat = 0.
+    virus_dose : models._VectorisedFloat = 0.
 
 
 
@@ -250,7 +250,7 @@ class Room(RoomType):
     id:int
     humidity:float
     temperature : float
-    concentrationModels: np.ndarray = np.array([])
+    concentration_models: np.ndarray = np.array([])
     building: Building = None
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.
@@ -272,7 +272,7 @@ class Room(RoomType):
         ventilation = self.ventilation.ventilation()
         if infected.get_location() and infected.get_location().id == self.id:
             infected_population = infected.infected_population(simulation, time1, time2)
-            self.concentrationModels = np.append(self.concentrationModels, mc.ConcentrationModel(
+            self.concentration_models = np.append(self.concentration_models, mc.ConcentrationModel(
                 room=room,
                 ventilation=ventilation,
                 infected=infected_population,
@@ -281,7 +281,7 @@ class Room(RoomType):
         for person in self.get_occupants(simulation) :
             person.clear_data()
             exposed_population = person.exposed_population(time1, time2)
-            for model in self.concentrationModels :
+            for model in self.concentration_models :
                 person.add_model(mc.ExposureModel(model, exposed_population).build_model(size=60000))
 
     def calculate_cumulative_dose(self):
@@ -289,7 +289,7 @@ class Room(RoomType):
         self.virus_concentration = np.round(np.mean(self.virus_concentration), 2)
 
     def clear_data(self):
-        self.concentrationModels=[]
+        self.concentration_models=[]
 
     
 @dataclass

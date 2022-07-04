@@ -1,10 +1,12 @@
+import base64
 from copy import deepcopy
 from dataclasses import dataclass
 import dataclasses
 import html
 import typing
-
+import urllib
 import numpy as np
+import zlib
 
 import farc.apps.calculator.multi_room_model as multi_room_model
 
@@ -104,17 +106,71 @@ class FormData:
 
     @classmethod
     def to_dict(cls, form: "FormData", strip_defaults: bool = False) -> dict:
-        form_dict = {
-            field.name: getattr(form, field.name)
-            for field in dataclasses.fields(form)
-        }
+        form_dict = {}
+        room_list = []
+        people_list = []
+        event_list = []
 
-        for attr, value in form_dict.items():
-            if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
-                form_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
+        for room in form.simulation.rooms :
+            room_dict = {}
+            for field in dataclasses.fields(room):
+                room_dict[field.name] = getattr(room, field.name)
 
-        if strip_defaults:
-            del form_dict['calculator_version']
+            #remove array of data from dict
+            del room_dict['cumulative_exposure']
+            del room_dict['concentration_models']
+            del room_dict['virus_concentration']
+
+            for attr, value in room_dict.items():
+                if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
+                    room_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
+            room_list.append(room_dict)
+
+        for person in form.simulation.people :
+            person_dict = {}
+            for field in dataclasses.fields(person):
+                person_dict[field.name] = getattr(person, field.name)
+
+            print(person_dict)
+
+            #remove array of data from dict
+            del person_dict['virus_dose']
+            del person_dict['infected']
+            del person_dict['exposure_model']
+            del person_dict['schedule']
+            del person_dict['cumulative_dose']
+            del person_dict['current_event']
+            del person_dict['infection_probability']
+            
+
+            for attr, value in person_dict.items():
+                if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
+                    person_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
+            people_list.append(person_dict)
+
+            #add schedule
+
+            for event in person.schedule.events :
+                event_dict = {}
+                event_dict['Person'] = person.id
+                for field in dataclasses.fields(event):
+                    event_dict[field.name] = getattr(event, field.name)
+                
+                print(event_dict['start'])
+                event_dict['start'] = time_minutes_to_string(int(event_dict['start']*60))
+                event_dict['end'] = time_minutes_to_string(int(event_dict['end']*60))
+
+                for attr, value in event_dict.items():
+                    if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
+                        event_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
+                event_list.append(event_dict)
+
+        form_dict['Room_list'] = room_list
+        form_dict['People_list'] = people_list
+        form_dict['Event_list'] = event_list
+
+
+
 
         return form_dict
 
@@ -192,6 +248,7 @@ def build_person_from_form(form_data, index):
                                 index, 
                                 multi_room_model.Schedule()
                                 )
+            
 
 
 def build_event_from_form(form_data, index, room):
@@ -230,3 +287,23 @@ for _field in dataclasses.fields(FormData):
     elif _field.type is bool:
         _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = lambda v: v == '1'
         _CAST_RULES_NATIVE_TO_FORM_ARG[_field.name] = int
+
+
+def generate_permalink(base_url, calculator_prefix, form: FormData):
+    form_dict = FormData.to_dict(form, strip_defaults=True)
+
+    # Generate the calculator URL arguments that would be needed to re-create this
+    # form.
+    args = urllib.parse.urlencode(form_dict)
+    print(args)
+
+    # Then zlib compress + base64 encode the string. To be inverted by the
+    # /_c/ endpoint.
+    compressed_args = base64.b64encode(zlib.compress(args.encode())).decode()
+    qr_url = f"{base_url}/_c/{compressed_args}"
+    url = f"{base_url}{calculator_prefix}?{args}"
+
+    return {
+        'link': url,
+        'shortened': qr_url,
+    }

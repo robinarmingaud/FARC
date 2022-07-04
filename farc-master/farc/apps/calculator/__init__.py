@@ -11,6 +11,7 @@ import html
 import json
 import os
 from pathlib import Path
+from pprint import pprint
 import traceback
 import typing
 import uuid
@@ -135,7 +136,6 @@ class ConcentrationModel(BaseRequestHandler):
             name: self.get_argument(name) for name in self.request.arguments
         }
         if self.settings.get("debug", False):
-            from pprint import pprint
             pprint(requested_model_config)
             start = datetime.datetime.now()
 
@@ -273,12 +273,13 @@ class MultiReport(BaseRequestHandler):
             name: self.get_argument(name) for name in self.request.arguments
         }
         if self.settings.get("debug", False):
-            from pprint import pprint
             pprint(requested_model_config)
             start = datetime.datetime.now()
-
+            base_url = self.request.protocol + "://" + self.request.host
             try:
-                simulation = multi_room_generator.FormData.from_dict(requested_model_config).simulation
+                form = multi_room_generator.FormData.from_dict(requested_model_config)
+                simulation = form.simulation
+                print(multi_room_generator.generate_permalink(base_url, '/calculator/multi_room', form))
             except Exception as err:
                 if self.settings.get("debug", False):
                     import traceback
@@ -308,6 +309,7 @@ class MultiReport(BaseRequestHandler):
                 data = report
             )
             self.finish(report)
+
 
 
 
