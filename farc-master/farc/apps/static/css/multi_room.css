@@ -14,3 +14,20 @@
     justify-content: space-between;
     align-content: space-between;
 }
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+    position: sticky;
+    top: 30%;
+    bottom: 30%;
+
+}
+
+.container {
+  margin-inline: auto;
+  width: min(90%, 90rem);
+}
+.container.container--padding {
+  max-width: 100%;
+}

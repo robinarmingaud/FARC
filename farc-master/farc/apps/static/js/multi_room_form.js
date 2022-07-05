@@ -1,46 +1,46 @@
 var RoomId = 0
 
-function addRoom() {
-    $("#Room_list").append(`<div id = "roomFormContainer[` + RoomId + `]">
+function addRoom(id, name, volume, ventilation_type, windows_duration, windows_frequency, window_height, window_width, window_type,windows_number,window_opening_regime, opening_distance, event_month, room_heating_option, mechanical_ventilation_type, air_supply, biov_amount, biov_option, humidity, temperature) {
+    $("#Room_list").append(`<div id = "roomFormContainer[${id}]">
     <div class="RoomForm">
     <table>
     <tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th></tr>
     <tr>
-      <td><div>` + RoomId + `</div>
-      <td><input class="col-sm-8 form-control" type="text" name="room_name[` + RoomId + `]" value="Room" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="volume[` + RoomId + `]" value="100" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="humidity[` + RoomId + `]" value="0.3" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="temperature[` + RoomId + `]" value="20" required></td>
-      <td><input type="radio" name="ventilation[` + RoomId + `]" value="no_ventilation" checked required>No ventilation</td>
-      <td><input type="radio" name="ventilation[` + RoomId + `]" value="mechanical_ventilation" required>Mechanical</td>
-      <td><input type="radio" name="ventilation[` + RoomId + `]" value="natural_ventilation" required>Natural</td>
-      <td><input class="col-sm-8 form-control" type="text" name="duration[` + RoomId + `]" value="15" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="frequency[` + RoomId + `]" value="60" required></td>
+      <td><div>${id}</div>
+      <td><input class="col-sm-8 form-control" type="text" name="room_name[${id}]" value=${name} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="volume[${id}]" value=${volume} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="humidity[${id}]" value=${humidity} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="temperature[${id}]" value=${temperature} required></td>
+      <td><input type="radio" name="ventilation[${id}]" value="no_ventilation" required>No ventilation</td>
+      <td><input type="radio" name="ventilation[${id}]" value="mechanical_ventilation" required>Mechanical</td>
+      <td><input type="radio" name="ventilation[${id}]" value="natural_ventilation" required>Natural</td>
+      <td><input class="col-sm-8 form-control" type="text" name="duration[${id}]" value=${windows_duration} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="frequency[${id}]" value=${windows_frequency} required></td>
     </tr>
     </tbody></table>
     <table>
     <tbody><tr><th>Window height</th><th>Window width</th><th>Window number</th><th>Window opening regime</th><th></th><th>Window type</th><th>Opening distance</th><th>Month</th><th></th></tr>
     <tr>
-      <td><input class="col-sm-8 form-control" type="text" name="height[` + RoomId + `]" value="1" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="width[` + RoomId + `]" value="1" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="number[` + RoomId + `]" value="1" required></td>
-      <td><input type="radio" name="opening_regime[` + RoomId + `]" value="windows_open_periodically" checked required>Periodically</td>
-      <td><input type="radio" name="opening_regime[` + RoomId + `]" value = "windows_open_permanently" required >Permanently</td>
-      <td><input class="col-sm-8 form-control" type="text" name="window_type[` + RoomId + `]" value='window_sliding' required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="opening_distance[` + RoomId + `]" value="1" required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="month[` + RoomId + `]" value="January" required ></td>
-      <td><input type="checkbox" name="room_heating_option[` + RoomId + `]" value = "1" checked>Room heating</td>
+      <td><input class="col-sm-8 form-control" type="text" name="height[${id}]" value=${window_height} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="width[${id}]" value=${window_width} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="number[${id}]" value=${windows_number} required></td>
+      <td><input type="radio" name="opening_regime[${id}]" value="windows_open_periodically" required>Periodically</td>
+      <td><input type="radio" name="opening_regime[${id}]" value = "windows_open_permanently" required >Permanently</td>
+      <td><input class="col-sm-8 form-control" type="text" name="window_type[${id}]" value=${window_type} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="opening_distance[${id}]" value=${opening_distance} required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="month[${id}]" value=${event_month} required ></td>
+      <td><input type="checkbox" name="room_heating_option[${id}]" value = "1">Room heating</td>
     </tr>
     </tbody></table>
     <table>
     <tbody><tr><th>Air supply</th><th></th><th>Biov Amount</th></tr>
     <tr>
-      <td><input class="col-sm-8 form-control" type="text" name="air_supply[` + RoomId + `]" value="100" required></td>
-      <td><input type="checkbox" name="biov_option[` + RoomId + `]" value = "1" checked >Biov option</td>
-      <td><input class="col-sm-8 form-control" type="text" name="biov_amount[` + RoomId + `]" value="1000" required></td>
+      <td><input class="col-sm-8 form-control" type="text" name="air_supply[${id}]" value=${air_supply} required></td>
+      <td><input type="checkbox" name="biov_option[${id}]" value = "1" >Biov option</td>
+      <td><input class="col-sm-8 form-control" type="text" name="biov_amount[${id}]" value=${biov_amount} required></td>
     </tr>
     </tbody></table>
-    <button type="button" id="deleteRoom[` + RoomId + `]" class="btn btn-secondary" onclick=deleteRoom(` + RoomId + `)>
+    <button type="button" id="deleteRoom[${id}]" class="btn btn-secondary" onclick=deleteRoom(${id})>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
@@ -50,7 +50,11 @@ function addRoom() {
     <div class="d-flex justify-content-center">------------------------------------------------------------------------------------------------------------------</div>
     </div>
     </div>`)
-    RoomId += 1
+    
+    document.getElementsByName(`ventilation[${id}]`)[0].value = ventilation_type
+
+
+    RoomId = id+1
     }
     
 function deleteRoom(i) {
@@ -438,7 +442,7 @@ $(document).ready(function () {
           console.log(string_value)
           if (name == 'Room_list') {
             for (const room of JSON.parse(string_value)) {
-              addRoom();
+              addRoom(RoomId);
             }
           }
           
