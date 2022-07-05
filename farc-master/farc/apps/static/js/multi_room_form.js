@@ -433,18 +433,35 @@ $(document).ready(function () {
   var url = new URL(decodeURIComponent(window.location.href));
   //Pre-fill form with known values
   url.searchParams.forEach((value, name) => {
+          string_value = value.replace(/'/g, '"')
           var elemObj = document.getElementById(name);
+          console.log(string_value)
           if (name == 'Room_list') {
-            console.log(value)
-            for (const room of JSON.parse(value)) {
-
+            for (const room of JSON.parse(string_value)) {
               addRoom();
-
-
-
             }
+          }
+          
+          else if (name == 'People_list'){
+            for (const person of JSON.parse(string_value)) {
+              addPerson();
+            }
+          }
+
+          else{
+            for (const event of JSON.parse(string_value)) {
+              saveEvent(EventId);
+            }
+          }
 
     
-    }
-  })
+    })
+
+    //Render calendar hidden by tab
+    $('a[data-toggle="pill"]').on('shown.bs.tab', function () {
+      for (const calendar of Calendars ){
+        calendar.render()}
+      })
 })
+
+

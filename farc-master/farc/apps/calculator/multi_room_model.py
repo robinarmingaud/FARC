@@ -251,7 +251,6 @@ class Room(RoomType):
     humidity:float
     temperature : float
     concentration_models: np.ndarray = np.array([])
-    building: Building = None
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.
     #All concentrations models from infected people who went to this room and left virus particles

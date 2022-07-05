@@ -114,7 +114,12 @@ class FormData:
         for room in form.simulation.rooms :
             room_dict = {}
             for field in dataclasses.fields(room):
-                room_dict[field.name] = getattr(room, field.name)
+                if field.name == 'ventilation' :
+                    ventilation = getattr(room, field.name)
+                    for element in dataclasses.fields(ventilation):
+                        room_dict[element.name] = getattr(ventilation, element.name)
+                else :   
+                    room_dict[field.name] = getattr(room, field.name)
 
             #remove array of data from dict
             del room_dict['cumulative_exposure']
@@ -154,9 +159,12 @@ class FormData:
                 event_dict = {}
                 event_dict['Person'] = person.id
                 for field in dataclasses.fields(event):
-                    event_dict[field.name] = getattr(event, field.name)
-                
-                print(event_dict['start'])
+                    if field.name == 'location' :
+                        location = getattr(event, field.name)
+                        event_dict[field.name] = getattr(location, 'id')
+                    else :    
+                        event_dict[field.name] = getattr(event, field.name)
+
                 event_dict['start'] = time_minutes_to_string(int(event_dict['start']*60))
                 event_dict['end'] = time_minutes_to_string(int(event_dict['end']*60))
 
