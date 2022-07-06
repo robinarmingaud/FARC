@@ -1,70 +1,77 @@
 var RoomId = 0
 
-function addRoom(id, name, volume, ventilation_type, windows_duration, windows_frequency, window_height, window_width, window_type,windows_number,window_opening_regime, opening_distance, event_month, room_heating_option, mechanical_ventilation_type, air_supply, biov_amount, biov_option, humidity, temperature) {
-    $("#Room_list").append(`<div id = "roomFormContainer[${id}]">
-    <div class="RoomForm border-bottom">
+function addRoom() {
+  /*Clone the hidden room form*/ 
+    const div = $("#Room_to_clone").get(0)
+    const clone = div.cloneNode(true);
 
+  /*Make the clone visible*/
+    clone.classList.remove("d-none")
 
+  /*Update ids and names*/
+    clone.id = "Room_" + RoomId
+    clone.querySelector("#room_id").insertAdjacentHTML('beforeend', '<b>' + '\xa0' +RoomId+'</b>');
+    clone.querySelector("#room_id").id = "room_id[" + RoomId + "]"
+    clone.querySelector("#room_volume").name = "room_volume[" + RoomId + "]"
+    clone.querySelector("#room_volume").id = "room_volume[" + RoomId + "]"
+    clone.querySelector("#heating_no").name = "heating_no[" + RoomId + "]"
+    clone.querySelector("#heating_no").id = "room_heating_option[" + RoomId + "]"
+    clone.querySelector("#heating_yes").name = "heating_yes[" + RoomId + "]"
+    clone.querySelector("#heating_yes").id = "room_heating_option[" + RoomId + "]"
+    clone.querySelector("#humidity").name = "humidity[" + RoomId + "]"
+    clone.querySelector("#humidity").id = "humidity[" + RoomId + "]"
+    clone.querySelector("#inside_temp").name = "inside_temp[" + RoomId + "]"
+    clone.querySelector("#inside_temp").id = "inside_temp[" + RoomId + "]"
+    clone.querySelector("#no_ventilation").name = "ventilation_type[" + RoomId + "]"
+    clone.querySelector("#no_ventilation").id = "no_ventilation[" + RoomId + "]"
+    clone.querySelector("#mechanical_ventilation").name = "ventilation_type[" + RoomId + "]"
+    clone.querySelector("#mechanical_ventilation").id = "mechanical_ventilation[" + RoomId + "]"
+    clone.querySelector("#natural_ventilation").name = "ventilation_type[" + RoomId + "]"
+    clone.querySelector("#natural_ventilation").id = "natural_ventilation[" + RoomId + "]"
+    clone.querySelector("#mech_type_air_supply").name = "mechanical_ventilation_type[" + RoomId + "]"
+    clone.querySelector("#mech_type_air_supply").id = "mech_type_air_supply[" + RoomId + "]"
+    clone.querySelector("#air_supply").name = "air_supply[" + RoomId + "]"
+    clone.querySelector("#air_supply").id = "air_supply[" + RoomId + "]"
+    clone.querySelector("#mech_type_air_changes").name = "mechanical_ventilation_type[" + RoomId + "]"
+    clone.querySelector("#mech_type_air_changes").id = "mech_type_air_changes[" + RoomId + "]"
+    clone.querySelector("#air_changes").name = "air_changes[" + RoomId + "]"
+    clone.querySelector("#air_changes").id = "air_changes[" + RoomId + "]"
+    clone.querySelector("#windows_number").name = "windows_number[" + RoomId + "]"
+    clone.querySelector("#windows_number").id = "windows_number[" + RoomId + "]"
+    clone.querySelector("#window_height").name = "window_height[" + RoomId + "]"
+    clone.querySelector("#window_height").id = "window_height[" + RoomId + "]"   
+    clone.querySelector("#window_sliding").name = "window_type[" + RoomId + "]"
+    clone.querySelector("#window_sliding").id = "window_sliding[" + RoomId + "]"
+    clone.querySelector("#window_hinged").name = "window_type[" + RoomId + "]"
+    clone.querySelector("#window_hinged").id = "window_hinged[" + RoomId + "]"
+    clone.querySelector("#window_width").name = "window_width[" + RoomId + "]"
+    clone.querySelector("#window_width").id = "window_width[" + RoomId + "]"   
+    clone.querySelector("#opening_distance").name = "opening_distance[" + RoomId + "]"
+    clone.querySelector("#opening_distance").id = "opening_distance[" + RoomId + "]"  
+    clone.querySelector("#windows_open_permanently").name = "window_opening_regime[" + RoomId + "]"  
+    clone.querySelector("#windows_open_permanently").id = "window_open_permanently[" + RoomId + "]"  
+    clone.querySelector("#windows_open_periodically").name = "window_opening_regime[" + RoomId + "]"  
+    clone.querySelector("#windows_open_periodically").id = "windows_open_periodically[" + RoomId + "]"  
+    clone.querySelector("#windows_duration").name = "window_duration[" + RoomId + "]"
+    clone.querySelector("#windows_duration").id = "window_duration[" + RoomId + "]"  
+    clone.querySelector("#windows_frequency").name = "window_frequency[" + RoomId + "]"
+    clone.querySelector("#windows_frequency").id = "window_frequency[" + RoomId + "]"
+    clone.querySelector("#biov_no").name = "biov_option[" + RoomId + "]"
+    clone.querySelector("#biov_no").id = "biov_no[" + RoomId + "]" 
+    clone.querySelector("#biov_yes").name = "biov_option[" + RoomId + "]"
+    clone.querySelector("#biov_yes").id = "biov_yes[" + RoomId + "]"
+    clone.querySelector("#biov_amount").name = "biov_amount[" + RoomId + "]"
+    clone.querySelector("#biov_amount").id = "biov_amount[" + RoomId + "]"
 
+    $("#Room_list").append(clone)
 
-
-
-
-
-    <table>
-    <tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th></tr>
-    <tr>
-      <td><div>${id}</div>
-      <td><input class="col-sm-8 form-control" type="text" name="room_name[${id}]" value=${name} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="volume[${id}]" value=${volume} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="humidity[${id}]" value=${humidity} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="temperature[${id}]" value=${temperature} required></td>
-      <td><input type="radio" name="ventilation[${id}]" value="no_ventilation" required>No ventilation</td>
-      <td><input type="radio" name="ventilation[${id}]" value="mechanical_ventilation" required>Mechanical</td>
-      <td><input type="radio" name="ventilation[${id}]" value="natural_ventilation" required>Natural</td>
-      <td><input class="col-sm-8 form-control" type="text" name="duration[${id}]" value=${windows_duration} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="frequency[${id}]" value=${windows_frequency} required></td>
-    </tr>
-    </tbody></table>
-    <table>
-    <tbody><tr><th>Window height</th><th>Window width</th><th>Window number</th><th>Window opening regime</th><th></th><th>Window type</th><th>Opening distance</th><th>Month</th><th></th></tr>
-    <tr>
-      <td><input class="col-sm-8 form-control" type="text" name="height[${id}]" value=${window_height} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="width[${id}]" value=${window_width} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="number[${id}]" value=${windows_number} required></td>
-      <td><input type="radio" name="opening_regime[${id}]" value="windows_open_periodically" required>Periodically</td>
-      <td><input type="radio" name="opening_regime[${id}]" value = "windows_open_permanently" required >Permanently</td>
-      <td><input class="col-sm-8 form-control" type="text" name="window_type[${id}]" value=${window_type} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="opening_distance[${id}]" value=${opening_distance} required></td>
-      <td><input class="col-sm-8 form-control" type="text" name="month[${id}]" value=${event_month} required ></td>
-      <td><input type="checkbox" name="room_heating_option[${id}]" value = "1">Room heating</td>
-    </tr>
-    </tbody></table>
-    <table>
-    <tbody><tr><th>Air supply</th><th></th><th>Biov Amount</th></tr>
-    <tr>
-      <td><input class="col-sm-8 form-control" type="text" name="air_supply[${id}]" value=${air_supply} required></td>
-      <td><input type="checkbox" name="biov_option[${id}]" value = "1" >Biov option</td>
-      <td><input class="col-sm-8 form-control" type="text" name="biov_amount[${id}]" value=${biov_amount} required></td>
-    </tr>
-    </tbody></table>
-    <button type="button" id="deleteRoom[${id}]" class="btn btn-secondary" onclick=deleteRoom(${id})>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
-    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
-    </svg>
-    </button>
-    <br>
-    </div>`)
     
-    document.getElementsByName(`ventilation[${id}]`)[0].value = ventilation_type
 
-
-    RoomId = id+1
+    RoomId = RoomId+1
     }
     
 function deleteRoom(i) {
-    document.getElementById("roomFormContainer[" + i + "]").remove()
+    document.getElementById("Room_" + i).remove()
 }
 
 var EventId = 0
@@ -440,6 +447,9 @@ function deleteEvent(e){
 
 /* -------On Load------- */
 $(document).ready(function () {
+
+
+
   var url = new URL(decodeURIComponent(window.location.href));
   //Pre-fill form with known values
   url.searchParams.forEach((value, name) => {
@@ -466,65 +476,6 @@ $(document).ready(function () {
 
     
     })
-
-      // Check default values
-  var volume_type = js_default["volume_type"]
-  $('.room_volume[value='+volume_type+']').attr('checked', 'checked');
-  var heating_system = js_default['room_heating_option']
-  $('.heating_option[value='+heating_system+']').attr('checked', 'checked');
-  var ventilation_type = js_default['ventilation_type']
-  $('.ventilation_option[value='+ventilation_type+']').attr('checked', 'checked');
-  var mechanical_ventilation_type = js_default['mechanical_ventilation_type']
-  $('.mech_type_option[value='+mechanical_ventilation_type+']').attr('checked', 'checked');
-  var window_type = js_default['window_type']
-  $('.window_type_option[value='+window_type+']').attr('checked', 'checked');
-  var window_opening_regime = js_default['window_opening_regime']
-  $('.window_open_option[value='+window_opening_regime+']').attr('checked', 'checked');
-  var biov_option = js_default['biov_option']
-  $('.biov_option[value='+biov_option+']').attr('checked', 'checked');
-  var mask_wearing_option = js_default['mask_wearing_option']
-  $('.mask_wearing_option[value='+mask_wearing_option+']').attr('checked', 'checked');
-  var mask_type = js_default['mask_type']
-  $('.mask_type_option[value='+mask_type+']').attr('checked', 'checked');
-  var infected_dont_have_breaks_with_exposed = js_default['infected_dont_have_breaks_with_exposed']
-  $('.infected_dont_have_breaks_with_exposed_option[value='+infected_dont_have_breaks_with_exposed+']').attr('checked', 'checked');
-  var exposed_coffee_break_option = js_default['exposed_coffee_break_option']
-  $('.exposed_coffee_break_option[value='+exposed_coffee_break_option+']').attr('checked', 'checked');
-  var exposed_lunch_option = js_default['exposed_lunch_option']
-  $('.exposed_lunch_option[value='+exposed_lunch_option+']').attr('checked', 'checked');
-  var infected_lunch_option = js_default['infected_lunch_option']
-  $('.infected_lunch_option[value='+infected_lunch_option+']').attr('checked', 'checked');
-  var infected_coffee_break_option = js_default['infected_coffee_break_option']
-  $('.infected_coffee_break_option[value='+infected_coffee_break_option+']').attr('checked', 'checked');
-
-    $("input[type=radio]:checked").each(function() {require_fields(this)});
-
-    // When the ventilation_type changes we want to make its respective
-    // children show/hide.
-    $("input[type=radio][name=ventilation_type]").change(on_ventilation_type_change);
-    // Call the function now to handle forward/back button presses in the browser.
-    on_ventilation_type_change();
-  
-    // Setup the maximum number of people at page load (to handle back/forward),
-    // and update it when total people is changed.
-    setMaxInfectedPeople();
-    $("#total_people").change(setMaxInfectedPeople);
-    $("#activity_type").change(setMaxInfectedPeople);
-  
-    //Validate all non zero values
-    $("input[required].non_zero").each(function() {validateValue(this)});
-    $(".non_zero").change(function() {validateValue(this)});
-  
-    //Validate all finish times
-    $("input[required].finish_time").each(function() {validateFinishTime(this)});
-    $(".finish_time").change(function() {validateFinishTime(this)});
-    $(".start_time").change(function() {validateFinishTime(this)});
-
-    //Render hidden calendars
-    $('a[data-toggle="pill"]').on('shown.bs.tab', function () {
-      for (const calendar of Calendars ){
-        calendar.render()}
-      })
       $("#location_select").select2({
         ajax: {
           // Docs for the geocoding service at:

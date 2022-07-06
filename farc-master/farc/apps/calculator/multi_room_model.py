@@ -250,6 +250,7 @@ class Room(RoomType):
     id:int
     humidity:float
     temperature : float
+    number : int = 1
     concentration_models: np.ndarray = np.array([])
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.

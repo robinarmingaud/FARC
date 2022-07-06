@@ -15,7 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
     <script src="/static/js/multi_room_form.js"></script>
-    <script src="/static/js/form.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 {% endblock body_scripts %}
 
@@ -27,7 +26,7 @@
 <header class= "bg-light">
   <div class="container container--padding">
     <div class="d-flex header-height">
-      <h1 class="align-self-center">{{_("FARC Calculator")}}</h1>
+      <h1 class="align-self-center">{{_("FARC Expert")}}</h1>
       <img src="/static/images/Logo_Flow-R_Couleur@2x.png" class="logo_form align-self-center ml-3">
     </div>
   </div>
@@ -59,16 +58,10 @@
             <div class="container container--padding">
         <br>
         <h1>{{_("Instructions for use")}}</h1>
-            <br>
-            <p>
-                {{_("This is a guide to help you use the calculator app.")}}
-            </p>
-            <p>
-                {{_("For more information on the Airborne Transmission of SARS-CoV-2, feel free to check out this HSE Seminar:")}} <a href="https://cds.cern.ch/record/2743403">https://cds.cern.ch/record/2743403</a>
-            </p>
-            <p>
-                {{_("The methodology, mathematical equations and parameters of the CARA model are described here in the CERN Report:")}} <a href="https://cds.cern.ch/record/2756083">{{_("CERN-OPEN-2021-004")}}</a>
-            </p>
+        <br>
+                {{_("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis urna vel gravida laoreet. Sed vulputate magna a nisl ultricies, eu pulvinar diam aliquet. Phasellus orci felis, pretium ut justo vel, pharetra placerat ex. Fusce eget pharetra justo, et mattis nulla. Cras a sollicitudin orci, consectetur volutpat nulla. Sed at viverra justo, et scelerisque ipsum. Vestibulum at elit eget sem vehicula pulvinar quis sit amet neque. Vestibulum velit libero, placerat sit amet ultricies at, vulputate sed arcu. Quisque accumsan, lectus dapibus commodo dictum, tellus diam egestas neque, nec scelerisque felis tellus a sapien.
+
+                      Nullam sed massa vitae magna volutpat vulputate. Nullam varius placerat feugiat. Sed lobortis nunc eu mi interdum, sed tincidunt massa egestas. Cras placerat lorem velit, at ultricies augue pulvinar ac. In fermentum lobortis tortor, at aliquam ex viverra sit amet. Vestibulum a ultrices ante, ac ultricies tortor. Quisque hendrerit arcu ut elit ultricies, a pretium mauris lobortis. Maecenas eu mi eu justo lobortis varius nec quis felis. Curabitur scelerisque auctor tristique. Suspendisse ut felis felis. Morbi varius urna sit amet justo efficitur tincidunt. Vivamus gravida fermentum leo non sollicitudin.")}}
         </div>
         <div class="center">
             <button class="btn btn-primary bigButton"
@@ -84,9 +77,9 @@
             {{ text_blocks['Disclaimer'] }}
         </div>
         <div class="container container--padding">
-            <h1>{{_("How to use this tool")}}</h1>
+            <h1>{{_("Lorem ipsum")}}</h1>
             <br>
-            <h3>{{_("Simulation Name")}} &amp; {{_("Room number")}}</h3>
+            <h3>{{_("Lorem ipsum")}} &amp; {{_("Lorem ipsum")}}</h3>
             <br>
             <p>
                 {{_("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis urna vel gravida laoreet. Sed vulputate magna a nisl ultricies, eu pulvinar diam aliquet. Phasellus orci felis, pretium ut justo vel, pharetra placerat ex. Fusce eget pharetra justo, et mattis nulla. Cras a sollicitudin orci, consectetur volutpat nulla. Sed at viverra justo, et scelerisque ipsum. Vestibulum at elit eget sem vehicula pulvinar quis sit amet neque. Vestibulum velit libero, placerat sit amet ultricies at, vulputate sed arcu. Quisque accumsan, lectus dapibus commodo dictum, tellus diam egestas neque, nec scelerisque felis tellus a sapien.
@@ -148,12 +141,11 @@
               <h1>Rooms</h1>
               <br>
               <div id="Room_list">
-              <div class="form-group row">
-                  <b>{{_("Room data 1 :")}}</b>
+              <div id="Room_to_clone" class="d-none">
+              <div id="room_id" class="form-group row">
+                  <b>{{_("Room")}}</b>
               </div>
-                    
                     <br>
-
                     <div class="form-group row">
                       <div class="col-sm-6">
                       <label for="room_volume" class="col-form-label">{{_("Room volume:")}}</label>
@@ -193,27 +185,6 @@
               <input type="radio" class="ml-2 ventilation_option" id="natural_ventilation" name="ventilation_type" value='natural_ventilation' data-enables="#DIVnatural_ventilation" data-toggle="modal" data-target="#warning_modal">
                 <label for="natural_ventilation">{{_("Natural")}}</label><br>
               </div>
-              </div>
-
-              <!-- Modal -->
-              <div class="modal fade" id="warning_modal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title">{{_("Natural Ventilation")}}</h4>
-                      <button type="button" class="close align-self-center" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                    {{_("Single-sided ventilation is assumed in the model and is typically effective for room depths up to a depth 2.5 x the ceiling height. 
-                      If these conditions are not met, the air exchange might not be homogenous producing an artificially lower risk further away from the window.")}}
-                      <br>
-                      <br>
-                      <img src="/static/images/nat_vent_dimensions.png" id="nat_vent_image">
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div id="DIVmechanical_ventilation" class="tabbed">
@@ -302,7 +273,7 @@
 
 
 
-
+              </div>
               </div>
               <button type="button" class="btn btn-secondary" onclick="addRoom(); return false;">{{_("Add room")}}</button>
               </div>
@@ -311,13 +282,28 @@
             <div class="container container--padding">
               <div id="rooms_data_form">
                   <h1>People</h1>
+                  <br>
                   <div id ="PeopleList">
+                  <div id="Person1">
+                  <div class="form-group row">
+                    <b>{{_("Person data 1 :")}}</b>
+                  </div>
+                    <br>
+                <div class="form-group row">
+                <div class="split col-sm-12">
+                  <label for="name">{{_("Name :")}}</label>
+                  <input type="text" step=0.1 id="name" class="form-control" name="name">
+                  <label for="inside_temp">{{_("Number:")}}</label>
+                  <input type="number" step="1" id="inside_temp" class="form-control" name="person_number" value="1" min="0">
+                </div>
+              </div>
+
                   
                   </div>
                   <button type="button" class="btn btn-secondary" onclick="addPerson(); return false;">{{_("Add person")}}</button>
 
               </div>
-              
+              </div>
 
 
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -329,7 +315,26 @@
 
     </div>
 
-
+<!-- Modal -->
+              <div class="modal fade" id="warning_modal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">{{_("Natural Ventilation")}}</h4>
+                      <button type="button" class="close align-self-center" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                    {{_("Single-sided ventilation is assumed in the model and is typically effective for room depths up to a depth 2.5 x the ceiling height. 
+                      If these conditions are not met, the air exchange might not be homogenous producing an artificially lower risk further away from the window.")}}
+                      <br>
+                      <br>
+                      <img src="/static/images/nat_vent_dimensions.png" id="nat_vent_image">
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
 {%endblock main%}
