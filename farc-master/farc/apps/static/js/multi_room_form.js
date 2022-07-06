@@ -2,7 +2,15 @@ var RoomId = 0
 
 function addRoom(id, name, volume, ventilation_type, windows_duration, windows_frequency, window_height, window_width, window_type,windows_number,window_opening_regime, opening_distance, event_month, room_heating_option, mechanical_ventilation_type, air_supply, biov_amount, biov_option, humidity, temperature) {
     $("#Room_list").append(`<div id = "roomFormContainer[${id}]">
-    <div class="RoomForm">
+    <div class="RoomForm border-bottom">
+
+
+
+
+
+
+
+
     <table>
     <tbody><tr><th>Id</th><th>Name</th><th>Volume</th><th>Humidity</th><th>Temperature</th><th>Ventilation type</th><th></th><th></th><th>Duration</th><th>Frequency</th></tr>
     <tr>
@@ -47,8 +55,6 @@ function addRoom(id, name, volume, ventilation_type, windows_duration, windows_f
     </svg>
     </button>
     <br>
-    <div class="d-flex justify-content-center">------------------------------------------------------------------------------------------------------------------</div>
-    </div>
     </div>`)
     
     document.getElementsByName(`ventilation[${id}]`)[0].value = ventilation_type
@@ -461,11 +467,159 @@ $(document).ready(function () {
     
     })
 
-    //Render calendar hidden by tab
+      // Check default values
+  var volume_type = js_default["volume_type"]
+  $('.room_volume[value='+volume_type+']').attr('checked', 'checked');
+  var heating_system = js_default['room_heating_option']
+  $('.heating_option[value='+heating_system+']').attr('checked', 'checked');
+  var ventilation_type = js_default['ventilation_type']
+  $('.ventilation_option[value='+ventilation_type+']').attr('checked', 'checked');
+  var mechanical_ventilation_type = js_default['mechanical_ventilation_type']
+  $('.mech_type_option[value='+mechanical_ventilation_type+']').attr('checked', 'checked');
+  var window_type = js_default['window_type']
+  $('.window_type_option[value='+window_type+']').attr('checked', 'checked');
+  var window_opening_regime = js_default['window_opening_regime']
+  $('.window_open_option[value='+window_opening_regime+']').attr('checked', 'checked');
+  var biov_option = js_default['biov_option']
+  $('.biov_option[value='+biov_option+']').attr('checked', 'checked');
+  var mask_wearing_option = js_default['mask_wearing_option']
+  $('.mask_wearing_option[value='+mask_wearing_option+']').attr('checked', 'checked');
+  var mask_type = js_default['mask_type']
+  $('.mask_type_option[value='+mask_type+']').attr('checked', 'checked');
+  var infected_dont_have_breaks_with_exposed = js_default['infected_dont_have_breaks_with_exposed']
+  $('.infected_dont_have_breaks_with_exposed_option[value='+infected_dont_have_breaks_with_exposed+']').attr('checked', 'checked');
+  var exposed_coffee_break_option = js_default['exposed_coffee_break_option']
+  $('.exposed_coffee_break_option[value='+exposed_coffee_break_option+']').attr('checked', 'checked');
+  var exposed_lunch_option = js_default['exposed_lunch_option']
+  $('.exposed_lunch_option[value='+exposed_lunch_option+']').attr('checked', 'checked');
+  var infected_lunch_option = js_default['infected_lunch_option']
+  $('.infected_lunch_option[value='+infected_lunch_option+']').attr('checked', 'checked');
+  var infected_coffee_break_option = js_default['infected_coffee_break_option']
+  $('.infected_coffee_break_option[value='+infected_coffee_break_option+']').attr('checked', 'checked');
+
+    $("input[type=radio]:checked").each(function() {require_fields(this)});
+
+    // When the ventilation_type changes we want to make its respective
+    // children show/hide.
+    $("input[type=radio][name=ventilation_type]").change(on_ventilation_type_change);
+    // Call the function now to handle forward/back button presses in the browser.
+    on_ventilation_type_change();
+  
+    // Setup the maximum number of people at page load (to handle back/forward),
+    // and update it when total people is changed.
+    setMaxInfectedPeople();
+    $("#total_people").change(setMaxInfectedPeople);
+    $("#activity_type").change(setMaxInfectedPeople);
+  
+    //Validate all non zero values
+    $("input[required].non_zero").each(function() {validateValue(this)});
+    $(".non_zero").change(function() {validateValue(this)});
+  
+    //Validate all finish times
+    $("input[required].finish_time").each(function() {validateFinishTime(this)});
+    $(".finish_time").change(function() {validateFinishTime(this)});
+    $(".start_time").change(function() {validateFinishTime(this)});
+
+    //Render hidden calendars
     $('a[data-toggle="pill"]').on('shown.bs.tab', function () {
       for (const calendar of Calendars ){
         calendar.render()}
       })
-})
+      $("#location_select").select2({
+        ajax: {
+          // Docs for the geocoding service at:
+          // https://developers.arcgis.com/rest/geocode/api-reference/geocoding-service-output.htm
+          url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest",
+          dataType: 'json',
+          delay: 250,
+          data: function(params) {
+            return {
+              text: params.term, // search term
+              f: 'json',
+              page: params.page,
+              maxSuggestions: 20,
+            };
+          },
+          processResults: function(data, params) {
+            // Enable infinite scrolling
+            params.page = params.page || 1;
+            return {
+              results: data.suggestions.map(function(suggestion) {
+                return {
+                    id: suggestion.magicKey,  // The unique reference to this result.
+                    text: suggestion.text,
+                    magicKey: suggestion.magicKey
+                }
+              }),
+              pagination: {
+                more: (params.page * 10) < data.suggestions.length
+              }
+            };
+          },
+          cache: true
+        },
+        placeholder: 'Geneva, CHE',
+        minimumInputLength: 1,
+        templateResult: formatlocation,
+        templateSelection: formatLocationSelection
+      });
+    
+      function formatlocation(suggestedLocation) {
+        // Function is called for each location from the geocoding API.
+    
+        if (suggestedLocation.loading) {
+          // Update the first message in the search results to show the
+          // "Searching..." message.
+          return suggestedLocation.text;
+        }
+    
+        // Create a container for this location (to be added to the DOM by the select2
+        // library when returned).
+        // This will become one of many search results in the dropdown.
+        var $container = $(
+          "<div class='select2-result-location clearfix'>" +
+          "<div class='select2-result-location__meta'>" +
+          "<div class='select2-result-location__title'>" + suggestedLocation.text + "</div>" +
+          "</div>" +
+          "</div>"
+        );
+        return $container;
+      }
+    
+      function formatLocationSelection(selectedSuggestion) {
+        // Function is called when a selection is made in the search result dropdown.
+    
+        // ID may be empty, for example when the page is refreshed or back button pressed.
+        if (selectedSuggestion.id != "") {
+    
+            // Turn the suggestion into a proper location (so that we can get its latitude & longitude).
+            $.ajax({
+              dataType: "json",
+              url: 'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates',
+              data: {
+                magicKey: selectedSuggestion.magicKey,
+                outFields: 'country, location',
+                f: "json"
+              },
+              success: function (locations) {
+                // If there isn't precisely one result something is very wrong.
+                geocoded_loc = locations.candidates[0];
+                $('input[name="location_name"]').val(selectedSuggestion.text);
+                $('input[name="location_latitude"]').val(geocoded_loc.location.y.toPrecision(7));
+                $('input[name="location_longitude"]').val(geocoded_loc.location.x.toPrecision(7));
+              }
+            });
+    
+        } else if ($('input[name="location_name"]').val() != "") {
+            // If we have no selection AND the location_name is available, use that in the search bar.
+            // This means that we preserve the location through refresh/back button.
+            return $('input[name="location_name"]').val();
+        }
+        return selectedSuggestion.text;
+      }
+    });
+
+
+
 
 

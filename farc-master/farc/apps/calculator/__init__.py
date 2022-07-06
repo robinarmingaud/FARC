@@ -26,7 +26,7 @@ from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import __version__, _DEFAULTS as d
+from .DEFAULT_DATA import TOOLTIPS, __version__, _DEFAULTS as d
 import tornado
 from . import multi_room_generator
 from . import multi_room_model
@@ -249,6 +249,8 @@ class MultiRoomForm(BaseRequestHandler):
             calculator_version=__version__,
             default = DEFAULT_DATA._DEFAULTS,
             PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
+            TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
+            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
             ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES)
         self.finish(report)
 

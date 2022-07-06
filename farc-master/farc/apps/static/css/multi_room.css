@@ -15,12 +15,24 @@
     align-content: space-between;
 }
 
+.carousel-indicators,
 .carousel-control-next,
 .carousel-control-prev {
     filter: invert(100%);
+    top: 50%;
+    bottom: 50%;
+    position: -webkit-sticky; /* for Safari */
     position: sticky;
-    top: 30%;
-    bottom: 30%;
+
+}
+
+.carousel-indicators {
+  top : 85%;
+  bottom : 15%;
+}
+
+.carousel-control-next{
+  float :  right;
 
 }
 
@@ -30,4 +42,8 @@
 }
 .container.container--padding {
   max-width: 100%;
+}
+
+.select2-container{
+  width : 100% !important;
 }
