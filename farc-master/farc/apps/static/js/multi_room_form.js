@@ -1,3 +1,5 @@
+var js_default = JSON.parse('{"exposed_activity_type": "Office_worker", "exposed_activity_level": "Seated", "exposed_breathing": 8, "exposed_speaking": 2, "exposed_shouting": 0, "exposed_mask_wear_ratio": 0.7, "infected_activity_type": "Office_worker", "infected_activity_level": "Seated", "infected_breathing": 8, "infected_speaking": 2, "infected_shouting": 0, "infected_mask_wear_ratio": 0.7, "air_changes": 1.0, "air_supply": 100, "calculator_version": "1.0.3", "ceiling_height": 2.5, "humidity": "", "inside_temp": 20, "exposed_coffee_break_option": "coffee_break_0", "exposed_coffee_duration": 5, "exposed_finish": "17:30", "exposed_lunch_finish": "13:30", "exposed_lunch_option": 1, "exposed_lunch_start": "12:30", "exposed_start": "08:30", "event_month": "January", "floor_area": 40, "biov_amount": 1000, "biov_option": 0, "infected_coffee_break_option": "coffee_break_0", "infected_coffee_duration": 5, "infected_dont_have_breaks_with_exposed": 0, "infected_finish": "17:30", "infected_lunch_finish": "13:30", "infected_lunch_option": 1, "infected_lunch_start": "12:30", "infected_people": 1, "infected_start": "08:30", "location_latitude": 47.21725, "location_longitude": -1.55336, "location_name": "Nantes, Loire-Atlantique, Pays de la Loire, FRA", "mask_type": "Type_I", "mask_wearing_option": "mask_off", "mechanical_ventilation_type": "mech_type_air_supply", "opening_distance": 0.5, "room_heating_option": 1, "room_number": "1", "room_volume": 100, "simulation_name": "My simulation", "total_people": 10, "ventilation_type": "mechanical_ventilation", "virus_type": "SARS_CoV_2_OMICRON", "viruses": {"SARS_CoV_2": "SARS-CoV-2 (nominal strain)", "SARS_CoV_2_ALPHA": "SARS-CoV-2 (Alpha VOC)", "SARS_CoV_2_BETA": "SARS-CoV-2 (Beta VOC)", "SARS_CoV_2_GAMMA": "SARS-CoV-2 (Gamma VOC)", "SARS_CoV_2_DELTA": "SARS-CoV-2 (Delta VOC)", "SARS_CoV_2_OMICRON": "SARS-CoV-2 (Omicron VOC)"}, "volume_type": "room_volume_explicit", "window_type": "window_sliding", "window_height": 1.0, "window_width": 1.0, "windows_duration": 15, "windows_frequency": 60, "windows_number": 1, "window_opening_regime": "windows_open_permanently"}');
+
 var RoomId = 0
 
 function addRoom() {
@@ -31,10 +33,56 @@ function addRoom() {
 
     const i = RoomId
 
-    /* Add event listeners */
-    $("#delete_room\\["+i+"\\]").click(function(){deleteRoom(i)})
-    $("input[type=radio][name=ventilation_type\\["+i+"\\]]").change(function(){on_ventilation_type_change(i)});
-    on_ventilation_type_change(i);
+      
+      // Check default values
+      var volume_type = js_default["volume_type"]
+      $('.room_volume[value='+volume_type+']').attr('checked', 'checked');
+      var heating_system = js_default['room_heating_option']
+      $('.heating_option[value='+heating_system+']').attr('checked', 'checked');
+      var ventilation_type = js_default['ventilation_type']
+      $('.ventilation_option[value='+ventilation_type+']').attr('checked', 'checked');
+      var mechanical_ventilation_type = js_default['mechanical_ventilation_type']
+      $('.mech_type_option[value='+mechanical_ventilation_type+']').attr('checked', 'checked');
+      var window_type = js_default['window_type']
+      $('.window_type_option[value='+window_type+']').attr('checked', 'checked');
+      var window_opening_regime = js_default['window_opening_regime']
+      $('.window_open_option[value='+window_opening_regime+']').attr('checked', 'checked');
+      var biov_option = js_default['biov_option']
+      $('.biov_option[value='+biov_option+']').attr('checked', 'checked');
+
+      //Set humidity value according to heating option
+
+      if($("#heating_no\\["+i+"\\]").is(':checked')){
+          $("#humidity").val(0.5)
+        }
+      if($("#heating_yes\\["+i+"\\]").is(':checked')){
+          $("#humidity\\["+i+"\\]").val(0.3)
+        }
+      
+      $("#heating_no\\["+i+"\\]").change(function() {
+          if(this.checked) {
+              $("#humidity\\["+i+"\\]").val(0.5)
+          }
+        });
+      
+      $("#heating_yes\\["+i+"\\]").change(function() {
+          if(this.checked) {
+              $("#humidity\\["+i+"\\]").val(0.3)
+          }
+        });
+
+
+          //Check all radio buttons previously selected
+        $("input[type=radio]:checked").each(function() {require_fields(this)});
+
+        //Validate all non zero values
+        $("input[required].non_zero").each(function() {validateValue(this)});
+        $(".non_zero").change(function() {validateValue(this)});
+        /* Add event listeners */
+        $("#delete_room\\["+i+"\\]").click(function(){deleteRoom(i)})
+        $("input[type=radio][name=ventilation_type\\["+i+"\\]]").change(function(){on_ventilation_type_change(i)});
+        on_ventilation_type_change(i);
+
     
     RoomId = RoomId+1
     }
@@ -417,6 +465,19 @@ function deleteEvent(e){
 /* -------On Load------- */
 $(document).ready(function () {
 
+  //Hide carousel prev/next arrow on first/last page
+  $('.carousel-control-prev').hide();
+  $('#carousel').on('slide.bs.carousel', function(event) {
+    if(event.from == 1 && event.to == 0) {
+      $('.carousel-control-prev').hide();
+    } else if(event.from == 2 && event.to == 3) {
+      $('.carousel-control-next').hide();
+    } else {
+      $('.carousel-control-prev').show();
+      $('.carousel-control-next').show();
+    }    
+  });
+
     // When the document is ready, deal with the fact that we may be here
   // as a result of a forward/back browser action. If that is the case, update
   // the visibility of some of our inputs.
@@ -428,11 +489,6 @@ $(document).ready(function () {
   $("input[required].non_zero").each(function() {validateValue(this)});
   $(".non_zero").change(function() {validateValue(this)});
 
-  //Validate all finish times
-  $("input[required].finish_time").each(function() {validateFinishTime(this)});
-  $(".finish_time").change(function() {validateFinishTime(this)});
-  $(".start_time").change(function() {validateFinishTime(this)});
-
   //Validate expiration
   $("#exposed_activity_breathing").change(function(){validateExpiration("exposed")});
   $("#exposed_activity_speaking").change(function(){validateExpiration("exposed")});
@@ -440,13 +496,6 @@ $(document).ready(function () {
   $("#infected_activity_breathing").change(function(){validateExpiration("infected")});
   $("#infected_activity_speaking").change(function(){validateExpiration("infected")});
   $("#infected_activity_shouting").change(function(){validateExpiration("infected")});
-
-  //Validate lunch times
-  $(".start_time[data-lunch-for]").each(function() {validateLunchBreak($(this).data('time-group'))});
-  $("[data-lunch-for]").change(function() {validateLunchBreak($(this).data('time-group'))});
-  $("[data-lunch-break]").change(function() {validateLunchBreak($(this).data('lunch-break'))});
-
-
 
 
   var url = new URL(decodeURIComponent(window.location.href));
@@ -591,138 +640,143 @@ function removeErrorFor(referenceNode) {
 
 /* -------Required fields------- */
 function require_fields(obj) {
-  switch ($(obj).attr('id').split("[")[0]) {
-    case "room_data_volume":
-      require_room_volume(true);
-      require_room_dimensions(false);
-      break;
-    case "room_data_dimensions":
-      require_room_volume(false);
-      require_room_dimensions(true);
-      break;
-    case "mechanical_ventilation":
-      require_mechanical_ventilation(true);
-      require_natural_ventilation(false);
-      break;
-    case "natural_ventilation":
-      require_mechanical_ventilation(false);
-      require_natural_ventilation(true);
-      break;
-    case "window_sliding":
-      require_window_width(false);
-      break;
-    case "window_hinged":
-      require_window_width(true);
-      break;
-    case "mech_type_air_changes":
-      require_air_changes(true);
-      require_air_supply(false);
-      break;
-    case "mech_type_air_supply":
-      require_air_changes(false);
-      require_air_supply(true);
-      break;
-    case "windows_open_periodically":
-      require_venting(true);
-      break;
-    case "windows_open_permanently":
-      require_venting(false);
-      break;
-    case "biov_yes":
-      require_biov(true);
-      break;
-    case "biov_no":
-      require_biov(false);
-      break;
-    case "mask_on":
-      require_mask(true);
-      break;
-    case "mask_off":
-      require_mask(false);
-      break;
-    default:
-      break;
-  }
+  try {
+    id = $(obj).attr('id').split("[")[1].split("]")[0]
+    switch ($(obj).attr('id').split("[")[0]) {
+      case "room_data_volume":
+        require_room_volume(true, id);
+        require_room_dimensions(false, id);
+        break;
+      case "room_data_dimensions":
+        require_room_volume(false, id);
+        require_room_dimensions(true, id);
+        break;
+      case "mechanical_ventilation":
+        require_mechanical_ventilation(true, id);
+        require_natural_ventilation(false, id);
+        break;
+      case "natural_ventilation":
+        require_mechanical_ventilation(false, id);
+        require_natural_ventilation(true, id);
+        break;
+      case "window_sliding":
+        require_window_width(false, id);
+        break;
+      case "window_hinged":
+        require_window_width(true, id);
+        break;
+      case "mech_type_air_changes":
+        require_air_changes(true, id);
+        require_air_supply(false, id);
+        break;
+      case "mech_type_air_supply":
+        require_air_changes(false, id);
+        require_air_supply(true, id);
+        break;
+      case "windows_open_periodically":
+        require_venting(true, id);
+        break;
+      case "windows_open_permanently":
+        require_venting(false, id);
+        break;
+      case "biov_yes":
+        require_biov(true, id);
+        break;
+      case "biov_no":
+        require_biov(false, id);
+        break;
+      case "mask_on":
+        require_mask(true, id);
+        break;
+      case "mask_off":
+        require_mask(false, id);
+        break;
+      default:
+        break;
+    }
+  } 
+  catch {}
 }
 
 function unrequire_fields(obj) {
+  id = $(obj).attr('id').split("[")[1].split("]")[0]
   switch ($(obj).attr('id').split("[")[0]) {
     case "mechanical_ventilation":
-      require_mechanical_ventilation(false);
+      require_mechanical_ventilation(false, id);
       break;
     case "natural_ventilation":
-      require_natural_ventilation(false);
+      require_natural_ventilation(false, id);
       break;
     default:
       break;
   }
 }
 
-function require_room_volume(option) {
-  require_input_field("#room_volume", option);
-  set_disabled_status("#room_volume", !option);
+function require_room_volume(option, id) {
+  require_input_field("#room_volume\\[" + id +"\\]", option);
+  set_disabled_status("#room_volume\\[" + id +"\\]", !option);
 }
 
-function require_room_dimensions(option) {
-  require_input_field("#floor_area", option);
-  require_input_field("#ceiling_height", option);
-  set_disabled_status("#floor_area", !option);
-  set_disabled_status("#ceiling_height", !option);
+function require_room_dimensions(option, id) {
+  require_input_field("#floor_area\\[" + id +"\\]", option);
+  require_input_field("#ceiling_height\\[" + id +"\\]", option);
+  set_disabled_status("#floor_area\\[" + id +"\\]", !option);
+  set_disabled_status("#ceiling_height\\[" + id +"\\]", !option);
 }
 
-function require_mechanical_ventilation(option) {
-  $("#mech_type_air_changes").prop('required', option);
-  $("#mech_type_air_supply").prop('required', option);
+function require_mechanical_ventilation(option, id) {
+  $("#mech_type_air_changes\\[" + id +"\\]").prop('required', option);
+  $("#mech_type_air_supply\\[" + id +"\\]").prop('required', option);
   if (!option) {
-    require_input_field("#air_changes", option);
-    require_input_field("#air_supply", option);
+    require_input_field("#air_changes\\[" + id +"\\]", option);
+    require_input_field("#air_supply\\[" + id +"\\]", option);
   }
 }
 
-function require_natural_ventilation(option) {
-  require_input_field("#windows_number", option);
-  require_input_field("#window_height", option);
-  require_input_field("#opening_distance", option);
-  $("#window_sliding").prop('required', option);
-  $("#window_hinged").prop('required', option);
-  $("#windows_open_permanently").prop('required', option);
-  $("#windows_open_periodically").prop('required', option);
+function require_natural_ventilation(option,id) {
+  require_input_field("#windows_number\\[" + id +"\\]", option);
+  require_input_field("#window_height\\[" + id +"\\]", option);
+  require_input_field("#opening_distance\\[" + id +"\\]", option);
+  $("#window_sliding\\[" + id +"\\]").prop('required', option);
+  $("#window_hinged\\[" + id +"\\]").prop('required', option);
+  $("#windows_open_permanently\\[" + id +"\\]").prop('required', option);
+  $("#windows_open_periodically\\[" + id +"\\]").prop('required', option);
   if (!option) {
-    require_input_field("#window_width", option);
-    require_input_field("#windows_duration", option);
-    require_input_field("#windows_frequency", option);
+    require_input_field("#window_width\\[" + id +"\\]", option);
+    require_input_field("#windows_duration\\[" + id +"\\]", option);
+    require_input_field("#windows_frequency\\[" + id +"\\]", option);
   }
 }
 
-function require_window_width(option) {
-  require_input_field("#window_width", option);
-  set_disabled_status("#window_width", !option);
+function require_window_width(option, id) {
+  require_input_field("#window_width\\[" + id +"\\]", option);
+  set_disabled_status("#window_width\\[" + id +"\\]", !option);
 }
 
-function require_air_changes(option) {
-  require_input_field("#air_changes", option);
-  set_disabled_status("#air_changes", !option);
+function require_air_changes(option, id) {
+  require_input_field("#air_changes\\[" + id +"\\]", option);
+  set_disabled_status("#air_changes\\[" + id +"\\]", !option);
 }
 
-function require_air_supply(option) {
-  require_input_field("#air_supply", option);
-  set_disabled_status("#air_supply", !option);
+function require_air_supply(option, id) {
+  require_input_field("#air_supply\\[" + id +"\\]", option);
+  set_disabled_status("#air_supply\\[" + id +"\\]", !option);
 }
 
-function require_venting(option) {
-  require_input_field("#windows_duration", option);
-  require_input_field("#windows_frequency", option);
-  set_disabled_status("#windows_duration", !option);
-  set_disabled_status("#windows_frequency", !option);
+function require_venting(option, id) {
+  require_input_field("#windows_duration\\[" + id +"\\]", option);
+  require_input_field("#windows_frequency\\[" + id +"\\]", option);
+  set_disabled_status("#windows_duration\\[" + id +"\\]", !option);
+  set_disabled_status("#windows_frequency\\[" + id +"\\]", !option);
 }
 
-function require_mask(option) {
-  $("#mask_type_1").prop('required', option);
-  $("#mask_type_ffp2").prop('required', option);
+function require_mask(option, id) {
+  $("#mask_type_1\\[" + id +"\\]").prop('required', option);
+  $("#mask_type_ffp2\\[" + id +"\\]").prop('required', option);
 }
 
-function require_biov(option) {
-  require_input_field("#biov_amount", option);
+function require_biov(option, id) {
+  require_input_field("#biov_amount\\[" + id +"\\]", option);
 }
 
 function require_input_field(id, option) {
@@ -762,3 +816,24 @@ function on_ventilation_type_change(i) {
     }
   });
 }
+
+function validateValue(obj) {
+  $(obj).removeClass("red_border");
+  removeErrorFor(obj);
+
+  if (!isLessThanZeroOrEmpty($(obj).val())) {
+    $(obj).addClass("red_border");
+    insertErrorFor(obj, "Value must be > 0");
+    return false;
+  }
+  return true;
+}
+
+function isLessThanZeroOrEmpty(value) {
+  if (value === "") return true;
+  if (value <= 0)
+    return false;
+  return true;
+}
+
+

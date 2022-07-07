@@ -129,11 +129,11 @@
     </div>
     <div class="split col-sm-10">
       <label for="humidity">{{_("Humidity:")}}</label>
-      <input type="number" step=0.1 id="humidity" class="form-control" name="humidity" min=0 max=1>
+      <input type="number" step=0.1 id="humidity" class="form-control" name="humidity" min="0" max="1" required>
       <label for="inside_temp">{{_("Temperature:")}}</label>
-      <input type="number" step="any" id="inside_temp" class="form-control" name="inside_temp" value={{default.inside_temp}}>
+      <input type="number" step="any" id="inside_temp" class="form-control" name="inside_temp" value={{default.inside_temp}} required>
     </div>
-    <div id="location_div">
+    <div id="location_div" class="location_div">
         <!--
         This block allows us to have hidden input values which are retained during forward/back navigation, as per
         https://stackoverflow.com/a/6384276/741316
@@ -187,7 +187,7 @@
       </div>
     </div>
 
-    <div id="DIVmechanical_ventilation" class="tabbed">
+    <div id="DIVmechanical_ventilation" class="tabbed DIVmechanical_ventilation">
         <div class="split">
           <div>
           <input type="radio"  id="mech_type_air_supply" name="mechanical_ventilation_type" value="mech_type_air_supply" class="center_radio mech_type_option" onclick="require_fields(this)" tabindex="-1">
@@ -208,7 +208,7 @@
         </div>
     </div>
 
-    <div id="DIVnatural_ventilation" class="tabbed">
+    <div id="DIVnatural_ventilation" class="tabbed DIVnatural_ventilation">
       <div class="split">
         <div><label class="col-form-label">{{_("Number of windows:")}} </label></div>
         <div><input type="number" id="windows_number" class="non_zero form-control" name="windows_number" placeholder="{{_(PLACEHOLDERS.number)}}" min="1" value = "{{default.windows_number}}"><br></div>
@@ -595,7 +595,7 @@
 
     </div><br>
     <div class="breakBoxExposed" id="DIVexposed_breaks">
-      <span id="exposed_break_title"><b>{{_("Exposed person(s) breaks:")}}</b></span>
+      <span id="exposed_break_title" class="exposed_break_title"><b>{{_("Exposed person(s) breaks:")}}</b></span>
       <div class="boxMargin">
        {{_("Lunch break:")}}
         <input class="ml-2 exposed_lunch_option" type="radio" id="exposed_lunch_option_no" data-lunch-select="exposed" name="exposed_lunch_option" value=0 onclick="require_fields(this)">
@@ -763,7 +763,7 @@
 
 <div class="center container--padding pr-3 pl-3">
 <button class="btn btn-primary bigButton ml-2">
-  <a id="userGuideBtn" href="{{ calculator_prefix }}/user-guide" class="{{ "nav-link active" if "user-guide" in active_page else "nav-link" }}">{{_("User guide")}} </a>
+  <a href="{{ calculator_prefix }}/user-guide" class="{{ "nav-link active" if "user-guide" in active_page else "nav-link" }} userGuideBtn">{{_("User guide")}} </a>
 </button>
 <button class="btn btn-primary bigButton  ml-2" type="button" data-toggle="collapse" data-target="#collapseDisclaimer" aria-expanded="false" aria-controls="collapseDisclaimer">
    {{_("Disclaimer")}}

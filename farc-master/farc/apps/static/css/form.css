@@ -130,14 +130,14 @@
   transform: translateX(-50%) scaleY(1);
 }
 
-#location_div,
-#DIVmechanical_ventilation,
-#DIVnatural_ventilation,
-#exposed_break_title {
+.location_div,
+.DIVmechanical_ventilation,
+.DIVnatural_ventilation,
+.exposed_break_title {
   display: none
 }
 
-#userGuideBtn {
+.userGuideBtn {
   color: white
 }
 

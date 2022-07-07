@@ -240,6 +240,9 @@ class AboutPage(BaseRequestHandler):
 
 class MultiRoomForm(BaseRequestHandler):
     def get(self):
+        with open('farc/apps/static/js/multi_room_form.js', 'r') as original: data = original.read().splitlines(True)
+        javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
+        with open('farc/apps/static/js/multi_room_form.js', 'w') as modified: modified.writelines([javascript_out + "\n"] + data[1:])
         template_environment = self.settings["template_environment"]
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template("multi_room_form.html.j2")
