@@ -261,6 +261,9 @@
               <input type="number" id="biov_amount" class="non_zero form-control" name="biov_amount" placeholder="{{_(PLACEHOLDERS.flow_rate)}}" min="0" value="{{default.biov_amount}}" step="100" >
               </div>
               </div>
+              <div class="m-2 d-flex justify-content-end">
+              <button type="button" id="delete_room" class="btn btn-danger">Delete</button>
+              </div>
               <hr width="80%">
 
 
@@ -275,7 +278,7 @@
 
               </div>
               </div>
-              <button type="button" class="btn btn-secondary" onclick="addRoom(); return false;">{{_("Add room")}}</button>
+              <button type="button" class="btn btn-secondary" onclick="addRoom()">{{_("Add room")}}</button>
               </div>
             </div>
           <div class="carousel-item">
@@ -300,7 +303,7 @@
 
                   
                   </div>
-                  <button type="button" class="btn btn-secondary" onclick="addPerson(); return false;">{{_("Add person")}}</button>
+                  <button type="button" class="btn btn-secondary" onclick="addPerson()">{{_("Add person")}}</button>
 
               </div>
               </div>

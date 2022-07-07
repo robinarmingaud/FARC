@@ -2,76 +2,81 @@ var RoomId = 0
 
 function addRoom() {
   /*Clone the hidden room form*/ 
-    const div = $("#Room_to_clone").get(0)
-    const clone = div.cloneNode(true);
+    const clone = $("#Room_to_clone").clone(true)
 
   /*Make the clone visible*/
-    clone.classList.remove("d-none")
+    clone.removeClass("d-none")
 
   /*Update ids and names*/
-    clone.id = "Room_" + RoomId
-    clone.querySelector("#room_id").insertAdjacentHTML('beforeend', '<b>' + '\xa0' +RoomId+'</b>');
-    clone.querySelector("#room_id").id = "room_id[" + RoomId + "]"
-    clone.querySelector("#room_volume").name = "room_volume[" + RoomId + "]"
-    clone.querySelector("#room_volume").id = "room_volume[" + RoomId + "]"
-    clone.querySelector("#heating_no").name = "heating_no[" + RoomId + "]"
-    clone.querySelector("#heating_no").id = "room_heating_option[" + RoomId + "]"
-    clone.querySelector("#heating_yes").name = "heating_yes[" + RoomId + "]"
-    clone.querySelector("#heating_yes").id = "room_heating_option[" + RoomId + "]"
-    clone.querySelector("#humidity").name = "humidity[" + RoomId + "]"
-    clone.querySelector("#humidity").id = "humidity[" + RoomId + "]"
-    clone.querySelector("#inside_temp").name = "inside_temp[" + RoomId + "]"
-    clone.querySelector("#inside_temp").id = "inside_temp[" + RoomId + "]"
-    clone.querySelector("#no_ventilation").name = "ventilation_type[" + RoomId + "]"
-    clone.querySelector("#no_ventilation").id = "no_ventilation[" + RoomId + "]"
-    clone.querySelector("#mechanical_ventilation").name = "ventilation_type[" + RoomId + "]"
-    clone.querySelector("#mechanical_ventilation").id = "mechanical_ventilation[" + RoomId + "]"
-    clone.querySelector("#natural_ventilation").name = "ventilation_type[" + RoomId + "]"
-    clone.querySelector("#natural_ventilation").id = "natural_ventilation[" + RoomId + "]"
-    clone.querySelector("#mech_type_air_supply").name = "mechanical_ventilation_type[" + RoomId + "]"
-    clone.querySelector("#mech_type_air_supply").id = "mech_type_air_supply[" + RoomId + "]"
-    clone.querySelector("#air_supply").name = "air_supply[" + RoomId + "]"
-    clone.querySelector("#air_supply").id = "air_supply[" + RoomId + "]"
-    clone.querySelector("#mech_type_air_changes").name = "mechanical_ventilation_type[" + RoomId + "]"
-    clone.querySelector("#mech_type_air_changes").id = "mech_type_air_changes[" + RoomId + "]"
-    clone.querySelector("#air_changes").name = "air_changes[" + RoomId + "]"
-    clone.querySelector("#air_changes").id = "air_changes[" + RoomId + "]"
-    clone.querySelector("#windows_number").name = "windows_number[" + RoomId + "]"
-    clone.querySelector("#windows_number").id = "windows_number[" + RoomId + "]"
-    clone.querySelector("#window_height").name = "window_height[" + RoomId + "]"
-    clone.querySelector("#window_height").id = "window_height[" + RoomId + "]"   
-    clone.querySelector("#window_sliding").name = "window_type[" + RoomId + "]"
-    clone.querySelector("#window_sliding").id = "window_sliding[" + RoomId + "]"
-    clone.querySelector("#window_hinged").name = "window_type[" + RoomId + "]"
-    clone.querySelector("#window_hinged").id = "window_hinged[" + RoomId + "]"
-    clone.querySelector("#window_width").name = "window_width[" + RoomId + "]"
-    clone.querySelector("#window_width").id = "window_width[" + RoomId + "]"   
-    clone.querySelector("#opening_distance").name = "opening_distance[" + RoomId + "]"
-    clone.querySelector("#opening_distance").id = "opening_distance[" + RoomId + "]"  
-    clone.querySelector("#windows_open_permanently").name = "window_opening_regime[" + RoomId + "]"  
-    clone.querySelector("#windows_open_permanently").id = "window_open_permanently[" + RoomId + "]"  
-    clone.querySelector("#windows_open_periodically").name = "window_opening_regime[" + RoomId + "]"  
-    clone.querySelector("#windows_open_periodically").id = "windows_open_periodically[" + RoomId + "]"  
-    clone.querySelector("#windows_duration").name = "window_duration[" + RoomId + "]"
-    clone.querySelector("#windows_duration").id = "window_duration[" + RoomId + "]"  
-    clone.querySelector("#windows_frequency").name = "window_frequency[" + RoomId + "]"
-    clone.querySelector("#windows_frequency").id = "window_frequency[" + RoomId + "]"
-    clone.querySelector("#biov_no").name = "biov_option[" + RoomId + "]"
-    clone.querySelector("#biov_no").id = "biov_no[" + RoomId + "]" 
-    clone.querySelector("#biov_yes").name = "biov_option[" + RoomId + "]"
-    clone.querySelector("#biov_yes").id = "biov_yes[" + RoomId + "]"
-    clone.querySelector("#biov_amount").name = "biov_amount[" + RoomId + "]"
-    clone.querySelector("#biov_amount").id = "biov_amount[" + RoomId + "]"
+    clone.attr("id", "Room_" + RoomId)
+    clone.find("#room_id").append('<b>' + '\xa0' +RoomId+'</b>');
+    clone.find("#room_id").attr("id", "room_id[" + RoomId + "]")
+    clone.find("#room_volume").attr("name","room_volume[" + RoomId + "]")
+    clone.find("#room_volume").attr("id", "room_volume[" + RoomId + "]")
+    clone.find("#heating_no").attr("name","heating_no[" + RoomId + "]")
+    clone.find("#heating_no").attr("id", "room_heating_option[" + RoomId + "]")
+    clone.find("#heating_yes").attr("name","heating_yes[" + RoomId + "]")
+    clone.find("#heating_yes").attr("id", "room_heating_option[" + RoomId + "]")
+    clone.find("#humidity").attr("name","humidity[" + RoomId + "]")
+    clone.find("#humidity").attr("id", "humidity[" + RoomId + "]")
+    clone.find("#inside_temp").attr("name","inside_temp[" + RoomId + "]")
+    clone.find("#inside_temp").attr("id", "inside_temp[" + RoomId + "]")
+    clone.find("#no_ventilation").attr("name","ventilation_type[" + RoomId + "]")
+    clone.find("#no_ventilation").attr("id", "no_ventilation[" + RoomId + "]")
+    clone.find("#mechanical_ventilation").attr("name","ventilation_type[" + RoomId + "]")
+    clone.find("#mechanical_ventilation").attr("id", "mechanical_ventilation[" + RoomId + "]")
+    clone.find("#natural_ventilation").attr("name","ventilation_type[" + RoomId + "]")
+    clone.find("#natural_ventilation").attr("id", "natural_ventilation[" + RoomId + "]")
+    clone.find("#mech_type_air_supply").attr("name","mechanical_ventilation_type[" + RoomId + "]")
+    clone.find("#mech_type_air_supply").attr("id", "mech_type_air_supply[" + RoomId + "]")
+    clone.find("#air_supply").attr("name","air_supply[" + RoomId + "]")
+    clone.find("#air_supply").attr("id", "air_supply[" + RoomId + "]")
+    clone.find("#mech_type_air_changes").attr("name","mechanical_ventilation_type[" + RoomId + "]")
+    clone.find("#mech_type_air_changes").attr("id", "mech_type_air_changes[" + RoomId + "]")
+    clone.find("#air_changes").attr("name","air_changes[" + RoomId + "]")
+    clone.find("#air_changes").attr("id", "air_changes[" + RoomId + "]")
+    clone.find("#windows_number").attr("name","windows_number[" + RoomId + "]")
+    clone.find("#windows_number").attr("id", "windows_number[" + RoomId + "]")
+    clone.find("#window_height").attr("name","window_height[" + RoomId + "]")
+    clone.find("#window_height").attr("id", "window_height[" + RoomId + "]")
+    clone.find("#window_sliding").attr("name","window_type[" + RoomId + "]")
+    clone.find("#window_sliding").attr("id", "window_sliding[" + RoomId + "]")
+    clone.find("#window_hinged").attr("name","window_type[" + RoomId + "]")
+    clone.find("#window_hinged").attr("id", "window_hinged[" + RoomId + "]")
+    clone.find("#window_width").attr("name","window_width[" + RoomId + "]")
+    clone.find("#window_width").attr("id", "window_width[" + RoomId + "]")
+    clone.find("#opening_distance").attr("name","opening_distance[" + RoomId + "]")
+    clone.find("#opening_distance").attr("id", "opening_distance[" + RoomId + "]")  
+    clone.find("#windows_open_permanently").attr("name","window_opening_regime[" + RoomId + "]")  
+    clone.find("#windows_open_permanently").attr("id", "window_open_permanently[" + RoomId + "]")
+    clone.find("#windows_open_periodically").attr("name","window_opening_regime[" + RoomId + "]")  
+    clone.find("#windows_open_periodically").attr("id", "windows_open_periodically[" + RoomId + "]")  
+    clone.find("#windows_duration").attr("name","window_duration[" + RoomId + "]")
+    clone.find("#windows_duration").attr("id", "window_duration[" + RoomId + "]")  
+    clone.find("#windows_frequency").attr("name","window_frequency[" + RoomId + "]")
+    clone.find("#windows_frequency").attr("id", "window_frequency[" + RoomId + "]")
+    clone.find("#biov_no").attr("name","biov_option[" + RoomId + "]")
+    clone.find("#biov_no").attr("id", "biov_no[" + RoomId + "]") 
+    clone.find("#biov_yes").attr("name","biov_option[" + RoomId + "]")
+    clone.find("#biov_yes").attr("id", "biov_yes[" + RoomId + "]")
+    clone.find("#biov_amount").attr("name","biov_amount[" + RoomId + "]")
+    clone.find("#biov_amount").attr("id", "biov_amount[" + RoomId + "]")
+    clone.find("#delete_room").attr("id", "delete_room" + RoomId)
 
     $("#Room_list").append(clone)
 
+    const i = RoomId
+
+    $("#delete_room"+ i).click(function(){deleteRoom(i)})
     
 
+    
     RoomId = RoomId+1
     }
-    
+  
 function deleteRoom(i) {
-    document.getElementById("Room_" + i).remove()
+  console.log(i)
+  $("#Room_"+i).remove()
 }
 
 var EventId = 0
@@ -99,7 +104,7 @@ function addPerson() {
     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"></path>
   </svg>
     </button>
-    <button type="button" id="deleteRoom[` + PersonId + `]" class="btn btn-secondary" onclick=deletePerson(` + PersonId + `)>
+    <button type="button" id="deletePerson[` + PersonId + `]" class="btn btn-secondary" onclick=deletePerson(` + PersonId + `)>
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
