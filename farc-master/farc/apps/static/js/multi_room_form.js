@@ -4,78 +4,42 @@ function addRoom() {
   /*Clone the hidden room form*/ 
     const clone = $("#Room_to_clone").clone(true)
 
-  /*Make the clone visible*/
+  /*Make the clone visible and change its id and inner html*/
     clone.removeClass("d-none")
 
-  /*Update ids and names*/
     clone.attr("id", "Room_" + RoomId)
+
     clone.find("#room_id").append('<b>' + '\xa0' +RoomId+'</b>');
-    clone.find("#room_id").attr("id", "room_id[" + RoomId + "]")
-    clone.find("#room_volume").attr("name","room_volume[" + RoomId + "]")
-    clone.find("#room_volume").attr("id", "room_volume[" + RoomId + "]")
-    clone.find("#heating_no").attr("name","heating_no[" + RoomId + "]")
-    clone.find("#heating_no").attr("id", "room_heating_option[" + RoomId + "]")
-    clone.find("#heating_yes").attr("name","heating_yes[" + RoomId + "]")
-    clone.find("#heating_yes").attr("id", "room_heating_option[" + RoomId + "]")
-    clone.find("#humidity").attr("name","humidity[" + RoomId + "]")
-    clone.find("#humidity").attr("id", "humidity[" + RoomId + "]")
-    clone.find("#inside_temp").attr("name","inside_temp[" + RoomId + "]")
-    clone.find("#inside_temp").attr("id", "inside_temp[" + RoomId + "]")
-    clone.find("#no_ventilation").attr("name","ventilation_type[" + RoomId + "]")
-    clone.find("#no_ventilation").attr("id", "no_ventilation[" + RoomId + "]")
-    clone.find("#mechanical_ventilation").attr("name","ventilation_type[" + RoomId + "]")
-    clone.find("#mechanical_ventilation").attr("id", "mechanical_ventilation[" + RoomId + "]")
-    clone.find("#natural_ventilation").attr("name","ventilation_type[" + RoomId + "]")
-    clone.find("#natural_ventilation").attr("id", "natural_ventilation[" + RoomId + "]")
-    clone.find("#mech_type_air_supply").attr("name","mechanical_ventilation_type[" + RoomId + "]")
-    clone.find("#mech_type_air_supply").attr("id", "mech_type_air_supply[" + RoomId + "]")
-    clone.find("#air_supply").attr("name","air_supply[" + RoomId + "]")
-    clone.find("#air_supply").attr("id", "air_supply[" + RoomId + "]")
-    clone.find("#mech_type_air_changes").attr("name","mechanical_ventilation_type[" + RoomId + "]")
-    clone.find("#mech_type_air_changes").attr("id", "mech_type_air_changes[" + RoomId + "]")
-    clone.find("#air_changes").attr("name","air_changes[" + RoomId + "]")
-    clone.find("#air_changes").attr("id", "air_changes[" + RoomId + "]")
-    clone.find("#windows_number").attr("name","windows_number[" + RoomId + "]")
-    clone.find("#windows_number").attr("id", "windows_number[" + RoomId + "]")
-    clone.find("#window_height").attr("name","window_height[" + RoomId + "]")
-    clone.find("#window_height").attr("id", "window_height[" + RoomId + "]")
-    clone.find("#window_sliding").attr("name","window_type[" + RoomId + "]")
-    clone.find("#window_sliding").attr("id", "window_sliding[" + RoomId + "]")
-    clone.find("#window_hinged").attr("name","window_type[" + RoomId + "]")
-    clone.find("#window_hinged").attr("id", "window_hinged[" + RoomId + "]")
-    clone.find("#window_width").attr("name","window_width[" + RoomId + "]")
-    clone.find("#window_width").attr("id", "window_width[" + RoomId + "]")
-    clone.find("#opening_distance").attr("name","opening_distance[" + RoomId + "]")
-    clone.find("#opening_distance").attr("id", "opening_distance[" + RoomId + "]")  
-    clone.find("#windows_open_permanently").attr("name","window_opening_regime[" + RoomId + "]")  
-    clone.find("#windows_open_permanently").attr("id", "window_open_permanently[" + RoomId + "]")
-    clone.find("#windows_open_periodically").attr("name","window_opening_regime[" + RoomId + "]")  
-    clone.find("#windows_open_periodically").attr("id", "windows_open_periodically[" + RoomId + "]")  
-    clone.find("#windows_duration").attr("name","window_duration[" + RoomId + "]")
-    clone.find("#windows_duration").attr("id", "window_duration[" + RoomId + "]")  
-    clone.find("#windows_frequency").attr("name","window_frequency[" + RoomId + "]")
-    clone.find("#windows_frequency").attr("id", "window_frequency[" + RoomId + "]")
-    clone.find("#biov_no").attr("name","biov_option[" + RoomId + "]")
-    clone.find("#biov_no").attr("id", "biov_no[" + RoomId + "]") 
-    clone.find("#biov_yes").attr("name","biov_option[" + RoomId + "]")
-    clone.find("#biov_yes").attr("id", "biov_yes[" + RoomId + "]")
-    clone.find("#biov_amount").attr("name","biov_amount[" + RoomId + "]")
-    clone.find("#biov_amount").attr("id", "biov_amount[" + RoomId + "]")
-    clone.find("#delete_room").attr("id", "delete_room" + RoomId)
+
+  /*Update ids and names*/
+    clone.find('*').each(function(){
+        if (this.id){
+          $(this).attr("id", $(this).attr("id") + "[" + RoomId + "]" )
+        }
+        if (this.name){
+          $(this).attr("name", $(this).attr("name") + "[" + RoomId + "]" )
+        }
+        if ($(this).attr("for")){
+          $(this).attr("for", $(this).attr("for") + "[" + RoomId + "]" )
+        }
+        if ($(this).attr("data-enables")){
+          $(this).attr("data-enables", $(this).attr("data-enables") + "\\[" + RoomId + "\\]" )
+        }
+      })
 
     $("#Room_list").append(clone)
 
     const i = RoomId
 
-    $("#delete_room"+ i).click(function(){deleteRoom(i)})
-    
-
+    /* Add event listeners */
+    $("#delete_room\\["+i+"\\]").click(function(){deleteRoom(i)})
+    $("input[type=radio][name=ventilation_type\\["+i+"\\]]").change(function(){on_ventilation_type_change(i)});
+    on_ventilation_type_change(i);
     
     RoomId = RoomId+1
     }
   
 function deleteRoom(i) {
-  console.log(i)
   $("#Room_"+i).remove()
 }
 
@@ -453,6 +417,36 @@ function deleteEvent(e){
 /* -------On Load------- */
 $(document).ready(function () {
 
+    // When the document is ready, deal with the fact that we may be here
+  // as a result of a forward/back browser action. If that is the case, update
+  // the visibility of some of our inputs.
+
+  //Check all radio buttons previously selected
+  $("input[type=radio]:checked").each(function() {require_fields(this)});
+
+  //Validate all non zero values
+  $("input[required].non_zero").each(function() {validateValue(this)});
+  $(".non_zero").change(function() {validateValue(this)});
+
+  //Validate all finish times
+  $("input[required].finish_time").each(function() {validateFinishTime(this)});
+  $(".finish_time").change(function() {validateFinishTime(this)});
+  $(".start_time").change(function() {validateFinishTime(this)});
+
+  //Validate expiration
+  $("#exposed_activity_breathing").change(function(){validateExpiration("exposed")});
+  $("#exposed_activity_speaking").change(function(){validateExpiration("exposed")});
+  $("#exposed_activity_shouting").change(function(){validateExpiration("exposed")});
+  $("#infected_activity_breathing").change(function(){validateExpiration("infected")});
+  $("#infected_activity_speaking").change(function(){validateExpiration("infected")});
+  $("#infected_activity_shouting").change(function(){validateExpiration("infected")});
+
+  //Validate lunch times
+  $(".start_time[data-lunch-for]").each(function() {validateLunchBreak($(this).data('time-group'))});
+  $("[data-lunch-for]").change(function() {validateLunchBreak($(this).data('time-group'))});
+  $("[data-lunch-break]").change(function() {validateLunchBreak($(this).data('lunch-break'))});
+
+
 
 
   var url = new URL(decodeURIComponent(window.location.href));
@@ -577,5 +571,194 @@ $(document).ready(function () {
 
 
 
+/* -------HTML structure------- */
+function getChildElement(elem) {
+  // Get the element named in the given element's data-enables attribute.
+  return $(elem.data("enables"));
+}
 
+function insertErrorFor(referenceNode, text) {
+  var element = document.createElement("span");
+  element.setAttribute("class", "error_text");
+  element.classList.add("red_text");
+  element.innerHTML = "&nbsp;&nbsp;" + text;
+  referenceNode.parentNode.insertBefore(element, referenceNode.nextSibling);
+}
 
+function removeErrorFor(referenceNode) {
+  $(referenceNode).next('span.error_text').remove();
+}
+
+/* -------Required fields------- */
+function require_fields(obj) {
+  switch ($(obj).attr('id').split("[")[0]) {
+    case "room_data_volume":
+      require_room_volume(true);
+      require_room_dimensions(false);
+      break;
+    case "room_data_dimensions":
+      require_room_volume(false);
+      require_room_dimensions(true);
+      break;
+    case "mechanical_ventilation":
+      require_mechanical_ventilation(true);
+      require_natural_ventilation(false);
+      break;
+    case "natural_ventilation":
+      require_mechanical_ventilation(false);
+      require_natural_ventilation(true);
+      break;
+    case "window_sliding":
+      require_window_width(false);
+      break;
+    case "window_hinged":
+      require_window_width(true);
+      break;
+    case "mech_type_air_changes":
+      require_air_changes(true);
+      require_air_supply(false);
+      break;
+    case "mech_type_air_supply":
+      require_air_changes(false);
+      require_air_supply(true);
+      break;
+    case "windows_open_periodically":
+      require_venting(true);
+      break;
+    case "windows_open_permanently":
+      require_venting(false);
+      break;
+    case "biov_yes":
+      require_biov(true);
+      break;
+    case "biov_no":
+      require_biov(false);
+      break;
+    case "mask_on":
+      require_mask(true);
+      break;
+    case "mask_off":
+      require_mask(false);
+      break;
+    default:
+      break;
+  }
+}
+
+function unrequire_fields(obj) {
+  switch ($(obj).attr('id').split("[")[0]) {
+    case "mechanical_ventilation":
+      require_mechanical_ventilation(false);
+      break;
+    case "natural_ventilation":
+      require_natural_ventilation(false);
+      break;
+    default:
+      break;
+  }
+}
+
+function require_room_volume(option) {
+  require_input_field("#room_volume", option);
+  set_disabled_status("#room_volume", !option);
+}
+
+function require_room_dimensions(option) {
+  require_input_field("#floor_area", option);
+  require_input_field("#ceiling_height", option);
+  set_disabled_status("#floor_area", !option);
+  set_disabled_status("#ceiling_height", !option);
+}
+
+function require_mechanical_ventilation(option) {
+  $("#mech_type_air_changes").prop('required', option);
+  $("#mech_type_air_supply").prop('required', option);
+  if (!option) {
+    require_input_field("#air_changes", option);
+    require_input_field("#air_supply", option);
+  }
+}
+
+function require_natural_ventilation(option) {
+  require_input_field("#windows_number", option);
+  require_input_field("#window_height", option);
+  require_input_field("#opening_distance", option);
+  $("#window_sliding").prop('required', option);
+  $("#window_hinged").prop('required', option);
+  $("#windows_open_permanently").prop('required', option);
+  $("#windows_open_periodically").prop('required', option);
+  if (!option) {
+    require_input_field("#window_width", option);
+    require_input_field("#windows_duration", option);
+    require_input_field("#windows_frequency", option);
+  }
+}
+
+function require_window_width(option) {
+  require_input_field("#window_width", option);
+  set_disabled_status("#window_width", !option);
+}
+
+function require_air_changes(option) {
+  require_input_field("#air_changes", option);
+  set_disabled_status("#air_changes", !option);
+}
+
+function require_air_supply(option) {
+  require_input_field("#air_supply", option);
+  set_disabled_status("#air_supply", !option);
+}
+
+function require_venting(option) {
+  require_input_field("#windows_duration", option);
+  require_input_field("#windows_frequency", option);
+  set_disabled_status("#windows_duration", !option);
+  set_disabled_status("#windows_frequency", !option);
+}
+
+function require_mask(option) {
+  $("#mask_type_1").prop('required', option);
+  $("#mask_type_ffp2").prop('required', option);
+}
+
+function require_biov(option) {
+  require_input_field("#biov_amount", option);
+}
+
+function require_input_field(id, option) {
+  $(id).prop('required', option);
+  if (!option) {
+    removeInvalid(id);
+  }
+}
+
+function set_disabled_status(id, option) {
+  if (option)
+    $(id).addClass("disabled");
+  else
+    $(id).removeClass("disabled");
+}
+
+function removeInvalid(id) {
+  if ($(id).hasClass("red_border")) {
+    $(id).val("");
+    $(id).removeClass("red_border");
+    removeErrorFor(id);
+  }
+}
+
+function on_ventilation_type_change(i) {
+  ventilation_types = $('input[type=radio][name=ventilation_type\\['+i+'\\]]');
+  ventilation_types.each(function (index) {
+    if (this.checked) {
+      getChildElement($(this)).show();
+      require_fields(this);
+    } else {
+      getChildElement($(this)).hide();
+      unrequire_fields(this);
+
+      //Clear invalid inputs for this newly hidden child element
+      removeInvalid("#"+getChildElement($(this)).find('input').not('input[type=radio]').attr('id'));
+    }
+  });
+}
