@@ -52,6 +52,6 @@
   width : 100% !important;
 }
 
-#covid_calculator{
+#covid_calculator, #carousel{
   min-height: 80vh;
 }

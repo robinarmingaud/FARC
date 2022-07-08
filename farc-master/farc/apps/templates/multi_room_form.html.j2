@@ -484,8 +484,8 @@
                 <div class='sub_title'>
                   {{ _("Bioventilation:")}}
                 </div>
-                <div class="split">
-                  <div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
                     <input type="radio"
                            class="biov_option"
                            id="biov_no"
@@ -503,7 +503,7 @@
                       {{ _("Yes")}}
                     </label>
                   </div>
-                  <div>
+                  <div class="col-sm-6">
                     <input type="number"
                            id="biov_amount"
                            class="non_zero form-control"
@@ -515,14 +515,14 @@
                   </div>
                 </div>
                 <div class="m-2 d-flex justify-content-end">
-                  <button type="button" id="delete_room" class="btn btn-danger">
+                  <button type="button" id="delete_room" class="btn btn-danger room_btn_class">
                     Delete
                   </button>
                 </div>
                 <hr width="80%">
               </div>
             </div>
-            <button type="button" class="btn btn-secondary" onclick="addRoom()">
+            <button type="button" class="btn btn-secondary room_btn_class" onclick="addRoom()">
               {{ _("Add room")}}
             </button>
           </div>
@@ -535,9 +535,9 @@
               </h1>
               <br>
               <div id ="PeopleList">
-                <div id="Person_to_clone">
-                  <div class="form-group row">
-                    <b>{{ _("Person data 1 :")}}</b>
+                <div id="Person_to_clone" class="d-none">
+                  <div class="form-group row" id="person_id">
+                    <b>{{ _("Person data")}}</b>
                   </div>
                   <br>
                   <div class="form-group row">
@@ -606,7 +606,7 @@
                                     </label>
                                   </div>
                                   <div class="col-sm-7">
-                                  <select id="event_location" name="event_location" class="form-control">
+                                  <select id="event_location" name="event_location" class="form-control event_location">
                                   </select>
                                   </div>
                                 </div>
@@ -638,16 +638,6 @@
                                         </optgroup>
                                       {% endfor %}
                                     </select>
-                                  </div>
-                                </div>
-                                <div class="form-group row">
-                                  <div class="col-sm-5">
-                                    <label class="col-form-label">
-                                      {{ _("Mask wear ratio:")}}
-                                    </label>
-                                  </div>
-                                  <div class="col-sm-7 align-self-center">
-                                    <input type="number" id="event_mask_wear_ratio" class="form-control" name="event_mask_wear_ratio" min=0.0 max=1.0 value="{{ default.exposed_mask_wear_ratio }}" step=0.1 required>
                                   </div>
                                 </div>
                                 <div class="d-flex">
@@ -754,6 +744,51 @@
                                     <input type="time" id="event_finish" class="finish_time" name="event_finish" value="{{ default.exposed_finish }}" required>
                                   </div>
                                 </div>
+                                    <b>{{_("Face masks:")}} </b>
+
+
+                                  <div data-tooltip="{{_(TOOLTIPS.face_mask)}}">
+                                      <span class="tooltip_text">?</span>
+                                  </div>
+                                  
+                                  <br>
+                                  
+                                  <div class='sub_title'>{{_("Are masks worn when occupants ?")}} </div>
+                                  <input type="radio" class ="mask_wearing_option" id="mask_on" name="mask_wearing_option" value="mask_on" onclick="enableMaskSelection()">
+                                    <label for="mask_on">{{_("Yes")}} </label>
+                                  <input class="ml-2 mask_wearing_option" type="radio" id="mask_off"  name="mask_wearing_option" value="mask_off" onclick="enableMaskSelection()">
+                                    <label for="mask_off">{{_("No")}} </label><br>
+
+                                <div class="form-group row">
+                                  <div class="col-sm-5">
+                                    <label class="col-form-label">
+                                      {{ _("Mask wear ratio:")}}
+                                    </label>
+                                  </div>
+                                  <div class="col-sm-7 align-self-center">
+                                    <input type="number" id="event_mask_wear_ratio" class="form-control" name="event_mask_wear_ratio" min=0.0 max=1.0 value="{{ default.exposed_mask_wear_ratio }}" step=0.1 required>
+                                  </div>
+                                </div>
+                                    
+                                  <div id="DIVmasks_used">
+                                    <div class='sub_title'>{{_("Type of masks used (requested for alternative scenarios):")}} </div>
+                                    <div class='split'>
+                                      <div>
+                                        <input type="radio" class="mask_type_option" id="mask_type_1" name="mask_type" value="Type_I" onclick="require_fields(this)">
+                                          <label for="mask_type_1">
+                                          {{_("Surgical/Type I")}}
+                                            <img class="mask_icons" src="/static/images/masks/t1.png">
+                                          </label>
+                                      </div>
+                                      <div>
+                                        <input type="radio" class="mask_type_option"  id="mask_type_ffp2"  name="mask_type" value="FFP2" onclick="require_fields(this)">
+                                          <label for="mask_type_ffp2">
+                                          {{_("Respirator/FFP2")}}
+                                            <img class="mask_icons" src="/static/images/masks/ffp2.png">
+                                          </label>
+                                      </div>
+                                    </div>
+                                  </div>
                               </div>
                             </div>
                             </div>
@@ -763,7 +798,6 @@
                               </button>
                               <button type="submit"
                                       id="saveEvent"
-                                      onclick="saveEvent(PersonId)"
                                       class="btn btn-primary"
                                       data-dismiss="modal">
                                 {{_('Save changes')}}
@@ -776,7 +810,7 @@
                     </div>
                     </div>
                     </div>
-                    <button type="button" class="btn btn-secondary" onclick="addPerson()">
+                    <button type="button" class="btn btn-secondary mb-2" onclick="addPerson()">
                       {{ _("Add person")}}
                     </button>
                   
