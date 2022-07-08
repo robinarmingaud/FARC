@@ -399,19 +399,19 @@
         </div>
         <div class="split">
           <div class="form-group row" >
-            <label class="tabbed mb-0"> {{_("Breathing")}} : </label>
+            <div class="tabbed mb-0 col-form-label"> {{_("Breathing")}} : </div>
             {% if 'Breathing' in default_exposed_activity.Expiration %}
               <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_breathing" class="form-control" name="exposed_breathing" value={{default_exposed_activity.Expiration['Breathing']}} min=0.0 step=0.1 required></div>
             {% else %}
               <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_breathing" class="form-control" name="exposed_breathing" value=0 min=0.0 step=0.1 required></div>
             {% endif %}
-            <label class="tabbed mb-0"> {{_("Speaking")}} : </label>
+            <div class="tabbed mb-0 col-form-label"> {{_("Speaking")}} : </div>
             {% if 'Speaking' in default_exposed_activity.Expiration %}
               <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_speaking" class="form-control" name="exposed_speaking" value={{default_exposed_activity.Expiration['Speaking']}} min=0.0 step=0.1 required></div>
             {% else %}
               <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_speaking" class="form-control" name="exposed_speaking" value=0 min=0.0 step=0.1 required></div>
             {% endif %}
-            <label class="tabbed mb-0"> {{_("Shouting")}} : </label>
+            <div class="tabbed mb-0 col-form-label"> {{_("Shouting")}} : </div>
             {% if 'Shouting' in default_exposed_activity.Expiration %}
               <div class="col-sm-2 align-self-center"><input type="number" id="exposed_activity_shouting" class="form-control" name="exposed_shouting" value={{default_exposed_activity.Expiration['Shouting']}} min=0.0 step=0.1 required></div>
             {% else %}
@@ -514,19 +514,19 @@
         </div>
         <div class="split">
           <div class="form-group row" >
-            <label class="tabbed mb-0"> {{_("Breathing")}} : </label>
+            <div class="tabbed mb-0 col-form-label"> {{_("Breathing")}} : </div>
             {% if 'Breathing' in default_infected_activity.Expiration %}
               <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_breathing" class="form-control" name="infected_breathing" value={{default_infected_activity.Expiration['Breathing']}} min=0.0 step=0.1 required></div>
             {% else %}
               <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_breathing" class="form-control" name="infected_breathing" value=0 min=0.0 step=0.1 required></div>
             {% endif %}
-            <label class="tabbed mb-0"> {{_("Speaking")}} : </label>
+            <div class="tabbed mb-0 col-form-label"> {{_("Speaking")}} : </div>
             {% if 'Speaking' in default_infected_activity.Expiration %}
               <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_speaking" class="form-control" name="infected_speaking" value={{default_infected_activity.Expiration['Speaking']}} min=0.0 step=0.1 required></div>
             {% else %}
               <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_speaking" class="form-control" name="infected_speaking" value=0 min=0.0 step=0.1 required></div>
             {% endif %}
-            <label class="tabbed mb-0"> {{_("Shouting")}} : </label>
+            <div class="tabbed mb-0 col-form-label"> {{_("Shouting")}} : </div>
             {% if 'Shouting' in default_infected_activity.Expiration %}
               <div class="col-sm-2 align-self-center"><input type="number" id="infected_activity_shouting" class="form-control" name="infected_shouting" value={{default_infected_activity.Expiration['Shouting']}} min=0.0 step=0.1 required></div>
             {% else %}

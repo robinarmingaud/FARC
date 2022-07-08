@@ -465,6 +465,8 @@ function deleteEvent(e){
 /* -------On Load------- */
 $(document).ready(function () {
 
+  //Add first room
+  addRoom()
   //Hide carousel prev/next arrow on first/last page
   $('.carousel-control-prev').hide();
   $('#carousel').on('slide.bs.carousel', function(event) {

@@ -36,6 +36,10 @@
 
 }
 
+.carousel-control-prev, .carousel-control-next{
+  width: 5%;
+}
+
 .container {
   margin-inline: auto;
   width: min(90%, 90rem);
@@ -46,4 +50,8 @@
 
 .select2-container{
   width : 100% !important;
+}
+
+#covid_calculator{
+  min-height: 80vh;
 }
