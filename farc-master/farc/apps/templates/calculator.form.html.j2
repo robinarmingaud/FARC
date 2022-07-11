@@ -486,24 +486,6 @@
             <div class="col-sm-4"><label class="col-form-label">{{_("Mask wear ratio:")}} </label></div>
             <div class="col-sm-6 align-self-center"><input type="number" id="infected_mask_wear_ratio" class="form-control" name="infected_mask_wear_ratio" min=0.0 max=1.0 value={{default.infected_mask_wear_ratio}} step=0.1 required></div>
         </div>
-        <script type="application/javascript" defer>
-          var expiration_dict = {};
-            {% for activity in ACTIVITY_TYPES %}
-              {% if 'Breathing' in activity.Expiration %}
-                expiration_dict["{{activity.Id + '_breathing'}}"] = {{activity.Expiration['Breathing']}};
-              {% endif %}
-              {% if 'Shouting' in activity.Expiration %}
-                expiration_dict["{{activity.Id + '_shouting'}}"] = {{activity.Expiration['Shouting']}};
-              {% endif %}
-              {% if 'Speaking' in activity.Expiration %} 
-                expiration_dict["{{activity.Id + '_speaking'}}"]= {{activity.Expiration['Speaking']}};
-              {% endif %}
-              expiration_dict["{{activity.Id + '_activity_level'}}"] = "{{activity.Activity}}"
-            {% endfor%}
-          updateExpiration(expiration_dict);
-        </script>
-
-
 
 
         <div class="d-flex">

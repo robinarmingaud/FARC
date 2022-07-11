@@ -1,5 +1,5 @@
 var js_default = JSON.parse('{"exposed_activity_type": "Office_worker", "exposed_activity_level": "Seated", "exposed_breathing": 8, "exposed_speaking": 2, "exposed_shouting": 0, "exposed_mask_wear_ratio": 0.7, "infected_activity_type": "Office_worker", "infected_activity_level": "Seated", "infected_breathing": 8, "infected_speaking": 2, "infected_shouting": 0, "infected_mask_wear_ratio": 0.7, "air_changes": 1.0, "air_supply": 100, "calculator_version": "1.0.3", "ceiling_height": 2.5, "humidity": "", "inside_temp": 20, "exposed_coffee_break_option": "coffee_break_0", "exposed_coffee_duration": 5, "exposed_finish": "17:30", "exposed_lunch_finish": "13:30", "exposed_lunch_option": 1, "exposed_lunch_start": "12:30", "exposed_start": "08:30", "event_month": "January", "floor_area": 40, "biov_amount": 1000, "biov_option": 0, "infected_coffee_break_option": "coffee_break_0", "infected_coffee_duration": 5, "infected_dont_have_breaks_with_exposed": 0, "infected_finish": "17:30", "infected_lunch_finish": "13:30", "infected_lunch_option": 1, "infected_lunch_start": "12:30", "infected_people": 1, "infected_start": "08:30", "location_latitude": 47.21725, "location_longitude": -1.55336, "location_name": "Nantes, Loire-Atlantique, Pays de la Loire, FRA", "mask_type": "Type_I", "mask_wearing_option": "mask_off", "mechanical_ventilation_type": "mech_type_air_supply", "opening_distance": 0.5, "room_heating_option": 1, "room_number": "1", "room_volume": 100, "simulation_name": "My simulation", "total_people": 10, "ventilation_type": "mechanical_ventilation", "virus_type": "SARS_CoV_2_OMICRON", "viruses": {"SARS_CoV_2": "SARS-CoV-2 (nominal strain)", "SARS_CoV_2_ALPHA": "SARS-CoV-2 (Alpha VOC)", "SARS_CoV_2_BETA": "SARS-CoV-2 (Beta VOC)", "SARS_CoV_2_GAMMA": "SARS-CoV-2 (Gamma VOC)", "SARS_CoV_2_DELTA": "SARS-CoV-2 (Delta VOC)", "SARS_CoV_2_OMICRON": "SARS-CoV-2 (Omicron VOC)"}, "volume_type": "room_volume_explicit", "window_type": "window_sliding", "window_height": 1.0, "window_width": 1.0, "windows_duration": 15, "windows_frequency": 60, "windows_number": 1, "window_opening_regime": "windows_open_permanently"}');
-
+var js_expiration = JSON.parse('{"Office_worker_breathing": 8, "Office_worker_speaking": 2, "Office_worker_activity_level": "Seated", "Workshop_worker_breathing": 1.5, "Workshop_worker_shouting": 1.5, "Workshop_worker_speaking": 7, "Workshop_worker_activity_level": "Moderate activity", "Meeting_participant_breathing": 8, "Meeting_participant_shouting": 0.5, "Meeting_participant_speaking": 1.5, "Meeting_participant_activity_level": "Seated", "Meeting_leader_breathing": 6, "Meeting_leader_shouting": 1, "Meeting_leader_speaking": 3, "Meeting_leader_activity_level": "Standing", "Hospital_patient_breathing": 9.5, "Hospital_patient_speaking": 0.5, "Hospital_patient_activity_level": "Seated", "Nurse_working_breathing": 8, "Nurse_working_speaking": 2, "Nurse_working_activity_level": "Light activity", "Physician_working_breathing": 5, "Physician_working_speaking": 5, "Physician_working_activity_level": "Standing", "Student_sitting_breathing": 9.5, "Student_sitting_speaking": 0.5, "Student_sitting_activity_level": "Seated", "Professor_teaching_breathing": 2, "Professor_teaching_shouting": 2, "Professor_teaching_speaking": 6, "Professor_teaching_activity_level": "Standing", "Professor_conferencing_breathing": 2, "Professor_conferencing_shouting": 6, "Professor_conferencing_speaking": 2, "Professor_conferencing_activity_level": "Light activity", "Concert_musician_soft_music_breathing": 9.5, "Concert_musician_soft_music_speaking": 0.5, "Concert_musician_soft_music_activity_level": "Standing", "Concert_musician_rock_breathing": 8, "Concert_musician_rock_shouting": 1, "Concert_musician_rock_speaking": 1, "Concert_musician_rock_activity_level": "Moderate activity", "Concert_singer_rock_breathing": 2, "Concert_singer_rock_shouting": 7, "Concert_singer_rock_speaking": 1, "Concert_singer_rock_activity_level": "Moderate activity", "Concert_spectator_standing_breathing": 8, "Concert_spectator_standing_shouting": 1, "Concert_spectator_standing_speaking": 1, "Concert_spectator_standing_activity_level": "Light activity", "Concert_spectator_sitting_breathing": 9, "Concert_spectator_sitting_shouting": 0.5, "Concert_spectator_sitting_speaking": 0.5, "Concert_spectator_sitting_activity_level": "Seated", "Museum_visitor_breathing": 9, "Museum_visitor_speaking": 1, "Museum_visitor_activity_level": "Standing", "Theater_spectator_breathing": 9, "Theater_spectator_shouting": 0.5, "Theater_spectator_speaking": 0.5, "Theater_spectator_activity_level": "Seated", "Theater_actor_breathing": 7, "Theater_actor_shouting": 3, "Theater_actor_activity_level": "Moderate activity", "Conferencer_breathing": 2, "Conferencer_shouting": 6, "Conferencer_speaking": 2, "Conferencer_activity_level": "Light activity", "Conference_attendee_breathing": 9.5, "Conference_attendee_speaking": 0.5, "Conference_attendee_activity_level": "Seated", "Guest_standing_breathing": 6, "Guest_standing_shouting": 2, "Guest_standing_speaking": 2, "Guest_standing_activity_level": "Standing", "Guest_sitting_breathing": 6, "Guest_sitting_speaking": 4, "Guest_sitting_activity_level": "Seated", "Server_breathing": 8, "Server_speaking": 2, "Server_activity_level": "Light activity", "Barrista_breathing": 6, "Barrista_shouting": 2, "Barrista_speaking": 2, "Barrista_activity_level": "Standing", "Nightclub_dancing_breathing": 9, "Nightclub_dancing_shouting": 1, "Nightclub_dancing_activity_level": "Moderate activity", "Nightclub_sitting_breathing": 8, "Nightclub_sitting_shouting": 2, "Nightclub_sitting_activity_level": "Seated", "Customer_standing_breathing": 9, "Customer_standing_speaking": 1, "Customer_standing_activity_level": "Standing", "Cashier_sitting_breathing": 5, "Cashier_sitting_speaking": 5, "Cashier_sitting_activity_level": "Seated", "Vendor_standing_breathing": 5, "Vendor_standing_speaking": 5, "Vendor_standing_activity_level": "Standing", "Musculation_breathing": 9, "Musculation_speaking": 1, "Musculation_activity_level": "Heavy exercise", "Floor_gymnastics_breathing": 8, "Floor_gymnastics_shouting": 1, "Floor_gymnastics_speaking": 1, "Floor_gymnastics_activity_level": "Moderate activity", "Team_competition_breathing": 8, "Team_competition_shouting": 1.5, "Team_competition_speaking": 0.5, "Team_competition_activity_level": "Heavy exercise", "Trip_in_elevator_breathing": 9, "Trip_in_elevator_speaking": 1, "Trip_in_elevator_activity_level": "Standing", "Watch_seated_breathing": 60, "Watch_seated_shouting": 10, "Watch_seated_speaking": 30, "Watch_seated_activity_level": "Seated", "Watch_standing_breathing": 50, "Watch_standing_shouting": 20, "Watch_standing_speaking": 30, "Watch_standing_activity_level": "Light activity"}');
 var RoomId = 0
 
 function addRoom() {
@@ -129,10 +129,23 @@ function addPerson() {
 
       const i = PersonId
 
-
+              // Update expiration on change
+      $("#event_activity_type\\["+ i +"\\]").change(function() {
+        $("#event_activity_breathing\\["+ i +"\\]").val(js_expiration[this.value+"_breathing"] || 0)
+      })
+      $("#event_activity_type\\["+ i +"\\]").change(function() {
+        $("#event_activity_speaking\\["+ i +"\\]").val(js_expiration[this.value+"_speaking"] || 0)
+      })
+      $("#event_activity_type\\["+ i +"\\]").change(function() {
+        $("#event_activity_shouting\\["+ i +"\\]").val(js_expiration[this.value+"_shouting"] || 0)
+      })
+      $("#event_activity_type\\["+ i +"\\]").change(function() {
+        $("#event_activity_level\\["+ i +"\\]").val(js_expiration[this.value+"_activity_level"] || 0)
+      })
       $("#saveEvent\\["+i+"\\]").click(function(){saveEvent(i)})
+      $("#delete_person\\["+i+"\\]").click(function(){deletePerson(i)})
       
-      var calendarEl = $('#calendar\\['+ PersonId +'\\]').get(0);
+      var calendarEl = $('#calendar\\['+ i +'\\]').get(0);
         
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridDay',
@@ -144,12 +157,13 @@ function addPerson() {
         aspectRatio: 2,
         allDaySlot: false,
         eventDidMount: function(arg) { 
-          arg.el.querySelector('.fc-event-title').innerHTML = `<button type="button" id="deleteEvent[` + EventId + `]" class="btn btn-secondary" onclick=deleteEvent(` + EventId + `)>
+          arg.el.querySelector('.fc-event-title').innerHTML = `<button type="button" id="deleteEvent[` + EventId + `]" class="btn btn-danger float-right mr-2" onclick=deleteEvent(` + EventId + `)>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
           <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
           </svg>
-          </button>`},
+          </button>
+          <div>Room `+ $('#event_location\\[' + i + '\\] option:selected').val() +`</div>`},
       });
 
       Calendars[PersonId] = calendar
@@ -184,7 +198,7 @@ function saveEvent(i){
         }
     }
     Calendars[i].addEvent({id: ""+EventId,
-    title: document.getElementById('event_activity_type['+i+']').options[document.getElementById('event_activity_type['+i+']').selectedIndex].text,
+    title: $('#event_activity_type\\[' + i + '\\] option:selected').text(),
     start : start,
     end : end,
     allDay: false,
@@ -192,13 +206,13 @@ function saveEvent(i){
     description: "Test"}
     );
     $('#peopleFormContainer\\[' + i + '\\]').append(`
-    <input type="hidden" name="event_start[`+EventId+`]" value="`+document.getElementById('event_start['+i+']').value+`">
+    <input type="hidden" name="event_start[`+EventId+`]" value="`+$('#event_start['+i+']').val()+`">
     <input type="hidden" name="event_person[`+EventId+`]" value="`+i+`">
-    <input type="hidden" name="event_finish[`+EventId+`]" value="`+document.getElementById('event_finish['+i+']').value+`">
-    <input type="hidden" name="event_location[`+EventId+`]" value="`+document.getElementById('event_location['+i+']').value+`">
-    <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+document.getElementById('event_mask_ratio['+i+']').value+`">
-    <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+document.querySelector('input[name="mask_type['+i+']"]:checked').value+`">
-    <input type="hidden" name="event_activity[`+EventId+`]" value="`+document.getElementById('event_activity_type['+i+']').value+`">`)
+    <input type="hidden" name="event_finish[`+EventId+`]" value="`+$('#event_finish['+i+']').val()+`">
+    <input type="hidden" name="event_location[`+EventId+`]" value="`+$('#event_location['+i+']').val()+`">
+    <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+$('#event_mask_wear_ratio['+i+']').val()+`">
+    <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+$('input[name="mask_type['+i+']"]:checked').val()+`">
+    <input type="hidden" name="event_activity[`+EventId+`]" value="`+$('#event_activity_type['+i+']').val()+`">`)
 
     
     EventId = EventId + 1;
@@ -207,7 +221,7 @@ function saveEvent(i){
 
 function deletePerson(i) {
     try {
-        document.getElementById("peopleFormContainer[" + i + "]").remove()
+        document.getElementById("Person_"+i).remove()
     }
     catch(error){}
     
@@ -228,13 +242,21 @@ $(document).ready(function () {
 
   //Add first room
   addRoom()
-  //Hide carousel prev/next arrow on first/last page
+  //Add first person
+  addPerson()
+  //Hide carousel prev/next arrow on first/last page and render hidden calendars
   $('.carousel-control-prev').hide();
-  $('#carousel').on('slide.bs.carousel', function(event) {
-    if(event.from == 1 && event.to == 0) {
+  $('#carousel').on('slid.bs.carousel', function(event) {
+    if(event.to == 0) {
+      $('.carousel-control-next').show();
       $('.carousel-control-prev').hide();
-    } else if(event.from == 2 && event.to == 3) {
+    } else if(event.to == 3) {
+      $('.carousel-control-prev').show();
       $('.carousel-control-next').hide();
+      for(let i = 0; i<Calendars.length; i++){
+        Calendars[i].render()
+      }
+
     } else {
       $('.carousel-control-prev').show();
       $('.carousel-control-next').show();
@@ -259,6 +281,36 @@ $(document).ready(function () {
   $("#infected_activity_breathing").change(function(){validateExpiration("infected")});
   $("#infected_activity_speaking").change(function(){validateExpiration("infected")});
   $("#infected_activity_shouting").change(function(){validateExpiration("infected")});
+
+  // Check default values
+    var volume_type = js_default["volume_type"]
+    $('.room_volume[value='+volume_type+']').attr('checked', 'checked');
+    var heating_system = js_default['room_heating_option']
+    $('.heating_option[value='+heating_system+']').attr('checked', 'checked');
+    var ventilation_type = js_default['ventilation_type']
+    $('.ventilation_option[value='+ventilation_type+']').attr('checked', 'checked');
+    var mechanical_ventilation_type = js_default['mechanical_ventilation_type']
+    $('.mech_type_option[value='+mechanical_ventilation_type+']').attr('checked', 'checked');
+    var window_type = js_default['window_type']
+    $('.window_type_option[value='+window_type+']').attr('checked', 'checked');
+    var window_opening_regime = js_default['window_opening_regime']
+    $('.window_open_option[value='+window_opening_regime+']').attr('checked', 'checked');
+    var biov_option = js_default['biov_option']
+    $('.biov_option[value='+biov_option+']').attr('checked', 'checked');
+    var mask_wearing_option = js_default['mask_wearing_option']
+    $('.mask_wearing_option[value='+mask_wearing_option+']').attr('checked', 'checked');
+    var mask_type = js_default['mask_type']
+    $('.mask_type_option[value='+mask_type+']').attr('checked', 'checked');
+    var infected_dont_have_breaks_with_exposed = js_default['infected_dont_have_breaks_with_exposed']
+    $('.infected_dont_have_breaks_with_exposed_option[value='+infected_dont_have_breaks_with_exposed+']').attr('checked', 'checked');
+    var exposed_coffee_break_option = js_default['exposed_coffee_break_option']
+    $('.exposed_coffee_break_option[value='+exposed_coffee_break_option+']').attr('checked', 'checked');
+    var exposed_lunch_option = js_default['exposed_lunch_option']
+    $('.exposed_lunch_option[value='+exposed_lunch_option+']').attr('checked', 'checked');
+    var infected_lunch_option = js_default['infected_lunch_option']
+    $('.infected_lunch_option[value='+infected_lunch_option+']').attr('checked', 'checked');
+    var infected_coffee_break_option = js_default['infected_coffee_break_option']
+    $('.infected_coffee_break_option[value='+infected_coffee_break_option+']').attr('checked', 'checked');
 
 
   var url = new URL(decodeURIComponent(window.location.href));

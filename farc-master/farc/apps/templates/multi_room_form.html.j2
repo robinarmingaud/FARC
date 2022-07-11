@@ -516,7 +516,7 @@
                 </div>
                 <div class="m-2 d-flex justify-content-end">
                   <button type="button" id="delete_room" class="btn btn-danger room_btn_class">
-                    Delete
+                    {{_("Delete")}}
                   </button>
                 </div>
                 <hr width="80%">
@@ -531,7 +531,7 @@
           <div class="container container--padding">
             <div id="rooms_data_form">
               <h1>
-                People
+                {{_("People")}}
               </h1>
               <br>
               <div id ="PeopleList">
@@ -549,6 +549,7 @@
                              step="0.1"
                              id="name"
                              class="form-control col-sm-7"
+                             value="{{ default.infected_activity_type }}"
                              name="name">
                       <label for="number">
                         {{ _("Number:")}}

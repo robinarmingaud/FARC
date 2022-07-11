@@ -26,7 +26,7 @@ from . import markdown_tools
 from . import model_generator
 from .report_generator import ReportGenerator
 from .user import AuthenticatedUser, AnonymousUser
-from .DEFAULT_DATA import TOOLTIPS, __version__, _DEFAULTS as d
+from .DEFAULT_DATA import ACTIVITY_TYPES, TOOLTIPS, __version__, _DEFAULTS as d
 import tornado
 from . import multi_room_generator
 from . import multi_room_model
@@ -240,9 +240,23 @@ class AboutPage(BaseRequestHandler):
 
 class MultiRoomForm(BaseRequestHandler):
     def get(self):
+        expiration_dict = {}
+        for activity in ACTIVITY_TYPES:
+            if 'Breathing' in activity["Expiration"]:
+                expiration_dict[activity['Id'] + '_breathing'] = activity["Expiration"]['Breathing']
+
+            if 'Shouting' in activity["Expiration"]:
+                expiration_dict[activity["Id"] + '_shouting'] = activity["Expiration"]['Shouting']
+
+            if 'Speaking' in activity["Expiration"]:
+                expiration_dict[activity["Id"] + '_speaking']= activity["Expiration"]['Speaking']
+
+            expiration_dict[activity["Id"] + '_activity_level'] = activity["Activity"]
+
         with open('farc/apps/static/js/multi_room_form.js', 'r') as original: data = original.read().splitlines(True)
         javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
-        with open('farc/apps/static/js/multi_room_form.js', 'w') as modified: modified.writelines([javascript_out + "\n"] + data[1:])
+        js_expiration = "var js_expiration = JSON.parse('{}');".format(json.dumps(expiration_dict))
+        with open('farc/apps/static/js/multi_room_form.js', 'w') as modified: modified.writelines([javascript_out + "\n" + js_expiration +"\n"] + data[2:])
         template_environment = self.settings["template_environment"]
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         template = template_environment.get_template("multi_room_form.html.j2")
@@ -321,9 +335,23 @@ class MultiReport(BaseRequestHandler):
 
 class CalculatorForm(BaseRequestHandler):
     def get(self):
+        expiration_dict = {}
+        for activity in ACTIVITY_TYPES:
+            if 'Breathing' in activity["Expiration"]:
+                expiration_dict[activity['Id'] + '_breathing'] = activity["Expiration"]['Breathing']
+
+            if 'Shouting' in activity["Expiration"]:
+                expiration_dict[activity["Id"] + '_shouting'] = activity["Expiration"]['Shouting']
+
+            if 'Speaking' in activity["Expiration"]:
+                expiration_dict[activity["Id"] + '_speaking']= activity["Expiration"]['Speaking']
+
+            expiration_dict[activity["Id"] + '_activity_level'] = activity["Activity"]
+
         with open('farc/apps/static/js/form.js', 'r') as original: data = original.read().splitlines(True)
         javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
-        with open('farc/apps/static/js/form.js', 'w') as modified: modified.writelines([javascript_out + "\n"] + data[1:])
+        js_expiration = "var js_expiration = JSON.parse('{}');".format(json.dumps(expiration_dict))
+        with open('farc/apps/static/js/form.js', 'w') as modified: modified.writelines([javascript_out + "\n" + js_expiration +"\n"] + data[2:])
         language = self.get_cookie('language') or 'null'
         if language == "null" : 
             template_environment = self.settings["template_environment"]

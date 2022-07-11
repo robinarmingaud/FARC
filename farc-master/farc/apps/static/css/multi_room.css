@@ -11,8 +11,6 @@
 .schedule {
     max-width: 100%;
     margin: 40px auto;
-    justify-content: space-between;
-    align-content: space-between;
 }
 
 .carousel-indicators,
