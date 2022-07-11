@@ -1,8 +1,8 @@
 pipeline {  
+  agent any
   environment {
     registry = "dockerhub.flow-r.fr"
   }  
-  agent any
   stages {
     stage('Checkout') {
       steps{
@@ -31,7 +31,8 @@ pipeline {
           }
         }
       }
-    }
+  }
+
     post {
     always {
       sh"docker system prune -f" 

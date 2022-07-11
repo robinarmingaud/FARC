@@ -16,7 +16,7 @@ import traceback
 import typing
 import uuid
 import zlib
-
+import mysql.connector as database
 import jinja2
 import loky
 from tornado.web import Application, RequestHandler, StaticFileHandler
@@ -31,11 +31,19 @@ import tornado
 from . import multi_room_generator
 from . import multi_room_model
 tornado.locale.set_default_locale("en")
-
+#Need to set environment variables in docker container 
+username = os.environ.get("db_username")
+password = os.environ.get("db_psswd")
 
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
+        connection = database.connect(
+        user=username,
+        password=password,
+        host="fl-ubu-212.flow-r.fr",
+        database="flow_r")
+        cursor = connection.cursor()
         template_environment = self.settings["template_environment"]
         template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
         _ = tornado.locale.get(self.locale.code).translate
@@ -43,16 +51,26 @@ class BaseRequestHandler(RequestHandler):
     
         # Read the secure cookie which exists if we are in an authenticated
         # context (though not if the farc webservice is running standalone).
-        session = json.loads(self.get_secure_cookie('session') or 'null')
+        token_browser = self.get_cookie('USER_TOKEN') or 'null'
 
-        if session:
-            self.current_user = AuthenticatedUser(
-                username=session['username'],
-                email=session['email'],
-                fullname=session['fullname'],
-            )
-        else:
+        try : 
+            cursor.execute("SELECT prenom, email, nom  FROM utilisateurs WHERE token='"+token_browser+"' LIMIT 1")
+            current_user = cursor.fetchone()
+            if current_user :
+                    print('connect to'+current_user[0]+' '+current_user[2])
+                    self.current_user = AuthenticatedUser(
+                    username=current_user[0],
+                    email=current_user[1],
+                    fullname=current_user[2],
+                    )
+            else :
+                self.current_user = AnonymousUser()
+            
+        except database.Error as e:
+            print(f"Error retrieving entry from database: {e}")
             self.current_user = AnonymousUser()
+
+        connection.close()
 
         language = self.get_cookie('language') or 'null'
         if language == "null" : 
@@ -65,68 +83,64 @@ class BaseRequestHandler(RequestHandler):
             _ = tornado.locale.get(language ).translate
 
     def write_error(self, status_code: int, **kwargs) -> None:
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-            _ = tornado.locale.get(self.locale.code).translate
-        else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-            _ = tornado.locale.get(language ).translate
-        template = self.settings["template_environment"].get_template(
-            "error_page.html.j2")
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                _ = tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+                _ = tornado.locale.get(language ).translate
+            template = self.settings["template_environment"].get_template(
+                "error_page.html.j2")
 
-        error_id = uuid.uuid4()
-        contents = (
-            _('Unfortunately an error occurred when processing your request. Please let us know about this issue with as much detail as possible at') + ' ' + '<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a>, ' + _('reporting status code') + ' ' + f'{status_code}' +  ', ' + _('the error id of :') + ' ' + f'{error_id}' +  ' ' + _('and the time of the request')+ ' ' + f'{datetime.datetime.utcnow()}' +'.<br><br><br><br>')
-        # Print the error to the log (and not to the browser!)
-        if "exc_info" in kwargs:
-            print(f"ERROR UUID {error_id}")
-            print(traceback.format_exc())
-        self.finish(template.render(
-            user=self.current_user,
-            calculator_prefix=self.settings["calculator_prefix"],
-            active_page='Error',
-            contents=contents,
-            default = DEFAULT_DATA._DEFAULTS
-        ))
+            error_id = uuid.uuid4()
+            contents = (
+                _('Unfortunately an error occurred when processing your request. Please let us know about this issue with as much detail as possible at') + ' ' + '<a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a>, ' + _('reporting status code') + ' ' + f'{status_code}' +  ', ' + _('the error id of :') + ' ' + f'{error_id}' +  ' ' + _('and the time of the request')+ ' ' + f'{datetime.datetime.utcnow()}' +'.<br><br><br><br>')
+            # Print the error to the log (and not to the browser!)
+            if "exc_info" in kwargs:
+                print(f"ERROR UUID {error_id}")
+                print(traceback.format_exc())
+            self.finish(template.render(
+                user=self.current_user,
+                calculator_prefix=self.settings["calculator_prefix"],
+                active_page='Error',
+                contents=contents,
+                default = DEFAULT_DATA._DEFAULTS
+            ))
 
 
 class Missing404Handler(BaseRequestHandler):
     async def prepare(self):
-        template_environment = self.settings["template_environment"]
-        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-        _ = tornado.locale.get(self.locale.code).translate
-        await super().prepare()
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
             template_environment = self.settings["template_environment"]
             template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
             _ = tornado.locale.get(self.locale.code).translate
-        else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-            _ = tornado.locale.get(language ).translate       
-        self.set_status(404)
-        template = self.settings["template_environment"].get_template(
-            "error_page.html.j2")
-        self.finish(template.render(
-            user=self.current_user,
-            calculator_prefix=self.settings["calculator_prefix"],
-            active_page='Error',
-            contents=_('Unfortunately the page you were looking for does not exist.')+'<br><br><br><br>'
-        ))
+            await super().prepare()
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                _ = tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+                _ = tornado.locale.get(language ).translate       
+            self.set_status(404)
+            template = self.settings["template_environment"].get_template(
+                "error_page.html.j2")
+            self.finish(template.render(
+                user=self.current_user,
+                calculator_prefix=self.settings["calculator_prefix"],
+                active_page='Error',
+                contents=_('Unfortunately the page you were looking for does not exist.')+'<br><br><br><br>'
+            ))
 
 
 class ConcentrationModel(BaseRequestHandler):
     async def post(self):
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-            _ = tornado.locale.get(self.locale.code).translate
-            locale_code = tornado.locale.get(language )
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
         else :
             template_environment = self.settings["template_environment"]
             template_environment.globals['_']=tornado.locale.get(language ).translate
@@ -142,99 +156,130 @@ class ConcentrationModel(BaseRequestHandler):
         try:
             form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
         except Exception as err:
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                _ = tornado.locale.get(self.locale.code).translate
+                locale_code = tornado.locale.get(language )
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+                _ = tornado.locale.get(language ).translate    
+                locale_code = tornado.locale.get(language )    
+            requested_model_config = {
+                name: self.get_argument(name) for name in self.request.arguments
+            }
             if self.settings.get("debug", False):
-                import traceback
-                print(traceback.format_exc())
-            response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
-            self.set_status(400)
-            self.finish(json.dumps(response_json))
-            return
+                from pprint import pprint
+                pprint(requested_model_config)
+                start = datetime.datetime.now()
 
-        base_url = self.request.protocol + "://" + self.request.host
-        report_generator: ReportGenerator = self.settings['report_generator']
-        report_generator.set_locale(locale_code)
-        executor = loky.get_reusable_executor(
-            max_workers=self.settings['handler_worker_pool_size'],
-            timeout=300,
-        )
-        report_task = executor.submit(
-            report_generator.build_report, base_url, form,
-            executor_factory=functools.partial(
-                concurrent.futures.ThreadPoolExecutor,
-                self.settings['report_generation_parallelism'],
-            ),
-        )
-        report: str = await asyncio.wrap_future(report_task)
-        self.finish(report)
+            try:
+                form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
+            except Exception as err:
+                if self.settings.get("debug", False):
+                    import traceback
+                    print(traceback.format_exc())
+                response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
+                self.set_status(400)
+                self.finish(json.dumps(response_json))
+                return
+
+            base_url = self.request.protocol + "://" + self.request.host
+            report_generator: ReportGenerator = self.settings['report_generator']
+            report_generator.set_locale(locale_code)
+            executor = loky.get_reusable_executor(
+                max_workers=self.settings['handler_worker_pool_size'],
+                timeout=300,
+            )
+            report_task = executor.submit(
+                report_generator.build_report, base_url, form,
+                executor_factory=functools.partial(
+                    concurrent.futures.ThreadPoolExecutor,
+                    self.settings['report_generation_parallelism'],
+                ),
+            )
+            report: str = await asyncio.wrap_future(report_task)
+            self.finish(report)
 
 
 class StaticModel(BaseRequestHandler):
     async def get(self):
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-            _ = tornado.locale.get(self.locale.code).translate
-            locale_code = tornado.locale.get(language )
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
         else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language).translate
-            _ = tornado.locale.get(language ).translate    
-            locale_code = tornado.locale.get(language ) 
-        form = model_generator.FormData.from_dict(model_generator.baseline_raw_form_data())
-        base_url = self.request.protocol + "://" + self.request.host
-        report_generator: ReportGenerator = self.settings['report_generator']
-        report_generator.set_locale(locale_code)
-        executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
-        report_task = executor.submit(
-            report_generator.build_report, base_url, form,
-            executor_factory=functools.partial(
-                concurrent.futures.ThreadPoolExecutor,
-                self.settings['report_generation_parallelism'],
-            ),
-        )
-        report: str = await asyncio.wrap_future(report_task)
-        self.finish(report)
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                _ = tornado.locale.get(self.locale.code).translate
+                locale_code = tornado.locale.get(language )
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language).translate
+                _ = tornado.locale.get(language ).translate    
+                locale_code = tornado.locale.get(language ) 
+            form = model_generator.FormData.from_dict(model_generator.baseline_raw_form_data())
+            base_url = self.request.protocol + "://" + self.request.host
+            report_generator: ReportGenerator = self.settings['report_generator']
+            report_generator.set_locale(locale_code)
+            executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
+            report_task = executor.submit(
+                report_generator.build_report, base_url, form,
+                executor_factory=functools.partial(
+                    concurrent.futures.ThreadPoolExecutor,
+                    self.settings['report_generation_parallelism'],
+                ),
+            )
+            report: str = await asyncio.wrap_future(report_task)
+            self.finish(report)
 
 
 class LandingPage(BaseRequestHandler):
     def get(self):
-        template_environment = self.settings["template_environment"]
-        template = self.settings["template_environment"].get_template(
-            "index.html.j2")
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
         else :
             template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-        report = template.render(
-            user=self.current_user,
-            calculator_prefix=self.settings["calculator_prefix"],
-            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
-        )
-        self.finish(report)
+            template = self.settings["template_environment"].get_template(
+                "index.html.j2")
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+            report = template.render(
+                user=self.current_user,
+                calculator_prefix=self.settings["calculator_prefix"],
+                text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
+            )
+            self.finish(report)
 
 
 class AboutPage(BaseRequestHandler):
     def get(self):
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
         else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
 
-        template = template_environment.get_template("about.html.j2")
-        report = template.render(
-            user=self.current_user,
-            calculator_prefix=self.settings["calculator_prefix"],
-            active_page="about",
-            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
-        )
-        self.finish(report)
+            template = template_environment.get_template("about.html.j2")
+            report = template.render(
+                user=self.current_user,
+                calculator_prefix=self.settings["calculator_prefix"],
+                active_page="about",
+                text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2'))
+            )
+            self.finish(report)
 
 
 
@@ -356,65 +401,81 @@ class CalculatorForm(BaseRequestHandler):
         if language == "null" : 
             template_environment = self.settings["template_environment"]
             template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
         else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-        template = template_environment.get_template(
-            "calculator.form.html.j2")
-        report = template.render(
-            user=self.current_user,
-            xsrf_form_html=self.xsrf_form_html(),
-            calculator_prefix=self.settings["calculator_prefix"],
-            calculator_version=__version__,
-            default = DEFAULT_DATA._DEFAULTS,
-            ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES,
-            PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
-            TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
-            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-            MONTH_NAMES = DEFAULT_DATA.MONTH_NAMES
-        )
-        self.finish(report)
+            with open('farc/apps/static/js/form.js', 'r') as original: data = original.read().splitlines(True)
+            javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
+            with open('farc/apps/static/js/form.js', 'w') as modified: modified.writelines([javascript_out + "\n"] + data[1:])
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+            template = template_environment.get_template(
+                "calculator.form.html.j2")
+            report = template.render(
+                user=self.current_user,
+                xsrf_form_html=self.xsrf_form_html(),
+                calculator_prefix=self.settings["calculator_prefix"],
+                calculator_version=__version__,
+                default = DEFAULT_DATA._DEFAULTS,
+                ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES,
+                PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
+                TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
+                text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
+                MONTH_NAMES = DEFAULT_DATA.MONTH_NAMES
+            )
+            self.finish(report)
 
 
 class CompressedCalculatorFormInputs(BaseRequestHandler):
     def get(self, compressed_args: str):
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-            _ = tornado.locale.get(self.locale.code).translate
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
         else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-            _ = tornado.locale.get(self.locale.code).translate
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                _ = tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+                _ = tornado.locale.get(self.locale.code).translate
 
-        # Convert a base64 zlib encoded shortened URL into a non compressed
-        # URL, and redirect.
-        try:
-            args = zlib.decompress(base64.b64decode(compressed_args)).decode()
-        except Exception as err:  # noqa
-            self.set_status(400)
-            return self.finish(_("Invalid calculator data: it seems incomplete. Was there an error copying & pasting the URL?"))
-        self.redirect(f'{self.settings["calculator_prefix"]}?{args}')
+            # Convert a base64 zlib encoded shortened URL into a non compressed
+            # URL, and redirect.
+            try:
+                args = zlib.decompress(base64.b64decode(compressed_args)).decode()
+            except Exception as err:  # noqa
+                self.set_status(400)
+                return self.finish(_("Invalid calculator data: it seems incomplete. Was there an error copying & pasting the URL?"))
+            self.redirect(f'{self.settings["calculator_prefix"]}?{args}')
 
 
 class ReadmeHandler(BaseRequestHandler):
     def get(self):
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
         else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-        template = template_environment.get_template("userguide.html.j2")
-        readme = template.render(
-            active_page="calculator/user-guide",
-            user=self.current_user,
-            calculator_prefix=self.settings["calculator_prefix"],
-            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-        )
-        self.finish(readme)
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+            template = template_environment.get_template("userguide.html.j2")
+            readme = template.render(
+                active_page="calculator/user-guide",
+                user=self.current_user,
+                calculator_prefix=self.settings["calculator_prefix"],
+                text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
+            )
+            self.finish(readme)
 
 
 
