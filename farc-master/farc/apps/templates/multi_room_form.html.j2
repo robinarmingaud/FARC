@@ -607,7 +607,7 @@
                                     </label>
                                   </div>
                                   <div class="col-sm-7">
-                                  <select id="event_location" name="event_location" class="form-control event_location">
+                                  <select id="event_location" class="form-control event_location">
                                   </select>
                                   </div>
                                 </div>
@@ -619,7 +619,6 @@
                                   </div>
                                   <div class="col-sm-7">
                                     <select id="event_activity_type"
-                                            name="event_activity_type"
                                             class="form-control">
                                       {% set default_event_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', default.exposed_activity_type) | first %}
                                       <optgroup label="---- {{ _(PLACEHOLDERS.default)}} ----">
@@ -654,14 +653,13 @@
                                     <div class="tabbed mb-0 col-form-label col-sm-2"> {{_("Breathing")}} : </div>
                                     {% if 'Breathing' in default_event_activity.Expiration %}
                                       <div class="col-sm-2 align-self-center">
-                                        <input type="number" id="event_activity_breathing" class="form-control" name="event_breathing" value="{{ default_event_activity.Expiration['Breathing'] }}" min=0.0 step=0.1 required>
+                                        <input type="number" id="event_activity_breathing" class="form-control" value="{{ default_event_activity.Expiration['Breathing'] }}" min=0.0 step=0.1 required>
                                       </div>
                                     {% else %}
                                       <div class="col-sm-2 align-self-center">
                                         <input type="number"
                                                id="event_activity_breathing"
                                                class="form-control"
-                                               name="event_breathing"
                                                value="0"
                                                min="0.0"
                                                step="0.1"
@@ -671,14 +669,13 @@
                                     <div class="tabbed mb-0 col-form-label col-sm-2"> {{_("Speaking")}} : </div>
                                     {% if 'Speaking' in default_event_activity.Expiration %}
                                       <div class="col-sm-2 align-self-center">
-                                        <input type="number" id="event_activity_speaking" class="form-control" name="event_speaking" value={{ default_event_activity.Expiration['Speaking'] }} min=0.0 step=0.1 required>
+                                        <input type="number" id="event_activity_speaking" class="form-control" value={{ default_event_activity.Expiration['Speaking'] }} min=0.0 step=0.1 required>
                                       </div>
                                     {% else %}
                                       <div class="col-sm-2 align-self-center">
                                         <input type="number"
                                                id="event_activity_speaking"
                                                class="form-control"
-                                               name="event_speaking"
                                                value="0"
                                                min="0.0"
                                                step="0.1"
@@ -688,14 +685,13 @@
                                     <div class="tabbed mb-0 col-form-label col-sm-2"> {{_("Shouting")}} : </div>
                                     {% if 'Shouting' in default_event_activity.Expiration %}
                                       <div class="col-sm-2 align-self-center">
-                                        <input type="number" id="event_activity_shouting" class="form-control" name="event_shouting" value={{ default_exposed_activity.Expiration['Shouting'] }} min=0.0 step=0.1 required>
+                                        <input type="number" id="event_activity_shouting" class="form-control" value={{ default_exposed_activity.Expiration['Shouting'] }} min=0.0 step=0.1 required>
                                       </div>
                                     {% else %}
                                       <div class="col-sm-2 align-self-center">
                                         <input type="number"
                                                id="event_activity_shouting"
                                                class="form-control"
-                                               name="event_shouting"
                                                value="0"
                                                min="0.0"
                                                step="0.1"
@@ -710,7 +706,6 @@
                                 </div>
                                 <div class="col-sm-7">
                                   <select id="event_activity_level"
-                                          name="event_activity_level"
                                           class="form-control"
                                           required>
                                     <option value = "Seated">
@@ -736,13 +731,13 @@
                                     <label>
                                       {{ _("Start:")}}
                                     </label>
-                                    <input type="time" id="event_start" class="start_time" name="event_start" value="{{ default.exposed_start }}" required>
+                                    <input type="time" id="event_start" class="start_time" value="{{ default.exposed_start }}" required>
                                   </div>
                                   <div>
                                     <label>
                                       {{ _("Finish:")}}
                                     </label>
-                                    <input type="time" id="event_finish" class="finish_time" name="event_finish" value="{{ default.exposed_finish }}" required>
+                                    <input type="time" id="event_finish" class="finish_time" value="{{ default.exposed_finish }}" required>
                                   </div>
                                 </div>
                                     <b>{{_("Face masks:")}} </b>
@@ -755,9 +750,9 @@
                                   <br>
                                   
                                   <div class='sub_title'>{{_("Are masks worn when occupants ?")}} </div>
-                                  <input type="radio" class ="mask_wearing_option" id="mask_on" name="mask_wearing_option" value="mask_on" onclick="enableMaskSelection()">
+                                  <input type="radio" class ="mask_wearing_option" id="mask_on" value="mask_on" onclick="enableMaskSelection()">
                                     <label for="mask_on">{{_("Yes")}} </label>
-                                  <input class="ml-2 mask_wearing_option" type="radio" id="mask_off"  name="mask_wearing_option" value="mask_off" onclick="enableMaskSelection()">
+                                  <input class="ml-2 mask_wearing_option" type="radio" id="mask_off" value="mask_off" onclick="enableMaskSelection()">
                                     <label for="mask_off">{{_("No")}} </label><br>
 
                                 <div class="form-group row">
@@ -767,7 +762,7 @@
                                     </label>
                                   </div>
                                   <div class="col-sm-7 align-self-center">
-                                    <input type="number" id="event_mask_wear_ratio" class="form-control" name="event_mask_wear_ratio" min=0.0 max=1.0 value="{{ default.exposed_mask_wear_ratio }}" step=0.1 required>
+                                    <input type="number" id="event_mask_wear_ratio" class="form-control" min=0.0 max=1.0 value="{{ default.exposed_mask_wear_ratio }}" step=0.1 required>
                                   </div>
                                 </div>
                                     
@@ -775,14 +770,14 @@
                                     <div class='sub_title'>{{_("Type of masks used (requested for alternative scenarios):")}} </div>
                                     <div class='split'>
                                       <div>
-                                        <input type="radio" class="mask_type_option" id="mask_type_1" name="mask_type" value="Type_I" onclick="require_fields(this)">
+                                        <input type="radio" class="mask_type_option" id="mask_type_1" value="Type_I" onclick="require_fields(this)">
                                           <label for="mask_type_1">
                                           {{_("Surgical/Type I")}}
                                             <img class="mask_icons" src="/static/images/masks/t1.png">
                                           </label>
                                       </div>
                                       <div>
-                                        <input type="radio" class="mask_type_option"  id="mask_type_ffp2"  name="mask_type" value="FFP2" onclick="require_fields(this)">
+                                        <input type="radio" class="mask_type_option"  id="mask_type_ffp2" value="FFP2" onclick="require_fields(this)">
                                           <label for="mask_type_ffp2">
                                           {{_("Respirator/FFP2")}}
                                             <img class="mask_icons" src="/static/images/masks/ffp2.png">

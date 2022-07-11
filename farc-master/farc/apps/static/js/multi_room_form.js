@@ -91,6 +91,12 @@ function addRoom() {
   
 function deleteRoom(i) {
   $("#Room_"+i).remove()
+  for(let j = 0;j<=EventId; j++){
+    console.log($("input[name=event_location\\["+j+"\\]]").val())
+    if ($("input[name=event_location\\["+j+"\\]]").val()==i){
+      deleteEvent(j)
+    }
+  }
 }
 
 var EventId = 0
@@ -221,9 +227,10 @@ function saveEvent(i){
     <input type="hidden" name="event_activity_speaking[`+EventId+`]" value="`+$('#event_activity_speaking\\['+i+'\\]').val()+`">
     <input type="hidden" name="event_activity_shouting[`+EventId+`]" value="`+$('#event_activity_shouting\\['+i+'\\]').val()+`">
     <input type="hidden" name="event_activity_level[`+EventId+`]" value="`+$('#event_activity_level\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_mask_wearing_option[`+EventId+`]" value="`+$('input[name="mask_wearing_option\\['+i+'\\]"]:checked').val()+`">
     </div>`)
 
-    $(".modal").modal('hide')
+    $("#eventModal\\["+i+"\\]").modal('hide')
     EventId = EventId + 1;
     Calendars[i].render()
 }

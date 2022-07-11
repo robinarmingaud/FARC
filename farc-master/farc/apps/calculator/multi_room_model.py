@@ -310,6 +310,7 @@ class Simulation:
 
     def delete_room(self, room : Room):
         self.rooms.pop(self.get_room_id(room))
+        
 
     def get_person_id(self, person : Person):
         i=0
