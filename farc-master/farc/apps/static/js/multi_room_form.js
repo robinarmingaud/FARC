@@ -84,7 +84,7 @@ function addRoom() {
         on_ventilation_type_change(i);
         $(".room_btn_class").click(function(){on_room_list_change()})
         on_room_list_change()
-
+        disable_room_delete()
     
     RoomId = RoomId+1
     }
@@ -92,11 +92,11 @@ function addRoom() {
 function deleteRoom(i) {
   $("#Room_"+i).remove()
   for(let j = 0;j<=EventId; j++){
-    console.log($("input[name=event_location\\["+j+"\\]]").val())
     if ($("input[name=event_location\\["+j+"\\]]").val()==i){
       deleteEvent(j)
     }
   }
+  disable_room_delete()
 }
 
 var EventId = 0
@@ -176,6 +176,8 @@ function addPerson() {
       
       PersonId += 1
 
+      disable_people_delete()
+
       calendar.render();
   }
 
@@ -238,6 +240,7 @@ function saveEvent(i){
 function deletePerson(i) {
     try {
         document.getElementById("Person_"+i).remove()
+        disable_people_delete()
     }
     catch(error){}
     
@@ -256,11 +259,14 @@ function deleteEvent(e){
 
 /* -------On Load------- */
 $(document).ready(function () {
-
   //Add first room
   addRoom()
   //Add first person
   addPerson()
+  //Remove delete buttons if only 1 room/person
+  disable_room_delete()
+  disable_people_delete()
+
   //Hide carousel prev/next arrow on first/last page and render hidden calendars
   $('.carousel-control-prev').hide();
   $('#carousel').on('slid.bs.carousel', function(event) {
@@ -279,6 +285,8 @@ $(document).ready(function () {
       $('.carousel-control-next').show();
     }    
   });
+
+
 
     // When the document is ready, deal with the fact that we may be here
   // as a result of a forward/back browser action. If that is the case, update
@@ -689,3 +697,31 @@ function on_room_list_change(){
   })
 }
 
+
+function room_count() {
+  return $("div[id^=Room_]").length - 2
+}
+
+function people_count() {
+  return $("div[id^=Person_]").length - 1
+}
+
+function disable_room_delete() {
+    //Disable delete button when only one room/person
+    if (room_count()<2){
+      $(".btn-danger.room_btn_class").prop( "disabled", true );
+    }
+    else {
+      $(".btn-danger.room_btn_class").prop( "disabled", false );
+    }
+}
+
+function disable_people_delete() {
+      //Disable delete button when only one room/person
+      if (people_count()<2){
+        $(".btn-danger.people_btn_class").prop( "disabled", true );
+      }
+      else {
+        $(".btn-danger.people_btn_class").prop( "disabled", false );
+      }
+}
