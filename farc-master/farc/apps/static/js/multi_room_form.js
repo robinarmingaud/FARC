@@ -194,7 +194,9 @@ function saveEvent(i){
     //Prevent simultaneous events
     for(var el of events){
         if ((el.start < start && el.end > start)||(el.start < end && el.end > end)||(el.start>=start && el.end<=end)){
-            return false
+          $("#event_start\\["+i+"\\]").addClass("red_border")
+          $("#event_finish\\["+i+"\\]").addClass("red_border")
+          return false
         }
     }
     Calendars[i].addEvent({id: ""+EventId,
@@ -205,16 +207,23 @@ function saveEvent(i){
     eventDisplay: 'list-item',
     description: "Test"}
     );
-    $('#peopleFormContainer\\[' + i + '\\]').append(`
-    <input type="hidden" name="event_start[`+EventId+`]" value="`+$('#event_start['+i+']').val()+`">
+    //Keep event values in memory
+    $('#Person_' + i).append(`
+    <div id="Event_`+EventId+`">
+    <input type="hidden" name="event_start[`+EventId+`]" value="`+$('#event_start\\['+i+'\\]').val()+`">
     <input type="hidden" name="event_person[`+EventId+`]" value="`+i+`">
-    <input type="hidden" name="event_finish[`+EventId+`]" value="`+$('#event_finish['+i+']').val()+`">
-    <input type="hidden" name="event_location[`+EventId+`]" value="`+$('#event_location['+i+']').val()+`">
-    <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+$('#event_mask_wear_ratio['+i+']').val()+`">
-    <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+$('input[name="mask_type['+i+']"]:checked').val()+`">
-    <input type="hidden" name="event_activity[`+EventId+`]" value="`+$('#event_activity_type['+i+']').val()+`">`)
+    <input type="hidden" name="event_finish[`+EventId+`]" value="`+$('#event_finish\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_location[`+EventId+`]" value="`+$('#event_location\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+$('#event_mask_wear_ratio\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+$('input[name="mask_type\\['+i+'\\]"]:checked').val()+`">
+    <input type="hidden" name="event_activity[`+EventId+`]" value="`+$('#event_activity_type\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_activity_breathing[`+EventId+`]" value="`+$('#event_activity_breathing\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_activity_speaking[`+EventId+`]" value="`+$('#event_activity_speaking\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_activity_shouting[`+EventId+`]" value="`+$('#event_activity_shouting\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_activity_level[`+EventId+`]" value="`+$('#event_activity_level\\['+i+'\\]').val()+`">
+    </div>`)
 
-    
+    $(".modal").modal('hide')
     EventId = EventId + 1;
     Calendars[i].render()
 }
@@ -234,6 +243,7 @@ function deleteEvent(e){
         }
         catch(error){}
     }
+    $("#Event_"+e).remove()
     
 }
 
