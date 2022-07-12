@@ -299,6 +299,7 @@ class FormData:
                     opening_length=self.opening_distance,
                     number_of_windows=self.windows_number,
                 )
+                
             elif self.window_type == 'window_hinged':
                 ventilation = models.HingedWindow(
                     active=window_interval,

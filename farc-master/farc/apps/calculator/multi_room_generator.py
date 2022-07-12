@@ -76,7 +76,6 @@ class FormData:
     def from_dict(cls, form_data: typing.Dict):
         form_data = form_data.copy()
         form_data.pop('_xsrf', None)
-        instance = FormData(multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON'))
 
 
         # Don't let arbitrary unescaped HTML through the net.
@@ -84,24 +83,29 @@ class FormData:
             if isinstance(value, str):
                 form_data[key] = html.escape(value)
 
+        instance = FormData(multi_room_model.Simulation(virus_type=form_data['virus_type'], location_name= form_data['location_name'],
+                                                        location_latitude=float(form_data['location_latitude']),location_longitude=float(form_data['location_longitude'])))
+
         for key, value in form_data.items():
             if key in _CAST_RULES_FORM_ARG_TO_NATIVE:
                 form_data[key] = _CAST_RULES_FORM_ARG_TO_NATIVE[key](value)
 
-
-            if key.startswith('room_name'):
-                room_id = get_element_id(key)
-                instance.simulation.add_room(build_room_from_form(form_data, room_id))
+            if key.startswith('room_volume'): 
+                if isinstance(get_element_id(key), int) :
+                    room_id = get_element_id(key)
+                    instance.simulation.add_room(build_room_from_form(form_data, room_id))
 
             if key.startswith('person_name'):
-                person_id = get_element_id(key)
-                instance.simulation.add_person(build_person_from_form(form_data, person_id))
+                if isinstance(get_element_id(key), int) :
+                    person_id = get_element_id(key)
+                    instance.simulation.add_person(build_person_from_form(form_data, person_id))
 
             if key.startswith('event_start'):
-                event_id = get_element_id(key)
-                room_id = get_form_data_value(form_data, 'event_location', event_id)
-                person_id = get_form_data_value(form_data, 'event_person', event_id)
-                instance.get_person_by_id(person_id).schedule.add_event(build_event_from_form(form_data, event_id, instance.get_room_by_id(room_id)))
+                if isinstance(get_element_id(key), int) :
+                    event_id = get_element_id(key)
+                    room_id = get_form_data_value(form_data, 'event_location', event_id)
+                    person_id = get_form_data_value(form_data, 'event_person', event_id)
+                    instance.get_person_by_id(person_id).schedule.add_event(build_event_from_form(form_data, event_id, instance.get_room_by_id(room_id)))
         return instance
 
     @classmethod
@@ -136,7 +140,6 @@ class FormData:
             for field in dataclasses.fields(person):
                 person_dict[field.name] = getattr(person, field.name)
 
-            print(person_dict)
 
             #remove array of data from dict
             del person_dict['virus_dose']
@@ -224,52 +227,60 @@ def time_minutes_to_string(time: int) -> str:
 
 
 def build_ventilation_from_form(form_data, index):
-    return multi_room_model.Ventilation(get_form_data_value(form_data, 'ventilation', index),
-                                        float(get_form_data_value(form_data, 'duration', index)),
-                                        float(get_form_data_value(form_data, 'frequency', index)),
-                                        float(get_form_data_value(form_data, 'height', index)),
-                                        get_form_data_value(form_data, 'window_type', index),
-                                        float(get_form_data_value(form_data, 'width', index)),
-                                        int(get_form_data_value(form_data, 'number', index)),
-                                        get_form_data_value(form_data, 'opening_regime', index),
-                                        float(get_form_data_value(form_data, 'opening_distance', index)),
-                                        get_form_data_value(form_data, 'month', index),
-                                        int(get_form_data_value(form_data, 'room_heating_option', index)),
-                                        'mech_type_air_supply',
-                                        float(get_form_data_value(form_data, 'air_supply', index)),
-                                        float(get_form_data_value(form_data, 'biov_amount', index)),
-                                        int(get_form_data_value(form_data, 'biov_option', index))
+    return multi_room_model.Ventilation(inside_temp = float(get_form_data_value(form_data, 'inside_temp', index)),
+                                        ventilation_type = get_form_data_value(form_data, 'ventilation_type', index),
+                                        windows_duration = float(get_form_data_value(form_data, 'windows_duration', index)),
+                                        windows_frequency = float(get_form_data_value(form_data, 'windows_frequency', index)),
+                                        window_height = float(get_form_data_value(form_data, 'window_height', index)),
+                                        window_type = get_form_data_value(form_data, 'window_type', index),
+                                        window_width = float(get_form_data_value(form_data, 'window_width', index)),
+                                        windows_number = int(get_form_data_value(form_data, 'windows_number', index)),
+                                        window_opening_regime = get_form_data_value(form_data, 'window_opening_regime', index),
+                                        opening_distance = float(get_form_data_value(form_data, 'opening_distance', index)),
+                                        event_month = form_data['event_month'],
+                                        room_heating_option = int(get_form_data_value(form_data, 'room_heating_option', index)),
+                                        mechanical_ventilation_type= get_form_data_value(form_data, 'mechanical_ventilation_type', index),
+                                        air_supply= float(get_form_data_value(form_data,'air_supply', index)),
+                                        biov_amount=float(get_form_data_value(form_data, 'biov_amount', index)),
+                                        biov_option=int(get_form_data_value(form_data,'biov_option',index))
                                         )
 
 
 def build_room_from_form(form_data, index):
-    return multi_room_model.Room(get_form_data_value(form_data, 'room_name', index), 
-                                int(get_form_data_value(form_data, 'volume', index)),
-                                build_ventilation_from_form(form_data,index),
-                                index, #TODO : humidity and temperature in form or using room heating option
-                                0.3,
-                                20,
+    return multi_room_model.Room(id = index,
+                                 type_name = get_form_data_value(form_data, 'room_name', index),
+                                 volume= float(get_form_data_value(form_data, 'room_volume', index)),
+                                 ventilation= build_ventilation_from_form(form_data, index),
+                                 humidity = float(get_form_data_value(form_data, 'humidity', index)),
                                 )
 
 def build_person_from_form(form_data, index):
-    return multi_room_model.Person(get_form_data_value(form_data, 'person_name', index),
-                                index, 
-                                multi_room_model.Schedule()
-                                )
+    return multi_room_model.Person(name = get_form_data_value(form_data, 'person_name', index),
+                                number= float(get_form_data_value(form_data, 'person_number', index)),
+                                id = index,
+                                schedule=multi_room_model.Schedule())
             
 
 
 def build_event_from_form(form_data, index, room):
-    return multi_room_model.Event(time_string_to_minutes(get_form_data_value(form_data, 'event_start', index))/60,
-                                 time_string_to_minutes(get_form_data_value(form_data, 'event_finish', index))/60,
-                                 room,
-                                 float(get_form_data_value(form_data, 'event_mask_ratio', index)),
-                                 get_form_data_value(form_data, 'event_mask_type', index),
-                                 get_form_data_value(form_data, 'event_activity', index)
-                                 )
+    return multi_room_model.Event( event_mask_wearing_option= get_form_data_value(form_data, 'event_mask_wearing_option', index),
+                                event_activity_level= get_form_data_value(form_data, "event_activity_level", index ),
+                                event_activity_breathing= float(get_form_data_value(form_data, "event_activity_breathing", index )),
+                                event_activity_speaking= float(get_form_data_value(form_data, "event_activity_speaking", index )),
+                                event_activity_shouting= float(get_form_data_value(form_data, "event_activity_shouting", index )),
+                                start = time_string_to_minutes(get_form_data_value(form_data, 'event_start', index))/60,
+                                end = time_string_to_minutes(get_form_data_value(form_data, 'event_finish', index))/60,
+                                location = room,
+                                mask_type= get_form_data_value(form_data, 'event_mask_type', index),
+                                mask_ratio = float(get_form_data_value(form_data, 'event_mask_ratio', index)),
+                                activity= get_form_data_value(form_data, 'event_activity', index)
+                                )
 
 def get_element_id(key: str):
-    return int(key.split('[')[1][:-1])
+    try :
+        return int(key.split('[')[1][:-1])
+    except :
+        return None
 
 def get_form_data_value(form_data, key: str, index: int):
     return form_data[key+'['+str(index)+']']

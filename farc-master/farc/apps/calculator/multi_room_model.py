@@ -1,3 +1,7 @@
+import os
+import tornado
+
+
 from dataclasses import dataclass, field
 import datetime
 import typing
@@ -5,6 +9,7 @@ import numpy as np
 
 import numpy as np
 
+import farc.data.weather
 from farc.apps.calculator import model_generator
 from farc import models
 import farc.monte_carlo as mc
@@ -13,28 +18,35 @@ from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factor
 from .DEFAULT_DATA import ACTIVITY_TYPES, MONTH_NAMES
 from farc import data
 
+
+path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'locale'))
+
+tornado.locale.load_gettext_translations(path , 'messages')
+locale = tornado.locale.get()
+_ = locale.translate
+
 @dataclass
 class Building:
     name:str
 
 @dataclass
 class Ventilation:
-    inside_temp: float
-    ventilation_type : str
-    windows_duration: float
-    windows_frequency: float
-    window_height: float
-    window_type: str
-    window_width: float
-    windows_number: int
-    window_opening_regime: str
-    opening_distance: float
-    event_month: str
-    room_heating_option: int
-    mechanical_ventilation_type: str
-    air_supply: float
-    biov_amount: float
-    biov_option: int
+    inside_temp: float = 20.0
+    ventilation_type : str = 'mechanical_ventilation'
+    windows_duration: float = 60
+    windows_frequency: float = 15
+    window_height: float = 1
+    window_type: str = 'window_sliding'
+    window_width: float = 1.0
+    windows_number: int = 1
+    window_opening_regime: str = 'windows_open_permanently'
+    opening_distance: float = 1
+    event_month: str = _('January')
+    room_heating_option: int = 1
+    mechanical_ventilation_type: str = 'mech_type_air_supply'
+    air_supply: float = 100
+    biov_amount: float = 1000
+    biov_option: int = 1
 
     def nearest_weather_station(self, simulation) -> data.weather.WxStationRecordType:
         """Return the nearest weather station (which has valid data) for this form"""
@@ -43,15 +55,14 @@ class Ventilation:
         )
 
     def tz_name_and_utc_offset(self, simulation) -> typing.Tuple[str, float]:
+        
         """
         Return the timezone name (e.g. CET), and offset, in hours, that need to
         be *added* to UTC to convert to the form location's timezone.
 
         """
         month = list(MONTH_NAMES.keys()).index(self.event_month) + 1
-        timezone = data.weather.timezone_at(
-            latitude=simulation.location_latitude, longitude=simulation.location_longitude,
-        )
+        timezone = farc.data.weather.timezone_at(latitude=simulation.location_latitude, longitude=simulation.location_longitude)
         # We choose the first of the month for the current year.
         date = datetime.datetime(datetime.datetime.now().year, month, 1)
         name = timezone.tzname(date)
@@ -69,17 +80,19 @@ class Ventilation:
     
         """
 
+        
+
         month = list(MONTH_NAMES.keys()).index(self.event_month) + 1
 
         wx_station = self.nearest_weather_station(simulation)
         temp_profile = data.weather.mean_hourly_temperatures(wx_station[0], month)
-
         _, utc_offset = self.tz_name_and_utc_offset(simulation)
-
+        
         # Offset the source times according to the difference from UTC (as a
         # result the first data value may no longer be a midnight, and the hours
         # no longer ordered modulo 24).
         source_times = np.arange(24) + utc_offset
+        
         times, temp_profile = data.weather.refine_hourly_data(
             source_times,
             temp_profile,
@@ -99,17 +112,16 @@ class Ventilation:
         
         if self.ventilation_type == 'natural_ventilation':
             if self.window_opening_regime == 'windows_open_periodically':
-                window_interval_boundaries = models.PeriodicInterval(self.windows_frequency, self.windows_duration, min(self.infected_start, self.exposed_start)/60).boundaries() 
-                window_interval = models.SpecificInterval(window_interval_boundaries)
-
+                window_interval = models.PeriodicInterval(self.windows_frequency, self.windows_duration)
+                
             else:
                 window_interval = always_on
 
             outside_temp = self.outside_temp(simulation)
             inside_temp = models.PiecewiseConstant((0, 24), (self.inside_temp+273,))
-
             ventilation: models.Ventilation
             if self.window_type == 'window_sliding':
+                
                 ventilation = models.SlidingWindow(
                     active=window_interval,
                     inside_temp=inside_temp,
@@ -119,6 +131,7 @@ class Ventilation:
                     number_of_windows=self.windows_number,
                 )
             elif self.window_type == 'window_hinged':
+                
                 ventilation = models.HingedWindow(
                     active=window_interval,
                     inside_temp=inside_temp,
@@ -151,27 +164,27 @@ class Ventilation:
 
 @dataclass
 class RoomType:
-    type_name:str
-    volume:int
-    ventilation: Ventilation
+    type_name:str = ""
+    volume:int = 100
+    ventilation: Ventilation = Ventilation()
 
 @dataclass
 class Role:
-    name: str
+    name: str = _("Office worker")
 
 @dataclass
 class Event:
-    event_mask_wearing_option : str
-    event_activity_level : str
-    event_activity_breathing : float
-    event_activity_speaking : float
-    event_activity_shouting : float
-    start : int
-    end : int
-    location : RoomType
-    mask_ratio : float
-    mask_type : str
-    activity : str
+    event_mask_wearing_option : str = 'mask_off'
+    event_activity_level : str = 'Seated'
+    event_activity_breathing : float = 8
+    event_activity_speaking : float = 2
+    event_activity_shouting : float = 0
+    start : int = 8.5
+    end : int = 17.5
+    location : RoomType = RoomType()
+    mask_ratio : float = 0.7
+    mask_type : str = 'Type_I'
+    activity : str = 'Office_worker'
 
 @dataclass
 class Schedule:
@@ -208,9 +221,9 @@ class Schedule:
 
 @dataclass
 class Person(Role):
-    number: int
-    name : str
-    id:int 
+    number: int = 1
+    name : str = 'Office worker'
+    id:int = 0
     schedule : Schedule = Schedule()
     exposure_model : np.ndarray = np.array([])
     infected: bool = False
@@ -298,8 +311,8 @@ class Person(Role):
 
 @dataclass
 class Room(RoomType):
-    id:int
-    humidity:float
+    id:int = 0
+    humidity:float = 0.3
     number : int = 1
     #All concentration models from infected people who went to this room and left virus particles
     concentration_models: np.ndarray = np.array([])
@@ -345,7 +358,7 @@ class Room(RoomType):
     
 @dataclass
 class Simulation:
-    virus_type : str
+    virus_type : str = "SARS_CoV_2_OMICRON"
     location_name: str = "Nantes, Loire-Atlantique, Pays de la Loire, FRA"
     location_latitude: float = 47.21725
     location_longitude: float = -1.55336
@@ -388,6 +401,7 @@ class Simulation:
 @dataclass
 class Report:
     simulations: np.ndarray = np.array([])
+    
 
 def build_expiration(expiration_definition) -> models._ExpirationBase:
     if isinstance(expiration_definition, str):

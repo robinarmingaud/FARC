@@ -1,7 +1,6 @@
 import os
 import tornado
 
-#To change default data, change value in both variable definition and set_locale function
 
 # ------------------ Translation ----------------------
 
@@ -71,7 +70,7 @@ _DEFAULTS = {
         'mechanical_ventilation_type': 'mech_type_air_supply',
         'opening_distance': 0.5,
         'room_heating_option': 1, # 1: True, 0 : False
-        'room_number': _("1"),
+        'room_number': _("My room"),
         'room_volume': 100,
         'simulation_name': _("My simulation"),
         'total_people': 10,

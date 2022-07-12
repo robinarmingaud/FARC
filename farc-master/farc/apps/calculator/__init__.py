@@ -302,7 +302,8 @@ class MultiRoomForm(BaseRequestHandler):
             PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
             TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
             text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-            ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES)
+            ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES,
+            MONTH_NAMES = DEFAULT_DATA.MONTH_NAMES)
         self.finish(report)
 
 
@@ -332,7 +333,6 @@ class MultiReport(BaseRequestHandler):
             try:
                 form = multi_room_generator.FormData.from_dict(requested_model_config)
                 simulation = form.simulation
-                print(multi_room_generator.generate_permalink(base_url, '/calculator/multi_room', form))
             except Exception as err:
                 if self.settings.get("debug", False):
                     import traceback

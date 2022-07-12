@@ -121,10 +121,10 @@
                 </div>
                 <br>
                 <div class="form-group row">
-                  <div class="col-sm-4">
+                  <div class="col-sm-5">
                     <label class="col-form-label">{{ _("Variant:")}}</label>
                   </div>
-                  <div class="col-sm-8">
+                  <div class="col-sm-7">
                     <select id="Variant" name="virus_type" class="form-control">
                       {% for key in default.viruses.keys()%}
                         {% if key != default.virus_type %}
@@ -139,14 +139,15 @@
                   </div>
                 </div>
                 <hr width="80%">
+                
                 <b>
                   <label class="col-form-label">{{ _("Location :")}}</label>
                 </b>
                 <div class="form-group row">
-                  <div class="col-sm-6">
+                  <div class="col-sm-5">
                     <label class="col-form-label">{{ _("Geographic location:")}}</label>
                   </div>
-                  <div class="col-sm-6 align-self-center">
+                  <div class="col-sm-7 align-self-center">
                     <select id="location_select"
                             form="not-submitted"
                             class="form-control"
@@ -155,6 +156,23 @@
                     </select>
                   </div>
                 </div>
+                    <hr width="80%">
+
+                  <div class="form-group row">
+                  <div class="col-sm-5"><label class="col-form-label"><b>{{_("Which month is the event?")}}</b></label></div>
+                  <div class="col-sm-7 align-self-center">
+                  <select id="event_month" name="event_month" class="form-control" required>
+                  {% set months = MONTH_NAMES.items() | list %}
+                    {% for month in months %}
+                      {% if month[0] == default.event_month %}
+                        <option value = {{month[0]}} selected> {{_(month[1])}} </option>
+                      {% else %}
+                        <option value = {{month[0]}}> {{_(month[1])}} </option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                  </div>
+                  </div>
                 <div id="location_div" class="location_div">
                   <!--
                         This block allows us to have hidden input values which are retained during forward/back navigation, as per
@@ -180,6 +198,18 @@
                   <b>{{ _("Room")}}</b>
                 </div>
                 <br>
+                <div class="form-group row">
+                <div class = "col-sm-6">
+                    <label for="room_name" class="col-form-label">{{ _("Room name:")}}</label>
+                    </div>
+                    <div class="col-sm-6 ">
+                  <input type="text"
+                         id="room_name"
+                         class="form-control"
+                         name="room_name"
+                         placeholder="{{ _(default.room_number)}}">
+                         </div>
+                </div>
                 <div class="form-group row">
                   <div class="col-sm-6">
                     <label for="room_volume" class="col-form-label">
@@ -549,10 +579,10 @@
                       </label>
                       <input type="text"
                              step="0.1"
-                             id="name"
+                             id="person_name"
                              class="form-control col-sm-7"
                              value="{{ default.infected_activity_type }}"
-                             name="name">
+                             name="person_name">
                       <label for="number">
                         {{ _("Number:")}}
                       </label>
@@ -752,9 +782,9 @@
                                   <br>
                                   
                                   <div class='sub_title'>{{_("Are masks worn when occupants ?")}} </div>
-                                  <input type="radio" class ="mask_wearing_option" id="mask_on" value="mask_on" onclick="enableMaskSelection()">
+                                  <input type="radio" class ="mask_wearing_option" name="mask_wearing_option_form" id="mask_on" value="mask_on" onclick="enableMaskSelection()">
                                     <label for="mask_on">{{_("Yes")}} </label>
-                                  <input class="ml-2 mask_wearing_option" type="radio" id="mask_off" value="mask_off" onclick="enableMaskSelection()">
+                                  <input class="ml-2 mask_wearing_option" name="mask_wearing_option_form" type="radio" id="mask_off" value="mask_off" onclick="enableMaskSelection()">
                                     <label for="mask_off">{{_("No")}} </label><br>
 
                                 <div class="form-group row">
@@ -772,14 +802,14 @@
                                     <div class='sub_title'>{{_("Type of masks used (requested for alternative scenarios):")}} </div>
                                     <div class='split'>
                                       <div>
-                                        <input type="radio" class="mask_type_option" id="mask_type_1" value="Type_I" onclick="require_fields(this)">
+                                        <input type="radio" class="mask_type_option" name="mask_type_option_form" id="mask_type_1" value="Type_I" onclick="require_fields(this)">
                                           <label for="mask_type_1">
                                           {{_("Surgical/Type I")}}
                                             <img class="mask_icons" src="/static/images/masks/t1.png">
                                           </label>
                                       </div>
                                       <div>
-                                        <input type="radio" class="mask_type_option"  id="mask_type_ffp2" value="FFP2" onclick="require_fields(this)">
+                                        <input type="radio" class="mask_type_option" name = "mask_type_option_form" id="mask_type_ffp2" value="FFP2" onclick="require_fields(this)">
                                           <label for="mask_type_ffp2">
                                           {{_("Respirator/FFP2")}}
                                             <img class="mask_icons" src="/static/images/masks/ffp2.png">
