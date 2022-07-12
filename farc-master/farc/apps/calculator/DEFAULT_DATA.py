@@ -41,7 +41,7 @@ _DEFAULTS = {
         'air_supply': 100,
         'calculator_version': __version__,
         'ceiling_height': 2.5,
-        'humidity': "",
+        'humidity': 0.3,
         'inside_temp': 20,
         'exposed_coffee_break_option': 'coffee_break_0',
         'exposed_coffee_duration': 5,

@@ -142,66 +142,55 @@ class ConcentrationModel(BaseRequestHandler):
         if not self.current_user.is_authenticated() :
             self.redirect('https://www.flow-r.fr/')
         else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-            _ = tornado.locale.get(language ).translate    
-            locale_code = tornado.locale.get(language )    
-        requested_model_config = {
-            name: self.get_argument(name) for name in self.request.arguments
-        }
-        if self.settings.get("debug", False):
-            pprint(requested_model_config)
-            start = datetime.datetime.now()
-
-        try:
-            form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
-        except Exception as err:
-            language = self.get_cookie('language') or 'null'
-            if language == "null" : 
-                template_environment = self.settings["template_environment"]
-                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-                _ = tornado.locale.get(self.locale.code).translate
-                locale_code = tornado.locale.get(language )
-            else :
-                template_environment = self.settings["template_environment"]
-                template_environment.globals['_']=tornado.locale.get(language ).translate
-                _ = tornado.locale.get(language ).translate    
-                locale_code = tornado.locale.get(language )    
-            requested_model_config = {
-                name: self.get_argument(name) for name in self.request.arguments
-            }
-            if self.settings.get("debug", False):
-                from pprint import pprint
-                pprint(requested_model_config)
-                start = datetime.datetime.now()
-
             try:
                 form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
             except Exception as err:
+                language = self.get_cookie('language') or 'null'
+                if language == "null" : 
+                    template_environment = self.settings["template_environment"]
+                    template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                    _ = tornado.locale.get(self.locale.code).translate
+                    locale_code = tornado.locale.get(language )
+                else :
+                    template_environment = self.settings["template_environment"]
+                    template_environment.globals['_']=tornado.locale.get(language ).translate
+                    _ = tornado.locale.get(language ).translate    
+                    locale_code = tornado.locale.get(language )    
+                requested_model_config = {
+                    name: self.get_argument(name) for name in self.request.arguments
+                }
                 if self.settings.get("debug", False):
-                    import traceback
-                    print(traceback.format_exc())
-                response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
-                self.set_status(400)
-                self.finish(json.dumps(response_json))
-                return
+                    from pprint import pprint
+                    pprint(requested_model_config)
+                    start = datetime.datetime.now()
 
-            base_url = self.request.protocol + "://" + self.request.host
-            report_generator: ReportGenerator = self.settings['report_generator']
-            report_generator.set_locale(locale_code)
-            executor = loky.get_reusable_executor(
-                max_workers=self.settings['handler_worker_pool_size'],
-                timeout=300,
-            )
-            report_task = executor.submit(
-                report_generator.build_report, base_url, form,
-                executor_factory=functools.partial(
-                    concurrent.futures.ThreadPoolExecutor,
-                    self.settings['report_generation_parallelism'],
-                ),
-            )
-            report: str = await asyncio.wrap_future(report_task)
-            self.finish(report)
+                try:
+                    form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
+                except Exception as err:
+                    if self.settings.get("debug", False):
+                        import traceback
+                        print(traceback.format_exc())
+                    response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
+                    self.set_status(400)
+                    self.finish(json.dumps(response_json))
+                    return
+
+                base_url = self.request.protocol + "://" + self.request.host
+                report_generator: ReportGenerator = self.settings['report_generator']
+                report_generator.set_locale(locale_code)
+                executor = loky.get_reusable_executor(
+                    max_workers=self.settings['handler_worker_pool_size'],
+                    timeout=300,
+                )
+                report_task = executor.submit(
+                    report_generator.build_report, base_url, form,
+                    executor_factory=functools.partial(
+                        concurrent.futures.ThreadPoolExecutor,
+                        self.settings['report_generation_parallelism'],
+                    ),
+                )
+                report: str = await asyncio.wrap_future(report_task)
+                self.finish(report)
 
 
 class StaticModel(BaseRequestHandler):

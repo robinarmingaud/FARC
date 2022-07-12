@@ -1,4 +1,6 @@
 from dataclasses import dataclass, field
+import datetime
+import typing
 import numpy as np
 
 import numpy as np
@@ -8,7 +10,8 @@ from farc import models
 import farc.monte_carlo as mc
 from farc.monte_carlo.data import activity_distributions, virus_distributions, mask_distributions
 from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factors, expiration_distributions
-from .DEFAULT_DATA import ACTIVITY_TYPES
+from .DEFAULT_DATA import ACTIVITY_TYPES, MONTH_NAMES
+from farc import data
 
 @dataclass
 class Building:
@@ -16,7 +19,7 @@ class Building:
 
 @dataclass
 class Ventilation:
-    
+    inside_temp: float
     ventilation_type : str
     windows_duration: float
     windows_frequency: float
@@ -33,7 +36,62 @@ class Ventilation:
     biov_amount: float
     biov_option: int
 
-    def ventilation(self) -> models._VentilationBase:
+    def nearest_weather_station(self, simulation) -> data.weather.WxStationRecordType:
+        """Return the nearest weather station (which has valid data) for this form"""
+        return data.weather.nearest_wx_station(
+            longitude=simulation.location_longitude, latitude=simulation.location_latitude
+        )
+
+    def tz_name_and_utc_offset(self, simulation) -> typing.Tuple[str, float]:
+        """
+        Return the timezone name (e.g. CET), and offset, in hours, that need to
+        be *added* to UTC to convert to the form location's timezone.
+
+        """
+        month = list(MONTH_NAMES.keys()).index(self.event_month) + 1
+        timezone = data.weather.timezone_at(
+            latitude=simulation.location_latitude, longitude=simulation.location_longitude,
+        )
+        # We choose the first of the month for the current year.
+        date = datetime.datetime(datetime.datetime.now().year, month, 1)
+        name = timezone.tzname(date)
+        assert isinstance(name, str)
+        utc_offset_td = timezone.utcoffset(date)
+        assert isinstance(utc_offset_td, datetime.timedelta)
+        utc_offset_hours = utc_offset_td.total_seconds() / 60 / 60
+        return name, utc_offset_hours
+
+
+    def outside_temp(self, simulation) -> models.PiecewiseConstant:
+        """
+        Return the outside temperature as a PiecewiseConstant in the destination
+        timezone.
+    
+        """
+
+        month = list(MONTH_NAMES.keys()).index(self.event_month) + 1
+
+        wx_station = self.nearest_weather_station(simulation)
+        temp_profile = data.weather.mean_hourly_temperatures(wx_station[0], month)
+
+        _, utc_offset = self.tz_name_and_utc_offset(simulation)
+
+        # Offset the source times according to the difference from UTC (as a
+        # result the first data value may no longer be a midnight, and the hours
+        # no longer ordered modulo 24).
+        source_times = np.arange(24) + utc_offset
+        times, temp_profile = data.weather.refine_hourly_data(
+            source_times,
+            temp_profile,
+            npts=24*10,  # 10 steps per hour => 6 min steps
+        )
+        outside_temp = models.PiecewiseConstant(
+            tuple(float(t) for t in times), tuple(float(t) for t in temp_profile),
+        )
+        return outside_temp
+
+
+    def ventilation(self, simulation) -> models._VentilationBase:
         """FormData ventilation function from CARA model"""
         always_on = models.PeriodicInterval(period=120, duration=120)
         # Initializes a ventilation instance as a window if 'natural_ventilation' is selected, or as a BIOV-filter otherwise
@@ -42,17 +100,13 @@ class Ventilation:
         if self.ventilation_type == 'natural_ventilation':
             if self.window_opening_regime == 'windows_open_periodically':
                 window_interval_boundaries = models.PeriodicInterval(self.windows_frequency, self.windows_duration, min(self.infected_start, self.exposed_start)/60).boundaries() 
-                breaks_interval_boundaries = self.exposed_lunch_break_times()+self.infected_lunch_break_times()+self.exposed_coffee_break_times()
-                for t1, t2 in breaks_interval_boundaries : 
-                        window_interval_boundaries = window_interval_boundaries + ((t1, t2),)
-
                 window_interval = models.SpecificInterval(window_interval_boundaries)
 
             else:
                 window_interval = always_on
 
-            outside_temp = self.outside_temp()
-            inside_temp = models.PiecewiseConstant((0, 24), (293,))
+            outside_temp = self.outside_temp(simulation)
+            inside_temp = models.PiecewiseConstant((0, 24), (self.inside_temp+273,))
 
             ventilation: models.Ventilation
             if self.window_type == 'window_sliding':
@@ -107,6 +161,11 @@ class Role:
 
 @dataclass
 class Event:
+    event_mask_wearing_option : str
+    event_activity_level : str
+    event_activity_breathing : float
+    event_activity_speaking : float
+    event_activity_shouting : float
     start : int
     end : int
     location : RoomType
@@ -149,6 +208,7 @@ class Schedule:
 
 @dataclass
 class Person(Role):
+    number: int
     name : str
     id:int 
     schedule : Schedule = Schedule()
@@ -174,7 +234,7 @@ class Person(Role):
     # Initializes the mask type if mask wearing is "continuous", otherwise instantiates the mask attribute as
     # the "No mask"-mask
     # Adaptation from FormData mask method
-        if self.current_event.mask_ratio > 0:
+        if self.current_event.event_mask_wearing_option == 'mask_on' :
             mask = mask_distributions[self.current_event.mask_type]
         else:
             mask = models.Mask.types['No mask']
@@ -183,12 +243,8 @@ class Person(Role):
     def infected_population(self, simulation, time1, time2):
         """Adaptation of infected population from model_generator"""
         virus = virus_distributions[simulation.virus_type]
-        scenario_activity_and_expiration = {}
-        for activity in ACTIVITY_TYPES :
-            scenario_activity_and_expiration[activity['Id']] = (activity['Activity'], activity['Expiration'])
-        [activity_defn, expiration_defn] = scenario_activity_and_expiration[self.current_event.activity]
-        activity = activity_distributions[activity_defn]
-        expiration = model_generator.build_expiration(expiration_defn)
+        activity = activity_distributions[self.current_event.event_activity_level]
+        expiration = build_expiration({'Breathing' : self.current_event.event_activity_breathing, 'Speaking' : self.current_event.event_activity_speaking, 'Shouting' : self.current_event.event_activity_shouting})
         return mc.InfectedPopulation(
             number=1,
             virus=virus,
@@ -200,12 +256,7 @@ class Person(Role):
             host_immunity=0.,)
 
     def exposed_population(self, time1, time2):
-        scenario_activity = {}
-        for activity in ACTIVITY_TYPES : 
-            scenario_activity[activity['Id']] = activity['Activity']
-
-        exposed_activity_defn = scenario_activity[self.current_event.activity]
-        activity = activity_distributions[exposed_activity_defn]
+        activity = activity_distributions[self.current_event.event_activity_level]
 
         exposed = mc.Population(
             number=1,
@@ -249,12 +300,12 @@ class Person(Role):
 class Room(RoomType):
     id:int
     humidity:float
-    temperature : float
     number : int = 1
+    #All concentration models from infected people who went to this room and left virus particles
     concentration_models: np.ndarray = np.array([])
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.
-    #All concentrations models from infected people who went to this room and left virus particles
+    
 
     def set_building(self, building : Building):
         self.building = building
@@ -269,7 +320,7 @@ class Room(RoomType):
 
     def build_model(self, infected : Person, simulation, time1 : int, time2: int):
         room = models.Room(volume = self.volume,humidity = self.humidity)
-        ventilation = self.ventilation.ventilation()
+        ventilation = self.ventilation.ventilation(simulation)
         if infected.get_location() and infected.get_location().id == self.id:
             infected_population = infected.infected_population(simulation, time1, time2)
             self.concentration_models = np.append(self.concentration_models, mc.ConcentrationModel(
@@ -295,6 +346,9 @@ class Room(RoomType):
 @dataclass
 class Simulation:
     virus_type : str
+    location_name: str = "Nantes, Loire-Atlantique, Pays de la Loire, FRA"
+    location_latitude: float = 47.21725
+    location_longitude: float = -1.55336
     rooms: np.ndarray = np.array([])
     people: np.ndarray = np.array([])
 
@@ -310,7 +364,7 @@ class Simulation:
 
     def delete_room(self, room : Room):
         self.rooms.pop(self.get_room_id(room))
-        
+
 
     def get_person_id(self, person : Person):
         i=0
@@ -335,3 +389,13 @@ class Simulation:
 class Report:
     simulations: np.ndarray = np.array([])
 
+def build_expiration(expiration_definition) -> models._ExpirationBase:
+    if isinstance(expiration_definition, str):
+        return expiration_distributions[expiration_definition]
+    elif isinstance(expiration_definition, dict):
+        total_weight = sum(expiration_definition.values())
+        BLO_factors = np.sum([
+            np.array(expiration_BLO_factors[exp_type]) * weight/total_weight
+            for exp_type, weight in expiration_definition.items()
+            ], axis=0)
+        return expiration_distribution(tuple(BLO_factors))

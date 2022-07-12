@@ -52,6 +52,7 @@
       <a class="carousel-control-prev"
          href="#carousel"
          role="button"
+         type="button"
          data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -59,6 +60,7 @@
       <a class="carousel-control-next"
          href="#carousel"
          role="button"
+         type="button"
          data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
@@ -227,18 +229,18 @@
                       {{ _("Humidity:")}}
                     </label>
                     <input type="number"
-                           step
-                           0.1
+                           step="0.1"
                            id="humidity"
                            class="form-control"
                            name="humidity"
                            min="0"
                            max="1"
+                           value="{{default.humidity}}"
                            required>
                     <label for="inside_temp">
                       {{ _("Temperature:")}}
                     </label>
-                    <input type="number" step="any" id="inside_temp" class="form-control" name="inside_temp" value={{ default.inside_temp }} required>
+                    <input type="number" step="any" id="inside_temp" class="form-control" name="inside_temp" value="{{ default.inside_temp }}" required>
                   </div>
                 </div>
                 <div class='sub_title'>
@@ -792,7 +794,7 @@
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                 {{_('Close')}}
                               </button>
-                              <button type="submit"
+                              <button type="button"
                                       id="saveEvent"
                                       class="btn btn-primary">
                                 {{_('Save changes')}}
@@ -808,11 +810,9 @@
                     <button type="button" class="btn btn-secondary mb-2" onclick="addPerson()">
                       {{ _("Add person")}}
                     </button>
-                  
-                  
                 </div>
                 <div class="center">
-                  <button type="submit" class="btn btn-primary bigButton" id="generate_report">
+                  <button type="submit" form="covid_calculator" class="btn btn-primary bigButton" id="generate_report">
                     {{ _("Generate report")}}
                   </button>
               </div>
@@ -850,4 +850,5 @@
         </div>
       </div>
     </div>
+    </form>
   {% endblock main %}
