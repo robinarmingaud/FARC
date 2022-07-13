@@ -9,6 +9,7 @@ import numpy as np
 import zlib
 
 import farc.apps.calculator.multi_room_model as multi_room_model
+from farc.apps.calculator.model_generator import time_minutes_to_string, time_string_to_minutes, _safe_int_cast, _CAST_RULES_FORM_ARG_TO_NATIVE, _CAST_RULES_NATIVE_TO_FORM_ARG
 
 minutes_since_midnight = typing.NewType('minutes_since_midnight', int)
 
@@ -123,14 +124,11 @@ class FormData:
                 if field.name == 'ventilation' :
                     ventilation = getattr(room, field.name)
                     for element in dataclasses.fields(ventilation):
-                        room_dict[element.name] = getattr(ventilation, element.name)
+                        if getattr(ventilation, element.name) != element.default :
+                            room_dict[element.name] = getattr(ventilation, element.name)
                 else :   
-                    room_dict[field.name] = getattr(room, field.name)
-
-            #remove array of data from dict
-            del room_dict['cumulative_exposure']
-            del room_dict['concentration_models']
-            del room_dict['virus_concentration']
+                    if getattr(room, field.name) != field.default :
+                        room_dict[field.name] = getattr(room, field.name)
 
             for attr, value in room_dict.items():
                 if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
@@ -140,25 +138,18 @@ class FormData:
         for person in form.simulation.people :
             person_dict = {}
             for field in dataclasses.fields(person):
-                person_dict[field.name] = getattr(person, field.name)
+                if getattr(person, field.name) != field.default :
+                    person_dict[field.name] = getattr(person, field.name)
 
-
-            #remove array of data from dict
-            del person_dict['virus_dose']
-            del person_dict['infected']
-            del person_dict['exposure_model']
-            del person_dict['schedule']
-            del person_dict['cumulative_dose']
-            del person_dict['current_event']
-            del person_dict['infection_probability']
             
 
             for attr, value in person_dict.items():
                 if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
                     person_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
-            people_list.append(person_dict)
 
-            #add schedule
+            del(person_dict['schedule'])
+            
+            people_list.append(person_dict)
 
             for event in person.schedule.events :
                 event_dict = {}
@@ -168,10 +159,16 @@ class FormData:
                         location = getattr(event, field.name)
                         event_dict[field.name] = getattr(location, 'id')
                     else :    
-                        event_dict[field.name] = getattr(event, field.name)
-
-                event_dict['start'] = time_minutes_to_string(int(event_dict['start']*60))
-                event_dict['end'] = time_minutes_to_string(int(event_dict['end']*60))
+                        if getattr(event, field.name) != field.default :
+                            event_dict[field.name] = getattr(event, field.name)
+                try :
+                    event_dict['start'] = time_minutes_to_string(int(event_dict['start']*60))
+                except :
+                    pass
+                try : 
+                    event_dict['end'] = time_minutes_to_string(int(event_dict['end']*60))
+                except :
+                    pass
 
                 for attr, value in event_dict.items():
                     if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
@@ -181,9 +178,6 @@ class FormData:
         form_dict['Room_list'] = room_list
         form_dict['People_list'] = people_list
         form_dict['Event_list'] = event_list
-
-
-
 
         return form_dict
 
@@ -196,36 +190,6 @@ class FormData:
         for room in self.simulation.rooms :
             if room.id == int(id) :
                 return room
-
-#: Mapping of field name to a callable which can convert values from form
-#: input (URL encoded arguments / string) into the correct type.
-_CAST_RULES_FORM_ARG_TO_NATIVE: typing.Dict[str, typing.Callable] = {}
-
-#: Mapping of field name to callable which can convert native type to values
-#: that can be encoded to URL arguments.
-_CAST_RULES_NATIVE_TO_FORM_ARG: typing.Dict[str, typing.Callable] = {}
-
-def _hours2timestring(hours: float):
-    # Convert times like 14.5 to strings, like "14:30"
-    return f"{int(np.floor(hours)):02d}:{int(np.round((hours % 1) * 60)):02d}"
-
-
-def time_string_to_minutes(time: str) -> minutes_since_midnight:
-    """
-    Converts time from string-format to an integer number of minutes after 00:00
-    :param time: A string of the form "HH:MM" representing a time of day
-    :return: The number of minutes between 'time' and 00:00
-    """
-    return minutes_since_midnight(60 * int(time[:2]) + int(time[3:]))
-
-
-def time_minutes_to_string(time: int) -> str:
-    """
-    Converts time from an integer number of minutes after 00:00 to string-format
-    :param time: The number of minutes between 'time' and 00:00
-    :return: A string of the form "HH:MM" representing a time of day
-    """
-    return "{0:0=2d}".format(int(time/60)) + ":" + "{0:0=2d}".format(time%60)
 
 
 def build_ventilation_from_form(form_data, index):
@@ -286,28 +250,6 @@ def get_element_id(key: str):
 
 def get_form_data_value(form_data, key: str, index: int):
     return form_data[key+'['+str(index)+']']
-
-def _safe_int_cast(value) -> int:
-    if isinstance(value, int):
-        return value
-    elif isinstance(value, float) and int(value) == value:
-        return int(value)
-    elif isinstance(value, str) and value.isdecimal():
-        return int(value)
-    else:
-        raise TypeError(f"Unable to safely cast {value} ({type(value)} type) to int")
- 
-for _field in dataclasses.fields(FormData):
-    if _field.type is minutes_since_midnight:
-        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = time_string_to_minutes
-        _CAST_RULES_NATIVE_TO_FORM_ARG[_field.name] = time_minutes_to_string
-    elif _field.type is int:
-        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = _safe_int_cast
-    elif _field.type is float:
-        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = float
-    elif _field.type is bool:
-        _CAST_RULES_FORM_ARG_TO_NATIVE[_field.name] = lambda v: v == '1'
-        _CAST_RULES_NATIVE_TO_FORM_ARG[_field.name] = int
 
 
 def generate_permalink(base_url, calculator_prefix, form: FormData):

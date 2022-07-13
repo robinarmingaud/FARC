@@ -298,7 +298,7 @@ class MultiRoomForm(BaseRequestHandler):
             xsrf_form_html=self.xsrf_form_html(),
             calculator_prefix=self.settings["calculator_prefix"],
             calculator_version=__version__,
-            default = DEFAULT_DATA._DEFAULTS,
+            default = DEFAULT_DATA._MULTI_DEFAULTS,
             PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
             TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
             text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
@@ -333,6 +333,7 @@ class MultiReport(BaseRequestHandler):
             try:
                 form = multi_room_generator.FormData.from_dict(requested_model_config)
                 simulation = form.simulation
+                print(multi_room_generator.generate_permalink(base_url, "/calculator/multi_room",form))
             except Exception as err:
                 if self.settings.get("debug", False):
                     import traceback

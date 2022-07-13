@@ -17,6 +17,9 @@ from farc.monte_carlo.data import activity_distributions, virus_distributions, m
 from farc.monte_carlo.data import expiration_distribution, expiration_BLO_factors, expiration_distributions
 from .DEFAULT_DATA import ACTIVITY_TYPES, MONTH_NAMES
 from farc import data
+from farc.apps.calculator.model_generator import time_string_to_minutes
+
+from .DEFAULT_DATA import _DEFAULTS as default, _MULTI_DEFAULTS as multi_default
 
 
 path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'locale'))
@@ -31,22 +34,22 @@ class Building:
 
 @dataclass
 class Ventilation:
-    inside_temp: float = 20.0
-    ventilation_type : str = 'mechanical_ventilation'
-    windows_duration: float = 60
-    windows_frequency: float = 15
-    window_height: float = 1
-    window_type: str = 'window_sliding'
-    window_width: float = 1.0
-    windows_number: int = 1
-    window_opening_regime: str = 'windows_open_permanently'
-    opening_distance: float = 1
-    event_month: str = _('January')
-    room_heating_option: int = 1
-    mechanical_ventilation_type: str = 'mech_type_air_supply'
-    air_supply: float = 100
-    biov_amount: float = 1000
-    biov_option: int = 1
+    inside_temp: float = multi_default['inside_temp']
+    ventilation_type : str = multi_default['ventilation_type']
+    windows_duration: float = multi_default['windows_duration']
+    windows_frequency: float = multi_default['windows_frequency']
+    window_height: float = multi_default['window_height']
+    window_type: str = multi_default['window_type']
+    window_width: float = multi_default['window_width']
+    windows_number: int = multi_default['windows_number']
+    window_opening_regime: str = multi_default['window_opening_regime']
+    opening_distance: float = multi_default['opening_distance']
+    event_month: str = multi_default['event_month']
+    room_heating_option: int = multi_default['room_heating_option']
+    mechanical_ventilation_type: str = multi_default['mechanical_ventilation_type']
+    air_supply: float = multi_default['air_supply']
+    biov_amount: float = multi_default['biov_amount']
+    biov_option: int = multi_default['biov_option']
 
     def nearest_weather_station(self, simulation) -> data.weather.WxStationRecordType:
         """Return the nearest weather station (which has valid data) for this form"""
@@ -164,27 +167,27 @@ class Ventilation:
 
 @dataclass
 class RoomType:
-    type_name:str = ""
-    volume:int = 100
+    type_name:str = multi_default['type_name']
+    volume:int = multi_default['volume']
     ventilation: Ventilation = Ventilation()
 
 @dataclass
 class Role:
-    name: str = _("Office worker")
+    name: str = multi_default['name']
 
 @dataclass
 class Event:
-    event_mask_wearing_option : str = 'mask_off'
-    event_activity_level : str = 'Seated'
-    event_activity_breathing : float = 8
-    event_activity_speaking : float = 2
-    event_activity_shouting : float = 0
-    start : int = 8.5
-    end : int = 17.5
+    event_mask_wearing_option : str = multi_default['event_mask_wearing_option']
+    event_activity_level : str = multi_default['event_activity_level']
+    event_activity_breathing : float = multi_default['event_activity_breathing']
+    event_activity_speaking : float = multi_default['event_activity_speaking']
+    event_activity_shouting : float = multi_default['event_activity_shouting']
+    start : int = time_string_to_minutes(multi_default['start'])
+    end : int = time_string_to_minutes(multi_default['end'])
     location : RoomType = RoomType()
-    mask_ratio : float = 0.7
-    mask_type : str = 'Type_I'
-    activity : str = 'Office_worker'
+    mask_ratio : float = multi_default['mask_ratio']
+    mask_type : str = multi_default['mask_type']
+    activity : str = multi_default['activity']
 
 @dataclass
 class Schedule:
@@ -221,9 +224,9 @@ class Schedule:
 
 @dataclass
 class Person(Role):
-    number: int = 1
-    name : str = 'Office worker'
-    id:int = 0
+    number: int = multi_default['people_number']
+    name : str = multi_default['name']
+    id:int = multi_default['person_id']
     schedule : Schedule = Schedule()
     exposure_model : np.ndarray = np.array([])
     infected: bool = False
@@ -317,9 +320,9 @@ class Person(Role):
 
 @dataclass
 class Room(RoomType):
-    id:int = 0
-    humidity:float = 0.3
-    number : int = 1
+    id:int = multi_default['room_id']
+    humidity:float = multi_default['humidity']
+    number: str = multi_default['room_number']
     #All concentration models from infected people who went to this room and left virus particles
     concentration_models: np.ndarray = np.array([])
     virus_concentration: models._VectorisedFloat = 0.
@@ -364,10 +367,10 @@ class Room(RoomType):
     
 @dataclass
 class Simulation:
-    virus_type : str = "SARS_CoV_2_OMICRON"
-    location_name: str = "Nantes, Loire-Atlantique, Pays de la Loire, FRA"
-    location_latitude: float = 47.21725
-    location_longitude: float = -1.55336
+    virus_type : str = multi_default['virus_type']
+    location_name: str = multi_default['location_name']
+    location_latitude: float = multi_default['location_latitude']
+    location_longitude: float = multi_default['location_longitude']
     rooms: np.ndarray = np.array([])
     people: np.ndarray = np.array([])
 

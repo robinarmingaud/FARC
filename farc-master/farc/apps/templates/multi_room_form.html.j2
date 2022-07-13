@@ -224,7 +224,7 @@
                            name="room_volume"
                            placeholder="{{ _(PLACEHOLDERS.room_volume)}}"
                            min="0"
-                           value="{{ default.room_volume }}"
+                           value="{{ default.volume }}"
                            required>
                   </div>
                 </div>
@@ -581,7 +581,7 @@
                              step="0.1"
                              id="person_name"
                              class="form-control col-sm-7"
-                             value="{{ default.infected_activity_type }}"
+                             value="{{ default.activity }}"
                              name="person_name">
                       <label for="number">
                         {{ _("Number:")}}
@@ -652,7 +652,7 @@
                                   <div class="col-sm-7">
                                     <select id="event_activity_type"
                                             class="form-control">
-                                      {% set default_event_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', default.exposed_activity_type) | first %}
+                                      {% set default_event_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', default.activity) | first %}
                                       <optgroup label="---- {{ _(PLACEHOLDERS.default)}} ----">
                                         <option selected value="{{ default_event_activity.Id }}">
                                           {{ _(default_event_activity.Name)}}
@@ -661,7 +661,7 @@
                                       {% for group in ACTIVITY_TYPES | map(attribute = 'Group') | unique %}
                                         <optgroup label="---- {{ _(group)}} ----">
                                           {% for activity in ACTIVITY_TYPES | selectattr('Group', 'equalto', group) %}
-                                            {% if activity.Id != default.exposed_activity_type %}
+                                            {% if activity.Id != default.activity %}
                                               <option value="{{ activity.Id }}">
                                                 {{ _(activity.Name)}}
                                               </option>
@@ -717,7 +717,7 @@
                                     <div class="tabbed mb-0 col-form-label col-sm-2"> {{_("Shouting")}} : </div>
                                     {% if 'Shouting' in default_event_activity.Expiration %}
                                       <div class="col-sm-2 align-self-center">
-                                        <input type="number" id="event_activity_shouting" class="form-control" value={{ default_exposed_activity.Expiration['Shouting'] }} min=0.0 step=0.1 required>
+                                        <input type="number" id="event_activity_shouting" class="form-control" value={{ default_event_activity.Expiration['Shouting'] }} min=0.0 step=0.1 required>
                                       </div>
                                     {% else %}
                                       <div class="col-sm-2 align-self-center">
@@ -763,13 +763,13 @@
                                     <label>
                                       {{ _("Start:")}}
                                     </label>
-                                    <input type="time" id="event_start" class="start_time" value="{{ default.exposed_start }}" required>
+                                    <input type="time" id="event_start" class="start_time" value="{{ default.start }}" required>
                                   </div>
                                   <div>
                                     <label>
                                       {{ _("Finish:")}}
                                     </label>
-                                    <input type="time" id="event_finish" class="finish_time" value="{{ default.exposed_finish }}" required>
+                                    <input type="time" id="event_finish" class="finish_time" value="{{ default.end }}" required>
                                   </div>
                                 </div>
                                     <b>{{_("Face masks:")}} </b>
@@ -794,7 +794,7 @@
                                     </label>
                                   </div>
                                   <div class="col-sm-7 align-self-center">
-                                    <input type="number" id="event_mask_wear_ratio" class="form-control" min=0.0 max=1.0 value="{{ default.exposed_mask_wear_ratio }}" step=0.1 required>
+                                    <input type="number" id="event_mask_wear_ratio" class="form-control" min=0.0 max=1.0 value="{{ default.mask_ratio }}" step=0.1 required>
                                   </div>
                                 </div>
                                     

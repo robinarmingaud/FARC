@@ -23,6 +23,51 @@ _DEFAULT_MC_SAMPLE_SIZE = 60000
 # form attributes) then it can also increase its MAJOR version without needing to
 # increase the overall CARA version (found at ``farc.__version__``).
 __version__ = "1.0.3"
+
+_MULTI_DEFAULTS = {  
+    'air_supply': 100,
+    'humidity': 0.3,
+    'event_month': _('January'),
+    'biov_amount': 1000,
+    'biov_option': 0,
+    'location_latitude': 47.21725,
+    'location_longitude': -1.55336,
+    'location_name': "Nantes, Loire-Atlantique, Pays de la Loire, FRA",
+    'mechanical_ventilation_type': 'mech_type_air_supply',
+    'opening_distance': 0.5,
+    'room_heating_option': 1, # 1: True, 0 : False
+    'room_number': _("My room"),
+    'volume': 100,
+    'air_changes': 1.,
+    'simulation_name': _("My simulation"),
+    'person_id': 0,
+    'room_id': 0,
+    'people_number' : 1,
+    'ventilation_type': 'mechanical_ventilation',
+    'virus_type': "SARS_CoV_2_OMICRON",
+    'viruses' : {"SARS_CoV_2" : _("SARS-CoV-2 (nominal strain)"), "SARS_CoV_2_ALPHA" : _("SARS-CoV-2 (Alpha VOC)"), "SARS_CoV_2_BETA" : _("SARS-CoV-2 (Beta VOC)"), "SARS_CoV_2_GAMMA": _("SARS-CoV-2 (Gamma VOC)"), "SARS_CoV_2_DELTA" : _("SARS-CoV-2 (Delta VOC)"), "SARS_CoV_2_OMICRON" :_("SARS-CoV-2 (Omicron VOC)")},
+    'window_type': 'window_sliding',
+    'window_height': 1.,
+    'window_width': 1.,
+    'windows_duration': 15,
+    'windows_frequency': 60,
+    'windows_number': 1,
+    'window_opening_regime': 'windows_open_permanently',
+    'inside_temp' : 20.,
+    'type_name' : "",
+    'name' : _("Person"),
+    'event_mask_wearing_option' : 'mask_off',
+    'event_activity_level' : 'Seated',
+    'event_activity_breathing' : 8,
+    'event_activity_speaking' : 2,
+    'event_activity_shouting' : 2,
+    'start' : '08:30',
+    'end' : '17:30',
+    'mask_ratio' : 0.7,
+    'mask_type' : 'Type_I',
+    'activity' : 'Office_worker' 
+}
+
 _DEFAULTS = {
         'exposed_activity_type': 'Office_worker',
         'exposed_activity_level' : 'Seated',
