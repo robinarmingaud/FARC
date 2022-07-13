@@ -39,9 +39,11 @@ class MultiGenerator:
                 occupants = room.get_occupants(simulation)
                 for person in occupants:
                     person.calculate_data()
-                    room.cumulative_exposure = room.cumulative_exposure + person.virus_dose
+                    if person.infected :
+                        room.cumulative_exposure = room.cumulative_exposure + person.virus_dose*(person.number-1)
+                    else : 
+                        room.cumulative_exposure = room.cumulative_exposure + person.virus_dose*person.number
                         
-
     def calculate_means(self, simulation : multi_room_model.Simulation):
         for person in simulation.people :
             person.calculate_infection_probability()

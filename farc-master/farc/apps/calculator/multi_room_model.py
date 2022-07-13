@@ -282,7 +282,7 @@ class Person(Role):
         return exposed
 
     def calculate_data(self):
-        if not self.infected and self.exposure_model :
+        if (not self.infected or self.number>1) and len(self.exposure_model)>0 :
             total_dose : models._VectorisedFloat = 0
             for model in self.exposure_model :
                 virus_dose = np.sort(model.deposited_exposure())
@@ -293,9 +293,15 @@ class Person(Role):
             self.virus_dose = 0
 
     def calculate_infection_probability(self):
-        if not self.infected and self.exposure_model :
-            self.infection_probability = np.round(np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))/100, 4)
-            self.cumulative_dose = np.round(np.mean(self.cumulative_dose), 2)
+        if len(self.exposure_model) > 0 :
+            if not self.infected :
+                self.infection_probability = np.round(np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*self.number/100, 4)
+                self.cumulative_dose = np.round(np.mean(self.cumulative_dose), 2)
+            elif self.number>1 :
+                self.infection_probability = np.round(np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*(self.number-1)/100,4)
+                self.cumulative_dose = np.round(np.mean(self.cumulative_dose), 2)
+            else : 
+                return 0.
         else :
             return 0.
 
