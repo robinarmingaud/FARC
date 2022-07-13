@@ -44,7 +44,6 @@ class Ventilation:
     windows_number: int = multi_default['windows_number']
     window_opening_regime: str = multi_default['window_opening_regime']
     opening_distance: float = multi_default['opening_distance']
-    event_month: str = multi_default['event_month']
     room_heating_option: int = multi_default['room_heating_option']
     mechanical_ventilation_type: str = multi_default['mechanical_ventilation_type']
     air_supply: float = multi_default['air_supply']
@@ -64,7 +63,7 @@ class Ventilation:
         be *added* to UTC to convert to the form location's timezone.
 
         """
-        month = list(MONTH_NAMES.keys()).index(self.event_month) + 1
+        month = list(MONTH_NAMES.keys()).index(simulation.event_month) + 1
         timezone = farc.data.weather.timezone_at(latitude=simulation.location_latitude, longitude=simulation.location_longitude)
         # We choose the first of the month for the current year.
         date = datetime.datetime(datetime.datetime.now().year, month, 1)
@@ -85,7 +84,7 @@ class Ventilation:
 
         
 
-        month = list(MONTH_NAMES.keys()).index(self.event_month) + 1
+        month = list(MONTH_NAMES.keys()).index(simulation.event_month) + 1
 
         wx_station = self.nearest_weather_station(simulation)
         temp_profile = data.weather.mean_hourly_temperatures(wx_station[0], month)
@@ -367,6 +366,8 @@ class Room(RoomType):
     
 @dataclass
 class Simulation:
+    simulation_name : str = ""
+    event_month: str = multi_default['event_month']
     virus_type : str = multi_default['virus_type']
     location_name: str = multi_default['location_name']
     location_latitude: float = multi_default['location_latitude']

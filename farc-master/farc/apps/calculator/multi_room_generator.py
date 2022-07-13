@@ -72,7 +72,7 @@ class MultiGenerator:
 
 @dataclass
 class FormData:
-    simulation : multi_room_model.Simulation = multi_room_model.Simulation(virus_type='SARS_CoV_2_OMICRON')
+    simulation : multi_room_model.Simulation = multi_room_model.Simulation()
     
     
     @classmethod
@@ -86,7 +86,7 @@ class FormData:
             if isinstance(value, str):
                 form_data[key] = html.escape(value)
 
-        instance = FormData(multi_room_model.Simulation(virus_type=form_data['virus_type'], location_name= form_data['location_name'],
+        instance = FormData(multi_room_model.Simulation(event_month = form_data['event_month'],simulation_name = form_data['simulation_name'] ,virus_type=form_data['virus_type'], location_name= form_data['location_name'],
                                                         location_latitude=float(form_data['location_latitude']),location_longitude=float(form_data['location_longitude'])))
 
         for key, value in form_data.items():
@@ -113,6 +113,7 @@ class FormData:
 
     @classmethod
     def to_dict(cls, form: "FormData", strip_defaults: bool = False) -> dict:
+
         form_dict = {}
         room_list = []
         people_list = []
@@ -177,6 +178,10 @@ class FormData:
                         event_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
                 event_list.append(event_dict)
 
+        for field in dataclasses.fields(form.simulation):
+            if getattr(form.simulation, field.name) != field.default :
+                form_dict[field.name] = getattr(form.simulation, field.name)
+
         form_dict['Room_list'] = room_list
         form_dict['People_list'] = people_list
         form_dict['Event_list'] = event_list
@@ -205,7 +210,6 @@ def build_ventilation_from_form(form_data, index):
                                         windows_number = int(get_form_data_value(form_data, 'windows_number', index)),
                                         window_opening_regime = get_form_data_value(form_data, 'window_opening_regime', index),
                                         opening_distance = float(get_form_data_value(form_data, 'opening_distance', index)),
-                                        event_month = form_data['event_month'],
                                         room_heating_option = int(get_form_data_value(form_data, 'room_heating_option', index)),
                                         mechanical_ventilation_type= get_form_data_value(form_data, 'mechanical_ventilation_type', index),
                                         air_supply= float(get_form_data_value(form_data,'air_supply', index)),
@@ -216,7 +220,7 @@ def build_ventilation_from_form(form_data, index):
 
 def build_room_from_form(form_data, index):
     return multi_room_model.Room(id = index,
-                                 type_name = get_form_data_value(form_data, 'room_name', index),
+                                 type_name = get_form_data_value(form_data, 'type_name', index),
                                  volume= float(get_form_data_value(form_data, 'room_volume', index)),
                                  ventilation= build_ventilation_from_form(form_data, index),
                                  humidity = float(get_form_data_value(form_data, 'humidity', index)),

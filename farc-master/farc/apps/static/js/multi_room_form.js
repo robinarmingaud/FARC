@@ -2,7 +2,7 @@ var js_default = JSON.parse('{"exposed_activity_type": "Office_worker", "exposed
 var js_expiration = JSON.parse('{"Office_worker_breathing": 8, "Office_worker_speaking": 2, "Office_worker_activity_level": "Seated", "Workshop_worker_breathing": 1.5, "Workshop_worker_shouting": 1.5, "Workshop_worker_speaking": 7, "Workshop_worker_activity_level": "Moderate activity", "Meeting_participant_breathing": 8, "Meeting_participant_shouting": 0.5, "Meeting_participant_speaking": 1.5, "Meeting_participant_activity_level": "Seated", "Meeting_leader_breathing": 6, "Meeting_leader_shouting": 1, "Meeting_leader_speaking": 3, "Meeting_leader_activity_level": "Standing", "Hospital_patient_breathing": 9.5, "Hospital_patient_speaking": 0.5, "Hospital_patient_activity_level": "Seated", "Nurse_working_breathing": 8, "Nurse_working_speaking": 2, "Nurse_working_activity_level": "Light activity", "Physician_working_breathing": 5, "Physician_working_speaking": 5, "Physician_working_activity_level": "Standing", "Student_sitting_breathing": 9.5, "Student_sitting_speaking": 0.5, "Student_sitting_activity_level": "Seated", "Professor_teaching_breathing": 2, "Professor_teaching_shouting": 2, "Professor_teaching_speaking": 6, "Professor_teaching_activity_level": "Standing", "Professor_conferencing_breathing": 2, "Professor_conferencing_shouting": 6, "Professor_conferencing_speaking": 2, "Professor_conferencing_activity_level": "Light activity", "Concert_musician_soft_music_breathing": 9.5, "Concert_musician_soft_music_speaking": 0.5, "Concert_musician_soft_music_activity_level": "Standing", "Concert_musician_rock_breathing": 8, "Concert_musician_rock_shouting": 1, "Concert_musician_rock_speaking": 1, "Concert_musician_rock_activity_level": "Moderate activity", "Concert_singer_rock_breathing": 2, "Concert_singer_rock_shouting": 7, "Concert_singer_rock_speaking": 1, "Concert_singer_rock_activity_level": "Moderate activity", "Concert_spectator_standing_breathing": 8, "Concert_spectator_standing_shouting": 1, "Concert_spectator_standing_speaking": 1, "Concert_spectator_standing_activity_level": "Light activity", "Concert_spectator_sitting_breathing": 9, "Concert_spectator_sitting_shouting": 0.5, "Concert_spectator_sitting_speaking": 0.5, "Concert_spectator_sitting_activity_level": "Seated", "Museum_visitor_breathing": 9, "Museum_visitor_speaking": 1, "Museum_visitor_activity_level": "Standing", "Theater_spectator_breathing": 9, "Theater_spectator_shouting": 0.5, "Theater_spectator_speaking": 0.5, "Theater_spectator_activity_level": "Seated", "Theater_actor_breathing": 7, "Theater_actor_shouting": 3, "Theater_actor_activity_level": "Moderate activity", "Conferencer_breathing": 2, "Conferencer_shouting": 6, "Conferencer_speaking": 2, "Conferencer_activity_level": "Light activity", "Conference_attendee_breathing": 9.5, "Conference_attendee_speaking": 0.5, "Conference_attendee_activity_level": "Seated", "Guest_standing_breathing": 6, "Guest_standing_shouting": 2, "Guest_standing_speaking": 2, "Guest_standing_activity_level": "Standing", "Guest_sitting_breathing": 6, "Guest_sitting_speaking": 4, "Guest_sitting_activity_level": "Seated", "Server_breathing": 8, "Server_speaking": 2, "Server_activity_level": "Light activity", "Barrista_breathing": 6, "Barrista_shouting": 2, "Barrista_speaking": 2, "Barrista_activity_level": "Standing", "Nightclub_dancing_breathing": 9, "Nightclub_dancing_shouting": 1, "Nightclub_dancing_activity_level": "Moderate activity", "Nightclub_sitting_breathing": 8, "Nightclub_sitting_shouting": 2, "Nightclub_sitting_activity_level": "Seated", "Customer_standing_breathing": 9, "Customer_standing_speaking": 1, "Customer_standing_activity_level": "Standing", "Cashier_sitting_breathing": 5, "Cashier_sitting_speaking": 5, "Cashier_sitting_activity_level": "Seated", "Vendor_standing_breathing": 5, "Vendor_standing_speaking": 5, "Vendor_standing_activity_level": "Standing", "Musculation_breathing": 9, "Musculation_speaking": 1, "Musculation_activity_level": "Heavy exercise", "Floor_gymnastics_breathing": 8, "Floor_gymnastics_shouting": 1, "Floor_gymnastics_speaking": 1, "Floor_gymnastics_activity_level": "Moderate activity", "Team_competition_breathing": 8, "Team_competition_shouting": 1.5, "Team_competition_speaking": 0.5, "Team_competition_activity_level": "Heavy exercise", "Trip_in_elevator_breathing": 9, "Trip_in_elevator_speaking": 1, "Trip_in_elevator_activity_level": "Standing", "Watch_seated_breathing": 60, "Watch_seated_shouting": 10, "Watch_seated_speaking": 30, "Watch_seated_activity_level": "Seated", "Watch_standing_breathing": 50, "Watch_standing_shouting": 20, "Watch_standing_speaking": 30, "Watch_standing_activity_level": "Light activity"}');
 var RoomId = 0
 
-function addRoom() {
+function addRoom(room={}) {
   /*Clone the hidden room form*/ 
     const clone = $("#Room_to_clone").clone(true)
 
@@ -19,6 +19,9 @@ function addRoom() {
           $(this).attr("id", $(this).attr("id") + "[" + RoomId + "]" )
         }
         if (this.name){
+          if (this.name in room){
+            $(this).attr("value", room[this.name])
+          }
           $(this).attr("name", $(this).attr("name") + "[" + RoomId + "]" )
         }
         if ($(this).attr("for")){
@@ -262,10 +265,6 @@ function deleteEvent(e){
 
 /* -------On Load------- */
 $(document).ready(function () {
-  //Add first room
-  addRoom()
-  //Add first person
-  addPerson()
   //Remove delete buttons if only 1 room/person
   disable_room_delete()
   disable_people_delete()
@@ -346,10 +345,9 @@ $(document).ready(function () {
   url.searchParams.forEach((value, name) => {
           string_value = value.replace(/'/g, '"')
           var elemObj = document.getElementById(name);
-          console.log(string_value)
           if (name == 'Room_list') {
             for (const room of JSON.parse(string_value)) {
-              addRoom(RoomId);
+              addRoom(room);
             }
           }
           
@@ -359,11 +357,31 @@ $(document).ready(function () {
             }
           }
 
-          else{
+          else if (name == 'Event_list') {
             for (const event of JSON.parse(string_value)) {
               saveEvent(EventId);
             }
           }
+          else if (name == 'simulation_name') {
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'virus_type'){
+            $("option[value="+value+"]").attr('selected','selected')
+          }
+          else if (name == 'location_name'){
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'location_latitude'){
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'location_longitude'){
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'event_month'){
+            $("option[value="+value+"]").attr('selected','selected')
+          }
+
+          
 
     
     })

@@ -112,6 +112,7 @@
                   <input type="text"
                          class="col-sm-12 form-control"
                          name="simulation_name"
+                         id="simulation_name"
                          placeholder="{{ _(default.simulation_name)}}">
                 </div>
                 <hr width="80%">
@@ -125,10 +126,10 @@
                     <label class="col-form-label">{{ _("Variant:")}}</label>
                   </div>
                   <div class="col-sm-7">
-                    <select id="Variant" name="virus_type" class="form-control">
+                    <select id="virus_type" name="virus_type" class="form-control">
                       {% for key in default.viruses.keys()%}
                         {% if key != default.virus_type %}
-                          <option value={{ key }}>{{ _(default.viruses[key])}}
+                          <option value="{{ key }}">{{ _(default.viruses[key])}}
                           </option>
                         {% endif %}
                       {% endfor %}
@@ -178,9 +179,9 @@
                         This block allows us to have hidden input values which are retained during forward/back navigation, as per
                         https://stackoverflow.com/a/6384276/741316
                         -->
-                  <input type="text" name="location_name" value="{{ default.location_name }}">
-                  <input type="text" name="location_latitude" value={{ default.location_latitude }}>
-                  <input type="text" name="location_longitude" value={{ default.location_longitude }}>
+                  <input type="text" id="location_name" name="location_name" value="{{ default.location_name }}">
+                  <input type="text" id="location_latitude" name="location_latitude" value="{{ default.location_latitude }}">
+                  <input type="text" id="location_longitude" name="location_longitude" value="{{ default.location_longitude }}">
                 </div>
               </div>
             </div>
@@ -200,13 +201,13 @@
                 <br>
                 <div class="form-group row">
                 <div class = "col-sm-6">
-                    <label for="room_name" class="col-form-label">{{ _("Room name:")}}</label>
+                    <label for="type_name" class="col-form-label">{{ _("Room name:")}}</label>
                     </div>
                     <div class="col-sm-6 ">
                   <input type="text"
-                         id="room_name"
+                         id="type_name"
                          class="form-control"
-                         name="room_name"
+                         name="type_name"
                          placeholder="{{ _(default.room_number)}}">
                          </div>
                 </div>
@@ -574,14 +575,14 @@
                   <br>
                   <div class="form-group row">
                     <div class="split col-sm-12">
-                      <label for="name">
+                      <label for="person_name">
                         {{ _("Name :")}}
                       </label>
                       <input type="text"
                              step="0.1"
                              id="person_name"
                              class="form-control col-sm-7"
-                             value="{{ default.activity }}"
+                             value="{{ default.name }}"
                              name="person_name">
                       <label for="number">
                         {{ _("Number:")}}
