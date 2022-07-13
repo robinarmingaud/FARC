@@ -333,7 +333,7 @@ class MultiReport(BaseRequestHandler):
             try:
                 form = multi_room_generator.FormData.from_dict(requested_model_config)
                 simulation = form.simulation
-                print(multi_room_generator.generate_permalink(base_url, "/calculator/multi_room",form))
+                print(multi_room_generator.generate_permalink(base_url, self.settings['multi_calculator_prefix'] ,form))
             except Exception as err:
                 if self.settings.get("debug", False):
                     import traceback
@@ -422,10 +422,10 @@ class CalculatorForm(BaseRequestHandler):
 
 
 class CompressedCalculatorFormInputs(BaseRequestHandler):
+    def initialize(self, prefix) -> None:
+        self.prefix = prefix
+        
     def get(self, compressed_args: str):
-        if not self.current_user.is_authenticated() :
-            self.redirect('https://www.flow-r.fr/')
-        else :
             language = self.get_cookie('language') or 'null'
             if language == "null" : 
                 template_environment = self.settings["template_environment"]
@@ -443,7 +443,7 @@ class CompressedCalculatorFormInputs(BaseRequestHandler):
             except Exception as err:  # noqa
                 self.set_status(400)
                 return self.finish(_("Invalid calculator data: it seems incomplete. Was there an error copying & pasting the URL?"))
-            self.redirect(f'{self.settings["calculator_prefix"]}?{args}')
+            self.redirect(f'{self.prefix}?{args}')
 
 
 class ReadmeHandler(BaseRequestHandler):
@@ -472,13 +472,15 @@ class ReadmeHandler(BaseRequestHandler):
 def make_app(
         debug: bool = False,
         calculator_prefix: str = '/calculator',
+        multi_calculator_prefix : str = '/calculator/multi_room',
         theme_dir: typing.Optional[Path] = None,
 ) -> Application:
     static_dir = Path(__file__).absolute().parent.parent / 'static'
     calculator_static_dir = Path(__file__).absolute().parent / 'static'
     urls: typing.Any = [
         (r'/?', LandingPage),
-        (r'/_c/(.*)', CompressedCalculatorFormInputs),
+        (r'/_c/(.*)', CompressedCalculatorFormInputs, {'prefix' : calculator_prefix}),
+        (r'/_m/(.*)', CompressedCalculatorFormInputs, {'prefix' : multi_calculator_prefix}),
         (r'/about', AboutPage),
         (r'/static/(.*)', StaticFileHandler, {'path': static_dir}),
         (calculator_prefix + r'/?', CalculatorForm),
@@ -508,6 +510,7 @@ def make_app(
         urls,
         debug=debug,
         calculator_prefix=calculator_prefix,
+        multi_calculator_prefix = multi_calculator_prefix,
         template_environment=template_environment,
         default_handler_class=Missing404Handler,
         report_generator=ReportGenerator(loader, calculator_prefix),

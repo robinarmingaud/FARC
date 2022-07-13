@@ -146,8 +146,10 @@ class FormData:
             for attr, value in person_dict.items():
                 if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
                     person_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
-
-            del(person_dict['schedule'])
+            try :
+                del(person_dict['schedule'])
+            except :
+                pass
             
             people_list.append(person_dict)
 
@@ -263,7 +265,7 @@ def generate_permalink(base_url, calculator_prefix, form: FormData):
     # Then zlib compress + base64 encode the string. To be inverted by the
     # /_c/ endpoint.
     compressed_args = base64.b64encode(zlib.compress(args.encode())).decode()
-    qr_url = f"{base_url}/_c/{compressed_args}"
+    qr_url = f"{base_url}/_m/{compressed_args}"
     url = f"{base_url}{calculator_prefix}?{args}"
 
     return {
