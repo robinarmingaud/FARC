@@ -347,10 +347,7 @@ class MultiReport(BaseRequestHandler):
             MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
             executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
             report_task = executor.submit(
-                MultiReport.calculate_simulation_data, executor_factory=functools.partial(
-                    concurrent.futures.ThreadPoolExecutor,
-                    self.settings['report_generation_parallelism'],
-            )
+                MultiReport.calculate_simulation_data
             )
             report = await asyncio.wrap_future(report_task)
             template = template_environment.get_template(

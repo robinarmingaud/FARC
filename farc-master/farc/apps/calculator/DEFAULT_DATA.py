@@ -54,7 +54,7 @@ _MULTI_DEFAULTS = {
     "windows_number": 1,
     "window_opening_regime": "windows_open_permanently",
     "inside_temp" : 20.,
-    "type_name" : "",
+    "type_name" : _("Room"),
     "name" : _("Person"),
     "event_mask_wearing_option" : "mask_off",
     "event_activity_level" : "Seated",

@@ -20,7 +20,12 @@ function addRoom(room={}) {
         }
         if (this.name){
           if (this.name in room){
-            $(this).attr("value", room[this.name])
+            if ($(this).is(':radio')){
+              clone.find(':radio[value='+room[this.name]+'][name^='+this.name+']').attr('checked','checked')
+            }
+            else {
+              $(this).attr('value',room[this.name])
+            }
           }
           $(this).attr("name", $(this).attr("name") + "[" + RoomId + "]" )
         }
@@ -98,7 +103,7 @@ var EventId = 0
 var PersonId = 0
 var Calendars = [] 
 
-function addPerson() {
+function addPerson(person={}) {
     /*Clone the hidden person form*/ 
     const clone = $("#Person_to_clone").clone(true)
 
@@ -115,6 +120,9 @@ function addPerson() {
             $(this).attr("id", $(this).attr("id") + "[" + PersonId + "]" )
           }
           if (this.name){
+            if (this.name in person){
+                $(this).attr('value',person[this.name])
+            }
             $(this).attr("name", $(this).attr("name") + "[" + PersonId + "]" )
           }
           if ($(this).attr("for")){
@@ -163,8 +171,7 @@ function addPerson() {
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
           <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
           </svg>
-          </button>
-          <div>Room `+ $('#event_location\\[' + i + '\\] option:selected').val() +`</div>`},
+          </button>`},
       });
 
       Calendars[PersonId] = calendar
@@ -176,12 +183,88 @@ function addPerson() {
       calendar.render();
   }
 
-function saveEvent(i){
+function saveEvent(i, event={}){
     var events = Calendars[i].getEvents()
     var start = new Date();
     var end = new Date();
-    start_hour = document.getElementById('event_start['+i+']').value.split(':');
-    end_hour = document.getElementById('event_finish['+i+']').value.split(':');
+
+
+
+    if ('start' in event){
+      start_hour = event['start'].split(':')
+      event_start = event['start']
+    }
+    else {
+      start_hour = document.getElementById('event_start['+i+']').value.split(':');
+      event_start = $('#event_start\\['+i+'\\]').val();
+    }
+    if ('end' in event){
+      end_hour = event['end'].split(':')
+      event_finish = event['end']
+    }
+    else {
+      end_hour = document.getElementById('event_finish['+i+']').value.split(':');
+      event_finish = $('#event_finish\\['+i+'\\]').val();
+    }
+    if ('event_mask_wearing_option' in event) {
+      event_mask_wearing_option = event['event_mask_wearing_option']
+    }
+    else {
+      event_mask_wearing_option = $('input[name="mask_wearing_option_form\\['+i+'\\]"]:checked').val()
+    }
+    if ('event_activity_level' in event){
+      event_activity_level = event['event_activity_level']
+    }
+    else {
+      event_activity_level = $('#event_activity_level\\['+i+'\\]').val()
+    }
+    if ('event_activity_breathing' in event){
+      event_activity_breathing = event['event_activity_breathing']
+    }
+    else {
+      event_activity_breathing = $('#event_activity_breathing\\['+i+'\\]').val()
+    }
+    if ('event_activity_speaking' in event){
+      event_activity_speaking = event['event_activity_speaking']
+    }
+    else {
+      event_activity_speaking = $('#event_activity_speaking\\['+i+'\\]').val()
+    }
+    if ('event_activity_shouting' in event){
+      event_activity_shouting = event['event_activity_shouting']
+    }
+    else {
+      event_activity_shouting = $('#event_activity_shouting\\['+i+'\\]').val()
+    }
+    if('location' in event){
+      event_location = event['location']
+    }
+    else {
+      event_location = $('#event_location\\['+i+'\\]').val()
+    }
+    if('mask_ratio' in event){
+      event_mask_ratio = event['mask_ratio']
+    }
+    else {
+      event_mask_ratio = $('#event_mask_wear_ratio\\['+i+'\\]').val()
+    }
+    if ('mask_type' in event){
+      event_mask_type = event['mask_type']
+    }
+    else {
+      event_mask_type = $('input[name="mask_type_option_form\\['+i+'\\]"]:checked').val()
+    }
+    if ('activity' in event){
+      event_activity = event['activity']
+    }
+    else {
+      event_activity = $('#event_activity_type\\['+i+'\\]').val()
+    }
+
+
+
+
+
     start.setHours(start_hour[0], start_hour[1]);
     start.setSeconds(0)
     start.setMilliseconds(0)
@@ -205,29 +288,30 @@ function saveEvent(i){
     $("#event_start\\["+i+"\\]").removeClass("red_border")
     $("#event_finish\\["+i+"\\]").removeClass("red_border")
 
+
     Calendars[i].addEvent({id: ""+EventId,
-    title: $('#event_activity_type\\[' + i + '\\] option:selected').text(),
+    title: $("option[value='"+event_activity+"']").first().text() + $("#type_name\\["+event_location+"\\]").val() + " " +event_location,
     start : start,
     end : end,
     allDay: false,
     eventDisplay: 'list-item',
     description: "Test"}
     );
-    //Keep event values in memory
+    //Keep event values in hidden fields
     $('#Person_' + i).append(`
     <div id="Event_`+EventId+`">
-    <input type="hidden" name="event_start[`+EventId+`]" value="`+$('#event_start\\['+i+'\\]').val()+`">
+    <input type="hidden" name="event_start[`+EventId+`]" value="`+event_start+`">
     <input type="hidden" name="event_person[`+EventId+`]" value="`+i+`">
-    <input type="hidden" name="event_finish[`+EventId+`]" value="`+$('#event_finish\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_location[`+EventId+`]" value="`+$('#event_location\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+$('#event_mask_wear_ratio\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+$('input[name="mask_type_option_form\\['+i+'\\]"]:checked').val()+`">
-    <input type="hidden" name="event_activity[`+EventId+`]" value="`+$('#event_activity_type\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_activity_breathing[`+EventId+`]" value="`+$('#event_activity_breathing\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_activity_speaking[`+EventId+`]" value="`+$('#event_activity_speaking\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_activity_shouting[`+EventId+`]" value="`+$('#event_activity_shouting\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_activity_level[`+EventId+`]" value="`+$('#event_activity_level\\['+i+'\\]').val()+`">
-    <input type="hidden" name="event_mask_wearing_option[`+EventId+`]" value="`+$('input[name="mask_wearing_option_form\\['+i+'\\]"]:checked').val()+`">
+    <input type="hidden" name="event_finish[`+EventId+`]" value="`+event_finish+`">
+    <input type="hidden" name="event_location[`+EventId+`]" value="`+event_location+`">
+    <input type="hidden" name="event_mask_ratio[`+EventId+`]" value="`+event_mask_ratio+`">
+    <input type="hidden" name="event_mask_type[`+EventId+`]" value="`+event_mask_type+`">
+    <input type="hidden" name="event_activity[`+EventId+`]" value="`+event_activity+`">
+    <input type="hidden" name="event_activity_breathing[`+EventId+`]" value="`+event_activity_breathing+`">
+    <input type="hidden" name="event_activity_speaking[`+EventId+`]" value="`+event_activity_speaking+`">
+    <input type="hidden" name="event_activity_shouting[`+EventId+`]" value="`+event_activity_shouting+`">
+    <input type="hidden" name="event_activity_level[`+EventId+`]" value="`+event_activity_level+`">
+    <input type="hidden" name="event_mask_wearing_option[`+EventId+`]" value="`+event_mask_wearing_option+`">
     </div>`)
 
     $("#eventModal\\["+i+"\\]").modal('hide')
@@ -345,13 +429,13 @@ $(document).ready(function () {
           
           else if (name == 'People_list'){
             for (const person of JSON.parse(string_value)) {
-              addPerson();
+              addPerson(person);
             }
           }
 
           else if (name == 'Event_list') {
             for (const event of JSON.parse(string_value)) {
-              saveEvent(EventId);
+              saveEvent(event['event_person'], event);
             }
           }
           else if (name == 'simulation_name') {
@@ -373,8 +457,13 @@ $(document).ready(function () {
             $("option[value="+value+"]").attr('selected','selected')
           }
 
-          
-
+    if($("div[id^=Room_]").length<3){
+      addRoom()
+    }     
+    if($("div[id^=Person_]").length<2){
+      addPerson()
+    }   
+    
     
     })
       $("#location_select").select2({

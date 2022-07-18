@@ -41,29 +41,26 @@ class MultiGenerator:
                 for person in occupants:
                     person.calculate_data()
                     if person.infected :
-                        room.cumulative_exposure = room.cumulative_exposure + person.virus_dose*(person.number-1)
+                        room.cumulative_exposure = room.cumulative_exposure + person.virus_dose*(person.person_number-1)
                     else : 
-                        room.cumulative_exposure = room.cumulative_exposure + person.virus_dose*person.number
+                        room.cumulative_exposure = room.cumulative_exposure + person.virus_dose*person.person_number
                         
     def calculate_means(self, simulation : multi_room_model.Simulation):
         for person in simulation.people :
             person.calculate_infection_probability()
-            person.clear_data()
         for room in simulation.rooms :
             room.calculate_cumulative_dose()
-            room.clear_data()
 
 
 
-    def calculate_simulation_data(self, executor_factory):
+    def calculate_simulation_data(self):
         times = self.interesting_times()
         for person in self.simulation.people:
             person.infected = True
             simulation_copy = deepcopy(self.simulation)
             infected = simulation_copy.get_infected()
-            with executor_factory() as executor :
-                for time1, time2 in zip(times[:-1], times[1:]):
-                    executor.submit(self.calculate_event, time1, time2, simulation_copy, infected)
+            for time1, time2 in zip(times[:-1], times[1:]):
+                self.calculate_event(time1, time2, simulation_copy, infected)
             person.infected = False
             self.calculate_means(simulation_copy)
             self.report.simulations = np.append(self.report.simulations, simulation_copy)
@@ -151,7 +148,7 @@ class FormData:
 
             for event in person.schedule.events :
                 event_dict = {}
-                event_dict['Person'] = person.id
+                event_dict['event_person'] = person.id
                 for field in dataclasses.fields(event):
                     if field.name == 'location' :
                         location = getattr(event, field.name)
@@ -216,14 +213,14 @@ def build_ventilation_from_form(form_data, index):
 def build_room_from_form(form_data, index):
     return multi_room_model.Room(id = index,
                                  type_name = get_form_data_value(form_data, 'type_name', index),
-                                 volume= float(get_form_data_value(form_data, 'room_volume', index)),
+                                 room_volume= float(get_form_data_value(form_data, 'room_volume', index)),
                                  ventilation= build_ventilation_from_form(form_data, index),
                                  humidity = float(get_form_data_value(form_data, 'humidity', index)),
                                 )
 
 def build_person_from_form(form_data, index):
-    return multi_room_model.Person(name = get_form_data_value(form_data, 'person_name', index),
-                                number= float(get_form_data_value(form_data, 'person_number', index)),
+    return multi_room_model.Person(person_name = get_form_data_value(form_data, 'person_name', index),
+                                person_number= float(get_form_data_value(form_data, 'person_number', index)),
                                 id = index,
                                 schedule=multi_room_model.Schedule())
             
@@ -259,7 +256,6 @@ def generate_permalink(base_url, calculator_prefix, form: FormData):
     # Generate the calculator URL arguments that would be needed to re-create this
     # form.
     args = urllib.parse.urlencode(form_dict)
-    print(args)
 
     # Then zlib compress + base64 encode the string. To be inverted by the
     # /_c/ endpoint.
