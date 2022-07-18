@@ -455,17 +455,14 @@ $(document).ready(function () {
           }
           else if (name == 'event_month'){
             $("option[value="+value+"]").attr('selected','selected')
-          }
-
+          }    
+    })
     if($("div[id^=Room_]").length<3){
       addRoom()
     }     
     if($("div[id^=Person_]").length<2){
       addPerson()
-    }   
-    
-    
-    })
+    } 
       $("#location_select").select2({
         ajax: {
           // Docs for the geocoding service at:
