@@ -60,7 +60,7 @@ _MULTI_DEFAULTS = {
     "event_activity_level" : "Seated",
     "event_activity_breathing" : 8,
     "event_activity_speaking" : 2,
-    "event_activity_shouting" : 2,
+    "event_activity_shouting" : 0,
     "start" : "08:30",
     "end" : "17:30",
     "mask_ratio" : 0.7,

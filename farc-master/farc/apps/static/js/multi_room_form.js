@@ -53,14 +53,6 @@ function addRoom(room={}) {
       var biov_option = js_default['biov_option']
       $('.biov_option[value='+biov_option+']').attr('checked', 'checked');
 
-      //Set humidity value according to heating option
-
-      if($("#heating_no\\["+i+"\\]").is(':checked')){
-          $("#humidity").val(0.5)
-        }
-      if($("#heating_yes\\["+i+"\\]").is(':checked')){
-          $("#humidity\\["+i+"\\]").val(0.3)
-        }
       
       $("#heating_no\\["+i+"\\]").change(function() {
           if(this.checked) {

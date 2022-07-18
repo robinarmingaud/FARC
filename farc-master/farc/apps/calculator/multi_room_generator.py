@@ -125,10 +125,10 @@ class FormData:
                 if field.name == 'ventilation' :
                     ventilation = getattr(room, field.name)
                     for element in dataclasses.fields(ventilation):
-                        if getattr(ventilation, element.name) != element.default :
+                        if getattr(ventilation, element.name) != element.default :                            
                             room_dict[element.name] = getattr(ventilation, element.name)
                 else :   
-                    if getattr(room, field.name) != field.default :
+                    if getattr(room, field.name) != field.default :                     
                         room_dict[field.name] = getattr(room, field.name)
 
             for attr, value in room_dict.items():
@@ -139,7 +139,7 @@ class FormData:
         for person in form.simulation.people :
             person_dict = {}
             for field in dataclasses.fields(person):
-                if getattr(person, field.name) != field.default :
+                if getattr(person, field.name) != field.default and field.name != 'schedule':
                     person_dict[field.name] = getattr(person, field.name)
 
             
@@ -147,11 +147,6 @@ class FormData:
             for attr, value in person_dict.items():
                 if attr in _CAST_RULES_NATIVE_TO_FORM_ARG:
                     person_dict[attr] = _CAST_RULES_NATIVE_TO_FORM_ARG[attr](value)
-            try :
-                del(person_dict['schedule'])
-            except :
-                pass
-            
             people_list.append(person_dict)
 
             for event in person.schedule.events :
@@ -179,7 +174,7 @@ class FormData:
                 event_list.append(event_dict)
 
         for field in dataclasses.fields(form.simulation):
-            if getattr(form.simulation, field.name) != field.default :
+            if getattr(form.simulation, field.name) != field.default and field.name != 'people' and field.name != 'rooms' :
                 form_dict[field.name] = getattr(form.simulation, field.name)
 
         form_dict['Room_list'] = room_list

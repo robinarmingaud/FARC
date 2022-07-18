@@ -181,8 +181,8 @@ class Event:
     event_activity_breathing : float = multi_default['event_activity_breathing']
     event_activity_speaking : float = multi_default['event_activity_speaking']
     event_activity_shouting : float = multi_default['event_activity_shouting']
-    start : int = time_string_to_minutes(multi_default['start'])
-    end : int = time_string_to_minutes(multi_default['end'])
+    start : float = time_string_to_minutes(multi_default['start'])/60
+    end : float = time_string_to_minutes(multi_default['end'])/60
     location : RoomType = RoomType()
     mask_ratio : float = multi_default['mask_ratio']
     mask_type : str = multi_default['mask_type']
