@@ -47,6 +47,7 @@ class Ventilation:
     room_heating_option: int = multi_default['room_heating_option']
     mechanical_ventilation_type: str = multi_default['mechanical_ventilation_type']
     air_supply: float = multi_default['air_supply']
+    air_changes: float = multi_default['air_changes'],
     biov_amount: float = multi_default['biov_amount']
     biov_option: int = multi_default['biov_option']
 

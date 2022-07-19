@@ -17,6 +17,7 @@
 
 {% block main %}
 <div class="container container--padding">
+<div><a href="{{link.shortened}}">{{_("Link")}}</a></div>
 {% for simulation in data.report.simulations%}
     {% set expected_cases = namespace(total_cases=0) %}
     {% for person in simulation.people %}

@@ -204,6 +204,7 @@ def build_ventilation_from_form(form_data, index):
                                         opening_distance = float(get_form_data_value(form_data, 'opening_distance', index)),
                                         room_heating_option = int(get_form_data_value(form_data, 'room_heating_option', index)),
                                         mechanical_ventilation_type= get_form_data_value(form_data, 'mechanical_ventilation_type', index),
+                                        air_changes= float(get_form_data_value(form_data, 'air_changes', index)),
                                         air_supply= float(get_form_data_value(form_data,'air_supply', index)),
                                         biov_amount=float(get_form_data_value(form_data, 'biov_amount', index)),
                                         biov_option=int(get_form_data_value(form_data,'biov_option',index))

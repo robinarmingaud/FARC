@@ -333,7 +333,6 @@ class MultiReport(BaseRequestHandler):
             try:
                 form = multi_room_generator.FormData.from_dict(requested_model_config)
                 simulation = form.simulation
-                print(multi_room_generator.generate_permalink(base_url, self.settings['multi_calculator_prefix'] ,form))
             except Exception as err:
                 if self.settings.get("debug", False):
                     import traceback
@@ -353,6 +352,7 @@ class MultiReport(BaseRequestHandler):
             template = template_environment.get_template(
             "multi_room_report.html.j2")
             report = template.render(
+                link = multi_room_generator.generate_permalink(base_url, self.settings['multi_calculator_prefix'] ,form),
                 user=self.current_user,
                 calculator_prefix=self.settings["calculator_prefix"],
                 calculator_version=__version__,

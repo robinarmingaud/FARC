@@ -240,7 +240,7 @@ function saveEvent(i, event={}){
       event_location = event['location']
     }
     else {
-      event_location = $('#event_location\\['+i+'\\]').val()
+      event_location = $('#event_location\\['+i+'\\]').val().split('-')[0]
     }
     if('mask_ratio' in event){
       event_mask_ratio = event['mask_ratio']
@@ -790,7 +790,7 @@ function on_room_list_change(){
   $(".event_location").each(function(){
     $(this).empty()
     for (let i = 0; i<rooms.length; i++){
-      $(this).append("<option>"+ rooms[i] +"</option>")
+      $(this).append("<option>"+ rooms[i] + "-" + $("#type_name\\["+rooms[i]+"\\]").val() +"</option>")
     }
     
   })
