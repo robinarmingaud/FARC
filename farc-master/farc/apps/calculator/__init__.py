@@ -342,6 +342,8 @@ class MultiReport(BaseRequestHandler):
                 self.finish(json.dumps(response_json))
                 return
 
+            now = datetime.datetime.utcnow().astimezone()
+            time = now.strftime("%Y-%m-%d %H:%M:%S UTC")
             Report = multi_room_model.Report()
             MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
             executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
@@ -357,7 +359,9 @@ class MultiReport(BaseRequestHandler):
                 calculator_prefix=self.settings["calculator_prefix"],
                 calculator_version=__version__,
                 text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-                data = report
+                data = report,
+                form=form,
+                creation_date = time
             )
             self.finish(report)
 

@@ -274,7 +274,9 @@ function saveEvent(i, event={}){
 
     //Validate event
     if (start>=end){
-        return false
+      $("#event_start\\["+i+"\\]").addClass("red_border")
+      $("#event_finish\\["+i+"\\]").addClass("red_border")
+      return false
     }
 
     //Prevent simultaneous events

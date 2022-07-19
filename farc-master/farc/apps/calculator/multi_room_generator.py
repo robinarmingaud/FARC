@@ -48,10 +48,10 @@ class MultiGenerator:
     def calculate_means(self, simulation : multi_room_model.Simulation):
         for person in simulation.people :
             person.calculate_infection_probability()
+            person.clear_data()
         for room in simulation.rooms :
             room.calculate_cumulative_dose()
-
-
+            room.clear_data()
 
     def calculate_simulation_data(self):
         times = self.interesting_times()
@@ -66,6 +66,62 @@ class MultiGenerator:
             self.report.simulations = np.append(self.report.simulations, simulation_copy)
         return self
 
+    def alternative_scenarios(self, mean_rooms, worst_rooms):
+        mean_alternative = MultiGenerator(simulation=deepcopy(self.simulation), report=multi_room_model.Report())
+        worst_alternative = MultiGenerator(simulation=deepcopy(self.simulation), report=multi_room_model.Report())
+
+        #Add flow-r devices in worst rooms
+        for room in mean_rooms.keys() :
+            room_flow_r = mean_alternative.simulation.get_room_by_id(room)
+            room_flow_r.ventilation.biov_option = 1
+            room_flow_r.ventilation.biov_amount = min(500, 5*room_flow_r.room_volume)
+
+        for room in worst_rooms.keys() :
+            room_flow_r = worst_alternative.simulation.get_room_by_id(room)
+            room_flow_r.ventilation.biov_option = 1
+            room_flow_r.ventilation.biov_amount = min(500, 5*room_flow_r.room_volume)
+
+        return {'mean' : mean_alternative.calculate_simulation_data(), 'worst' : worst_alternative.calculate_simulation_data()}
+
+
+
+
+
+
+    def calculate_mean_worst_expected_cases(self):
+        cumulative_cases = 0
+        max_expected_cases = 0
+        for simulation in self.report.simulations :
+            expected_cases = 0
+            for person in simulation.people :
+                expected_cases += person.infection_probability
+            if expected_cases > max_expected_cases :
+                max_expected_cases = expected_cases
+            cumulative_cases += expected_cases
+        return cumulative_cases/self.simulation.people.size, max_expected_cases
+
+    def calculate_room_mean_exposure(self):
+        room_data = {}
+        top_room_number = -min([int((self.simulation.rooms.size)/5) + 1,5])
+        for room in self.simulation.rooms :
+            room_data[room.id] = 0
+        for simulation in self.report.simulations :
+            for room in simulation.rooms :
+                room_data[room.id] += room.cumulative_exposure/self.report.simulations.size
+
+        return {k: v for k, v in sorted(room_data.items(), key=lambda item: item[1])[top_room_number:]}
+
+    def calculate_room_worst_exposure(self) :
+        room_data = {}
+        top_room_number = -min([int((self.simulation.rooms.size)/5) + 1,5])
+        for room in self.simulation.rooms :
+            room_data[room.id] = 0
+        for simulation in self.report.simulations :
+            for room in simulation.rooms :
+                if room.cumulative_exposure > room_data[room.id]:
+                    room_data[room.id] = room.cumulative_exposure
+
+        return {k: v for k, v in sorted(room_data.items(), key=lambda item: item[1])[top_room_number:]}
 
 @dataclass
 class FormData:

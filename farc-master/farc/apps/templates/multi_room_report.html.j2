@@ -1,44 +1,160 @@
-{% extends "layout.html.j2" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1.0">
+        <title>{{_("Report | FARC (Flow-R Airborne Risk Calculator)")}} </title>
+        <link rel="stylesheet" type="text/css" href="/static/css/report.css">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/layout.css">
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="/static/js/report.js" type="application/javascript"></script>
+    </head>
+    <body id="body">
+    {% block report_header %}
+            <div id="report-header-div" class="d-flex flex-row">
+                <img id="report_logo"
+                     src="/static/images/Logo_Flow-R_Couleur.jpg"
+                     class="d-inline-block align-middle mr-3">
+                <div id="reportHeaderTitle" class='align-self-center mr-auto'>
+                    <h2 class="header_text mb-0"> 
+                        <a href="{{ link.link }}">
+                           {{_("REPORT")}} 
+                        </a>
+                    </h1>
+                    <p class="mb-0" id="report_version">
+                      {{_("Created")}} {{ creation_date }} {{_("using FARC")}} v{{ calculator_version }}
+                    </p>
+                </div>
+                <button type="button"
+                        class="btn btn-outline-dark align-self-center"
+                        id="download-pdf"
+                        onclick="print()">
+                  {{_("Print Report")}}
+                </button>
+                <a href="{{ link.shortened }}"
+                   id="pdf_qrcode_aref"
+                   class="align-self-center invisible mr-0">
+                    <div id="pdf_qrcode"></div>
+                </a>
+            </div>
+        {% endblock report_header %}
 
-{% set DEBUG=False %}
-{% set active_page="calculator/" %}
 
-{% block extra_headers %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/form.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"/>
-{% endblock extra_headers %}
+    {% block main %}
+        <div class="tabs-div">
+            <ul class="nav nav-tabs" role="tablist" id="tablistResults">
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       id="results-tab"
+                       data-toggle="tab"
+                       href="#results"
+                       role="tab"
+                       aria-controls="results"
+                       aria-selected="true">{{_("Results")}} </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       id="data-tab"
+                       data-toggle="tab"
+                       href="#data"
+                       role="tab"
+                       aria-controls="data"
+                       aria-selected="false">{{_("Input Data")}} </a>
+                </li>
+            </ul>
+            <div class="tab-content" id="tabContentResults">
+                <div class="tab-pane show active"
+                     id="results"
+                     role="tabpanel"
+                     aria-labelledby="results-tab">
+                    {% block report_results %}
+                        <div class="card bg-light mb-3" id="results-div">
+                            <div class="card-header">
+                                <strong>{{_("Results")}}</strong>
+                                <button class="icon_button p-0 float-right"
+                                        data-toggle="collapse"
+                                        href="#collapseResults"
+                                        role="button"
+                                        aria-expanded="true"
+                                        aria-controls="collapseResults">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="16"
+                                         height="16"
+                                         fill="currentColor"
+                                         class="bi bi-chevron-expand"
+                                         viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="collapse show" id="collapseResults">
+                            {% for simulation in data.report.simulations%}
+                                {% set expected_cases = namespace(total_cases=0) %}
+                                {% for person in simulation.people %}
+                                    {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability %}
+                                {% endfor %}
+                                {% set infected = simulation.get_infected() %}
+                                <div class="m-4">
+                                <h5>{{infected.name}} {{infected.id}} infected</h5>
+                                <div class="split">
+                                <div>
+                                <div> Expected cases : {{ expected_cases.total_cases }}</div>
+                                </div>
+                                <div>
+                                {% for room in simulation.rooms %}
+                                    <div>Room {{room.id}} :</div><br>
+                                    <div> Total virus exposure : {{ room.cumulative_exposure }}</div>
+                                    <br>
+                                {% endfor %}
+                                </div>
+                                </div>
+                                <br>
+                                <hr width="95%">
+                                </div>
+                            {% endfor%}
+                            </div>
+                {% endblock report_results%}
 
-{% block body_scripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-{% endblock body_scripts %}
 
 
-{% block main %}
-<div class="container container--padding">
-<div><a href="{{link.shortened}}">{{_("Link")}}</a></div>
-{% for simulation in data.report.simulations%}
-    {% set expected_cases = namespace(total_cases=0) %}
-    {% for person in simulation.people %}
-        {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability %}
-    {% endfor %}
-    {% set infected = simulation.get_infected() %}
-    <h5>{{infected.name}} {{infected.id}} infected</h5>
-    <div class="split">
-    <div>
-    <div> Expected cases : {{ expected_cases.total_cases }}</div>
-    </div>
-    <div>
-    {% for room in simulation.rooms %}
-        <div>Room {{room.id}} :</div><br>
-        <div> Total virus exposure : {{ room.cumulative_exposure }}</div>
-        <br>
-    {% endfor %}
-    </div>
-    </div>
-    <br>
-    <hr width="95%">
-{% endfor%}
+
+
+
+
+<div>
+    <a href="{{ link.shortened }}" id="qrLink">
+        <div id="qrcode">
+        </div>
+    </a>
 </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+	//Enable tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+
+    new QRCode(document.getElementById("qrcode"), {
+        text: "{{link.shortened }}",
+        width: 330,
+        height: 330,
+        correctLevel : QRCode.CorrectLevel.L
+    });
+    new QRCode(document.getElementById("pdf_qrcode"), {
+        text: "{{link.shortened }}",
+        width: 133,
+        height: 133,
+        correctLevel : QRCode.CorrectLevel.L
+    });
+</script>
 {% endblock main %}

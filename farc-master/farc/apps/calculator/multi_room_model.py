@@ -352,6 +352,7 @@ class Room(RoomType):
                 evaporation_factor=0.3,
             ))
         for person in self.get_occupants(simulation) :
+            person.clear_data()
             if person.infected and person.person_number>1 : 
                 exposed_population = person.exposed_population(time1, time2, person.person_number-1)
                 for model in self.concentration_models :
@@ -379,6 +380,11 @@ class Simulation:
     location_longitude: float = multi_default['location_longitude']
     rooms: np.ndarray = np.array([])
     people: np.ndarray = np.array([])
+
+    def get_room_by_id(self, id: int):
+        for room in self.rooms :
+            if room.id == id :
+                return room
 
     def get_room_id(self, room : Room):
         i=0
