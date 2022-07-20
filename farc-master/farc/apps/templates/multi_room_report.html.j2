@@ -95,6 +95,322 @@
                             </div>
                             
                             <div class="collapse show" id="collapseResults">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <div class="align-self-center">
+                                            <div class="d-flex">
+                                                <div class="split">
+                                                    <div class="col">
+                                                            <div id="DivProbabilityOfInfection">
+                                                                    <b>{{_("Average expected new cases if one person is contaminated Rmean :")}} </b>
+                                                                        </div>
+                                                                        <div id = "divWarning" class="d-flex">
+                                                                                {% block warning_animation_mean %}
+                                                                                    {% if (mean_expected_cases >= 1) %}
+                                                                                        {% set warning_color= 'bg-danger' %}
+                                                                                    {% elif (0.5 <= mean_expected_cases <= 1) %}
+                                                                                        {% set warning_color = 'bg-warning' %}
+                                                                                    {% else %}
+                                                                                        {% set warning_color = 'bg-success' %}
+                                                                                    {% endif %}
+                                                                                    <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
+                                                                                        <b>{{ mean_expected_cases | round(2)}}</b>
+                                                                                        <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                                                                        <span class="ripple {{ warning_color }}"></span>
+                                                                                        <span class="ripple {{ warning_color }}"></span>
+                                                                                        <span class="ripple {{ warning_color }}"></span>
+                                                                                    </div>
+                                                                                {% endblock warning_animation_mean %}
+                                                                            </div>
+                                                                            <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Rooms with the highest transmitted virus dose average :")}} </b>
+                                                                            </div>
+                                                                            <br>
+                                                                            <table class="table table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th scope="col">{{_("Room")}}</th>
+                                                                                    <th scope="col">{{_("Infectious virus dose")}}</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                {% for key,item in mean_rooms.items() %}
+                                                                                    {% if item <= 10 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "success_bkg">{{key}}</td>
+                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% elif item > 10 and item <= 25 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "warning_bkg">{{key}}</td>
+                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% else %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "danger_bkg">{{key}}</td>
+                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% endif%}
+                                                                                {% endfor %}
+                                                                                </tbody>
+                                                                                </table>
+                                                                                <br>
+                                                                                <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Using Flow-R devices in these rooms")}} </b>
+                                                                            </div>
+                                                                            <br>
+                                                                        <div class="split">
+                                                                        <div class="col">
+                                                                        <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Rmean :")}} </b>
+                                                                                    </div>
+                                                                                    <div id = "divWarning" class="d-flex">
+                                                                                            {% block warning_animation_mean_alternative_1 %}
+                                                                                                {% if (alternative_scenarios.mean[1][0] >= 1) %}
+                                                                                                    {% set warning_color= 'bg-danger' %}
+                                                                                                {% elif (0.5 <= alternative_scenarios.mean[1][0]  <= 1) %}
+                                                                                                    {% set warning_color = 'bg-warning' %}
+                                                                                                {% else %}
+                                                                                                    {% set warning_color = 'bg-success' %}
+                                                                                                {% endif %}
+                                                                                                <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
+                                                                                                    <b>{{ alternative_scenarios.mean[1][0]  | round(2)}}</b>
+                                                                                                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                </div>
+                                                                                    {% endblock warning_animation_mean_alternative_1 %}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                        <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Rmax :")}} </b>
+                                                                                    </div>
+                                                                                    <div id = "divWarning" class="d-flex">
+                                                                                            {% block warning_animation_worst_alternative_1 %}
+                                                                                                {% if (alternative_scenarios.mean[1][1] >= 1) %}
+                                                                                                    {% set warning_color= 'bg-danger' %}
+                                                                                                {% elif (0.5 <= alternative_scenarios.mean[1][1] <= 1) %}
+                                                                                                    {% set warning_color = 'bg-warning' %}
+                                                                                                {% else %}
+                                                                                                    {% set warning_color = 'bg-success' %}
+                                                                                                {% endif %}
+                                                                                                <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
+                                                                                                    <b>{{ alternative_scenarios.mean[1][1] | round(2)}}</b>
+                                                                                                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                </div>
+                                                                                    {% endblock warning_animation_worst_alternative_1 %}
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Average transmitted virus dose with Flow-R :")}} </b>
+                                                                            </div>
+                                                                            <br>
+                                                                        <table class="table table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th scope="col">{{_("Room")}}</th>
+                                                                                    <th scope="col">{{_("Infectious virus dose")}}</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                {% for key,item in alternative_scenarios.mean[2].items() %}
+                                                                                    {% if item <= 10 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "success_bkg">{{key}}</td>
+                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% elif item > 10 and item <= 25 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "warning_bkg">{{key}}</td>
+                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% else %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "danger_bkg">{{key}}</td>
+                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% endif%}
+                                                                                {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                        <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Maximum expected new cases if one person is contaminated Rmax :")}} </b>
+                                                                                    </div>
+                                                                                    <div id = "divWarning" class="d-flex">
+                                                                                            {% block warning_animation_worst %}
+                                                                                                {% if (worst_expected_cases >= 1) %}
+                                                                                                    {% set warning_color= 'bg-danger' %}
+                                                                                                {% elif (0.5 <= worst_expected_cases <= 1) %}
+                                                                                                    {% set warning_color = 'bg-warning' %}
+                                                                                                {% else %}
+                                                                                                    {% set warning_color = 'bg-success' %}
+                                                                                                {% endif %}
+                                                                                                <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
+                                                                                                    <b>{{ worst_expected_cases | round(2)}}</b>
+                                                                                                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                </div>
+                                                                                    {% endblock warning_animation_worst %}
+                                                                            </div>
+                                                                            <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Rooms with the worst transmitted virus dose in all simulations :")}} </b>
+                                                                            </div>
+                                                                            <br>
+                                                                            <table class="table table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th scope="col">{{_("Room")}}</th>
+                                                                                    <th scope="col">{{_("Infectious virus dose")}}</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                {% for key,item in worst_rooms.items() %}
+                                                                                    {% if item <= 10 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "success_bkg">{{key}}</td>
+                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% elif item > 10 and item <= 25 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "warning_bkg">{{key}}</td>
+                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% else %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "danger_bkg">{{key}}</td>
+                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% endif%}
+                                                                                {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <br>
+                                                                            <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Using Flow-R devices in these rooms")}} </b>
+                                                                            </div>
+                                                                            <br>
+                                                                        <div class="split">
+                                                                        <div class="col">
+                                                                        <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Rmean :")}} </b>
+                                                                                    </div>
+                                                                                    <div id = "divWarning" class="d-flex">
+                                                                                            {% block warning_animation_mean_alternative_2 %}
+                                                                                                {% if (alternative_scenarios.worst[1][0] >= 1) %}
+                                                                                                    {% set warning_color= 'bg-danger' %}
+                                                                                                {% elif (0.5 <= alternative_scenarios.worst[1][0]  <= 1) %}
+                                                                                                    {% set warning_color = 'bg-warning' %}
+                                                                                                {% else %}
+                                                                                                    {% set warning_color = 'bg-success' %}
+                                                                                                {% endif %}
+                                                                                                <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
+                                                                                                    <b>{{ alternative_scenarios.worst[1][0]  | round(2)}}</b>
+                                                                                                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                </div>
+                                                                                    {% endblock warning_animation_mean_alternative_2 %}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col">
+                                                                        <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Rmax :")}} </b>
+                                                                                    </div>
+                                                                                    <div id = "divWarning" class="d-flex">
+                                                                                            {% block warning_animation_worst_alternative_2 %}
+                                                                                                {% if (alternative_scenarios.worst[1][1] >= 1) %}
+                                                                                                    {% set warning_color= 'bg-danger' %}
+                                                                                                {% elif (0.5 <= alternative_scenarios.worst[1][1] <= 1) %}
+                                                                                                    {% set warning_color = 'bg-warning' %}
+                                                                                                {% else %}
+                                                                                                    {% set warning_color = 'bg-success' %}
+                                                                                                {% endif %}
+                                                                                                <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
+                                                                                                    <b>{{ alternative_scenarios.worst[1][1] | round(2)}}</b>
+                                                                                                    <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                    <span class="ripple {{ warning_color }}"></span>
+                                                                                                </div>
+                                                                                    {% endblock warning_animation_worst_alternative_2 %}
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        <div id="DivProbabilityOfInfection">
+                                                                                <b>{{_("Highest transmitted virus dose with Flow-R :")}} </b>
+                                                                        </div>
+                                                                        <br>
+                                                                        <table class="table table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                    <th scope="col">{{_("Room")}}</th>
+                                                                                    <th scope="col">{{_("Infectious virus dose")}}</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                {% for key,item in alternative_scenarios.worst[3].items() %}
+                                                                                    {% if item <= 10 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "success_bkg">{{key}}</td>
+                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% elif item > 10 and item <= 25 %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "warning_bkg">{{key}}</td>
+                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% else %}
+                                                                                    <tr id="trAlternativeScenario">
+                                                                                    <td class = "danger_bkg">{{key}}</td>
+                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    </tr>
+                                                                                    {% endif%}
+                                                                                {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <strong>{{_("Detailed results - Rooms")}} </strong>
+                <button class="icon_button p-0 float-right"
+                        data-toggle="collapse"
+                        href="#collapseDetailedRooms"
+                        role="button"
+                        aria-expanded="true"
+                        aria-controls="collapseDetailedRooms">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-chevron-expand"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="collapse show" id="collapseDetailedRooms">
+                <div class="card-body">
+                    <div>
+                            
                             {% for simulation in data.report.simulations%}
                                 {% set expected_cases = namespace(total_cases=0) %}
                                 {% for person in simulation.people %}
@@ -121,8 +437,7 @@
                             {% endfor%}
                             </div>
                 {% endblock report_results%}
-
-
+        </div>
 
 
 

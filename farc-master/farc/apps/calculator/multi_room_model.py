@@ -189,6 +189,9 @@ class Event:
     mask_type : str = multi_default['mask_type']
     activity : str = multi_default['activity']
 
+    def get_event_duration(self):
+        return self.end-self.start
+
 @dataclass
 class Schedule:
     events : np.ndarray = np.array([])
@@ -289,11 +292,10 @@ class Person(Role):
             total_dose : models._VectorisedFloat = 0
             for model in self.exposure_model :
                 deposited_exposure = model.deposited_exposure()
-                if np.mean(deposited_exposure)*self.person_number < 0.01 :
+                if np.mean(deposited_exposure)*self.person_number < 0.1 and len(self.exposure_model) > 1 :
                     # Delete neglectable models
                     self.get_location().concentration_models = np.delete(self.get_location().concentration_models, np.where(self.get_location().concentration_models==model.concentration_model))
                     self.exposure_model = np.delete(self.exposure_model, np.where(self.exposure_model == model))
-                    
                 else :
                     virus_dose = np.sort(deposited_exposure)
                     self.cumulative_dose = self.cumulative_dose + virus_dose
@@ -305,11 +307,11 @@ class Person(Role):
     def calculate_infection_probability(self):
         if len(self.exposure_model) > 0 :
             if not self.infected :
-                self.infection_probability = np.round(np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*self.person_number/100, 4)
-                self.cumulative_dose = np.round(np.mean(self.cumulative_dose), 2)
+                self.infection_probability = np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*self.person_number/100
+                self.cumulative_dose = np.mean(self.cumulative_dose)
             elif self.person_number>1 :
-                self.infection_probability = np.round(np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*(self.person_number-1)/100,4)
-                self.cumulative_dose = np.round(np.mean(self.cumulative_dose), 2)
+                self.infection_probability = np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*(self.person_number-1)/100
+                self.cumulative_dose = np.mean(self.cumulative_dose)
             else : 
                 return 0.
         else :
@@ -370,8 +372,8 @@ class Room(RoomType):
                     person.add_model(mc.ExposureModel(model, exposed_population).build_model(size=60000))
 
     def calculate_cumulative_dose(self):
-        self.cumulative_exposure = np.round(np.mean(self.cumulative_exposure), 2)
-        self.virus_concentration = np.round(np.mean(self.virus_concentration), 2)
+        self.cumulative_exposure = np.mean(self.cumulative_exposure)
+        self.virus_concentration = np.mean(self.virus_concentration)
 
     def clear_data(self):
         self.concentration_models=[]

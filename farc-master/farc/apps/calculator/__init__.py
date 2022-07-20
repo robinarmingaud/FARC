@@ -351,6 +351,8 @@ class MultiReport(BaseRequestHandler):
                 MultiReport.calculate_simulation_data
             )
             report = await asyncio.wrap_future(report_task)
+            alternative_task = executor.submit(report[0].alternative_scenarios,report[2], report[3])
+            alternative_scenarios = await asyncio.wrap_future(alternative_task)
             template = template_environment.get_template(
             "multi_room_report.html.j2")
             report = template.render(
@@ -359,9 +361,14 @@ class MultiReport(BaseRequestHandler):
                 calculator_prefix=self.settings["calculator_prefix"],
                 calculator_version=__version__,
                 text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-                data = report,
+                data = report[0],
                 form=form,
-                creation_date = time
+                creation_date = time,
+                mean_expected_cases = report[1][0],
+                worst_expected_cases = report[1][1],
+                mean_rooms = report[2],
+                worst_rooms = report[3],
+                alternative_scenarios = alternative_scenarios
             )
             self.finish(report)
 
