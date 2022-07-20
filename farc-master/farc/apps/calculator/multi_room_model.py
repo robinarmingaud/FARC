@@ -288,9 +288,16 @@ class Person(Role):
         if (not self.infected or self.person_number>1) and len(self.exposure_model)>0 :
             total_dose : models._VectorisedFloat = 0
             for model in self.exposure_model :
-                virus_dose = np.sort(model.deposited_exposure())
-                self.cumulative_dose = self.cumulative_dose + virus_dose
-                total_dose = total_dose + virus_dose
+                deposited_exposure = model.deposited_exposure()
+                if np.mean(deposited_exposure)*self.person_number < 0.01 :
+                    # Delete neglectable models
+                    self.get_location().concentration_models = np.delete(self.get_location().concentration_models, np.where(self.get_location().concentration_models==model.concentration_model))
+                    self.exposure_model = np.delete(self.exposure_model, np.where(self.exposure_model == model))
+                    
+                else :
+                    virus_dose = np.sort(deposited_exposure)
+                    self.cumulative_dose = self.cumulative_dose + virus_dose
+                    total_dose = total_dose + virus_dose
             self.virus_dose = total_dose
         else :
             self.virus_dose = 0
@@ -350,7 +357,7 @@ class Room(RoomType):
                 ventilation=ventilation,
                 infected=infected_population,
                 evaporation_factor=0.3,
-            ))
+            ).build_model(size=60000))
         for person in self.get_occupants(simulation) :
             person.clear_data()
             if person.infected and person.person_number>1 : 
