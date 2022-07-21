@@ -102,7 +102,7 @@
                                                 <div class="split">
                                                     <div class="col">
                                                             <div id="DivProbabilityOfInfection">
-                                                                    <b>{{_("Average expected new cases if one person is contaminated Rmean :")}} </b>
+                                                                    <b>{{_("Average expected new cases if one person is contaminated Raverage :")}} </b>
                                                                         </div>
                                                                         <div id = "divWarning" class="d-flex">
                                                                                 {% block warning_animation_mean %}
@@ -156,13 +156,13 @@
                                                                                 </table>
                                                                                 <br>
                                                                                 <div id="DivProbabilityOfInfection">
-                                                                                <b>{{_("Using Flow-R devices in these rooms")}} </b>
+                                                                                <b>{{_("Using Flow-R devices in these rooms :")}} </b>
                                                                             </div>
                                                                             <br>
                                                                         <div class="split">
                                                                         <div class="col">
                                                                         <div id="DivProbabilityOfInfection">
-                                                                                <b>{{_("Rmean :")}} </b>
+                                                                                <b>{{_("Raverage :")}} </b>
                                                                                     </div>
                                                                                     <div id = "divWarning" class="d-flex">
                                                                                             {% block warning_animation_mean_alternative_1 %}
@@ -219,21 +219,26 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                {% for key,item in alternative_scenarios.mean[2].items() %}
-                                                                                    {% if item <= 10 %}
+                                                                                {% for key in mean_rooms.keys() %}
+                                                                                {% if mean_rooms[key] - alternative_scenarios.mean[2][key] <= 0 %}
+                                                                                {% set reduction_percentage = 0 %}
+                                                                                {% else %}
+                                                                                {% set reduction_percentage = (1 - alternative_scenarios.mean[2][key]/mean_rooms[key])*100%}
+                                                                                {% endif %}
+                                                                                    {% if alternative_scenarios.mean[2][key] <= 10 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "success_bkg">{{key}}</td>
-                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "success_bkg">{{alternative_scenarios.mean[2][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
-                                                                                    {% elif item > 10 and item <= 25 %}
+                                                                                    {% elif alternative_scenarios.mean[2][key] > 10 and alternative_scenarios.mean[2][key] <= 25 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "warning_bkg">{{key}}</td>
-                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "warning_bkg">{{alternative_scenarios.mean[2][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% else %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "danger_bkg">{{key}}</td>
-                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "danger_bkg">{{alternative_scenarios.mean[2][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% endif%}
                                                                                 {% endfor %}
@@ -263,7 +268,7 @@
                                                                                     {% endblock warning_animation_worst %}
                                                                             </div>
                                                                             <div id="DivProbabilityOfInfection">
-                                                                                <b>{{_("Rooms with the worst transmitted virus dose in all simulations :")}} </b>
+                                                                                <b>{{_("Rooms with the highest transmitted virus dose in all simulations :")}} </b>
                                                                             </div>
                                                                             <br>
                                                                             <table class="table table-striped">
@@ -296,13 +301,13 @@
                                                                             </table>
                                                                             <br>
                                                                             <div id="DivProbabilityOfInfection">
-                                                                                <b>{{_("Using Flow-R devices in these rooms")}} </b>
+                                                                                <b>{{_("Using Flow-R devices in these rooms :")}} </b>
                                                                             </div>
                                                                             <br>
                                                                         <div class="split">
                                                                         <div class="col">
                                                                         <div id="DivProbabilityOfInfection">
-                                                                                <b>{{_("Rmean :")}} </b>
+                                                                                <b>{{_("Raverage :")}} </b>
                                                                                     </div>
                                                                                     <div id = "divWarning" class="d-flex">
                                                                                             {% block warning_animation_mean_alternative_2 %}
@@ -359,21 +364,26 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                {% for key,item in alternative_scenarios.worst[3].items() %}
-                                                                                    {% if item <= 10 %}
+                                                                                {% for key in worst_rooms.keys() %}
+                                                                                {% if worst_rooms[key] - alternative_scenarios.worst[3][key] <= 0 %}
+                                                                                {% set reduction_percentage = 0 %}
+                                                                                {% else %}
+                                                                                {% set reduction_percentage = (1 - alternative_scenarios.worst[3][key]/worst_rooms[key])*100%}
+                                                                                {% endif %}
+                                                                                    {% if alternative_scenarios.worst[3][key] <= 10 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "success_bkg">{{key}}</td>
-                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "success_bkg">{{alternative_scenarios.worst[3][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
-                                                                                    {% elif item > 10 and item <= 25 %}
+                                                                                    {% elif alternative_scenarios.worst[3][key] > 10 and alternative_scenarios.worst[3][key] <= 25 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "warning_bkg">{{key}}</td>
-                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "warning_bkg">{{alternative_scenarios.worst[3][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% else %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "danger_bkg">{{key}}</td>
-                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "danger_bkg">{{alternative_scenarios.worst[3][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% endif%}
                                                                                 {% endfor %}
@@ -389,13 +399,13 @@
 
         <div class="card bg-light mb-3">
             <div class="card-header">
-                <strong>{{_("Detailed results - Rooms")}} </strong>
+                <strong>{{_("Detailed results - Base scenario")}} </strong>
                 <button class="icon_button p-0 float-right"
                         data-toggle="collapse"
-                        href="#collapseDetailedRooms"
+                        href="#collapseBaseScenario"
                         role="button"
                         aria-expanded="true"
-                        aria-controls="collapseDetailedRooms">
+                        aria-controls="collapseBaseScenario">
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="16"
                          height="16"
@@ -407,49 +417,135 @@
                     </svg>
                 </button>
             </div>
-            <div class="collapse show" id="collapseDetailedRooms">
+            <div class="collapse show" id="collapseBaseScenario">
                 <div class="card-body">
                     <div>
                             
-                            {% for simulation in data.report.simulations%}
+                        <div id="DivProbabilityOfInfection">
+                            <b>{{_("Results by room :")}} </b>
+                        </div>
+                        <br>
+                        <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">{{_("Room")}}</th>
+                                    <th scope="col">{{_("Average infectious virus dose")}}</th>
+                                    <th scope="col">{{_("Max infectious virus dose")}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for key, item in base_mean_room_data.items() %}
+                                    <tr id="trAlternativeScenario">
+                                    <td>{{key}}</td>
+                                    <td>{{base_mean_room_data[key] | round(2)}}</td>
+                                    <td>{{base_worst_room_data[key] | round(2)}}</td>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr width="80%">
+                            <div id="DivProbabilityOfInfection">
+                            <b>{{_("Results by person :")}} </b>
+                        </div>
+                        <br>
+                        <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">{{_("Infected person")}}</th>
+                                    <th scope="col">{{_("Expected new cases")}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for simulation in data.report.simulations%}
                                 {% set expected_cases = namespace(total_cases=0) %}
                                 {% for person in simulation.people %}
                                     {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability %}
                                 {% endfor %}
                                 {% set infected = simulation.get_infected() %}
-                                <div class="m-4">
-                                <h5>{{infected.name}} {{infected.id}} infected</h5>
-                                <div class="split">
-                                <div>
-                                <div> Expected cases : {{ expected_cases.total_cases }}</div>
-                                </div>
-                                <div>
-                                {% for room in simulation.rooms %}
-                                    <div>Room {{room.id}} :</div><br>
-                                    <div> Total virus exposure : {{ room.cumulative_exposure }}</div>
-                                    <br>
+                                    <tr id="trAlternativeScenario">
+                                    <td>{{infected.name}} {{infected.id}}</td>
+                                    <td>{{ expected_cases.total_cases | round(2)}}</td>
                                 {% endfor %}
-                                </div>
-                                </div>
-                                <br>
-                                <hr width="95%">
-                                </div>
-                            {% endfor%}
+                                </tbody>
+                            </table>
                             </div>
                 {% endblock report_results%}
         </div>
+    </div>
+</div>
 
 
 
 
-
-<div>
-    <a href="{{ link.shortened }}" id="qrLink">
-        <div id="qrcode">
+{% block report_footer %}
+        <div class="card bg-light mb-3" id="link-results">
+            <div class="card-header">
+                <strong>{{_("Link to reproduce results")}}</strong>
+                <button class="icon_button p-0 float-right"
+                        data-toggle="collapse"
+                        href="#collapseQRcode"
+                        role="button"
+                        aria-expanded="true"
+                        aria-controls="collapseQRcode">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-chevron-expand"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="collapse show" id="collapseQRcode">
+                <div class="card-body">
+                    <div class="text-center">
+                        <button id="mobile_link"
+                                class="btn btn-primary btn-sm d-none"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="Copy to clipboard"
+                                onclick="copy_clipboard('{{ link.link }}');">
+                            {{_("Click to copy a shareable link")}}
+                        </button>
+                    </div>
+                    <div id="link_reproduce_results" class="split">
+                        <div>
+                            <a href="{{ link.link }}" id="qrLink">
+                                <div id="qrcode">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="align-self-center">
+                            <span id="SpanQR">
+                                <p id="pQR">
+                                    {{_("Click the QR code to regenerate the report and get a shareable link.")}}
+                                    <br>
+                                    {{_("Alternatively, scan to regenerate the report.")}}
+                                    <br>
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </a>
-</div>
-</div>
+        <div>
+    </div>
+{% endblock report_footer %}
+
+{% block disclaimer_container %}
+    <br>
+    <br>
+    <br>
+    <div id="disclaimer" class="rounded">
+        {% block disclaimer %}
+            <p class="image"> <img align="middle" src="/static/images/disclaimer.jpg" width="40" height="40"><b>{{_("Disclaimer:")}}</b><br><br></p>
+            {{ text_blocks['Disclaimer'] }}
+        {% endblock disclaimer %}
+    </div>
+{% endblock disclaimer_container %}
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

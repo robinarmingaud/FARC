@@ -291,8 +291,13 @@ class MultiRoomForm(BaseRequestHandler):
         javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
         js_expiration = "var js_expiration = JSON.parse('{}');".format(json.dumps(expiration_dict))
         with open('farc/apps/static/js/multi_room_form.js', 'w') as modified: modified.writelines([javascript_out + "\n" + js_expiration +"\n"] + data[2:])
-        template_environment = self.settings["template_environment"]
-        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        language = self.get_cookie('language') or 'null'
+        if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+        else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
         template = template_environment.get_template("multi_room_form.html.j2")
         report = template.render(user=self.current_user,
             xsrf_form_html=self.xsrf_form_html(),
@@ -351,7 +356,8 @@ class MultiReport(BaseRequestHandler):
                 MultiReport.calculate_simulation_data
             )
             report = await asyncio.wrap_future(report_task)
-            alternative_task = executor.submit(report[0].alternative_scenarios,report[2], report[3])
+            executor2 = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
+            alternative_task = executor2.submit(report[0].alternative_scenarios,report[2], report[3])
             alternative_scenarios = await asyncio.wrap_future(alternative_task)
             template = template_environment.get_template(
             "multi_room_report.html.j2")
@@ -368,7 +374,13 @@ class MultiReport(BaseRequestHandler):
                 worst_expected_cases = report[1][1],
                 mean_rooms = report[2],
                 worst_rooms = report[3],
-                alternative_scenarios = alternative_scenarios
+                alternative_scenarios = alternative_scenarios,
+                base_mean_room_data = report[0].calculate_room_mean_exposure(),
+                base_worst_room_data = report[0].calculate_room_worst_exposure(),
+                alternative1_worst_room_data = alternative_scenarios['mean'][0].calculate_room_mean_exposure(),
+                alternative1_mean_room_data = alternative_scenarios['mean'][0].calculate_room_worst_exposure(),
+                alternative2_worst_room_data = alternative_scenarios['worst'][0].calculate_room_mean_exposure(),
+                alternative2_mean_room_data = alternative_scenarios['worst'][0].calculate_room_worst_exposure(),
             )
             self.finish(report)
 
@@ -539,7 +551,7 @@ def make_app(
             int(os.environ.get("HANDLER_WORKER_POOL_SIZE", 1)) or None
         ),
         report_generation_parallelism=(
-            int(os.environ.get('REPORT_PARALLELISM', 0)) or None
+            int(5) or None
         ),
     )
 

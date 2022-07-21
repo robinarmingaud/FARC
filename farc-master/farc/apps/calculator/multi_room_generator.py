@@ -3,8 +3,10 @@ from copy import deepcopy
 from dataclasses import dataclass
 import dataclasses
 import html
+import itertools
 import typing
 import urllib
+from xmlrpc.client import Boolean
 import numpy as np
 import zlib
 
@@ -53,7 +55,7 @@ class MultiGenerator:
             room.calculate_cumulative_dose()
             room.clear_data()
 
-    def calculate_simulation_data(self):
+    def calculate_simulation_data(self, alternative : bool = False, mean_rooms = None, worst_rooms = None):
         times = self.interesting_times()
         for person in self.simulation.people:
             person.infected = True
@@ -64,7 +66,16 @@ class MultiGenerator:
             person.infected = False
             self.calculate_means(simulation_copy)
             self.report.simulations = np.append(self.report.simulations, simulation_copy)
-        return self, self.calculate_mean_worst_expected_cases(), self.calculate_room_mean_exposure(), self.calculate_room_worst_exposure()
+        top_room_number = min([int((self.simulation.rooms.size)/5) + 1,5])
+        if not alternative :
+            return self, self.calculate_mean_worst_expected_cases(), dict(itertools.islice(self.calculate_room_mean_exposure().items(), top_room_number)), dict(itertools.islice(self.calculate_room_worst_exposure().items(), top_room_number))
+        else :
+            #Return previous rooms with the highest virus concentration to compare with base scenario
+            new_mean_rooms = self.calculate_room_mean_exposure()
+            new_worst_rooms = self.calculate_room_worst_exposure()
+            return self, self.calculate_mean_worst_expected_cases(), self.get_room_evolution(mean_rooms, new_mean_rooms), self.get_room_evolution(worst_rooms,new_worst_rooms) 
+
+
 
     def alternative_scenarios(self, mean_rooms, worst_rooms):
         mean_alternative = MultiGenerator(simulation=deepcopy(self.simulation), report=multi_room_model.Report())
@@ -81,13 +92,13 @@ class MultiGenerator:
             room_flow_r.ventilation.biov_option = 1
             room_flow_r.ventilation.biov_amount = max(500, 5*room_flow_r.room_volume)
 
-        return {'mean' : mean_alternative.calculate_simulation_data(), 'worst' : worst_alternative.calculate_simulation_data()}
+        return {'mean' : mean_alternative.calculate_simulation_data(alternative=True, mean_rooms= mean_rooms,worst_rooms= worst_rooms), 'worst' : worst_alternative.calculate_simulation_data(alternative=True, mean_rooms= mean_rooms,worst_rooms= worst_rooms)}
 
     def calculate_mean_worst_expected_cases(self):
-        cumulative_cases = 0
-        max_expected_cases = 0
+        cumulative_cases = 0.
+        max_expected_cases = 0.
         for simulation in self.report.simulations :
-            expected_cases = 0
+            expected_cases = 0.
             for person in simulation.people :
                 expected_cases += person.infection_probability
             if expected_cases > max_expected_cases :
@@ -95,28 +106,38 @@ class MultiGenerator:
             cumulative_cases += expected_cases
         return cumulative_cases/self.simulation.people.size, max_expected_cases
 
+
     def calculate_room_mean_exposure(self):
         room_data = {}
-        top_room_number = min([int((self.simulation.rooms.size)/5) + 1,5])
         for room in self.simulation.rooms :
-            room_data[str(room.id)+"-"+room.type_name] = 0
+            room_data[str(room.id)+"-"+room.type_name] = 0.
         for simulation in self.report.simulations :
             for room in simulation.rooms :
                 room_data[str(room.id)+"-"+room.type_name] += room.cumulative_exposure/self.report.simulations.size
 
-        return {k: v for k, v in sorted(room_data.items(),reverse = True, key=lambda item: item[1])[:top_room_number]}
+        return {k: v for k, v in sorted(room_data.items(),reverse = True, key=lambda item: item[1])}
+        
 
     def calculate_room_worst_exposure(self) :
         room_data = {}
-        top_room_number = min([int((self.simulation.rooms.size)/5) + 1,5])
         for room in self.simulation.rooms :
-            room_data[str(room.id)+"-"+room.type_name] = 0
+            room_data[str(room.id)+"-"+room.type_name] = 0.
         for simulation in self.report.simulations :
             for room in simulation.rooms :
                 if room.cumulative_exposure > room_data[str(room.id)+"-"+room.type_name]:
                     room_data[str(room.id)+"-"+room.type_name] = room.cumulative_exposure
 
-        return {k: v for k, v in sorted(room_data.items(),reverse=True, key=lambda item: item[1])[:top_room_number]}
+        return {k: v for k, v in sorted(room_data.items(),reverse=True, key=lambda item: item[1])}
+
+    def get_room_evolution(self, precedent_rooms, room_data):
+        ''' Return evolution of precedent most exposed rooms for alternative scenarios '''
+        room_index = []
+        for key in precedent_rooms.keys() :
+            room_index.append(key)
+        room_evolution = {}
+        for key in room_index :
+            room_evolution[key] = room_data[key]
+        return room_evolution
 
 @dataclass
 class FormData:
