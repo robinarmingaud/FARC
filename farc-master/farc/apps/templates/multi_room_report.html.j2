@@ -11,8 +11,16 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous">
         <link rel="stylesheet" href="/static/css/layout.css">
+        <link rel="stylesheet" href="/static/css/multi_report.css">
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="/static/js/report.js" type="application/javascript"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="/static/js/table2csv.js"></script>    
+        <script src="/static/js/multi_report.js"></script>   
     </head>
     <body id="body">
     {% block report_header %}
@@ -122,6 +130,7 @@
                                                                                     </div>
                                                                                 {% endblock warning_animation_mean %}
                                                                             </div>
+                                                                            <div>
                                                                             <div id="DivProbabilityOfInfection">
                                                                                 <b>{{_("Rooms with the highest transmitted virus dose average :")}} </b>
                                                                             </div>
@@ -154,6 +163,7 @@
                                                                                 {% endfor %}
                                                                                 </tbody>
                                                                                 </table>
+                                                                                </div>
                                                                                 <br>
                                                                                 <div id="DivProbabilityOfInfection">
                                                                                 <b>{{_("Using Flow-R devices in these rooms :")}} </b>
@@ -207,6 +217,7 @@
                                                                             </div>
                                                                         </div>
                                                                         </div>
+                                                                        <div>
                                                                         <div id="DivProbabilityOfInfection">
                                                                                 <b>{{_("Average transmitted virus dose with Flow-R :")}} </b>
                                                                             </div>
@@ -244,6 +255,8 @@
                                                                                 {% endfor %}
                                                                                 </tbody>
                                                                             </table>
+                                                                            </div>
+                                                                            <br>
                                                                         </div>
                                                                         <div class="col">
                                                                         <div id="DivProbabilityOfInfection">
@@ -267,6 +280,7 @@
                                                                                                 </div>
                                                                                     {% endblock warning_animation_worst %}
                                                                             </div>
+                                                                            <div>
                                                                             <div id="DivProbabilityOfInfection">
                                                                                 <b>{{_("Rooms with the highest transmitted virus dose in all simulations :")}} </b>
                                                                             </div>
@@ -299,6 +313,7 @@
                                                                                 {% endfor %}
                                                                                 </tbody>
                                                                             </table>
+                                                                            </div>
                                                                             <br>
                                                                             <div id="DivProbabilityOfInfection">
                                                                                 <b>{{_("Using Flow-R devices in these rooms :")}} </b>
@@ -352,6 +367,7 @@
                                                                             </div>
                                                                         </div>
                                                                         </div>
+                                                                    <div>
                                                                         <div id="DivProbabilityOfInfection">
                                                                                 <b>{{_("Highest transmitted virus dose with Flow-R :")}} </b>
                                                                         </div>
@@ -390,6 +406,8 @@
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
+                                                                            <br>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -417,11 +435,12 @@
                     </svg>
                 </button>
             </div>
-            <div class="collapse show" id="collapseBaseScenario">
+            <div class="collapse" id="collapseBaseScenario">
                 <div class="card-body">
                     <div>
-                            
+                    <div>
                         <div id="DivProbabilityOfInfection">
+                            <button type="button" class="btn btn-link p-0 float-right mr-3">CSV</button>
                             <b>{{_("Results by room :")}} </b>
                         </div>
                         <br>
@@ -442,8 +461,11 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            <hr width="80%">
+                        </div>
+                            <br>
+                    <div>
                             <div id="DivProbabilityOfInfection">
+                            <button type="button" class="btn btn-link p-0 float-right mr-3">CSV</button>
                             <b>{{_("Results by person :")}} </b>
                         </div>
                         <br>
@@ -467,11 +489,175 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+                        </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <strong>{{_("Detailed results - Average risk alternative")}} </strong>
+                <button class="icon_button p-0 float-right"
+                        data-toggle="collapse"
+                        href="#collapseAverageScenario"
+                        role="button"
+                        aria-expanded="true"
+                        aria-controls="collapseAverageScenario">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-chevron-expand"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                    </svg>
+                </button>
+            </div>
+        <div class="collapse" id="collapseAverageScenario">
+                <div class="card-body">
+                    <div>
+                    <div>
+                        <div id="DivProbabilityOfInfection">
+                        <button type="button" class="btn btn-link p-0 float-right mr-3">CSV</button>
+                            <b>{{_("Results by room :")}} </b>
+                        </div>
+                        <br>
+                        <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">{{_("Room")}}</th>
+                                    <th scope="col">{{_("Average infectious virus dose")}}</th>
+                                    <th scope="col">{{_("Max infectious virus dose")}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for key, item in alternative1_mean_room_data.items() %}
+                                    <tr id="trAlternativeScenario">
+                                    <td>{{key}}</td>
+                                    <td>{{alternative1_mean_room_data[key] | round(2)}}</td>
+                                    <td>{{alternative1_worst_room_data[key] | round(2)}}</td>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                             </div>
+                            <br>
+                            <div>
+                            <div id="DivProbabilityOfInfection">
+                            <button type="button" class="btn btn-link p-0 float-right mr-3">CSV</button>
+                            <b>{{_("Results by person :")}} </b>
+                        </div>
+                        <br>
+                        <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">{{_("Infected person")}}</th>
+                                    <th scope="col">{{_("Expected new cases")}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for simulation in alternative_scenarios.mean[0].report.simulations%}
+                                {% set expected_cases = namespace(total_cases=0) %}
+                                {% for person in simulation.people %}
+                                    {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability %}
+                                {% endfor %}
+                                {% set infected = simulation.get_infected() %}
+                                    <tr id="trAlternativeScenario">
+                                    <td>{{infected.name}} {{infected.id}}</td>
+                                    <td>{{ expected_cases.total_cases | round(2)}}</td>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <strong>{{_("Detailed results - Maximum risk alternative")}} </strong>
+                <button class="icon_button p-0 float-right"
+                        data-toggle="collapse"
+                        href="#collapseMaxScenario"
+                        role="button"
+                        aria-expanded="true"
+                        aria-controls="collapseMaxScenario">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-chevron-expand"
+                         viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                    </svg>
+                </button>
+            </div>
+        <div class="collapse" id="collapseMaxScenario">
+                <div class="card-body">
+                    <div>
+                        <div>
+                        <div id="DivProbabilityOfInfection">
+                        <button type="button" class="btn btn-link p-0 float-right mr-3">CSV</button>
+                            <b>{{_("Results by room :")}} </b>
+                        </div>
+                        <br>
+                        <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">{{_("Room")}}</th>
+                                    <th scope="col">{{_("Average infectious virus dose")}}</th>
+                                    <th scope="col">{{_("Max infectious virus dose")}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for key, item in alternative2_mean_room_data.items() %}
+                                    <tr id="trAlternativeScenario">
+                                    <td>{{key}}</td>
+                                    <td>{{alternative2_mean_room_data[key] | round(2)}}</td>
+                                    <td>{{alternative2_worst_room_data[key] | round(2)}}</td>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                            <br>
+                        <div>
+                            <div id="DivProbabilityOfInfection">
+                            <button type="button" class="btn btn-link p-0 float-right mr-3">CSV</button>
+                            <b>{{_("Results by person :")}} </b>
+                        </div>
+                        <br>
+                        <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">{{_("Infected person")}}</th>
+                                    <th scope="col">{{_("Expected new cases")}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for simulation in alternative_scenarios.worst[0].report.simulations%}
+                                {% set expected_cases = namespace(total_cases=0) %}
+                                {% for person in simulation.people %}
+                                    {% set expected_cases.total_cases = expected_cases.total_cases + person.infection_probability %}
+                                {% endfor %}
+                                {% set infected = simulation.get_infected() %}
+                                    <tr id="trAlternativeScenario">
+                                    <td>{{infected.name}} {{infected.id}}</td>
+                                    <td>{{ expected_cases.total_cases | round(2)}}</td>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div> 
+            </div>
                 {% endblock report_results%}
-        </div>
-    </div>
-</div>
+        
+
 
 
 
@@ -497,7 +683,7 @@
                     </svg>
                 </button>
             </div>
-            <div class="collapse show" id="collapseQRcode">
+            <div class="collapse" id="collapseQRcode">
                 <div class="card-body">
                     <div class="text-center">
                         <button id="mobile_link"
@@ -530,9 +716,25 @@
                 </div>
             </div>
         </div>
-        <div>
-    </div>
 {% endblock report_footer %}
+
+        <script type="text/javascript">
+            //Enable tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            new QRCode(document.getElementById("qrcode"), {
+                text: "{{link.shortened }}",
+                width: 330,
+                height: 330,
+                correctLevel : QRCode.CorrectLevel.L
+            });
+            new QRCode(document.getElementById("pdf_qrcode"), {
+                text: "{{link.shortened }}",
+                width: 133,
+                height: 133,
+                correctLevel : QRCode.CorrectLevel.L
+            });
+        </script>
 
 {% block disclaimer_container %}
     <br>
@@ -545,27 +747,4 @@
         {% endblock disclaimer %}
     </div>
 {% endblock disclaimer_container %}
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="text/javascript">
-	//Enable tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-
-    new QRCode(document.getElementById("qrcode"), {
-        text: "{{link.shortened }}",
-        width: 330,
-        height: 330,
-        correctLevel : QRCode.CorrectLevel.L
-    });
-    new QRCode(document.getElementById("pdf_qrcode"), {
-        text: "{{link.shortened }}",
-        width: 133,
-        height: 133,
-        correctLevel : QRCode.CorrectLevel.L
-    });
-</script>
 {% endblock main %}
