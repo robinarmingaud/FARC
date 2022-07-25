@@ -56,14 +56,15 @@ class BaseRequestHandler(RequestHandler):
         token_browser = self.get_cookie('USER_TOKEN') or 'null'
 
         try : 
-            cursor.execute("SELECT prenom, email, nom  FROM utilisateurs WHERE token='"+token_browser+"' LIMIT 1")
+            cursor.execute("SELECT prenom, email, nom, farc_exp  FROM utilisateurs WHERE token='"+token_browser+"' LIMIT 1")
             current_user = cursor.fetchone()
             if current_user :
-                    print('connect to'+current_user[0]+' '+current_user[2])
+                    print('connect to '+current_user[0]+' '+current_user[2])
                     self.current_user = AuthenticatedUser(
                     username=current_user[0],
                     email=current_user[1],
                     fullname=current_user[2],
+                    farc_expert=current_user[3],
                     )
             else :
                 self.current_user = AnonymousUser()
@@ -138,6 +139,31 @@ class Missing404Handler(BaseRequestHandler):
                 contents=_('Unfortunately the page you were looking for does not exist.')+'<br><br><br><br>'
             ))
 
+
+class NotAllowed(BaseRequestHandler):
+    async def prepare(self):
+            template_environment = self.settings["template_environment"]
+            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            _ = tornado.locale.get(self.locale.code).translate
+            await super().prepare()
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                _ = tornado.locale.get(self.locale.code).translate
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+                _ = tornado.locale.get(language ).translate       
+            self.set_status(401)
+            template = self.settings["template_environment"].get_template(
+                "error_page.html.j2")
+            self.finish(template.render(
+                user=self.current_user,
+                calculator_prefix=self.settings["calculator_prefix"],
+                active_page='Error',
+                contents=_('Unfortunately you do not have necessary rights to access our advanced diagnosis tool. Please feel free to contact us for an estimation at ') + '<a href="mailto:info@flow-r.fr">info@flow-r.fr</a>'  + '<br><br><br><br>'
+            ))
 
 class ConcentrationModel(BaseRequestHandler):
     async def post(self):
@@ -276,42 +302,47 @@ class AboutPage(BaseRequestHandler):
 
 class MultiRoomForm(BaseRequestHandler):
     def get(self):
-        expiration_dict = {}
-        for activity in ACTIVITY_TYPES:
-            if 'Breathing' in activity["Expiration"]:
-                expiration_dict[activity['Id'] + '_breathing'] = activity["Expiration"]['Breathing']
+        if not self.current_user.is_authenticated():
+            self.redirect('https://www.flow-r.fr/')
+        elif not self.current_user.farc_expert :
+            self.redirect('/restricted')
+        else :    
+            expiration_dict = {}
+            for activity in ACTIVITY_TYPES:
+                if 'Breathing' in activity["Expiration"]:
+                    expiration_dict[activity['Id'] + '_breathing'] = activity["Expiration"]['Breathing']
 
-            if 'Shouting' in activity["Expiration"]:
-                expiration_dict[activity["Id"] + '_shouting'] = activity["Expiration"]['Shouting']
+                if 'Shouting' in activity["Expiration"]:
+                    expiration_dict[activity["Id"] + '_shouting'] = activity["Expiration"]['Shouting']
 
-            if 'Speaking' in activity["Expiration"]:
-                expiration_dict[activity["Id"] + '_speaking']= activity["Expiration"]['Speaking']
+                if 'Speaking' in activity["Expiration"]:
+                    expiration_dict[activity["Id"] + '_speaking']= activity["Expiration"]['Speaking']
 
-            expiration_dict[activity["Id"] + '_activity_level'] = activity["Activity"]
+                expiration_dict[activity["Id"] + '_activity_level'] = activity["Activity"]
 
-        with open('farc/apps/static/js/multi_room_form.js', 'r') as original: data = original.read().splitlines(True)
-        javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
-        js_expiration = "var js_expiration = JSON.parse('{}');".format(json.dumps(expiration_dict))
-        with open('farc/apps/static/js/multi_room_form.js', 'w') as modified: modified.writelines([javascript_out + "\n" + js_expiration +"\n"] + data[2:])
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-                template_environment = self.settings["template_environment"]
-                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-        else :
-                template_environment = self.settings["template_environment"]
-                template_environment.globals['_']=tornado.locale.get(language ).translate
-        template = template_environment.get_template("multi_room_form.html.j2")
-        report = template.render(user=self.current_user,
-            xsrf_form_html=self.xsrf_form_html(),
-            calculator_prefix=self.settings["calculator_prefix"],
-            calculator_version=__version__,
-            default = DEFAULT_DATA._MULTI_DEFAULTS,
-            PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
-            TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
-            text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-            ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES,
-            MONTH_NAMES = DEFAULT_DATA.MONTH_NAMES)
-        self.finish(report)
+            with open('farc/apps/static/js/multi_room_form.js', 'r') as original: data = original.read().splitlines(True)
+            javascript_out = "var js_default = JSON.parse('{}');".format(json.dumps(d))
+            js_expiration = "var js_expiration = JSON.parse('{}');".format(json.dumps(expiration_dict))
+            with open('farc/apps/static/js/multi_room_form.js', 'w') as modified: modified.writelines([javascript_out + "\n" + js_expiration +"\n"] + data[2:])
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                    template_environment = self.settings["template_environment"]
+                    template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            else :
+                    template_environment = self.settings["template_environment"]
+                    template_environment.globals['_']=tornado.locale.get(language ).translate
+            template = template_environment.get_template("multi_room_form.html.j2")
+            report = template.render(user=self.current_user,
+                xsrf_form_html=self.xsrf_form_html(),
+                calculator_prefix=self.settings["calculator_prefix"],
+                calculator_version=__version__,
+                default = DEFAULT_DATA._MULTI_DEFAULTS,
+                PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
+                TOOLTIPS = DEFAULT_DATA.TOOLTIPS,
+                text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
+                ACTIVITY_TYPES = DEFAULT_DATA.ACTIVITY_TYPES,
+                MONTH_NAMES = DEFAULT_DATA.MONTH_NAMES)
+            self.finish(report)
 
 
 
@@ -319,75 +350,80 @@ class MultiRoomForm(BaseRequestHandler):
 
 class MultiReport(BaseRequestHandler):
     async def post(self):
-        language = self.get_cookie('language') or 'null'
-        if language == "null" : 
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-            _ = tornado.locale.get(self.locale.code).translate
-            locale_code = tornado.locale.get(language )
-        else :
-            template_environment = self.settings["template_environment"]
-            template_environment.globals['_']=tornado.locale.get(language ).translate
-            _ = tornado.locale.get(language ).translate    
-            locale_code = tornado.locale.get(language )    
-        requested_model_config = {
-            name: self.get_argument(name) for name in self.request.arguments
-        }
-        if self.settings.get("debug", False):
-            pprint(requested_model_config)
-            start = datetime.datetime.now()
-            base_url = self.request.protocol + "://" + self.request.host
-            try:
-                form = multi_room_generator.FormData.from_dict(requested_model_config)
-                simulation = form.simulation
-            except Exception as err:
-                if self.settings.get("debug", False):
-                    import traceback
-                    print(traceback.format_exc())
-                response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
-                self.set_status(400)
-                self.finish(json.dumps(response_json))
-                return
+        if not self.current_user.is_authenticated() :
+            self.redirect('https://www.flow-r.fr/')
+        elif not self.current_user.farc_expert :
+            self.redirect('/restricted')
+        else :    
+            language = self.get_cookie('language') or 'null'
+            if language == "null" : 
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+                _ = tornado.locale.get(self.locale.code).translate
+                locale_code = tornado.locale.get(language )
+            else :
+                template_environment = self.settings["template_environment"]
+                template_environment.globals['_']=tornado.locale.get(language ).translate
+                _ = tornado.locale.get(language ).translate    
+                locale_code = tornado.locale.get(language )    
+            requested_model_config = {
+                name: self.get_argument(name) for name in self.request.arguments
+            }
+            if self.settings.get("debug", False):
+                pprint(requested_model_config)
+                start = datetime.datetime.now()
+                base_url = self.request.protocol + "://" + self.request.host
+                try:
+                    form = multi_room_generator.FormData.from_dict(requested_model_config)
+                    simulation = form.simulation
+                except Exception as err:
+                    if self.settings.get("debug", False):
+                        import traceback
+                        print(traceback.format_exc())
+                    response_json = {'code': 400, 'error': _('Your request was invalid') + f'{html.escape(str(err))}'}
+                    self.set_status(400)
+                    self.finish(json.dumps(response_json))
+                    return
 
-            now = datetime.datetime.utcnow().astimezone()
-            time = now.strftime("%Y-%m-%d %H:%M:%S UTC")
-            Report = multi_room_model.Report()
-            MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
-            executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
-            report_task = executor.submit(
-                MultiReport.calculate_simulation_data
-            )
-            report = await asyncio.wrap_future(report_task)
-            executor2 = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
-            alternative_task = executor2.submit(report[0].alternative_scenarios,report[2], report[3])
-            alternative_scenarios = await asyncio.wrap_future(alternative_task)
-            template = template_environment.get_template(
-            "multi_room_report.html.j2")
-            report = template.render(
-                link = multi_room_generator.generate_permalink(base_url, self.settings['multi_calculator_prefix'] ,form),
-                user=self.current_user,
-                calculator_prefix=self.settings["calculator_prefix"],
-                calculator_version=__version__,
-                text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
-                data = report[0],
-                form=form,
-                default = DEFAULT_DATA._MULTI_DEFAULTS,
-                time_minutes_to_string = time_minutes_to_string,
-                creation_date = time,
-                mean_expected_cases = report[1][0],
-                worst_expected_cases = report[1][1],
-                mean_rooms = report[2],
-                worst_rooms = report[3],
-                alternative_scenarios = alternative_scenarios,
-                base_mean_room_data = report[0].calculate_room_mean_exposure(),
-                base_worst_room_data = report[0].calculate_room_worst_exposure(),
-                alternative1_worst_room_data = alternative_scenarios['mean'][0].calculate_room_mean_exposure(),
-                alternative1_mean_room_data = alternative_scenarios['mean'][0].calculate_room_worst_exposure(),
-                alternative2_worst_room_data = alternative_scenarios['worst'][0].calculate_room_mean_exposure(),
-                alternative2_mean_room_data = alternative_scenarios['worst'][0].calculate_room_worst_exposure(),
-                ACTIVITY_TYPES = ACTIVITY_TYPES
-            )
-            self.finish(report)
+                now = datetime.datetime.utcnow().astimezone()
+                time = now.strftime("%Y-%m-%d %H:%M:%S UTC")
+                Report = multi_room_model.Report()
+                MultiReport = multi_room_generator.MultiGenerator(simulation, Report)
+                executor = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
+                report_task = executor.submit(
+                    MultiReport.calculate_simulation_data
+                )
+                report = await asyncio.wrap_future(report_task)
+                executor2 = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
+                alternative_task = executor2.submit(report[0].alternative_scenarios,report[2], report[3])
+                alternative_scenarios = await asyncio.wrap_future(alternative_task)
+                template = template_environment.get_template(
+                "multi_room_report.html.j2")
+                report = template.render(
+                    link = multi_room_generator.generate_permalink(base_url, self.settings['multi_calculator_prefix'] ,form),
+                    user=self.current_user,
+                    calculator_prefix=self.settings["calculator_prefix"],
+                    calculator_version=__version__,
+                    text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
+                    data = report[0],
+                    form=form,
+                    default = DEFAULT_DATA._MULTI_DEFAULTS,
+                    time_minutes_to_string = time_minutes_to_string,
+                    creation_date = time,
+                    mean_expected_cases = report[1][0],
+                    worst_expected_cases = report[1][1],
+                    mean_rooms = report[2],
+                    worst_rooms = report[3],
+                    alternative_scenarios = alternative_scenarios,
+                    base_mean_room_data = report[0].calculate_room_mean_exposure(),
+                    base_worst_room_data = report[0].calculate_room_worst_exposure(),
+                    alternative1_worst_room_data = alternative_scenarios['mean'][0].calculate_room_mean_exposure(),
+                    alternative1_mean_room_data = alternative_scenarios['mean'][0].calculate_room_worst_exposure(),
+                    alternative2_worst_room_data = alternative_scenarios['worst'][0].calculate_room_mean_exposure(),
+                    alternative2_mean_room_data = alternative_scenarios['worst'][0].calculate_room_worst_exposure(),
+                    ACTIVITY_TYPES = ACTIVITY_TYPES
+                )
+                self.finish(report)
 
 
 
@@ -508,6 +544,7 @@ def make_app(
         (r'/_m/(.*)', CompressedCalculatorFormInputs, {'prefix' : multi_calculator_prefix}),
         (r'/about', AboutPage),
         (r'/static/(.*)', StaticFileHandler, {'path': static_dir}),
+        (r'/restricted', NotAllowed),
         (calculator_prefix + r'/?', CalculatorForm),
         (calculator_prefix + r'/report', ConcentrationModel),
         (calculator_prefix + r'/baseline-model/result', StaticModel),

@@ -1,4 +1,8 @@
 #main_error {
-    height: 8em;
+    height: 15em;
     display: block
+}
+
+main{
+    height: 55vh;
 }

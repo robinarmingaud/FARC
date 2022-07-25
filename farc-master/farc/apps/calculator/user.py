@@ -20,6 +20,7 @@ class AuthenticatedUser(User):
     username: str
     email: str
     fullname: str
+    farc_expert: bool
 
     def is_authenticated(self) -> bool:
         return True
