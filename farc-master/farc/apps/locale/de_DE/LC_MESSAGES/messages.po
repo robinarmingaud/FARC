@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-20 15:02+0200\n"
+"POT-Creation-Date: 2022-07-25 14:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de_DE\n"
@@ -18,458 +18,485 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.1\n"
 
-#: calculator/DEFAULT_DATA.py:53 calculator/DEFAULT_DATA.py:143
+#: calculator/DEFAULT_DATA.py:30 calculator/DEFAULT_DATA.py:97
+#: calculator/DEFAULT_DATA.py:187
 msgid "January"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:74
-msgid "1"
+#: calculator/DEFAULT_DATA.py:39 calculator/DEFAULT_DATA.py:118
+msgid "My room"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:76
+#: calculator/DEFAULT_DATA.py:42 calculator/DEFAULT_DATA.py:120
 msgid "My simulation"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:385
-#: templates/userguide.html.j2:56
+#: calculator/DEFAULT_DATA.py:48 calculator/DEFAULT_DATA.py:124
+#: templates/calculator.report.html.j2:385 templates/userguide.html.j2:56
 msgid "SARS-CoV-2 (nominal strain)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:387
-#: templates/userguide.html.j2:59
+#: calculator/DEFAULT_DATA.py:48 calculator/DEFAULT_DATA.py:124
+#: templates/calculator.report.html.j2:387 templates/userguide.html.j2:59
 msgid "SARS-CoV-2 (Alpha VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:389
-#: templates/userguide.html.j2:62
+#: calculator/DEFAULT_DATA.py:48 calculator/DEFAULT_DATA.py:124
+#: templates/calculator.report.html.j2:389 templates/userguide.html.j2:62
 msgid "SARS-CoV-2 (Beta VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:391
-#: templates/userguide.html.j2:65
+#: calculator/DEFAULT_DATA.py:48 calculator/DEFAULT_DATA.py:124
+#: templates/calculator.report.html.j2:391 templates/userguide.html.j2:65
 msgid "SARS-CoV-2 (Gamma VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:393
-#: templates/userguide.html.j2:68
+#: calculator/DEFAULT_DATA.py:48 calculator/DEFAULT_DATA.py:124
+#: templates/calculator.report.html.j2:393 templates/userguide.html.j2:68
 msgid "SARS-CoV-2 (Delta VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:80 templates/calculator.report.html.j2:395
-#: templates/userguide.html.j2:71
+#: calculator/DEFAULT_DATA.py:48 calculator/DEFAULT_DATA.py:124
+#: templates/calculator.report.html.j2:395 templates/userguide.html.j2:71
 msgid "SARS-CoV-2 (Omicron VOC)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:94
-#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:96
+#: calculator/DEFAULT_DATA.py:57 templates/multi_room_form.html.j2:200
+#: templates/multi_room_report.html.j2:141
+#: templates/multi_room_report.html.j2:228
+#: templates/multi_room_report.html.j2:291
+#: templates/multi_room_report.html.j2:378
+#: templates/multi_room_report.html.j2:450
+#: templates/multi_room_report.html.j2:530
+#: templates/multi_room_report.html.j2:610
+msgid "Room"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:58
+msgid "Person"
+msgstr ""
+
+#: calculator/DEFAULT_DATA.py:137 calculator/DEFAULT_DATA.py:138
+#: calculator/DEFAULT_DATA.py:139 calculator/DEFAULT_DATA.py:140
 msgid "Business"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:93
+#: calculator/DEFAULT_DATA.py:137
 msgid "Office worker"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:94
-#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:96
-#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:98
-#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:100
-#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:102
-#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
-#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:108
-#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:111
-#: calculator/DEFAULT_DATA.py:112 calculator/DEFAULT_DATA.py:113
-#: calculator/DEFAULT_DATA.py:114 calculator/DEFAULT_DATA.py:115
-#: calculator/DEFAULT_DATA.py:116 calculator/DEFAULT_DATA.py:119
-#: calculator/DEFAULT_DATA.py:120 calculator/DEFAULT_DATA.py:121
-#: calculator/DEFAULT_DATA.py:122 calculator/DEFAULT_DATA.py:123
-#: calculator/DEFAULT_DATA.py:124 calculator/DEFAULT_DATA.py:125
-#: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
-#: templates/calculator.form.html.j2:408 templates/calculator.form.html.j2:523
+#: calculator/DEFAULT_DATA.py:137 calculator/DEFAULT_DATA.py:138
+#: calculator/DEFAULT_DATA.py:139 calculator/DEFAULT_DATA.py:140
+#: calculator/DEFAULT_DATA.py:141 calculator/DEFAULT_DATA.py:142
+#: calculator/DEFAULT_DATA.py:143 calculator/DEFAULT_DATA.py:144
+#: calculator/DEFAULT_DATA.py:145 calculator/DEFAULT_DATA.py:146
+#: calculator/DEFAULT_DATA.py:147 calculator/DEFAULT_DATA.py:148
+#: calculator/DEFAULT_DATA.py:149 calculator/DEFAULT_DATA.py:150
+#: calculator/DEFAULT_DATA.py:151 calculator/DEFAULT_DATA.py:152
+#: calculator/DEFAULT_DATA.py:153 calculator/DEFAULT_DATA.py:155
+#: calculator/DEFAULT_DATA.py:156 calculator/DEFAULT_DATA.py:157
+#: calculator/DEFAULT_DATA.py:158 calculator/DEFAULT_DATA.py:159
+#: calculator/DEFAULT_DATA.py:160 calculator/DEFAULT_DATA.py:163
+#: calculator/DEFAULT_DATA.py:164 calculator/DEFAULT_DATA.py:165
+#: calculator/DEFAULT_DATA.py:166 calculator/DEFAULT_DATA.py:167
+#: calculator/DEFAULT_DATA.py:168 calculator/DEFAULT_DATA.py:169
+#: calculator/DEFAULT_DATA.py:170 calculator/DEFAULT_DATA.py:171
+#: templates/calculator.form.html.j2:408 templates/calculator.form.html.j2:505
+#: templates/multi_room_form.html.j2:704
+#: templates/multi_room_report.html.j2:894
 msgid "Speaking"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:93 calculator/DEFAULT_DATA.py:94
-#: calculator/DEFAULT_DATA.py:95 calculator/DEFAULT_DATA.py:96
-#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:98
-#: calculator/DEFAULT_DATA.py:99 calculator/DEFAULT_DATA.py:100
-#: calculator/DEFAULT_DATA.py:101 calculator/DEFAULT_DATA.py:102
-#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
-#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:108
-#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:110
-#: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:112
-#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:114
-#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:116
-#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
-#: calculator/DEFAULT_DATA.py:119 calculator/DEFAULT_DATA.py:120
-#: calculator/DEFAULT_DATA.py:121 calculator/DEFAULT_DATA.py:122
-#: calculator/DEFAULT_DATA.py:123 calculator/DEFAULT_DATA.py:124
-#: calculator/DEFAULT_DATA.py:125 calculator/DEFAULT_DATA.py:126
-#: calculator/DEFAULT_DATA.py:127 templates/calculator.form.html.j2:402
-#: templates/calculator.form.html.j2:517
+#: calculator/DEFAULT_DATA.py:137 calculator/DEFAULT_DATA.py:138
+#: calculator/DEFAULT_DATA.py:139 calculator/DEFAULT_DATA.py:140
+#: calculator/DEFAULT_DATA.py:141 calculator/DEFAULT_DATA.py:142
+#: calculator/DEFAULT_DATA.py:143 calculator/DEFAULT_DATA.py:144
+#: calculator/DEFAULT_DATA.py:145 calculator/DEFAULT_DATA.py:146
+#: calculator/DEFAULT_DATA.py:147 calculator/DEFAULT_DATA.py:148
+#: calculator/DEFAULT_DATA.py:149 calculator/DEFAULT_DATA.py:150
+#: calculator/DEFAULT_DATA.py:151 calculator/DEFAULT_DATA.py:152
+#: calculator/DEFAULT_DATA.py:153 calculator/DEFAULT_DATA.py:154
+#: calculator/DEFAULT_DATA.py:155 calculator/DEFAULT_DATA.py:156
+#: calculator/DEFAULT_DATA.py:157 calculator/DEFAULT_DATA.py:158
+#: calculator/DEFAULT_DATA.py:159 calculator/DEFAULT_DATA.py:160
+#: calculator/DEFAULT_DATA.py:161 calculator/DEFAULT_DATA.py:162
+#: calculator/DEFAULT_DATA.py:163 calculator/DEFAULT_DATA.py:164
+#: calculator/DEFAULT_DATA.py:165 calculator/DEFAULT_DATA.py:166
+#: calculator/DEFAULT_DATA.py:167 calculator/DEFAULT_DATA.py:168
+#: calculator/DEFAULT_DATA.py:169 calculator/DEFAULT_DATA.py:170
+#: calculator/DEFAULT_DATA.py:171 templates/calculator.form.html.j2:402
+#: templates/calculator.form.html.j2:499 templates/multi_room_form.html.j2:688
+#: templates/multi_room_report.html.j2:893
 msgid "Breathing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:94
+#: calculator/DEFAULT_DATA.py:138
 msgid "Workshop worker"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:94 calculator/DEFAULT_DATA.py:95
-#: calculator/DEFAULT_DATA.py:96 calculator/DEFAULT_DATA.py:101
-#: calculator/DEFAULT_DATA.py:102 calculator/DEFAULT_DATA.py:104
-#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:109
-#: calculator/DEFAULT_DATA.py:110 calculator/DEFAULT_DATA.py:111
-#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:116
-#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
-#: calculator/DEFAULT_DATA.py:123 calculator/DEFAULT_DATA.py:124
-#: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
-#: templates/calculator.form.html.j2:414 templates/calculator.form.html.j2:529
+#: calculator/DEFAULT_DATA.py:138 calculator/DEFAULT_DATA.py:139
+#: calculator/DEFAULT_DATA.py:140 calculator/DEFAULT_DATA.py:145
+#: calculator/DEFAULT_DATA.py:146 calculator/DEFAULT_DATA.py:148
+#: calculator/DEFAULT_DATA.py:149 calculator/DEFAULT_DATA.py:150
+#: calculator/DEFAULT_DATA.py:151 calculator/DEFAULT_DATA.py:153
+#: calculator/DEFAULT_DATA.py:154 calculator/DEFAULT_DATA.py:155
+#: calculator/DEFAULT_DATA.py:157 calculator/DEFAULT_DATA.py:160
+#: calculator/DEFAULT_DATA.py:161 calculator/DEFAULT_DATA.py:162
+#: calculator/DEFAULT_DATA.py:167 calculator/DEFAULT_DATA.py:168
+#: calculator/DEFAULT_DATA.py:170 calculator/DEFAULT_DATA.py:171
+#: templates/calculator.form.html.j2:414 templates/calculator.form.html.j2:511
+#: templates/multi_room_form.html.j2:720
+#: templates/multi_room_report.html.j2:895
 msgid "Shouting"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:95
+#: calculator/DEFAULT_DATA.py:139
 msgid "Meeting participant"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:96
+#: calculator/DEFAULT_DATA.py:140
 msgid "Meeting leader"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:97 calculator/DEFAULT_DATA.py:98
-#: calculator/DEFAULT_DATA.py:99
+#: calculator/DEFAULT_DATA.py:141 calculator/DEFAULT_DATA.py:142
+#: calculator/DEFAULT_DATA.py:143
 msgid "Hospital"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:97
+#: calculator/DEFAULT_DATA.py:141
 msgid "Hospital patient"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:98
+#: calculator/DEFAULT_DATA.py:142
 msgid "Nurse working"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:99
+#: calculator/DEFAULT_DATA.py:143
 msgid "Physician working"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:100 calculator/DEFAULT_DATA.py:101
-#: calculator/DEFAULT_DATA.py:102
+#: calculator/DEFAULT_DATA.py:144 calculator/DEFAULT_DATA.py:145
+#: calculator/DEFAULT_DATA.py:146
 msgid "Education"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:100
+#: calculator/DEFAULT_DATA.py:144
 msgid "Student sitting"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:101
+#: calculator/DEFAULT_DATA.py:145
 msgid "Professor teaching"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:102
+#: calculator/DEFAULT_DATA.py:146
 msgid "Professor conferencing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:103 calculator/DEFAULT_DATA.py:104
-#: calculator/DEFAULT_DATA.py:105 calculator/DEFAULT_DATA.py:106
-#: calculator/DEFAULT_DATA.py:107 calculator/DEFAULT_DATA.py:108
-#: calculator/DEFAULT_DATA.py:109 calculator/DEFAULT_DATA.py:110
-#: calculator/DEFAULT_DATA.py:111 calculator/DEFAULT_DATA.py:112
+#: calculator/DEFAULT_DATA.py:147 calculator/DEFAULT_DATA.py:148
+#: calculator/DEFAULT_DATA.py:149 calculator/DEFAULT_DATA.py:150
+#: calculator/DEFAULT_DATA.py:151 calculator/DEFAULT_DATA.py:152
+#: calculator/DEFAULT_DATA.py:153 calculator/DEFAULT_DATA.py:154
+#: calculator/DEFAULT_DATA.py:155 calculator/DEFAULT_DATA.py:156
 msgid "Events"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:103
+#: calculator/DEFAULT_DATA.py:147
 msgid "Concert musician (soft music)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:104
+#: calculator/DEFAULT_DATA.py:148
 msgid "Concert musician (rock)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:105
+#: calculator/DEFAULT_DATA.py:149
 msgid "Concert singer (rock)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:106
+#: calculator/DEFAULT_DATA.py:150
 msgid "Concert spectator (standing)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:107
+#: calculator/DEFAULT_DATA.py:151
 msgid "Concert spectator (sitting)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:108
+#: calculator/DEFAULT_DATA.py:152
 msgid "Museum visitor"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:109
+#: calculator/DEFAULT_DATA.py:153
 msgid "Theater spectator"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:110
+#: calculator/DEFAULT_DATA.py:154
 msgid "Theater actor"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:111
+#: calculator/DEFAULT_DATA.py:155
 msgid "Conferencer"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:112
+#: calculator/DEFAULT_DATA.py:156
 msgid "Conference attendee"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:113 calculator/DEFAULT_DATA.py:114
-#: calculator/DEFAULT_DATA.py:115 calculator/DEFAULT_DATA.py:116
-#: calculator/DEFAULT_DATA.py:117 calculator/DEFAULT_DATA.py:118
+#: calculator/DEFAULT_DATA.py:157 calculator/DEFAULT_DATA.py:158
+#: calculator/DEFAULT_DATA.py:159 calculator/DEFAULT_DATA.py:160
+#: calculator/DEFAULT_DATA.py:161 calculator/DEFAULT_DATA.py:162
 msgid "Restaurant and Bar"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:113
+#: calculator/DEFAULT_DATA.py:157
 msgid "Guest standing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:114
+#: calculator/DEFAULT_DATA.py:158
 msgid "Guest sitting"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:115
+#: calculator/DEFAULT_DATA.py:159
 msgid "Server"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:116
+#: calculator/DEFAULT_DATA.py:160
 msgid "Barrista"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:117
+#: calculator/DEFAULT_DATA.py:161
 msgid "Nightclub dancing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:118
+#: calculator/DEFAULT_DATA.py:162
 msgid "Nightclub sitting"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:119 calculator/DEFAULT_DATA.py:120
-#: calculator/DEFAULT_DATA.py:121
+#: calculator/DEFAULT_DATA.py:163 calculator/DEFAULT_DATA.py:164
+#: calculator/DEFAULT_DATA.py:165
 msgid "Store and Retail"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:119
+#: calculator/DEFAULT_DATA.py:163
 msgid "Customer standing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:120
+#: calculator/DEFAULT_DATA.py:164
 msgid "Cashier sitting"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:121
+#: calculator/DEFAULT_DATA.py:165
 msgid "Vendor standing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:122 calculator/DEFAULT_DATA.py:123
-#: calculator/DEFAULT_DATA.py:124
+#: calculator/DEFAULT_DATA.py:166 calculator/DEFAULT_DATA.py:167
+#: calculator/DEFAULT_DATA.py:168
 msgid "Sport"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:122
+#: calculator/DEFAULT_DATA.py:166
 msgid "Musculation"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:123
+#: calculator/DEFAULT_DATA.py:167
 msgid "Floor gymnastics"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:124
+#: calculator/DEFAULT_DATA.py:168
 msgid "Team competition"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:125
+#: calculator/DEFAULT_DATA.py:169
 msgid "Miscellaneous"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:125
+#: calculator/DEFAULT_DATA.py:169
 msgid "Trip in elevator"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:126 calculator/DEFAULT_DATA.py:127
+#: calculator/DEFAULT_DATA.py:170 calculator/DEFAULT_DATA.py:171
 msgid "Navy"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:126
+#: calculator/DEFAULT_DATA.py:170
 msgid "Watch seated"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:127
+#: calculator/DEFAULT_DATA.py:171
 msgid "Watch standing"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:143
+#: calculator/DEFAULT_DATA.py:187
 msgid "February"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:143
+#: calculator/DEFAULT_DATA.py:187
 msgid "March"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:143
+#: calculator/DEFAULT_DATA.py:187
 msgid "April"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:143
+#: calculator/DEFAULT_DATA.py:187
 msgid "May"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:143
+#: calculator/DEFAULT_DATA.py:187
 msgid "June"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:143
+#: calculator/DEFAULT_DATA.py:187
 msgid "July"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:144
+#: calculator/DEFAULT_DATA.py:188
 msgid "August"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:144
+#: calculator/DEFAULT_DATA.py:188
 msgid "September"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:144
+#: calculator/DEFAULT_DATA.py:188
 msgid "October"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:144
+#: calculator/DEFAULT_DATA.py:188
 msgid "November"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:144
+#: calculator/DEFAULT_DATA.py:188
 msgid "December"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:149
+#: calculator/DEFAULT_DATA.py:193
 msgid "Choose the SARS-CoV-2 Variant of Concern (VOC)."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:150
+#: calculator/DEFAULT_DATA.py:194
 msgid ""
 "The area you wish to study (choose one of the 2 options). Indicate if a "
 "heating/air conditionning system is in use."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:151
+#: calculator/DEFAULT_DATA.py:195
 msgid "The available means of venting / bioventilation of indoor spaces."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:152
+#: calculator/DEFAULT_DATA.py:196
 msgid ""
 "If 'Periodically' is selected, windows will be open during lunch and "
 "coffee breaks"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:153
+#: calculator/DEFAULT_DATA.py:197
 msgid ""
 "This value can be modified for alternative scenarios even if 'No' is "
 "checked"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:154
+#: calculator/DEFAULT_DATA.py:198
 msgid ""
 "Masks worn or removed when a 2m physical distance is respected and proper"
 " venting is ensured."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:155
+#: calculator/DEFAULT_DATA.py:199
 msgid ""
 "The total no. of occupants in the room and how many of them you assume "
 "are infected."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:156
+#: calculator/DEFAULT_DATA.py:200
 msgid ""
 "Input breaks that, by default, are the same for infected/exposed "
 "person(s) unless specified otherwise."
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:157
+#: calculator/DEFAULT_DATA.py:201
 msgid "Percentage of time spent breathing, talking or shouting"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:159
+#: calculator/DEFAULT_DATA.py:203
 msgid "Room volume (m³)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:160
+#: calculator/DEFAULT_DATA.py:204
 msgid "Room floor area (m²)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:161
+#: calculator/DEFAULT_DATA.py:205
 msgid "Room ceiling height (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:162
+#: calculator/DEFAULT_DATA.py:206
 msgid "Flow rate (m³ / hour)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:163
+#: calculator/DEFAULT_DATA.py:207
 msgid "Air exchange (h⁻¹)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:164
+#: calculator/DEFAULT_DATA.py:208
 msgid "Number (#)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:165
+#: calculator/DEFAULT_DATA.py:209
 msgid "Height (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:166
+#: calculator/DEFAULT_DATA.py:210
 msgid "Width (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:167
+#: calculator/DEFAULT_DATA.py:211
 msgid "Opening distance (m)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:168
+#: calculator/DEFAULT_DATA.py:212
 msgid "Duration (min)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:169
+#: calculator/DEFAULT_DATA.py:213
 msgid "Frequency (min)"
 msgstr ""
 
-#: calculator/DEFAULT_DATA.py:170
+#: calculator/DEFAULT_DATA.py:214
 msgid "Default"
 msgstr ""
 
-#: calculator/__init__.py:79
+#: calculator/__init__.py:103
 msgid ""
 "Unfortunately an error occurred when processing your request. Please let "
 "us know about this issue with as much detail as possible at"
 msgstr ""
 
-#: calculator/__init__.py:79
+#: calculator/__init__.py:103
 msgid "reporting status code"
 msgstr ""
 
-#: calculator/__init__.py:79
+#: calculator/__init__.py:103
 msgid "the error id of :"
 msgstr ""
 
-#: calculator/__init__.py:79
+#: calculator/__init__.py:103
 msgid "and the time of the request"
 msgstr ""
 
-#: calculator/__init__.py:115
+#: calculator/__init__.py:139
 msgid "Unfortunately the page you were looking for does not exist."
 msgstr ""
 
-#: calculator/__init__.py:146
+#: calculator/__init__.py:165
+msgid ""
+"Unfortunately you do not have necessary rights to access our advanced "
+"diagnosis tool. Please feel free to contact us for an estimation at "
+msgstr ""
+
+#: calculator/__init__.py:201 calculator/__init__.py:383
 msgid "Your request was invalid"
 msgstr ""
 
-#: calculator/__init__.py:285
+#: calculator/__init__.py:506
 msgid ""
 "Invalid calculator data: it seems incomplete. Was there an error copying "
 "& pasting the URL?"
@@ -667,16 +694,16 @@ msgstr ""
 msgid "Acknowledgements:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:22
+#: templates/calculator.form.html.j2:22 templates/multi_room_form.html.j2:24
 msgid "Please send feedback to "
 msgstr ""
 
 #: templates/calculator.form.html.j2:26 templates/layout.html.j2:69
-#: templates/layout.html.j2:82
+#: templates/layout.html.j2:87
 msgid "FARC Calculator"
 msgstr ""
 
-#: templates/calculator.form.html.j2:48
+#: templates/calculator.form.html.j2:48 templates/multi_room_form.html.j2:110
 msgid "Simulation name:"
 msgstr ""
 
@@ -684,11 +711,12 @@ msgstr ""
 msgid "Room number:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:716
+#: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:698
+#: templates/multi_room_form.html.j2:120
 msgid "Virus data:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:66
+#: templates/calculator.form.html.j2:66 templates/multi_room_form.html.j2:127
 msgid "Variant:"
 msgstr ""
 
@@ -696,7 +724,7 @@ msgstr ""
 msgid "Room data:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:91
+#: templates/calculator.form.html.j2:91 templates/multi_room_form.html.j2:219
 msgid "Room volume:"
 msgstr ""
 
@@ -708,13 +736,13 @@ msgstr ""
 msgid "Ceiling height:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:118
+#: templates/calculator.form.html.j2:118 templates/multi_room_form.html.j2:237
 msgid "Heating/Air conditionning system in use:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:121 templates/calculator.form.html.j2:259
-#: templates/calculator.form.html.j2:280 templates/calculator.form.html.j2:602
-#: templates/calculator.form.html.j2:650
+#: templates/calculator.form.html.j2:280 templates/calculator.form.html.j2:584
+#: templates/calculator.form.html.j2:632
 #: templates/calculator.report.html.j2:406
 #: templates/calculator.report.html.j2:450
 #: templates/calculator.report.html.j2:509
@@ -722,12 +750,14 @@ msgstr ""
 #: templates/calculator.report.html.j2:737
 #: templates/calculator.report.html.j2:783
 #: templates/calculator.report.html.j2:819
+#: templates/multi_room_form.html.j2:246 templates/multi_room_form.html.j2:530
+#: templates/multi_room_form.html.j2:791
 msgid "No"
 msgstr ""
 
 #: templates/calculator.form.html.j2:123 templates/calculator.form.html.j2:261
-#: templates/calculator.form.html.j2:278 templates/calculator.form.html.j2:604
-#: templates/calculator.form.html.j2:652
+#: templates/calculator.form.html.j2:278 templates/calculator.form.html.j2:586
+#: templates/calculator.form.html.j2:634
 #: templates/calculator.report.html.j2:406
 #: templates/calculator.report.html.j2:435
 #: templates/calculator.report.html.j2:457
@@ -735,43 +765,46 @@ msgstr ""
 #: templates/calculator.report.html.j2:722
 #: templates/calculator.report.html.j2:768
 #: templates/calculator.report.html.j2:819
+#: templates/multi_room_form.html.j2:254 templates/multi_room_form.html.j2:538
+#: templates/multi_room_form.html.j2:789
 msgid "Yes"
 msgstr ""
 
-#: templates/calculator.form.html.j2:127
+#: templates/calculator.form.html.j2:127 templates/multi_room_form.html.j2:150
 msgid "Geographic location:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:131
+#: templates/calculator.form.html.j2:131 templates/multi_room_form.html.j2:262
 msgid "Humidity:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:133
+#: templates/calculator.form.html.j2:133 templates/multi_room_form.html.j2:274
 msgid "Temperature:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:149 templates/calculator.form.html.j2:726
+#: templates/calculator.form.html.j2:149 templates/calculator.form.html.j2:708
 #: templates/calculator.report.html.j2:427
 msgid "Ventilation data:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:156
+#: templates/calculator.form.html.j2:156 templates/multi_room_form.html.j2:280
 msgid "Ventilation type:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:161 templates/userguide.html.j2:162
+#: templates/calculator.form.html.j2:161 templates/multi_room_form.html.j2:290
+#: templates/multi_room_report.html.j2:850 templates/userguide.html.j2:162
 msgid "No ventilation"
 msgstr ""
 
-#: templates/calculator.form.html.j2:163
+#: templates/calculator.form.html.j2:163 templates/multi_room_form.html.j2:299
 msgid "Mechanical"
 msgstr ""
 
-#: templates/calculator.form.html.j2:165
+#: templates/calculator.form.html.j2:165 templates/multi_room_form.html.j2:310
 msgid "Natural"
 msgstr ""
 
-#: templates/calculator.form.html.j2:174
+#: templates/calculator.form.html.j2:174 templates/multi_room_form.html.j2:867
 msgid "Natural Ventilation"
 msgstr ""
 
@@ -784,55 +817,63 @@ msgid ""
 "window."
 msgstr ""
 
-#: templates/calculator.form.html.j2:194
+#: templates/calculator.form.html.j2:194 templates/multi_room_form.html.j2:327
 msgid "Air supply flow rate"
 msgstr ""
 
-#: templates/calculator.form.html.j2:203
+#: templates/calculator.form.html.j2:203 templates/multi_room_form.html.j2:353
 msgid "Air changes per hour"
 msgstr ""
 
 #: templates/calculator.form.html.j2:213
 #: templates/calculator.report.html.j2:463
+#: templates/multi_room_form.html.j2:374
 msgid "Number of windows:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:217
 #: templates/calculator.report.html.j2:468
+#: templates/multi_room_form.html.j2:391
 msgid "Height of window:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:220
 #: templates/calculator.report.html.j2:473
+#: templates/multi_room_form.html.j2:407
 msgid "Window type:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:222
 #: templates/calculator.report.html.j2:484
+#: templates/multi_room_form.html.j2:416
 msgid "Sliding / Side-Hung"
 msgstr ""
 
 #: templates/calculator.form.html.j2:224
 #: templates/calculator.report.html.j2:475
+#: templates/multi_room_form.html.j2:425
 msgid "Top- or Bottom-Hung"
 msgstr ""
 
 #: templates/calculator.form.html.j2:226
 #: templates/calculator.report.html.j2:480
+#: templates/multi_room_form.html.j2:431
 msgid "Width of window:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:230
 #: templates/calculator.report.html.j2:490
+#: templates/multi_room_form.html.j2:450
 msgid "Opening distance:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:233
+#: templates/calculator.form.html.j2:233 templates/multi_room_form.html.j2:466
 msgid "Window open"
 msgstr ""
 
 #: templates/calculator.form.html.j2:240
 #: templates/calculator.report.html.j2:500
+#: templates/multi_room_form.html.j2:481
 msgid "Permanently"
 msgstr ""
 
@@ -842,26 +883,27 @@ msgstr ""
 
 #: templates/calculator.form.html.j2:251
 #: templates/calculator.report.html.j2:515
+#: templates/multi_room_form.html.j2:520
 msgid "Bioventilation:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:269
+#: templates/calculator.form.html.j2:269 templates/multi_room_form.html.j2:778
 msgid "Face masks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:276
+#: templates/calculator.form.html.j2:276 templates/multi_room_form.html.j2:787
 msgid "Are masks worn when occupants ?"
 msgstr ""
 
-#: templates/calculator.form.html.j2:283
+#: templates/calculator.form.html.j2:283 templates/multi_room_form.html.j2:805
 msgid "Type of masks used (requested for alternative scenarios):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:288
+#: templates/calculator.form.html.j2:288 templates/multi_room_form.html.j2:810
 msgid "Surgical/Type I"
 msgstr ""
 
-#: templates/calculator.form.html.j2:295
+#: templates/calculator.form.html.j2:295 templates/multi_room_form.html.j2:817
 msgid "Respirator/FFP2"
 msgstr ""
 
@@ -889,54 +931,65 @@ msgstr ""
 #: templates/calculator.form.html.j2:355
 #: templates/calculator.report.html.j2:551
 #: templates/calculator.report.html.j2:628
+#: templates/multi_room_form.html.j2:652
 msgid "Activity type:"
 msgstr ""
 
 #: templates/calculator.form.html.j2:390 templates/calculator.form.html.j2:486
+#: templates/multi_room_form.html.j2:796
 msgid "Mask wear ratio:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:395 templates/calculator.form.html.j2:510
+#: templates/calculator.form.html.j2:395 templates/calculator.form.html.j2:492
+#: templates/multi_room_form.html.j2:680
 msgid "Expiration :"
 msgstr ""
 
-#: templates/calculator.form.html.j2:423 templates/calculator.form.html.j2:538
+#: templates/calculator.form.html.j2:423 templates/calculator.form.html.j2:520
+#: templates/multi_room_form.html.j2:740
 msgid "Activity level :"
 msgstr ""
 
-#: templates/calculator.form.html.j2:426 templates/calculator.form.html.j2:541
+#: templates/calculator.form.html.j2:426 templates/calculator.form.html.j2:523
+#: templates/multi_room_form.html.j2:747
 msgid "Seated"
 msgstr ""
 
-#: templates/calculator.form.html.j2:427 templates/calculator.form.html.j2:542
+#: templates/calculator.form.html.j2:427 templates/calculator.form.html.j2:524
+#: templates/multi_room_form.html.j2:750
 msgid "Standing"
 msgstr ""
 
-#: templates/calculator.form.html.j2:428 templates/calculator.form.html.j2:543
+#: templates/calculator.form.html.j2:428 templates/calculator.form.html.j2:525
+#: templates/multi_room_form.html.j2:753
 msgid "Light activity"
 msgstr ""
 
-#: templates/calculator.form.html.j2:429 templates/calculator.form.html.j2:544
+#: templates/calculator.form.html.j2:429 templates/calculator.form.html.j2:526
+#: templates/multi_room_form.html.j2:756
 msgid "Moderate activity"
 msgstr ""
 
-#: templates/calculator.form.html.j2:430 templates/calculator.form.html.j2:545
+#: templates/calculator.form.html.j2:430 templates/calculator.form.html.j2:527
+#: templates/multi_room_form.html.j2:759
 msgid "Heavy exercise"
 msgstr ""
 
-#: templates/calculator.form.html.j2:434 templates/calculator.form.html.j2:550
+#: templates/calculator.form.html.j2:434 templates/calculator.form.html.j2:532
 msgid "Presence:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:437 templates/calculator.form.html.j2:553
-#: templates/calculator.form.html.j2:607 templates/calculator.form.html.j2:656
+#: templates/calculator.form.html.j2:437 templates/calculator.form.html.j2:535
+#: templates/calculator.form.html.j2:589 templates/calculator.form.html.j2:638
 #: templates/calculator.report.html.j2:752
 #: templates/calculator.report.html.j2:798
+#: templates/multi_room_form.html.j2:767
 msgid "Start:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:441 templates/calculator.form.html.j2:557
-#: templates/calculator.form.html.j2:610 templates/calculator.form.html.j2:659
+#: templates/calculator.form.html.j2:441 templates/calculator.form.html.j2:539
+#: templates/calculator.form.html.j2:592 templates/calculator.form.html.j2:641
+#: templates/multi_room_form.html.j2:773
 msgid "Finish:"
 msgstr ""
 
@@ -948,57 +1001,57 @@ msgstr ""
 msgid "Activity:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:568
+#: templates/calculator.form.html.j2:550 templates/multi_room_form.html.j2:164
 msgid "Which month is the event?"
 msgstr ""
 
-#: templates/calculator.form.html.j2:585 templates/calculator.form.html.j2:757
+#: templates/calculator.form.html.j2:567 templates/calculator.form.html.j2:739
 msgid "Activity breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:594
+#: templates/calculator.form.html.j2:576
 msgid "Input separate breaks for infected and exposed person(s)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:598
+#: templates/calculator.form.html.j2:580
 msgid "Exposed person(s) breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:600 templates/calculator.form.html.j2:648
+#: templates/calculator.form.html.j2:582 templates/calculator.form.html.j2:630
 #: templates/calculator.report.html.j2:720
 #: templates/calculator.report.html.j2:766
 msgid "Lunch break:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:617 templates/calculator.form.html.j2:666
+#: templates/calculator.form.html.j2:599 templates/calculator.form.html.j2:648
 msgid "Coffee Breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:621 templates/calculator.form.html.j2:670
+#: templates/calculator.form.html.j2:603 templates/calculator.form.html.j2:652
 msgid "No breaks"
 msgstr ""
 
-#: templates/calculator.form.html.j2:631 templates/calculator.form.html.j2:680
+#: templates/calculator.form.html.j2:613 templates/calculator.form.html.j2:662
 msgid "Duration (minutes):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:646
+#: templates/calculator.form.html.j2:628
 msgid "Infected person(s) breaks:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:695
+#: templates/calculator.form.html.j2:677
 msgid "Coffee breaks are spread evenly throughout the day."
 msgstr ""
 
-#: templates/calculator.form.html.j2:706
+#: templates/calculator.form.html.j2:688 templates/multi_room_form.html.j2:849
 msgid "Generate report"
 msgstr ""
 
-#: templates/calculator.form.html.j2:713
+#: templates/calculator.form.html.j2:695
 msgid "Quick Guide:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:714
+#: templates/calculator.form.html.j2:696
 msgid ""
 "FARC stands for Flow-R Airborne Risk Calculator.\n"
 "  This tool simulates the long range airborne spread SARS-CoV-2 virus in "
@@ -1007,45 +1060,45 @@ msgid ""
 "of different mitigation measures."
 msgstr ""
 
-#: templates/calculator.form.html.j2:717
+#: templates/calculator.form.html.j2:699
 msgid ""
 "SARS-CoV-2 covers the original 'wild type' strain of the virus and three "
 "variants of concern (VOC):"
 msgstr ""
 
-#: templates/calculator.form.html.j2:719
+#: templates/calculator.form.html.j2:701
 msgid "Alpha (also known as B.1.1.7, first identified in UK, Sept 2020),"
 msgstr ""
 
-#: templates/calculator.form.html.j2:720
+#: templates/calculator.form.html.j2:702
 msgid "Beta (also known as B.1.351, first identified in South Africa, May 2020)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:721
+#: templates/calculator.form.html.j2:703
 msgid "Gamma (also known as P.1, first identified in Brazil/Japan, Jan 2021)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:722
+#: templates/calculator.form.html.j2:704
 msgid "Delta (also known as B.1.617.2, first identified in India, Oct 2020)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:723
+#: templates/calculator.form.html.j2:705
 msgid ""
 "Omicron (also known as B.1.1.529, first identified in South Africa, "
 "November 2021)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:725
+#: templates/calculator.form.html.j2:707
 msgid "Modify the default as necessary, according to local area prevalence."
 msgstr ""
 
-#: templates/calculator.form.html.j2:728
+#: templates/calculator.form.html.j2:710
 msgid ""
 "Mechanical ventilation = the HVAC supply of fresh air. Check the flow "
 "rates with the concerned technical department."
 msgstr ""
 
-#: templates/calculator.form.html.j2:729
+#: templates/calculator.form.html.j2:711
 msgid ""
 "Natural ventilation = the type of window opening. The opening distance is"
 " between the fixed frame and movable part when open (commonly used values"
@@ -1054,72 +1107,73 @@ msgid ""
 "frequency (e.g. every 60 min)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:730
+#: templates/calculator.form.html.j2:712
 msgid ""
 "Bioventilation = the clean air flow of the device. The following values "
 "are based on the different fan velocities of a specific commercial device"
 " proposed by the Flow-R:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:732 templates/calculator.form.html.j2:733
-#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
+#: templates/calculator.form.html.j2:714 templates/calculator.form.html.j2:715
+#: templates/calculator.form.html.j2:716 templates/calculator.form.html.j2:717
 msgid "/h (noisy)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:732 templates/calculator.form.html.j2:733
+#: templates/calculator.form.html.j2:714 templates/calculator.form.html.j2:715
 msgid "/h (very noisy)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:732 templates/calculator.form.html.j2:733
-#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
+#: templates/calculator.form.html.j2:714 templates/calculator.form.html.j2:715
+#: templates/calculator.form.html.j2:716 templates/calculator.form.html.j2:717
 msgid "/h (max, very noisy. Recommended without attendance)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
+#: templates/calculator.form.html.j2:716 templates/calculator.form.html.j2:717
 msgid "/h (ultra silent)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:734 templates/calculator.form.html.j2:735
+#: templates/calculator.form.html.j2:716 templates/calculator.form.html.j2:717
 msgid "/h (silent)"
 msgstr ""
 
-#: templates/calculator.form.html.j2:738
+#: templates/calculator.form.html.j2:720
 msgid "Activity types:"
 msgstr ""
 
-#: templates/calculator.form.html.j2:739
+#: templates/calculator.form.html.j2:721
 msgid ""
 "The type of activity applies to the infected and exposed persons "
 "separately."
 msgstr ""
 
-#: templates/calculator.form.html.j2:758
+#: templates/calculator.form.html.j2:740
 msgid ""
 "If coffee breaks are included, they are spread out evenly throughout the "
 "day, in addition to any lunch break (if applicable)."
 msgstr ""
 
-#: templates/calculator.form.html.j2:760
+#: templates/calculator.form.html.j2:742
 msgid "Refer to"
 msgstr ""
 
-#: templates/calculator.form.html.j2:760
+#: templates/calculator.form.html.j2:742
 msgid "FARC user guide"
 msgstr ""
 
-#: templates/calculator.form.html.j2:761
+#: templates/calculator.form.html.j2:743
 msgid "for more detailed explanations on how to use this tool."
 msgstr ""
 
-#: templates/calculator.form.html.j2:766
+#: templates/calculator.form.html.j2:748
 msgid "User guide"
 msgstr ""
 
-#: templates/calculator.form.html.j2:769 templates/userguide.html.j2:27
+#: templates/calculator.form.html.j2:751 templates/multi_room_form.html.j2:84
+#: templates/userguide.html.j2:27
 msgid "Disclaimer"
 msgstr ""
 
-#: templates/calculator.report.html.j2:7
+#: templates/calculator.report.html.j2:7 templates/multi_room_report.html.j2:7
 msgid "Report | FARC (Flow-R Airborne Risk Calculator)"
 msgstr ""
 
@@ -1128,23 +1182,29 @@ msgid "REPORT"
 msgstr ""
 
 #: templates/calculator.report.html.j2:38
+#: templates/multi_room_report.html.j2:38
 msgid "Created"
 msgstr ""
 
 #: templates/calculator.report.html.j2:38
+#: templates/multi_room_report.html.j2:38
 msgid "using FARC"
 msgstr ""
 
 #: templates/calculator.report.html.j2:45
+#: templates/multi_room_report.html.j2:45
 msgid "Print Report"
 msgstr ""
 
 #: templates/calculator.report.html.j2:63
-#: templates/calculator.report.html.j2:92 templates/userguide.html.j2:302
+#: templates/calculator.report.html.j2:92
+#: templates/multi_room_report.html.j2:66
+#: templates/multi_room_report.html.j2:86 templates/userguide.html.j2:302
 msgid "Results"
 msgstr ""
 
 #: templates/calculator.report.html.j2:72
+#: templates/multi_room_report.html.j2:75
 msgid "Input Data"
 msgstr ""
 
@@ -1240,6 +1300,9 @@ msgid "P(i)"
 msgstr ""
 
 #: templates/calculator.report.html.j2:219
+#: templates/multi_room_report.html.j2:476
+#: templates/multi_room_report.html.j2:556
+#: templates/multi_room_report.html.j2:636
 msgid "Expected new cases"
 msgstr ""
 
@@ -1271,18 +1334,22 @@ msgid ""
 msgstr ""
 
 #: templates/calculator.report.html.j2:304
+#: templates/multi_room_report.html.j2:663
 msgid "Link to reproduce results"
 msgstr ""
 
 #: templates/calculator.report.html.j2:331
+#: templates/multi_room_report.html.j2:690
 msgid "Click to copy a shareable link"
 msgstr ""
 
 #: templates/calculator.report.html.j2:344
+#: templates/multi_room_report.html.j2:703
 msgid "Click the QR code to regenerate the report and get a shareable link."
 msgstr ""
 
 #: templates/calculator.report.html.j2:346
+#: templates/multi_room_report.html.j2:705
 msgid "Alternatively, scan to regenerate the report."
 msgstr ""
 
@@ -1550,6 +1617,7 @@ msgid ""
 msgstr ""
 
 #: templates/calculator.report.html.j2:893
+#: templates/multi_room_report.html.j2:1020
 msgid "Disclaimer:"
 msgstr ""
 
@@ -1725,7 +1793,7 @@ msgid ""
 "                Please see the"
 msgstr ""
 
-#: templates/index.html.j2:24 templates/layout.html.j2:91
+#: templates/index.html.j2:24 templates/layout.html.j2:96
 msgid "About"
 msgstr ""
 
@@ -1750,42 +1818,46 @@ msgid "Apps:"
 msgstr ""
 
 #: templates/index.html.j2:56
-msgid "Information"
-msgstr ""
-
-#: templates/index.html.j2:59
-msgid "FARC - Flow-R Airborne Risk calculator"
-msgstr ""
-
-#: templates/index.html.j2:61
-msgid "© Copyright 2022 Ingenica. All rights not expressly granted are reserved."
-msgstr ""
-
-#: templates/index.html.j2:63 templates/index.html.j2:71
-msgid "Licensed under the Apache License, Version 2.0"
+msgid "Expert"
 msgstr ""
 
 #: templates/index.html.j2:65
+msgid "Information"
+msgstr ""
+
+#: templates/index.html.j2:68
+msgid "FARC - Flow-R Airborne Risk calculator"
+msgstr ""
+
+#: templates/index.html.j2:70
+msgid "© Copyright 2022 Ingenica. All rights not expressly granted are reserved."
+msgstr ""
+
+#: templates/index.html.j2:72 templates/index.html.j2:80
+msgid "Licensed under the Apache License, Version 2.0"
+msgstr ""
+
+#: templates/index.html.j2:74
 msgid "based on:"
 msgstr ""
 
-#: templates/index.html.j2:67
+#: templates/index.html.j2:76
 msgid "CARA – COVID Airborne Risk Assessment tool"
 msgstr ""
 
-#: templates/index.html.j2:69
+#: templates/index.html.j2:78
 msgid "© Copyright 2020-2021 CERN. All rights not expressly granted are reserved."
 msgstr ""
 
-#: templates/index.html.j2:73
+#: templates/index.html.j2:82
 msgid "You may not use this file except in compliance with the License."
 msgstr ""
 
-#: templates/index.html.j2:75
+#: templates/index.html.j2:84
 msgid "You may obtain a copy of the License at"
 msgstr ""
 
-#: templates/index.html.j2:79
+#: templates/index.html.j2:88
 msgid ""
 "Unless required by applicable law or agreed to in writing, software "
 "distributed under the License is distributed on an 'AS IS' BASIS, WITHOUT"
@@ -1806,19 +1878,23 @@ msgstr ""
 msgid "Apps"
 msgstr ""
 
-#: templates/layout.html.j2:74 templates/layout.html.j2:86
+#: templates/layout.html.j2:74 templates/layout.html.j2:91
 msgid "User Guide"
 msgstr ""
 
-#: templates/layout.html.j2:110
+#: templates/layout.html.j2:79
+msgid "Expert calculator"
+msgstr ""
+
+#: templates/layout.html.j2:114
 msgid "Signed in as:"
 msgstr ""
 
-#: templates/layout.html.j2:116
+#: templates/layout.html.j2:120
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html.j2:137
+#: templates/layout.html.j2:139
 msgid ""
 "Flow-R FARC Team strives to deploy its know-how and technologies to help "
 "solve\n"
@@ -1831,14 +1907,478 @@ msgid ""
 "                            warranty."
 msgstr ""
 
-#: templates/layout.html.j2:144
+#: templates/layout.html.j2:146
 msgid ""
 "FARC is based on CARA tool developed at CERN.\n"
 "                            FARC and CARA are Apache 2.0 licensed."
 msgstr ""
 
-#: templates/userguide.html.j2:8
+#: templates/multi_room_form.html.j2:28
+msgid "FARC Expert"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:72 templates/userguide.html.j2:8
 msgid "Instructions for use"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:74
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis "
+"urna vel gravida laoreet. Sed vulputate magna a nisl ultricies, eu "
+"pulvinar diam aliquet. Phasellus orci felis, pretium ut justo vel, "
+"pharetra placerat ex. Fusce eget pharetra justo, et mattis nulla. Cras a "
+"sollicitudin orci, consectetur volutpat nulla. Sed at viverra justo, et "
+"scelerisque ipsum. Vestibulum at elit eget sem vehicula pulvinar quis sit"
+" amet neque. Vestibulum velit libero, placerat sit amet ultricies at, "
+"vulputate sed arcu. Quisque accumsan, lectus dapibus commodo dictum, "
+"tellus diam egestas neque, nec scelerisque felis tellus a sapien.\n"
+"            Nullam sed massa vitae magna volutpat vulputate. Nullam "
+"varius placerat feugiat. Sed lobortis nunc eu mi interdum, sed tincidunt "
+"massa egestas. Cras placerat lorem velit, at ultricies augue pulvinar ac."
+" In fermentum lobortis tortor, at aliquam ex viverra sit amet. Vestibulum"
+" a ultrices ante, ac ultricies tortor. Quisque hendrerit arcu ut elit "
+"ultricies, a pretium mauris lobortis. Maecenas eu mi eu justo lobortis "
+"varius nec quis felis. Curabitur scelerisque auctor tristique. "
+"Suspendisse ut felis felis. Morbi varius urna sit amet justo efficitur "
+"tincidunt. Vivamus gravida fermentum leo non sollicitudin."
+msgstr ""
+
+#: templates/multi_room_form.html.j2:89 templates/multi_room_form.html.j2:91
+msgid "Lorem ipsum"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:94
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis "
+"urna vel gravida laoreet. Sed vulputate magna a nisl ultricies, eu "
+"pulvinar diam aliquet. Phasellus orci felis, pretium ut justo vel, "
+"pharetra placerat ex. Fusce eget pharetra justo, et mattis nulla. Cras a "
+"sollicitudin orci, consectetur volutpat nulla. Sed at viverra justo, et "
+"scelerisque ipsum. Vestibulum at elit eget sem vehicula pulvinar quis sit"
+" amet neque. Vestibulum velit libero, placerat sit amet ultricies at, "
+"vulputate sed arcu. Quisque accumsan, lectus dapibus commodo dictum, "
+"tellus diam egestas neque, nec scelerisque felis tellus a sapien.\n"
+"              Nullam sed massa vitae magna volutpat vulputate. Nullam "
+"varius placerat feugiat. Sed lobortis nunc eu mi interdum, sed tincidunt "
+"massa egestas. Cras placerat lorem velit, at ultricies augue pulvinar ac."
+" In fermentum lobortis tortor, at aliquam ex viverra sit amet. Vestibulum"
+" a ultrices ante, ac ultricies tortor. Quisque hendrerit arcu ut elit "
+"ultricies, a pretium mauris lobortis. Maecenas eu mi eu justo lobortis "
+"varius nec quis felis. Curabitur scelerisque auctor tristique. "
+"Suspendisse ut felis felis. Morbi varius urna sit amet justo efficitur "
+"tincidunt. Vivamus gravida fermentum leo non sollicitudin.\n"
+"              Curabitur cursus odio quam, in porttitor nisi tempus "
+"pellentesque. In ac laoreet metus. Nam volutpat tortor ac condimentum "
+"mattis. Vivamus porta auctor metus, ac rutrum ligula malesuada nec. Proin"
+" dictum nunc eu enim elementum malesuada. Praesent rutrum, quam in "
+"sodales porta, velit ex suscipit dolor, a imperdiet purus lacus ut diam. "
+"Duis iaculis eros et quam molestie pharetra. Proin nec porta diam, vitae "
+"eleifend ligula.\n"
+"              Duis non consectetur diam. Nam vel placerat neque, in "
+"eleifend leo. Pellentesque habitant morbi tristique senectus et netus et "
+"malesuada fames ac turpis egestas. Cras dignissim semper lorem. Cras "
+"ligula mauris, molestie ac interdum vel, consectetur ut turpis. Aliquam "
+"vestibulum, orci id tempus rutrum, arcu risus semper sapien, vel bibendum"
+" lacus turpis ac nulla. Nulla porttitor dapibus sodales. Integer luctus "
+"odio mauris. Integer viverra nulla neque, sed dictum arcu luctus eu. Sed "
+"ultrices rutrum bibendum. Quisque at erat eget mi consequat semper eget "
+"non odio. Curabitur semper ligula in massa vehicula, nec hendrerit quam "
+"congue. Suspendisse potenti. Nulla ex nunc, pellentesque sed velit vel, "
+"fringilla interdum tortor.\n"
+"              Cras turpis nunc, ultricies eu euismod et, volutpat in "
+"nulla. Suspendisse finibus, magna vel rutrum aliquet, lectus lacus "
+"sagittis felis, vel lacinia lectus augue eu arcu. Sed sit amet ante sed "
+"dui tincidunt feugiat. Quisque aliquam sapien sit amet sapien feugiat "
+"tempus. Aenean accumsan sed nisi nec dignissim. Donec pulvinar arcu ut "
+"felis ultricies egestas. Sed imperdiet semper semper. Aliquam ut molestie"
+" dui. Suspendisse potenti. Phasellus ligula risus, volutpat ac dignissim "
+"et, porttitor eu tellus. Proin sodales urna in tristique tempor."
+msgstr ""
+
+#: templates/multi_room_form.html.j2:105
+msgid "General options"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:146
+msgid "Location :"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:205
+msgid "Room name:"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:495
+msgid "Periodically: "
+msgstr ""
+
+#: templates/multi_room_form.html.j2:554 templates/multi_room_form.html.j2:616
+msgid "Delete"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:561
+msgid "Add room"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:569
+msgid "People"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:575
+msgid "Person data"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:581
+msgid "Name :"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:590
+msgid "Number:"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:603
+msgid "Schedule"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:613
+msgid "Add event"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:629
+msgid "New event"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:641
+msgid "Event location:"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:828
+msgid "Close"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:833
+msgid "Save changes"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:844
+msgid "Add person"
+msgstr ""
+
+#: templates/multi_room_form.html.j2:877
+msgid ""
+"Single-sided ventilation is assumed in the model and is typically "
+"effective for room depths up to a depth 2.5 x the ceiling height.\n"
+"            If these conditions are not met, the air exchange might not "
+"be homogenous producing an artificially lower risk further away from the "
+"window."
+msgstr ""
+
+#: templates/multi_room_report.html.j2:34
+msgid "REPORT "
+msgstr ""
+
+#: templates/multi_room_report.html.j2:113
+msgid "Average expected new cases if one person is contaminated Raverage :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:135
+msgid "Rooms with the highest transmitted virus dose average :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:142
+#: templates/multi_room_report.html.j2:229
+#: templates/multi_room_report.html.j2:292
+#: templates/multi_room_report.html.j2:379
+msgid "Infectious virus dose"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:169
+#: templates/multi_room_report.html.j2:319
+msgid "Using Flow-R devices in these rooms :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:175
+#: templates/multi_room_report.html.j2:325
+msgid "Raverage :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:198
+#: templates/multi_room_report.html.j2:348
+msgid "Rmax :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:222
+msgid "Average transmitted virus dose with Flow-R :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:263
+msgid "Maximum expected new cases if one person is contaminated Rmax :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:285
+msgid "Rooms with the highest transmitted virus dose in all simulations :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:372
+msgid "Highest transmitted virus dose with Flow-R :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:420
+msgid "Detailed results - Base scenario"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:442
+msgid "_base_scenario_rooms"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:444
+#: templates/multi_room_report.html.j2:524
+#: templates/multi_room_report.html.j2:604
+msgid "Results by room :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:451
+#: templates/multi_room_report.html.j2:531
+#: templates/multi_room_report.html.j2:611
+msgid "Average infectious virus dose"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:452
+#: templates/multi_room_report.html.j2:532
+#: templates/multi_room_report.html.j2:612
+msgid "Max infectious virus dose"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:467
+msgid "_base_scenario_people"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:469
+#: templates/multi_room_report.html.j2:549
+#: templates/multi_room_report.html.j2:629
+msgid "Results by person :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:475
+#: templates/multi_room_report.html.j2:555
+#: templates/multi_room_report.html.j2:635
+msgid "Infected person"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:500
+msgid "Detailed results - Average risk alternative"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:522
+msgid "_average_scenario_rooms"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:547
+msgid "_average_scenario_people"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:580
+msgid "Detailed results - Maximum risk alternative"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:602
+msgid "_max_scenario_rooms"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:627
+msgid "_max_scenario_people"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:723
+msgid "General options :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:727
+msgid "Simulation name : "
+msgstr ""
+
+#: templates/multi_room_report.html.j2:730
+msgid "Virus variant : "
+msgstr ""
+
+#: templates/multi_room_report.html.j2:733
+msgid "Location name : "
+msgstr ""
+
+#: templates/multi_room_report.html.j2:736
+msgid "Event month : "
+msgstr ""
+
+#: templates/multi_room_report.html.j2:745
+msgid "Base scenario room input data:"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:761
+msgid "Name"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:765
+msgid "Volume"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:769
+msgid "Temperature"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:773
+msgid "Room heating option"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:777
+msgid "Humidity"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:782
+#: templates/multi_room_report.html.j2:833
+#: templates/multi_room_report.html.j2:849 templates/userguide.html.j2:96
+msgid "Ventilation type"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:783 templates/userguide.html.j2:112
+msgid "Natural ventilation"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:787
+#: templates/multi_room_report.html.j2:800
+msgid "Window opening regime"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:788
+msgid "Windows open periodically"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:791
+msgid "Window duration"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:795
+msgid "Window frequency"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:801
+msgid "Windows open permanently"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:806
+#: templates/multi_room_report.html.j2:811
+msgid "Window type"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:807
+msgid "Window sliding"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:812
+msgid "Window hinged"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:815
+msgid "Window width"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:820
+msgid "Window height"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:824
+msgid "Window number"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:828
+msgid "Window opening distance"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:834 templates/userguide.html.j2:102
+msgid "Mechanical ventilation"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:838
+msgid "Air supply"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:843
+msgid "Air changes"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:854
+#: templates/multi_room_report.html.j2:859
+msgid "Biov option"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:872
+msgid "Base scenario people input data :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:877
+msgid "Number : "
+msgstr ""
+
+#: templates/multi_room_report.html.j2:880
+msgid "Schedule :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:886
+msgid "Start"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:887
+msgid "End"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:888
+msgid "Location"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:889
+msgid "Mask type"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:890
+msgid "Mask ratio"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:891
+msgid "Activity"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:892
+msgid "Activity level"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:908
+msgid "No mask"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:927
+msgid "Alternative 1 (average risk) ventilation proposal :"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:936
+#: templates/multi_room_report.html.j2:970
+msgid "Room id"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:937
+#: templates/multi_room_report.html.j2:971
+msgid "Room name"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:938
+#: templates/multi_room_report.html.j2:972
+msgid "Previous biov amount"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:939
+#: templates/multi_room_report.html.j2:973
+msgid "New biov amount"
+msgstr ""
+
+#: templates/multi_room_report.html.j2:961
+msgid "Alternative 2 (maximum risk) ventilation proposal :"
 msgstr ""
 
 #: templates/userguide.html.j2:11
@@ -1984,16 +2524,8 @@ msgid ""
 " the simulation (e.g. summer), select 'No'."
 msgstr ""
 
-#: templates/userguide.html.j2:96
-msgid "Ventilation type"
-msgstr ""
-
 #: templates/userguide.html.j2:99
 msgid "There are three main options:"
-msgstr ""
-
-#: templates/userguide.html.j2:102
-msgid "Mechanical ventilation"
 msgstr ""
 
 #: templates/userguide.html.j2:105
@@ -2010,10 +2542,6 @@ msgid ""
 "Please bear in mind that any of the two inputs only consider the supply "
 "of fresh air. If a portion of air is recirculated, it shall not be "
 "accounted for in the inputs."
-msgstr ""
-
-#: templates/userguide.html.j2:112
-msgid "Natural ventilation"
 msgstr ""
 
 #: templates/userguide.html.j2:115
@@ -2651,5 +3179,8 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "form.location_name"
+#~ msgstr ""
+
+#~ msgid "1"
 #~ msgstr ""
 
