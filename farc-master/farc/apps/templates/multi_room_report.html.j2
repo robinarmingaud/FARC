@@ -31,7 +31,7 @@
                 <div id="reportHeaderTitle" class='align-self-center mr-auto'>
                     <h2 class="header_text mb-0"> 
                         <a href="{{ link.link }}">
-                           {{_("REPORT")}} 
+                           {{_("REPORT ")}} {{data.report.simulations[0].simulation_name}}
                         </a>
                     </h1>
                     <p class="mb-0" id="report_version">
@@ -656,11 +656,6 @@
                 </div> 
             </div>
                 {% endblock report_results%}
-        
-
-
-
-
 
 {% block report_footer %}
         <div class="card bg-light mb-3" id="link-results">
@@ -716,7 +711,287 @@
                 </div>
             </div>
         </div>
+</div>
 {% endblock report_footer %}
+
+
+<div class="tab-pane" id="data" role="tabpanel" aria-labelledby="data-tab">
+                    {% block data %}
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>{{_("General options :")}} </strong>
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>{{_("Simulation name : ")}}{{data.report.simulations[0].simulation_name}}</li>
+                                    </ul>
+                                    <ul>
+                                        <li>{{_("Virus variant : ")}}{{_(default.viruses[data.report.simulations[0].virus_type])}}</li>
+                                    </ul>
+                                    <ul>
+                                        <li>{{_("Location name : ")}}{{data.report.simulations[0].location_name}}</li>
+                                    </ul>
+                                    <ul>
+                                        <li>{{_("Event month : ")}}{{data.report.simulations[0].event_month}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <br>
+
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>{{_("Base scenario room input data:")}} </strong>
+                                </div>
+                                <div class="card-body">
+                                <br> 
+                                {% for room in data.report.simulations[0].rooms %}
+                                <div id="DivProbabilityOfInfection">
+                                    <b>{{room.id}}-{{room.type_name}} </b>
+                                </div>
+                                <br>
+                                    <table class="table table-striped">
+                                        <tbody>
+                                                <tr>
+                                                    <th class = "th-data">Id</th>
+                                                    <td class = "td-data">{{room.id}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Name")}}</th>
+                                                    <td class = "th-data">{{room.type_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Volume")}}</th>
+                                                    <td class = "th-data">{{room.room_volume}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Temperature")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.inside_temp}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Room heating option")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.room_heating_option}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Humidity")}}</th>
+                                                    <td class = "th-data">{{room.humidity}}</td>
+                                                </tr>
+                                                {% if room.ventilation.ventilation_type == "natural_ventilation" %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Ventilation type")}}</th>
+                                                    <td class = "th-data">{{_("Natural ventilation")}}</td>
+                                                </tr>
+                                                {% if room.ventilation.window_opening_regime == "windows_open_periodically" %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window opening regime")}}</th>
+                                                    <td class = "th-data">{{_("Windows open periodically")}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window duration")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.windows_duration}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window frequency")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.windows_frequency}}</td>
+                                                </tr>
+                                                {% else %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window opening regime")}}</th>
+                                                    <td class = "th-data">{{_("Windows open permanently")}}</td>
+                                                </tr>
+                                                {% endif %}
+                                                {% if room.ventilation.window_type == "window_sliding" %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window type")}}</th>
+                                                    <td class = "th-data">{{_("Window sliding")}}</td>
+                                                </tr>
+                                                {% else %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window type")}}</th>
+                                                    <td class = "th-data">{{_("Window hinged")}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window width")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.window_width}}</td>
+                                                </tr>
+                                                {% endif %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window height")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.window_height}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window number")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.windows_number}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class = "th-data">{{_("Window opening distance")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.opening_distance}}</td>
+                                                </tr>
+                                            {% elif room.ventilation.ventilation_type == "mechanical_ventilation" %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Ventilation type")}}</th>
+                                                    <td class = "th-data">{{_("Mechanical ventilation")}}</td>
+                                                </tr>
+                                                {% if room.ventilation.mechanical_ventilation_type == "mech_type_air_changes" %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Air supply")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.air_supply}}</td>
+                                                </tr>
+                                                {% else %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Air changes")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.air_changes}}</td>
+                                                </tr>
+                                                {% endif%}
+                                            {% else %}
+                                                <tr>
+                                                    <th class = "th-data">{{_("Ventilation type")}}</th>
+                                                    <td class = "th-data">{{_("No ventilation")}}</td>
+                                                </tr>
+                                            {% endif %}
+                                            <tr>
+                                                    <th class = "th-data">{{_("Biov option")}}</th>
+                                                    <td class = "th-data">{{(room.ventilation.biov_option)}}</td>
+                                            </tr>
+                                            {% if room.ventilation.biov_option %}
+                                            <tr>
+                                                    <th class = "th-data">{{_("Biov option")}}</th>
+                                                    <td class = "th-data">{{room.ventilation.biov_amount}}</td>
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                {% endfor%}     
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                                <div class="card-header">
+                                    <strong>{{_("Base scenario people input data :")}} </strong>
+                                </div>
+                                <div class="card-body">
+                                    {% for person in data.report.simulations[0].people %}
+                                    <div id="DivProbabilityOfInfection">
+                                        <b>{{person.id}}-{{person.person_name}} ({{_("Number : ")}}{{person.person_number | int}}) </b>
+                                    </div>
+                                    <div>
+                                        <strong>{{_("Schedule :")}} </strong>
+                                    </div>
+                                    <br>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">{{_("Start")}}</th>
+                                            <th scope="col">{{_("End")}}</th>
+                                            <th scope="col">{{_("Location")}}</th>
+                                            <th scope="col">{{_("Mask type")}}</th>
+                                            <th scope="col">{{_("Mask ratio")}}</th>
+                                            <th scope="col">{{_("Activity")}}</th>
+                                            <th scope="col">{{_("Activity level")}}</th>
+                                            <th scope="col">{{_("Breathing")}}</th>
+                                            <th scope="col">{{_("Speaking")}}</th>
+                                            <th scope="col">{{_("Shouting")}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for event in person.schedule.events %}
+                                            <tr>
+                                            <td>{{time_minutes_to_string((event.start*60)|int)}}</td>
+                                            <td>{{time_minutes_to_string((event.end*60)|int)}}</td>
+                                            <td>{{event.location.id}}-{{event.location.type_name}}</td>
+                                            {% if event.event_mask_wearing_option == "mask_on"%}
+                                                <td>{{event.mask_type}}</td>
+                                                <td>{{event.mask_ratio}}</td>
+                                            {% else %}
+                                                <td>{{_("No mask")}}</td>
+                                                <td>Ø</td>
+                                            {% endif %}
+                                            {% set event_activity = ACTIVITY_TYPES | selectattr('Id', 'equalto', event.activity) | first %}
+                                            <td>{{_(event_activity['Name'])}}</td>
+                                            <td>{{_(event.event_activity_level)}}</td>
+                                            <td>{{_(event.event_activity_breathing)}}</td>
+                                            <td>{{_(event.event_activity_speaking)}}</td>
+                                            <td>{{_(event.event_activity_shouting)}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        <br>
+                        <div class="card">
+                                <div class="card-header">
+                                    <strong>{{_("Alternative 1 (average risk) ventilation proposal :")}} </strong>
+                                </div>
+                                <div class="card-body">
+                                {% set simulation = alternative_scenarios.mean[0].report.simulations[0] %}
+                                {% for room in simulation.rooms %}
+                                {% if room.ventilation.biov_option %}
+                                <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">{{_("Room id")}}</th>
+                                            <th scope="col">{{_("Room name")}}</th>
+                                            <th scope="col">{{_("Previous biov amount")}}</th>
+                                            <th scope="col">{{_("New biov amount")}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <td>{{room.id}}</td>
+                                            <td>{{room.type_name}}</td>
+                                            {% set old_simulation = data.report.simulations[0] %}
+                                            {% if old_simulation.get_room_by_id(room.id).ventilation.biov_option%}
+                                                <td>{{old_simulation.get_room_by_id(room.id).ventilation.biov_amount | int}}</td>
+                                            {% else %}
+                                                 <td>0</td>
+                                            {% endif %}
+                                            <td>{{room.ventilation.biov_amount | int}}</td>
+                                        </tbody>
+                                    </table>
+                                    {% endif %}
+                                {% endfor %}
+                                </div>
+                            </div>
+                        <br>
+                        <div class="card">
+                                <div class="card-header">
+                                    <strong>{{_("Alternative 2 (maximum risk) ventilation proposal :")}} </strong>
+                                </div>
+                                <div class="card-body">
+                                {% set simulation = alternative_scenarios.worst[0].report.simulations[0] %}
+                                {% for room in simulation.rooms %}
+                                {% if room.ventilation.biov_option %}
+                                <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">{{_("Room id")}}</th>
+                                            <th scope="col">{{_("Room name")}}</th>
+                                            <th scope="col">{{_("Previous biov amount")}}</th>
+                                            <th scope="col">{{_("New biov amount")}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <td>{{room.id}}</td>
+                                            <td>{{room.type_name}}</td>
+                                            {% set old_simulation = data.report.simulations[0] %}
+                                            {% if old_simulation.get_room_by_id(room.id).ventilation.biov_option%}
+                                                <td>{{old_simulation.get_room_by_id(room.id).ventilation.biov_amount | int}}</td>
+                                            {% else %}
+                                                 <td>0</td>
+                                            {% endif %}
+                                            <td>{{room.ventilation.biov_amount | int}}</td>
+                                        </tbody>
+                                    </table>
+                                    {% endif %}
+                                {% endfor %}
+                                </div>
+                            </div>
+                </div>
+            </div>
+{% endblock data %}
 
         <script type="text/javascript">
             //Enable tooltip

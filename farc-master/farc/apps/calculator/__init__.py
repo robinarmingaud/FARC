@@ -30,6 +30,8 @@ from .DEFAULT_DATA import ACTIVITY_TYPES, TOOLTIPS, __version__, _DEFAULTS as d
 import tornado
 from . import multi_room_generator
 from . import multi_room_model
+from farc.apps.calculator.model_generator import time_minutes_to_string, time_string_to_minutes
+
 tornado.locale.set_default_locale("en")
 #Need to set environment variables in docker container 
 username = os.environ.get("db_username")
@@ -369,6 +371,8 @@ class MultiReport(BaseRequestHandler):
                 text_blocks= markdown_tools.extract_rendered_markdown_blocks(template_environment.get_template('common_text.md.j2')),
                 data = report[0],
                 form=form,
+                default = DEFAULT_DATA._MULTI_DEFAULTS,
+                time_minutes_to_string = time_minutes_to_string,
                 creation_date = time,
                 mean_expected_cases = report[1][0],
                 worst_expected_cases = report[1][1],
@@ -381,6 +385,7 @@ class MultiReport(BaseRequestHandler):
                 alternative1_mean_room_data = alternative_scenarios['mean'][0].calculate_room_worst_exposure(),
                 alternative2_worst_room_data = alternative_scenarios['worst'][0].calculate_room_mean_exposure(),
                 alternative2_mean_room_data = alternative_scenarios['worst'][0].calculate_room_worst_exposure(),
+                ACTIVITY_TYPES = ACTIVITY_TYPES
             )
             self.finish(report)
 

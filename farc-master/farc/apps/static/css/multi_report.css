@@ -3,3 +3,8 @@
         display: none !important;
     }
 }
+
+.td-data,
+.th-data {
+    width: 50%;
+}
