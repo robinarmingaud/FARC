@@ -71,8 +71,16 @@
             <br>
             <h1>{{ _("Instructions for use")}}</h1>
             <br>
-            {{_("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis urna vel gravida laoreet. Sed vulputate magna a nisl ultricies, eu pulvinar diam aliquet. Phasellus orci felis, pretium ut justo vel, pharetra placerat ex. Fusce eget pharetra justo, et mattis nulla. Cras a sollicitudin orci, consectetur volutpat nulla. Sed at viverra justo, et scelerisque ipsum. Vestibulum at elit eget sem vehicula pulvinar quis sit amet neque. Vestibulum velit libero, placerat sit amet ultricies at, vulputate sed arcu. Quisque accumsan, lectus dapibus commodo dictum, tellus diam egestas neque, nec scelerisque felis tellus a sapien.
-            Nullam sed massa vitae magna volutpat vulputate. Nullam varius placerat feugiat. Sed lobortis nunc eu mi interdum, sed tincidunt massa egestas. Cras placerat lorem velit, at ultricies augue pulvinar ac. In fermentum lobortis tortor, at aliquam ex viverra sit amet. Vestibulum a ultrices ante, ac ultricies tortor. Quisque hendrerit arcu ut elit ultricies, a pretium mauris lobortis. Maecenas eu mi eu justo lobortis varius nec quis felis. Curabitur scelerisque auctor tristique. Suspendisse ut felis felis. Morbi varius urna sit amet justo efficitur tincidunt. Vivamus gravida fermentum leo non sollicitudin.")}}
+            {{_("Le calculateur FARC expert se base sur le modèle du CERN , n'hésitez pas à consulter l'article disponible ici :")}}
+            <a href="https://doi.org/10.1098/rsfs.2021.0076"> {{_("Modélisation de la transmission aéroportée du SARS-CoV-2 en utilisant CARA: évaluation des risques pour les espaces fermés.")}}</a>
+            <br>
+            {{_("Le calculateur expert permet d'étendre le modèle mono-évènement du FARC classique à une bâtiment entier occupé par plusieurs personnes ayant des emplois du temps différents et des activité différentes.
+            Pour cela, il vous sera demandé d'entrer d'abord les paramètres généraux de la simulation comme le type de variant ou la localisation. Puis il vous sera demandé d'entrer la configuration de chaque pièce constituant votre simulation et enfin les paramètres de chaque personne et leur emploi du temps.
+            Pour connaître le détail de chaque paramètre, n'hésitez pas à consulter le mode d'emploi détaillé du FARC :")}} 
+            <a href="/calculator/user-guide">{{_("Mode d'emploi du FARC")}}</a>
+            <br>
+            {{_("Le calculateur divise la journée en petits évènements suivant les emplois du temps, puis suppose que chaque personne est contaminée tour à tour et calcule le nombre de nouveaux cas que l'on peut attendre à la fin de la journée. Les résultats affichent une moyenne de nouveaux cas attendus ainsi que la personne qui est susceptible de contaminer le plus de personnes.
+            Des résultats par pièce sont aussi disponibles avec la dose de virus infectieux moyenne et maximale transmise. Ces résultats permettent de cibler les lieux dans un bâtiment qui présentent le plus de risque et de connaître les parcours de personnes les plus contaminants. En raison du nombre de calculs effectués, la génération des résultats peut prendre un certain temps.")}}
           </div>
           <div class="center">
             <button class="btn btn-primary bigButton"
@@ -86,17 +94,41 @@
           </div>
           <div class="collapse container container--padding" id="collapseDisclaimer">{{ text_blocks['Disclaimer'] }}</div>
           <div class="container container--padding">
-            <h1>{{ _("Lorem ipsum")}}</h1>
-            <br>
-            <h3>{{ _("Lorem ipsum")}} &amp; {{ _("Lorem ipsum")}}</h3>
+            <h3>{{ _("Recommandations")}}</h3>
             <br>
             <p>
-              {{_("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi convallis urna vel gravida laoreet. Sed vulputate magna a nisl ultricies, eu pulvinar diam aliquet. Phasellus orci felis, pretium ut justo vel, pharetra placerat ex. Fusce eget pharetra justo, et mattis nulla. Cras a sollicitudin orci, consectetur volutpat nulla. Sed at viverra justo, et scelerisque ipsum. Vestibulum at elit eget sem vehicula pulvinar quis sit amet neque. Vestibulum velit libero, placerat sit amet ultricies at, vulputate sed arcu. Quisque accumsan, lectus dapibus commodo dictum, tellus diam egestas neque, nec scelerisque felis tellus a sapien.
-              Nullam sed massa vitae magna volutpat vulputate. Nullam varius placerat feugiat. Sed lobortis nunc eu mi interdum, sed tincidunt massa egestas. Cras placerat lorem velit, at ultricies augue pulvinar ac. In fermentum lobortis tortor, at aliquam ex viverra sit amet. Vestibulum a ultrices ante, ac ultricies tortor. Quisque hendrerit arcu ut elit ultricies, a pretium mauris lobortis. Maecenas eu mi eu justo lobortis varius nec quis felis. Curabitur scelerisque auctor tristique. Suspendisse ut felis felis. Morbi varius urna sit amet justo efficitur tincidunt. Vivamus gravida fermentum leo non sollicitudin.
-              Curabitur cursus odio quam, in porttitor nisi tempus pellentesque. In ac laoreet metus. Nam volutpat tortor ac condimentum mattis. Vivamus porta auctor metus, ac rutrum ligula malesuada nec. Proin dictum nunc eu enim elementum malesuada. Praesent rutrum, quam in sodales porta, velit ex suscipit dolor, a imperdiet purus lacus ut diam. Duis iaculis eros et quam molestie pharetra. Proin nec porta diam, vitae eleifend ligula.
-              Duis non consectetur diam. Nam vel placerat neque, in eleifend leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras dignissim semper lorem. Cras ligula mauris, molestie ac interdum vel, consectetur ut turpis. Aliquam vestibulum, orci id tempus rutrum, arcu risus semper sapien, vel bibendum lacus turpis ac nulla. Nulla porttitor dapibus sodales. Integer luctus odio mauris. Integer viverra nulla neque, sed dictum arcu luctus eu. Sed ultrices rutrum bibendum. Quisque at erat eget mi consequat semper eget non odio. Curabitur semper ligula in massa vehicula, nec hendrerit quam congue. Suspendisse potenti. Nulla ex nunc, pellentesque sed velit vel, fringilla interdum tortor.
-              Cras turpis nunc, ultricies eu euismod et, volutpat in nulla. Suspendisse finibus, magna vel rutrum aliquet, lectus lacus sagittis felis, vel lacinia lectus augue eu arcu. Sed sit amet ante sed dui tincidunt feugiat. Quisque aliquam sapien sit amet sapien feugiat tempus. Aenean accumsan sed nisi nec dignissim. Donec pulvinar arcu ut felis ultricies egestas. Sed imperdiet semper semper. Aliquam ut molestie dui. Suspendisse potenti. Phasellus ligula risus, volutpat ac dignissim et, porttitor eu tellus. Proin sodales urna in tristique tempor.")}}
+            <ul>
+              <li>{{_("Il n'est pas recommandé de multiplier les évènements : le calcul effectué utilise des approximations pour garantir un résultat dans un temps acceptable, multiplier les évènements de courte durée risque de créer des erreurs de calcul")}}</li>
+              <li>{{_("Un grand nombre de pièces, de personnes et d'évènements augmente grandement le temps de calcul, n'hésitez pas à grouper les personnes en utilisant le paramètre 'Nombre' dans le formulaire sur les personnes.")}}</li>
+              <li>{{_("Le calculateur FARC donne des recommandations sur les personnes et les lieux à risque mais ne peut pas être considéré comme un outil entièrement approuvé et fiable car il n'a pas reçu de validation par les autorités compétentes")}}</li>
+            </ul>
             </p>
+          </div>
+          <div class="container container--padding">
+            <h3>{{ _("Problèmes rencontrés")}}</h3>
+            <br>
+            <p>
+            <ul>
+              <li>{{_("Appuyer sur l'envoi du formulaire ne fait rien")}}</li>
+            </ul>
+            {{_("Si envoyer le formulaire ne marche pas, il s'agit sans doute qu'un paramètre a mal été entré quelque part. Veuillez vérifier les données entrées.")}}
+            <br>
+            <br>
+            <ul>
+              <li>{{_("Je rencontre une erreur 'TimeOut' ou le calcul prend du temps")}}</li>
+            </ul>
+            {{_("Il est possible que vous tentiez d'effectuer une simulation trop lourde ou que d'autres utilisateurs effectuent des calculs coûteux sur nos serveurs en même temps. N'hésitez pas à réessayer plus tard ou à simplifier votre requête.")}}
+            <br>
+            <br>
+
+            <ul>
+              <li>{{_("J'ai rencontré un bug, les résultats sont étranges ou j'ai une question supplémentaire")}}</li>
+            </ul>
+            {{_("N'hésitez pas à nous contacter et à nous donner un retour à l'adresse suivante :")}}
+            <a href="mailto:Flow-R-dev@ingenica.fr">Flow-R-dev@ingenica.fr</a>
+            {{_("Nos équipes feront le maximum pour répondre à votre demande ou pour résoudre votre problème au plus vite")}}
+            <br>
+            <br>
           </div>
         </div>
         <div class="carousel-item">
