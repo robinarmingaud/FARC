@@ -74,6 +74,15 @@
                        aria-controls="data"
                        aria-selected="false">{{_("Input Data")}} </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       id="explanation-tab"
+                       data-toggle="tab"
+                       href="#explanation"
+                       role="tab"
+                       aria-controls="explanation"
+                       aria-selected="false">{{_("How it works")}} </a>
+                </li>
             </ul>
             <div class="tab-content" id="tabContentResults">
                 <div class="tab-pane show active"
@@ -990,8 +999,28 @@
                                 </div>
                             </div>
                 </div>
-            </div>
 {% endblock data %}
+
+<div class="tab-pane" id="explanation" role="tabpanel" aria-labelledby="data-tab">
+
+                            <div class="card">
+                                <div class="card-body">
+                                <p>
+                                {{_("FARC expert calculator uses CARA base model to calculate the report. The calculator iterates through people in the simulation and assumes each person is infected in turn. The day is then divided into basic events using schedules. 
+                                    The report displays two approaches: average risk and maximum risk.
+                                    The average risk column displays the average number of expected new cases if someone is infected.
+                                    The maximum number of expected new cases is the largest number of people a contaminated person can infect. To find out which person is the most dangerous, it is possible to consult detailed results.")
+                                }} 
+                                <br><br>
+                                {{_("Concerning rooms, two pieces of information are given: the average quantity of virus absorbed by healthy people, and the maximum quantity. 
+                                    These two pieces of information are complementary: if for example only 2 people stay all day in a room, the average quantity of virus transmitted will be low. But in case of contamination of one of the 2 persons, the quantity of virus transmitted will be high and this information will only be visible with the maximum quantity of virus transmitted in the room.")}}
+                                
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         <script type="text/javascript">
             //Enable tooltip

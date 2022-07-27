@@ -139,6 +139,7 @@ p.notes {
     } 
     #results,
     #rules,
+    #explanation,
     #data {
         display: contents !important;
     }
@@ -321,6 +322,7 @@ p.notes {
 
 #results,
 #data,
+#explanation,
 #rules {
     padding: 1%
 }
