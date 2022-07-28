@@ -155,7 +155,7 @@ class NotAllowed(BaseRequestHandler):
                 template_environment = self.settings["template_environment"]
                 template_environment.globals['_']=tornado.locale.get(language ).translate
                 _ = tornado.locale.get(language ).translate       
-            self.set_status(401)
+            self.set_status(418)
             template = self.settings["template_environment"].get_template(
                 "error_page.html.j2")
             self.finish(template.render(
