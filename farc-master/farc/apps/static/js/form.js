@@ -622,7 +622,6 @@ $(document).ready(function () {
       //Ignore 0 (default) values from server side
       else if (!(elemObj.classList.contains("non_zero") || elemObj.classList.contains("remove_zero")) || (value != "0.0" && value != "0")) {
         elemObj.value = value;
-        validateValue(elemObj);
       }
     }
   });
