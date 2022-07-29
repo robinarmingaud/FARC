@@ -187,7 +187,7 @@ function saveEvent(i, event={}){
     var events = Calendars[i].getEvents()
     var start = new Date();
     var end = new Date();
-
+    removeErrorFor(document.getElementById('eventExpiration['+i+']'),"Expiration sum must be > 0")
 
 
     if ('start' in event){
@@ -279,6 +279,13 @@ function saveEvent(i, event={}){
       return false
     }
 
+    //Prevent sum of expiration = 0
+
+    if (parseFloat($("#event_activity_breathing\\["+i+"\\]").val())+parseFloat($("#event_activity_speaking\\["+i+"\\]").val())+parseFloat($("#event_activity_shouting\\["+i+"\\]").val()) <= 0){
+      insertErrorFor(document.getElementById('eventExpiration['+i+']'),"Expiration sum must be > 0")
+      return false
+    }
+
     //Prevent simultaneous events
     for(var el of events){
         if ((el.start < start && el.end > start)||(el.start < end && el.end > end)||(el.start>=start && el.end<=end)){
@@ -287,6 +294,7 @@ function saveEvent(i, event={}){
           return false
         }
     }
+    
     $("#event_start\\["+i+"\\]").removeClass("red_border")
     $("#event_finish\\["+i+"\\]").removeClass("red_border")
 
@@ -378,14 +386,6 @@ $(document).ready(function () {
   //Validate all non zero values
   $("input[required].non_zero").each(function() {validateValue(this)});
   $(".non_zero").change(function() {validateValue(this)});
-
-  //Validate expiration
-  $("#exposed_activity_breathing").change(function(){validateExpiration("exposed")});
-  $("#exposed_activity_speaking").change(function(){validateExpiration("exposed")});
-  $("#exposed_activity_shouting").change(function(){validateExpiration("exposed")});
-  $("#infected_activity_breathing").change(function(){validateExpiration("infected")});
-  $("#infected_activity_speaking").change(function(){validateExpiration("infected")});
-  $("#infected_activity_shouting").change(function(){validateExpiration("infected")});
 
   // Check default values
     var volume_type = js_default["volume_type"]
