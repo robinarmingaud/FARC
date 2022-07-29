@@ -842,7 +842,7 @@
                                                     <th class = "th-data">{{_("Ventilation type")}}</th>
                                                     <td class = "th-data">{{_("Mechanical ventilation")}}</td>
                                                 </tr>
-                                                {% if room.ventilation.mechanical_ventilation_type == "mech_type_air_changes" %}
+                                                {% if room.ventilation.mechanical_ventilation_type == "mech_type_air_supply" %}
                                                 <tr>
                                                     <th class = "th-data">{{_("Air supply")}}</th>
                                                     <td class = "th-data">{{room.ventilation.air_supply}}</td>
