@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-28 15:32+0200\n"
+"POT-Creation-Date: 2022-07-29 16:59+0200\n"
 "PO-Revision-Date: 2022-07-27 12:04+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -2397,10 +2397,9 @@ msgstr "Pièces avec les plus grosses quantités de virus transmises"
 
 #: templates/multi_room_report.html.j2:151
 #: templates/multi_room_report.html.j2:238
-#: templates/multi_room_report.html.j2:301
-#: templates/multi_room_report.html.j2:388
-msgid "Infectious virus dose"
-msgstr "Dose de virus infectieux"
+#
+msgid "Average transmitted infectious virus dose"
+msgstr "Quantité moyenne de virus transmise"
 
 #: templates/multi_room_report.html.j2:178
 #: templates/multi_room_report.html.j2:328
@@ -2428,8 +2427,13 @@ msgstr "Nombre maximum de nouveaux cas si une personne est contaminée Rmax"
 #: templates/multi_room_report.html.j2:294
 msgid "Rooms with the highest transmitted virus dose in all simulations :"
 msgstr ""
-"Pièces avec les plus grosses quantités de virus transmises toutes "
-"simulations confondues"
+"Pièces avec les plus grosses quantités de virus transmises"
+
+#: templates/multi_room_report.html.j2:301
+#: templates/multi_room_report.html.j2:388
+#
+msgid "Max transmitted infectious virus dose"
+msgstr "Quantité maximale de virus transmise"
 
 #: templates/multi_room_report.html.j2:381
 msgid "Highest transmitted virus dose with Flow-R :"
@@ -2447,7 +2451,7 @@ msgstr "_scenario_base_pieces"
 #: templates/multi_room_report.html.j2:533
 #: templates/multi_room_report.html.j2:613
 msgid "Results by room :"
-msgstr "Résultats par pièces"
+msgstr "Résultats par pièce"
 
 #: templates/multi_room_report.html.j2:460
 #: templates/multi_room_report.html.j2:540
@@ -3733,4 +3737,7 @@ msgstr "Envoyer un e-mail"
 #~ " Proin sodales urna in tristique "
 #~ "tempor."
 #~ msgstr ""
+
+#~ msgid "Infectious virus dose"
+#~ msgstr "Dose de virus infectieux"
 
