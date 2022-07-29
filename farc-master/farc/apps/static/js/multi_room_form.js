@@ -81,6 +81,7 @@ function addRoom(room={}) {
         /* Add event listeners */
         $("#delete_room\\["+i+"\\]").click(function(){deleteRoom(i)})
         $("input[type=radio][name=ventilation_type\\["+i+"\\]]").change(function(){on_ventilation_type_change(i)});
+        $("input[type='text'][name=type_name\\["+i+"\\]]").change(function(){on_room_list_change()});
         on_ventilation_type_change(i);
         $(".room_btn_class").click(function(){on_room_list_change()})
         on_room_list_change()
