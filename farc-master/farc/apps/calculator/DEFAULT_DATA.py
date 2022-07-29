@@ -22,7 +22,7 @@ _DEFAULT_MC_SAMPLE_SIZE = 60000
 # calculator version. If the calculator needs to make breaking changes (e.g. change
 # form attributes) then it can also increase its MAJOR version without needing to
 # increase the overall CARA version (found at ``farc.__version__``).
-__version__ = "1.0.3"
+__version__ = "2.0.0"
 
 _MULTI_DEFAULTS = {  
     "air_supply": 100,
