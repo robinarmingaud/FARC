@@ -304,18 +304,17 @@ class Person(Role):
         else :
             self.virus_dose = 0
 
-    def calculate_infection_probability(self):
-        if len(self.exposure_model) > 0 :
+    def calculate_infection_probability(self, virus):
             if not self.infected :
-                self.infection_probability = np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*self.person_number/100
+                self.infection_probability = np.mean(infection_probability(self.cumulative_dose, virus))*self.person_number
                 self.cumulative_dose = np.mean(self.cumulative_dose)
             elif self.person_number>1 :
-                self.infection_probability = np.mean(self.exposure_model[0]._dose_infection_probability(self.cumulative_dose))*(self.person_number-1)/100
+                self.infection_probability = np.mean(infection_probability(self.cumulative_dose, virus))*(self.person_number-1)
                 self.cumulative_dose = np.mean(self.cumulative_dose)
             else : 
                 return 0.
-        else :
-            return 0.
+
+
 
     def add_model(self, model : models.ExposureModel):
         self.exposure_model = np.append(self.exposure_model, model)
@@ -443,3 +442,10 @@ def build_expiration(expiration_definition) -> models._ExpirationBase:
             for exp_type, weight in expiration_definition.items()
             ], axis=0)
         return expiration_distribution(tuple(BLO_factors))
+
+def infection_probability(viral_dose, virus):
+    oneoverln2 = 1 / np.log(2)
+    infectious_dose = oneoverln2 * virus.infectious_dose
+
+        # Probability of infection.
+    return (1 - np.exp(-(viral_dose / (infectious_dose *virus.transmissibility_factor)))) 

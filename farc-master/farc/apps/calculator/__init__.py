@@ -417,10 +417,10 @@ class MultiReport(BaseRequestHandler):
                     alternative_scenarios = alternative_scenarios,
                     base_mean_room_data = report[0].calculate_room_mean_exposure(),
                     base_worst_room_data = report[0].calculate_room_worst_exposure(),
-                    alternative1_worst_room_data = alternative_scenarios['mean'][0].calculate_room_mean_exposure(),
-                    alternative1_mean_room_data = alternative_scenarios['mean'][0].calculate_room_worst_exposure(),
-                    alternative2_worst_room_data = alternative_scenarios['worst'][0].calculate_room_mean_exposure(),
-                    alternative2_mean_room_data = alternative_scenarios['worst'][0].calculate_room_worst_exposure(),
+                    alternative1_mean_room_data = alternative_scenarios['mean'][0].calculate_room_mean_exposure(),
+                    alternative1_worst_room_data = alternative_scenarios['mean'][0].calculate_room_worst_exposure(),
+                    alternative2_mean_room_data = alternative_scenarios['worst'][0].calculate_room_mean_exposure(),
+                    alternative2_worst_room_data = alternative_scenarios['worst'][0].calculate_room_worst_exposure(),
                     ACTIVITY_TYPES = ACTIVITY_TYPES
                 )
                 self.finish(report)

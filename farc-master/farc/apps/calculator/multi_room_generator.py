@@ -10,6 +10,7 @@ from xmlrpc.client import Boolean
 import numpy as np
 import zlib
 
+from farc.monte_carlo.data import virus_distributions
 import farc.apps.calculator.multi_room_model as multi_room_model
 from farc.apps.calculator.model_generator import time_minutes_to_string, time_string_to_minutes, _safe_int_cast, _CAST_RULES_FORM_ARG_TO_NATIVE, _CAST_RULES_NATIVE_TO_FORM_ARG
 
@@ -49,7 +50,7 @@ class MultiGenerator:
                         
     def calculate_means(self, simulation : multi_room_model.Simulation):
         for person in simulation.people :
-            person.calculate_infection_probability()
+            person.calculate_infection_probability(virus_distributions[simulation.virus_type].build_model(size=60000))
             person.clear_data()
         for room in simulation.rooms :
             room.calculate_cumulative_dose()
