@@ -261,6 +261,12 @@ function saveEvent(i, event={}){
     else {
       event_activity = $('#event_activity_type\\['+i+'\\]').val()
     }
+    if ('description' in event){
+      event_description = event['description']
+    }
+    else {
+      event_description = $("#event_description\\["+i+"\\]").val()
+    }
 
 
 
@@ -301,7 +307,7 @@ function saveEvent(i, event={}){
 
 
     Calendars[i].addEvent({id: ""+EventId,
-    title: $("option[value='"+event_activity+"']").first().text() + $("#type_name\\["+event_location+"\\]").val() + " " +event_location,
+    title: $("option[value='"+event_activity+"']").first().text() + $("#type_name\\["+event_location+"\\]").val() + " " +event_location + " " + event_description,
     start : start,
     end : end,
     allDay: false,
@@ -323,6 +329,7 @@ function saveEvent(i, event={}){
     <input type="hidden" name="event_activity_shouting[`+EventId+`]" value="`+event_activity_shouting+`">
     <input type="hidden" name="event_activity_level[`+EventId+`]" value="`+event_activity_level+`">
     <input type="hidden" name="event_mask_wearing_option[`+EventId+`]" value="`+event_mask_wearing_option+`">
+    <input type="hidden" name="event_description[`+EventId+`]" value="`+event_description+`">
     </div>`)
 
     $("#eventModal\\["+i+"\\]").modal('hide')

@@ -188,6 +188,7 @@ class Event:
     mask_ratio : float = multi_default['mask_ratio']
     mask_type : str = multi_default['mask_type']
     activity : str = multi_default['activity']
+    description : str = ""
 
     def get_event_duration(self):
         return self.end-self.start

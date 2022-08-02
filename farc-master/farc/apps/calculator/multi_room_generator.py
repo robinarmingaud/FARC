@@ -311,7 +311,8 @@ def build_event_from_form(form_data, index, room):
                                 location = room,
                                 mask_type= get_form_data_value(form_data, 'event_mask_type', index),
                                 mask_ratio = float(get_form_data_value(form_data, 'event_mask_ratio', index)),
-                                activity= get_form_data_value(form_data, 'event_activity', index)
+                                activity= get_form_data_value(form_data, 'event_activity', index),
+                                description = get_form_data_value(form_data, 'event_description', index)
                                 )
 
 def get_element_id(key: str):
