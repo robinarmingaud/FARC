@@ -196,7 +196,17 @@ class Event:
 class Schedule:
     events : np.ndarray = np.array([])
     def add_event(self, event):
-        self.events = np.append(self.events, event)
+        if self.events.size == 0 :
+            self.events = np.append(self.events, event)
+        else :
+            i = 0
+            for element in self.events :
+                if element.start > event.start :
+                    self.events = np.insert(self.events, i, event)
+                    return
+                else :
+                    i+=1
+            self.events = np.append(self.events, event)
     
     def get_event_id(self, event):
         i=0
