@@ -399,6 +399,7 @@ class Simulation:
     location_longitude: float = multi_default['location_longitude']
     rooms: np.ndarray = np.array([])
     people: np.ndarray = np.array([])
+    simulation_description: str = ""
 
     def get_room_by_id(self, id: int):
         for room in self.rooms :

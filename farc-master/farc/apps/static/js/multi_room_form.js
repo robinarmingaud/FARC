@@ -466,6 +466,9 @@ $(document).ready(function () {
           else if (name == 'event_month'){
             $("option[value="+value+"]").attr('selected','selected')
           }    
+          else if (name == 'simulation_description'){
+            $("#"+name).attr("value", value)
+          } 
     })
     if($("div[id^=Room_]").length<3){
       addRoom()

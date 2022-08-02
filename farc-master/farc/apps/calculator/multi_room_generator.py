@@ -157,7 +157,7 @@ class FormData:
                 form_data[key] = html.escape(value)
 
         instance = FormData(multi_room_model.Simulation(event_month = form_data['event_month'],simulation_name = form_data['simulation_name'] ,virus_type=form_data['virus_type'], location_name= form_data['location_name'],
-                                                        location_latitude=float(form_data['location_latitude']),location_longitude=float(form_data['location_longitude'])))
+                                                        location_latitude=float(form_data['location_latitude']),location_longitude=float(form_data['location_longitude']), simulation_description=form_data['simulation_description']))
 
         for key, value in form_data.items():
             if key in _CAST_RULES_FORM_ARG_TO_NATIVE:

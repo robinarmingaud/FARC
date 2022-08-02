@@ -148,6 +148,15 @@
                          value="{{ _(default.simulation_name)}}"
                          placeholder="{{ _(default.simulation_name)}}">
                 </div>
+                <div class="form-group">
+                  <b>
+                    <label class="col-form-label">{{ _("Simulation description:")}}</label>
+                  </b>
+                  <input type="text"
+                         class="col-sm-12 form-control"
+                         name="simulation_description"
+                         id="simulation_description">
+                </div>
                 <hr width="80%">
                 <b>{{ _("Virus data:")}}</b>
                 <div data-tooltip="{{ _(TOOLTIPS.virus_data)}}">
