@@ -357,6 +357,56 @@ function deleteEvent(e){
     
 }
 
+function buildFromURL(u){
+  var url = new URL(decodeURIComponent(u));
+  //Pre-fill form with known values
+  url.searchParams.forEach((value, name) => {
+          string_value = value.replace(/'/g, '"')
+          var elemObj = document.getElementById(name);
+          if (name == 'Room_list') {
+            for (const room of JSON.parse(string_value)) {
+              addRoom(room);
+            }
+          }
+          
+          else if (name == 'People_list'){
+            for (const person of JSON.parse(string_value)) {
+              addPerson(person);
+            }
+          }
+
+          else if (name == 'Event_list') {
+            for (const event of JSON.parse(string_value)) {
+              saveEvent(event['event_person'], event);
+            }
+          }
+          else if (name == 'simulation_name') {
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'virus_type'){
+            $("option[value="+value+"]").attr('selected','selected')
+          }
+          else if (name == 'location_name'){
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'location_latitude'){
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'location_longitude'){
+            $("#"+name).attr("value", value)
+          }
+          else if (name == 'event_month'){
+            $("option[value="+value+"]").attr('selected','selected')
+          }    
+          else if (name == 'simulation_description'){
+            $("#"+name).html(value)
+          } 
+    })
+}
+
+
+
+
 /* -------On Load------- */
 $(document).ready(function () {
   //Remove delete buttons if only 1 room/person
@@ -425,51 +475,6 @@ $(document).ready(function () {
     var infected_coffee_break_option = js_default['infected_coffee_break_option']
     $('.infected_coffee_break_option[value='+infected_coffee_break_option+']').attr('checked', 'checked');
 
-
-  var url = new URL(decodeURIComponent(window.location.href));
-  //Pre-fill form with known values
-  url.searchParams.forEach((value, name) => {
-          string_value = value.replace(/'/g, '"')
-          var elemObj = document.getElementById(name);
-          if (name == 'Room_list') {
-            for (const room of JSON.parse(string_value)) {
-              addRoom(room);
-            }
-          }
-          
-          else if (name == 'People_list'){
-            for (const person of JSON.parse(string_value)) {
-              addPerson(person);
-            }
-          }
-
-          else if (name == 'Event_list') {
-            for (const event of JSON.parse(string_value)) {
-              saveEvent(event['event_person'], event);
-            }
-          }
-          else if (name == 'simulation_name') {
-            $("#"+name).attr("value", value)
-          }
-          else if (name == 'virus_type'){
-            $("option[value="+value+"]").attr('selected','selected')
-          }
-          else if (name == 'location_name'){
-            $("#"+name).attr("value", value)
-          }
-          else if (name == 'location_latitude'){
-            $("#"+name).attr("value", value)
-          }
-          else if (name == 'location_longitude'){
-            $("#"+name).attr("value", value)
-          }
-          else if (name == 'event_month'){
-            $("option[value="+value+"]").attr('selected','selected')
-          }    
-          else if (name == 'simulation_description'){
-            $("#"+name).html(value)
-          } 
-    })
     if($("div[id^=Room_]").length<3){
       addRoom()
     }     

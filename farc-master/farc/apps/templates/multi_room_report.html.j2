@@ -44,7 +44,7 @@
                         onclick="print()">
                   {{_("Print Report")}}
                 </button>
-                <a href="{{ link.shortened }}"
+                <a href="{{ link.link }}"
                    id="pdf_qrcode_aref"
                    class="align-self-center invisible mr-0">
                     <div id="pdf_qrcode"></div>
@@ -1030,13 +1030,13 @@
             $('[data-toggle="tooltip"]').tooltip();
 
             new QRCode(document.getElementById("qrcode"), {
-                text: "{{link.shortened }}",
+                text: "{{link.link }}",
                 width: 330,
                 height: 330,
                 correctLevel : QRCode.CorrectLevel.L
             });
             new QRCode(document.getElementById("pdf_qrcode"), {
-                text: "{{link.shortened }}",
+                text: "{{link.link }}",
                 width: 133,
                 height: 133,
                 correctLevel : QRCode.CorrectLevel.L

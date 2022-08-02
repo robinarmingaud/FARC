@@ -2,6 +2,7 @@ import base64
 from copy import deepcopy
 from dataclasses import dataclass
 import dataclasses
+import hashlib
 import html
 import itertools
 import typing
@@ -331,14 +332,12 @@ def generate_permalink(base_url, calculator_prefix, form: FormData):
     # Generate the calculator URL arguments that would be needed to re-create this
     # form.
     args = urllib.parse.urlencode(form_dict)
+    hash = hashlib.md5(args.encode()).hexdigest()
 
     # Then zlib compress + base64 encode the string. To be inverted by the
     # /_c/ endpoint.
-    compressed_args = base64.b64encode(zlib.compress(args.encode())).decode()
-    qr_url = f"{base_url}/_m/{compressed_args}"
-    url = f"{base_url}{calculator_prefix}?{args}"
+    url = f"{base_url}{calculator_prefix}?hash={hash}"
 
     return {
-        'link': url,
-        'shortened': qr_url,
+        'link': url,'hash' : hash, 'args' : args
     }

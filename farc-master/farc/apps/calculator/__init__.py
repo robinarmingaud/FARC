@@ -302,6 +302,22 @@ class AboutPage(BaseRequestHandler):
 
 class MultiRoomForm(BaseRequestHandler):
     def get(self):
+        base_url = self.request.protocol + "://" + self.request.host
+        calculator_prefix=self.settings["calculator_prefix"]
+        try :
+            hash = self.get_argument("hash")
+            connection = database.connect(
+            user=username,
+            password=password,
+            host="fl-ubu-212.flow-r.fr",
+            database="flow_r")
+            cursor = connection.cursor()
+            cursor.execute("SELECT url FROM farc_simulations WHERE hash='"+ hash +"'LIMIT 1;")
+            url = cursor.fetchone()[0]
+            cursor.close()
+            connection.commit()
+        except :
+            url = ""
         if not self.current_user.is_authenticated():
             self.redirect('https://www.flow-r.fr/')
         elif not self.current_user.farc_expert :
@@ -335,6 +351,7 @@ class MultiRoomForm(BaseRequestHandler):
             report = template.render(user=self.current_user,
                 xsrf_form_html=self.xsrf_form_html(),
                 calculator_prefix=self.settings["calculator_prefix"],
+                url=f"{base_url}{calculator_prefix}?{url}",
                 calculator_version=__version__,
                 default = DEFAULT_DATA._MULTI_DEFAULTS,
                 PLACEHOLDERS = DEFAULT_DATA.PLACEHOLDERS,
@@ -397,10 +414,23 @@ class MultiReport(BaseRequestHandler):
                 executor2 = loky.get_reusable_executor(max_workers=self.settings['handler_worker_pool_size'])
                 alternative_task = executor2.submit(report[0].alternative_scenarios,report[2], report[3])
                 alternative_scenarios = await asyncio.wrap_future(alternative_task)
+                link = multi_room_generator.generate_permalink(base_url, self.settings['multi_calculator_prefix'] ,form)
+                try :
+                    connection = database.connect(
+                    user=username,
+                    password=password,
+                    host="fl-ubu-212.flow-r.fr",
+                    database="flow_r")
+                    cursor = connection.cursor()
+                    cursor.execute("INSERT INTO farc_simulations(hash,url) VALUES ('"+link['hash']+"','"+link['args']+"');")
+                    cursor.close()
+                    connection.commit()
+                except :
+                    print('This simulation already exists in database')
                 template = template_environment.get_template(
                 "multi_room_report.html.j2")
                 report = template.render(
-                    link = multi_room_generator.generate_permalink(base_url, self.settings['multi_calculator_prefix'] ,form),
+                    link = link,
                     user=self.current_user,
                     calculator_prefix=self.settings["calculator_prefix"],
                     calculator_version=__version__,
