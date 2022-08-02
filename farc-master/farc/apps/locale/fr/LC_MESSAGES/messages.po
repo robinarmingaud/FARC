@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-29 16:59+0200\n"
+"POT-Creation-Date: 2022-08-02 16:27+0200\n"
 "PO-Revision-Date: 2022-07-27 12:04+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr_FR\n"
@@ -61,7 +61,7 @@ msgstr "SARS-CoV-2 (Variant Delta)"
 msgid "SARS-CoV-2 (Omicron VOC)"
 msgstr "SARS-CoV-2 (Variant Omicron)"
 
-#: calculator/DEFAULT_DATA.py:57 templates/multi_room_form.html.j2:232
+#: calculator/DEFAULT_DATA.py:57 templates/multi_room_form.html.j2:242
 #: templates/multi_room_report.html.j2:150
 #: templates/multi_room_report.html.j2:237
 #: templates/multi_room_report.html.j2:300
@@ -102,8 +102,8 @@ msgstr "Travailleur de bureau"
 #: calculator/DEFAULT_DATA.py:168 calculator/DEFAULT_DATA.py:169
 #: calculator/DEFAULT_DATA.py:170 calculator/DEFAULT_DATA.py:171
 #: templates/calculator.form.html.j2:408 templates/calculator.form.html.j2:505
-#: templates/multi_room_form.html.j2:736
-#: templates/multi_room_report.html.j2:903
+#: templates/multi_room_form.html.j2:756
+#: templates/multi_room_report.html.j2:906
 msgid "Speaking"
 msgstr "Parler"
 
@@ -125,8 +125,8 @@ msgstr "Parler"
 #: calculator/DEFAULT_DATA.py:167 calculator/DEFAULT_DATA.py:168
 #: calculator/DEFAULT_DATA.py:169 calculator/DEFAULT_DATA.py:170
 #: calculator/DEFAULT_DATA.py:171 templates/calculator.form.html.j2:402
-#: templates/calculator.form.html.j2:499 templates/multi_room_form.html.j2:720
-#: templates/multi_room_report.html.j2:902
+#: templates/calculator.form.html.j2:499 templates/multi_room_form.html.j2:740
+#: templates/multi_room_report.html.j2:905
 msgid "Breathing"
 msgstr "Respirer"
 
@@ -145,8 +145,8 @@ msgstr "Travailleur en atelier"
 #: calculator/DEFAULT_DATA.py:167 calculator/DEFAULT_DATA.py:168
 #: calculator/DEFAULT_DATA.py:170 calculator/DEFAULT_DATA.py:171
 #: templates/calculator.form.html.j2:414 templates/calculator.form.html.j2:511
-#: templates/multi_room_form.html.j2:752
-#: templates/multi_room_report.html.j2:904
+#: templates/multi_room_form.html.j2:772
+#: templates/multi_room_report.html.j2:907
 msgid "Shouting"
 msgstr "Crier"
 
@@ -508,11 +508,11 @@ msgstr ""
 "accéder à notre outil de diagnostic avancé. N'hésitez pas à nous "
 "contacter pour un devis à l'adresse suivante "
 
-#: calculator/__init__.py:201 calculator/__init__.py:383
+#: calculator/__init__.py:201 calculator/__init__.py:400
 msgid "Your request was invalid"
 msgstr "Votre demande n'était pas valide"
 
-#: calculator/__init__.py:506
+#: calculator/__init__.py:536
 msgid ""
 "Invalid calculator data: it seems incomplete. Was there an error copying "
 "& pasting the URL?"
@@ -785,11 +785,11 @@ msgid "Room number:"
 msgstr "Numéro du local:"
 
 #: templates/calculator.form.html.j2:59 templates/calculator.form.html.j2:698
-#: templates/multi_room_form.html.j2:152
+#: templates/multi_room_form.html.j2:162
 msgid "Virus data:"
 msgstr "Données du virus:"
 
-#: templates/calculator.form.html.j2:66 templates/multi_room_form.html.j2:159
+#: templates/calculator.form.html.j2:66 templates/multi_room_form.html.j2:169
 msgid "Variant:"
 msgstr "Variant:"
 
@@ -797,7 +797,7 @@ msgstr "Variant:"
 msgid "Room data:"
 msgstr "Données du local:"
 
-#: templates/calculator.form.html.j2:91 templates/multi_room_form.html.j2:251
+#: templates/calculator.form.html.j2:91 templates/multi_room_form.html.j2:261
 msgid "Room volume:"
 msgstr "Volume du local:"
 
@@ -809,7 +809,7 @@ msgstr "Surface au sol:"
 msgid "Ceiling height:"
 msgstr "Hauteur de plafond:"
 
-#: templates/calculator.form.html.j2:118 templates/multi_room_form.html.j2:269
+#: templates/calculator.form.html.j2:118 templates/multi_room_form.html.j2:279
 msgid "Heating/Air conditionning system in use:"
 msgstr "Chauffage/ Air conditionné en cours d'utilisation."
 
@@ -823,8 +823,8 @@ msgstr "Chauffage/ Air conditionné en cours d'utilisation."
 #: templates/calculator.report.html.j2:737
 #: templates/calculator.report.html.j2:783
 #: templates/calculator.report.html.j2:819
-#: templates/multi_room_form.html.j2:278 templates/multi_room_form.html.j2:562
-#: templates/multi_room_form.html.j2:823
+#: templates/multi_room_form.html.j2:288 templates/multi_room_form.html.j2:572
+#: templates/multi_room_form.html.j2:843
 msgid "No"
 msgstr "Non"
 
@@ -838,20 +838,20 @@ msgstr "Non"
 #: templates/calculator.report.html.j2:722
 #: templates/calculator.report.html.j2:768
 #: templates/calculator.report.html.j2:819
-#: templates/multi_room_form.html.j2:286 templates/multi_room_form.html.j2:570
-#: templates/multi_room_form.html.j2:821
+#: templates/multi_room_form.html.j2:296 templates/multi_room_form.html.j2:580
+#: templates/multi_room_form.html.j2:841
 msgid "Yes"
 msgstr "Oui"
 
-#: templates/calculator.form.html.j2:127 templates/multi_room_form.html.j2:182
+#: templates/calculator.form.html.j2:127 templates/multi_room_form.html.j2:192
 msgid "Geographic location:"
 msgstr "Position géographique:"
 
-#: templates/calculator.form.html.j2:131 templates/multi_room_form.html.j2:294
+#: templates/calculator.form.html.j2:131 templates/multi_room_form.html.j2:304
 msgid "Humidity:"
 msgstr "Humidité:"
 
-#: templates/calculator.form.html.j2:133 templates/multi_room_form.html.j2:306
+#: templates/calculator.form.html.j2:133 templates/multi_room_form.html.j2:316
 msgid "Temperature:"
 msgstr "Température:"
 
@@ -860,24 +860,24 @@ msgstr "Température:"
 msgid "Ventilation data:"
 msgstr "Données de ventilation:"
 
-#: templates/calculator.form.html.j2:156 templates/multi_room_form.html.j2:312
+#: templates/calculator.form.html.j2:156 templates/multi_room_form.html.j2:322
 msgid "Ventilation type:"
 msgstr "Type de ventilation:"
 
-#: templates/calculator.form.html.j2:161 templates/multi_room_form.html.j2:322
-#: templates/multi_room_report.html.j2:859 templates/userguide.html.j2:162
+#: templates/calculator.form.html.j2:161 templates/multi_room_form.html.j2:332
+#: templates/multi_room_report.html.j2:862 templates/userguide.html.j2:162
 msgid "No ventilation"
 msgstr "Pas de ventilation"
 
-#: templates/calculator.form.html.j2:163 templates/multi_room_form.html.j2:331
+#: templates/calculator.form.html.j2:163 templates/multi_room_form.html.j2:341
 msgid "Mechanical"
 msgstr "Mécanique"
 
-#: templates/calculator.form.html.j2:165 templates/multi_room_form.html.j2:342
+#: templates/calculator.form.html.j2:165 templates/multi_room_form.html.j2:352
 msgid "Natural"
 msgstr "Naturelle"
 
-#: templates/calculator.form.html.j2:174 templates/multi_room_form.html.j2:899
+#: templates/calculator.form.html.j2:174 templates/multi_room_form.html.j2:919
 msgid "Natural Ventilation"
 msgstr "Ventilation naturelle"
 
@@ -896,63 +896,63 @@ msgstr ""
 "pourrait ne pas être homogène produisant un risque artificiellement plus "
 "bas plus loin de la fenêtre."
 
-#: templates/calculator.form.html.j2:194 templates/multi_room_form.html.j2:359
+#: templates/calculator.form.html.j2:194 templates/multi_room_form.html.j2:369
 msgid "Air supply flow rate"
 msgstr "Débit d'air neuf"
 
-#: templates/calculator.form.html.j2:203 templates/multi_room_form.html.j2:385
+#: templates/calculator.form.html.j2:203 templates/multi_room_form.html.j2:395
 msgid "Air changes per hour"
 msgstr "Changements d'air par heure"
 
 #: templates/calculator.form.html.j2:213
 #: templates/calculator.report.html.j2:463
-#: templates/multi_room_form.html.j2:406
+#: templates/multi_room_form.html.j2:416
 msgid "Number of windows:"
 msgstr "Nombre de fenêtres:"
 
 #: templates/calculator.form.html.j2:217
 #: templates/calculator.report.html.j2:468
-#: templates/multi_room_form.html.j2:423
+#: templates/multi_room_form.html.j2:433
 msgid "Height of window:"
 msgstr "Hauteur de fenêtre:"
 
 #: templates/calculator.form.html.j2:220
 #: templates/calculator.report.html.j2:473
-#: templates/multi_room_form.html.j2:439
+#: templates/multi_room_form.html.j2:449
 msgid "Window type:"
 msgstr "Type de fenêtre:"
 
 #: templates/calculator.form.html.j2:222
 #: templates/calculator.report.html.j2:484
-#: templates/multi_room_form.html.j2:448
+#: templates/multi_room_form.html.j2:458
 msgid "Sliding / Side-Hung"
 msgstr "Coulissante / latérale"
 
 #: templates/calculator.form.html.j2:224
 #: templates/calculator.report.html.j2:475
-#: templates/multi_room_form.html.j2:457
+#: templates/multi_room_form.html.j2:467
 msgid "Top- or Bottom-Hung"
 msgstr "Charnière haute ou basse"
 
 #: templates/calculator.form.html.j2:226
 #: templates/calculator.report.html.j2:480
-#: templates/multi_room_form.html.j2:463
+#: templates/multi_room_form.html.j2:473
 msgid "Width of window:"
 msgstr "Largeur de la fenêtre:"
 
 #: templates/calculator.form.html.j2:230
 #: templates/calculator.report.html.j2:490
-#: templates/multi_room_form.html.j2:482
+#: templates/multi_room_form.html.j2:492
 msgid "Opening distance:"
 msgstr "Distance d'ouverture:"
 
-#: templates/calculator.form.html.j2:233 templates/multi_room_form.html.j2:498
+#: templates/calculator.form.html.j2:233 templates/multi_room_form.html.j2:508
 msgid "Window open"
 msgstr "Fenêtre ouverte"
 
 #: templates/calculator.form.html.j2:240
 #: templates/calculator.report.html.j2:500
-#: templates/multi_room_form.html.j2:513
+#: templates/multi_room_form.html.j2:523
 msgid "Permanently"
 msgstr "En permanence"
 
@@ -962,27 +962,27 @@ msgstr "Périodique:"
 
 #: templates/calculator.form.html.j2:251
 #: templates/calculator.report.html.j2:515
-#: templates/multi_room_form.html.j2:552
+#: templates/multi_room_form.html.j2:562
 msgid "Bioventilation:"
 msgstr "Bioventilation:"
 
-#: templates/calculator.form.html.j2:269 templates/multi_room_form.html.j2:810
+#: templates/calculator.form.html.j2:269 templates/multi_room_form.html.j2:830
 msgid "Face masks:"
 msgstr "Masques faciaux:"
 
-#: templates/calculator.form.html.j2:276 templates/multi_room_form.html.j2:819
+#: templates/calculator.form.html.j2:276 templates/multi_room_form.html.j2:839
 msgid "Are masks worn when occupants ?"
 msgstr "Port du masque ?"
 
-#: templates/calculator.form.html.j2:283 templates/multi_room_form.html.j2:837
+#: templates/calculator.form.html.j2:283 templates/multi_room_form.html.j2:857
 msgid "Type of masks used (requested for alternative scenarios):"
 msgstr "Type de masque (utilisé aussi pour les scénarios alternatifs)"
 
-#: templates/calculator.form.html.j2:288 templates/multi_room_form.html.j2:842
+#: templates/calculator.form.html.j2:288 templates/multi_room_form.html.j2:862
 msgid "Surgical/Type I"
 msgstr "Chirurgie / type I"
 
-#: templates/calculator.form.html.j2:295 templates/multi_room_form.html.j2:849
+#: templates/calculator.form.html.j2:295 templates/multi_room_form.html.j2:869
 msgid "Respirator/FFP2"
 msgstr "FFP2 ou similaire"
 
@@ -1010,47 +1010,47 @@ msgstr "Personnes exposées:"
 #: templates/calculator.form.html.j2:355
 #: templates/calculator.report.html.j2:551
 #: templates/calculator.report.html.j2:628
-#: templates/multi_room_form.html.j2:684
+#: templates/multi_room_form.html.j2:704
 msgid "Activity type:"
 msgstr "Type d'activité:"
 
 #: templates/calculator.form.html.j2:390 templates/calculator.form.html.j2:486
-#: templates/multi_room_form.html.j2:828
+#: templates/multi_room_form.html.j2:848
 msgid "Mask wear ratio:"
 msgstr "Ratio de port du masque:"
 
 #: templates/calculator.form.html.j2:395 templates/calculator.form.html.j2:492
-#: templates/multi_room_form.html.j2:712
+#: templates/multi_room_form.html.j2:732
 msgid "Expiration :"
 msgstr "Type d'expiration: "
 
 #: templates/calculator.form.html.j2:423 templates/calculator.form.html.j2:520
-#: templates/multi_room_form.html.j2:772
+#: templates/multi_room_form.html.j2:792
 msgid "Activity level :"
 msgstr "Niveau d'activité: "
 
 #: templates/calculator.form.html.j2:426 templates/calculator.form.html.j2:523
-#: templates/multi_room_form.html.j2:779
+#: templates/multi_room_form.html.j2:799
 msgid "Seated"
 msgstr "Assis"
 
 #: templates/calculator.form.html.j2:427 templates/calculator.form.html.j2:524
-#: templates/multi_room_form.html.j2:782
+#: templates/multi_room_form.html.j2:802
 msgid "Standing"
 msgstr "Debout"
 
 #: templates/calculator.form.html.j2:428 templates/calculator.form.html.j2:525
-#: templates/multi_room_form.html.j2:785
+#: templates/multi_room_form.html.j2:805
 msgid "Light activity"
 msgstr "Activité légère"
 
 #: templates/calculator.form.html.j2:429 templates/calculator.form.html.j2:526
-#: templates/multi_room_form.html.j2:788
+#: templates/multi_room_form.html.j2:808
 msgid "Moderate activity"
 msgstr "Activité modérée"
 
 #: templates/calculator.form.html.j2:430 templates/calculator.form.html.j2:527
-#: templates/multi_room_form.html.j2:791
+#: templates/multi_room_form.html.j2:811
 msgid "Heavy exercise"
 msgstr "Exercice soutenu"
 
@@ -1062,13 +1062,13 @@ msgstr "Présence:"
 #: templates/calculator.form.html.j2:589 templates/calculator.form.html.j2:638
 #: templates/calculator.report.html.j2:752
 #: templates/calculator.report.html.j2:798
-#: templates/multi_room_form.html.j2:799
+#: templates/multi_room_form.html.j2:819
 msgid "Start:"
 msgstr "Début:"
 
 #: templates/calculator.form.html.j2:441 templates/calculator.form.html.j2:539
 #: templates/calculator.form.html.j2:592 templates/calculator.form.html.j2:641
-#: templates/multi_room_form.html.j2:805
+#: templates/multi_room_form.html.j2:825
 msgid "Finish:"
 msgstr "Fin:"
 
@@ -1080,7 +1080,7 @@ msgstr "Personnes infectées:"
 msgid "Activity:"
 msgstr "Activité:"
 
-#: templates/calculator.form.html.j2:550 templates/multi_room_form.html.j2:196
+#: templates/calculator.form.html.j2:550 templates/multi_room_form.html.j2:206
 msgid "Which month is the event?"
 msgstr "Mois de l'événement"
 
@@ -1122,7 +1122,7 @@ msgstr "Pauses des personnes infectées:"
 msgid "Coffee breaks are spread evenly throughout the day."
 msgstr "Les pauses café sont réparties uniformément tout au long de la journée."
 
-#: templates/calculator.form.html.j2:688 templates/multi_room_form.html.j2:881
+#: templates/calculator.form.html.j2:688 templates/multi_room_form.html.j2:901
 msgid "Generate report"
 msgstr "Générer un rapport"
 
@@ -1770,7 +1770,7 @@ msgstr ""
 "pas été mises en place et qu'une réduction des risques ait été effectuée."
 
 #: templates/calculator.report.html.j2:893
-#: templates/multi_room_report.html.j2:1049
+#: templates/multi_room_report.html.j2:1052
 msgid "Disclaimer:"
 msgstr "Avertissement:"
 
@@ -2296,75 +2296,83 @@ msgstr ""
 msgid "General options"
 msgstr "Options générales"
 
-#: templates/multi_room_form.html.j2:178
+#: templates/multi_room_form.html.j2:153
+msgid "Simulation description:"
+msgstr "Description de la simulation:"
+
+#: templates/multi_room_form.html.j2:188
 msgid "Location :"
 msgstr "Position :"
 
-#: templates/multi_room_form.html.j2:226
+#: templates/multi_room_form.html.j2:236
 msgid "Rooms"
 msgstr "Pièces"
 
-#: templates/multi_room_form.html.j2:237
+#: templates/multi_room_form.html.j2:247
 msgid "Room name:"
 msgstr "Nom du local:"
 
-#: templates/multi_room_form.html.j2:527
+#: templates/multi_room_form.html.j2:537
 msgid "Periodically: "
 msgstr "Périodiquement: "
 
-#: templates/multi_room_form.html.j2:586 templates/multi_room_form.html.j2:648
+#: templates/multi_room_form.html.j2:596 templates/multi_room_form.html.j2:658
 msgid "Delete"
 msgstr "Supprimer"
 
-#: templates/multi_room_form.html.j2:593
+#: templates/multi_room_form.html.j2:603
 msgid "Add room"
 msgstr "Ajouter une pièce"
 
-#: templates/multi_room_form.html.j2:601
+#: templates/multi_room_form.html.j2:611
 msgid "People"
 msgstr "Personnes"
 
-#: templates/multi_room_form.html.j2:607
+#: templates/multi_room_form.html.j2:617
 msgid "Person data"
 msgstr "Personne"
 
-#: templates/multi_room_form.html.j2:613
+#: templates/multi_room_form.html.j2:623
 msgid "Name :"
 msgstr "Nom :"
 
-#: templates/multi_room_form.html.j2:622
+#: templates/multi_room_form.html.j2:632
 msgid "Number:"
 msgstr "Nombre:"
 
-#: templates/multi_room_form.html.j2:635
+#: templates/multi_room_form.html.j2:645
 msgid "Schedule"
 msgstr "Emploi du temps"
 
-#: templates/multi_room_form.html.j2:645
+#: templates/multi_room_form.html.j2:655
 msgid "Add event"
 msgstr "Ajouter un évènement"
 
-#: templates/multi_room_form.html.j2:661
+#: templates/multi_room_form.html.j2:671
 msgid "New event"
 msgstr "Nouvel évènement"
 
-#: templates/multi_room_form.html.j2:673
-msgid "Event location:"
-msgstr "Situation de l'évènement:"
+#: templates/multi_room_form.html.j2:683
+msgid "Event description (optional) :"
+msgstr ""
 
-#: templates/multi_room_form.html.j2:860
+#: templates/multi_room_form.html.j2:693
+msgid "Event location :"
+msgstr "Localisation de l'évènement :"
+
+#: templates/multi_room_form.html.j2:880
 msgid "Close"
 msgstr "Fermer"
 
-#: templates/multi_room_form.html.j2:865
+#: templates/multi_room_form.html.j2:885
 msgid "Save changes"
 msgstr "Sauvegarder"
 
-#: templates/multi_room_form.html.j2:876
+#: templates/multi_room_form.html.j2:896
 msgid "Add person"
 msgstr "Ajouter une personne"
 
-#: templates/multi_room_form.html.j2:909
+#: templates/multi_room_form.html.j2:929
 msgid ""
 "Single-sided ventilation is assumed in the model and is typically "
 "effective for room depths up to a depth 2.5 x the ceiling height.\n"
@@ -2397,7 +2405,6 @@ msgstr "Pièces avec les plus grosses quantités de virus transmises"
 
 #: templates/multi_room_report.html.j2:151
 #: templates/multi_room_report.html.j2:238
-#
 msgid "Average transmitted infectious virus dose"
 msgstr "Quantité moyenne de virus transmise"
 
@@ -2426,12 +2433,10 @@ msgstr "Nombre maximum de nouveaux cas si une personne est contaminée Rmax"
 
 #: templates/multi_room_report.html.j2:294
 msgid "Rooms with the highest transmitted virus dose in all simulations :"
-msgstr ""
-"Pièces avec les plus grosses quantités de virus transmises"
+msgstr "Pièces avec les plus grosses quantités de virus transmises"
 
 #: templates/multi_room_report.html.j2:301
 #: templates/multi_room_report.html.j2:388
-#
 msgid "Max transmitted infectious virus dose"
 msgstr "Quantité maximale de virus transmise"
 
@@ -2525,180 +2530,184 @@ msgstr "Situation géographique : "
 msgid "Event month : "
 msgstr "Mois de l'année : "
 
-#: templates/multi_room_report.html.j2:754
+#: templates/multi_room_report.html.j2:748
+msgid "Description : "
+msgstr "Description :"
+
+#: templates/multi_room_report.html.j2:757
 msgid "Base scenario room input data:"
 msgstr "Données d'entrée pour le scénario de base"
 
-#: templates/multi_room_report.html.j2:770
+#: templates/multi_room_report.html.j2:773
 msgid "Name"
 msgstr "Nom"
 
-#: templates/multi_room_report.html.j2:774
+#: templates/multi_room_report.html.j2:777
 msgid "Volume"
 msgstr "Volume du local"
 
-#: templates/multi_room_report.html.j2:778
+#: templates/multi_room_report.html.j2:781
 msgid "Temperature"
 msgstr "Température"
 
-#: templates/multi_room_report.html.j2:782
+#: templates/multi_room_report.html.j2:785
 msgid "Room heating option"
 msgstr "Chauffage central ou climatisation"
 
-#: templates/multi_room_report.html.j2:786
+#: templates/multi_room_report.html.j2:789
 msgid "Humidity"
 msgstr "Humidité"
 
-#: templates/multi_room_report.html.j2:791
-#: templates/multi_room_report.html.j2:842
-#: templates/multi_room_report.html.j2:858 templates/userguide.html.j2:96
+#: templates/multi_room_report.html.j2:794
+#: templates/multi_room_report.html.j2:845
+#: templates/multi_room_report.html.j2:861 templates/userguide.html.j2:96
 msgid "Ventilation type"
 msgstr "Type de ventilation"
 
-#: templates/multi_room_report.html.j2:792 templates/userguide.html.j2:112
+#: templates/multi_room_report.html.j2:795 templates/userguide.html.j2:112
 msgid "Natural ventilation"
 msgstr "Ventilation naturelle"
 
-#: templates/multi_room_report.html.j2:796
-#: templates/multi_room_report.html.j2:809
+#: templates/multi_room_report.html.j2:799
+#: templates/multi_room_report.html.j2:812
 msgid "Window opening regime"
 msgstr "Régime d'ouverture des fenêtres"
 
-#: templates/multi_room_report.html.j2:797
+#: templates/multi_room_report.html.j2:800
 msgid "Windows open periodically"
 msgstr "Fenêtres ouvertes périodiquement"
 
-#: templates/multi_room_report.html.j2:800
+#: templates/multi_room_report.html.j2:803
 msgid "Window duration"
 msgstr "Durée des ouvertures"
 
-#: templates/multi_room_report.html.j2:804
+#: templates/multi_room_report.html.j2:807
 msgid "Window frequency"
 msgstr "Fréquence d'ouverture"
 
-#: templates/multi_room_report.html.j2:810
+#: templates/multi_room_report.html.j2:813
 msgid "Windows open permanently"
 msgstr "Fenêtres ouvertes en permanence"
 
-#: templates/multi_room_report.html.j2:815
-#: templates/multi_room_report.html.j2:820
+#: templates/multi_room_report.html.j2:818
+#: templates/multi_room_report.html.j2:823
 msgid "Window type"
 msgstr "Type de fenêtre"
 
-#: templates/multi_room_report.html.j2:816
+#: templates/multi_room_report.html.j2:819
 msgid "Window sliding"
 msgstr "Fenêtre coulissante"
 
-#: templates/multi_room_report.html.j2:821
+#: templates/multi_room_report.html.j2:824
 msgid "Window hinged"
 msgstr "Fenêtre battante"
 
-#: templates/multi_room_report.html.j2:824
+#: templates/multi_room_report.html.j2:827
 msgid "Window width"
 msgstr "Largeur des fenêtres"
 
-#: templates/multi_room_report.html.j2:829
+#: templates/multi_room_report.html.j2:832
 msgid "Window height"
 msgstr "Hauteur des fenêtres"
 
-#: templates/multi_room_report.html.j2:833
+#: templates/multi_room_report.html.j2:836
 msgid "Window number"
 msgstr "Nombre de fenêtres"
 
-#: templates/multi_room_report.html.j2:837
+#: templates/multi_room_report.html.j2:840
 msgid "Window opening distance"
 msgstr "Distance d'ouverture des fenêtres"
 
-#: templates/multi_room_report.html.j2:843 templates/userguide.html.j2:102
+#: templates/multi_room_report.html.j2:846 templates/userguide.html.j2:102
 msgid "Mechanical ventilation"
 msgstr "Ventilation mécanique"
 
-#: templates/multi_room_report.html.j2:847
+#: templates/multi_room_report.html.j2:850
 msgid "Air supply"
 msgstr "Débit d'air neuf"
 
-#: templates/multi_room_report.html.j2:852
+#: templates/multi_room_report.html.j2:855
 msgid "Air changes"
 msgstr "Changements d'air par heure"
 
-#: templates/multi_room_report.html.j2:863
-#: templates/multi_room_report.html.j2:868
+#: templates/multi_room_report.html.j2:866
+#: templates/multi_room_report.html.j2:871
 msgid "Biov option"
 msgstr "Bioventilation"
 
-#: templates/multi_room_report.html.j2:881
+#: templates/multi_room_report.html.j2:884
 msgid "Base scenario people input data :"
 msgstr "Données d'entrée sur les personnes du scénario de base"
 
-#: templates/multi_room_report.html.j2:886
+#: templates/multi_room_report.html.j2:889
 msgid "Number : "
 msgstr "Nombre : "
 
-#: templates/multi_room_report.html.j2:889
+#: templates/multi_room_report.html.j2:892
 msgid "Schedule :"
 msgstr "Emploi du temps :"
 
-#: templates/multi_room_report.html.j2:895
+#: templates/multi_room_report.html.j2:898
 msgid "Start"
 msgstr "Début"
 
-#: templates/multi_room_report.html.j2:896
+#: templates/multi_room_report.html.j2:899
 msgid "End"
 msgstr "Fin"
 
-#: templates/multi_room_report.html.j2:897
+#: templates/multi_room_report.html.j2:900
 msgid "Location"
 msgstr "Situation"
 
-#: templates/multi_room_report.html.j2:898
+#: templates/multi_room_report.html.j2:901
 msgid "Mask type"
 msgstr "Type de masque"
 
-#: templates/multi_room_report.html.j2:899
+#: templates/multi_room_report.html.j2:902
 msgid "Mask ratio"
 msgstr "Ratio du masque"
 
-#: templates/multi_room_report.html.j2:900
+#: templates/multi_room_report.html.j2:903
 msgid "Activity"
 msgstr "Activité"
 
-#: templates/multi_room_report.html.j2:901
+#: templates/multi_room_report.html.j2:904
 msgid "Activity level"
 msgstr "Niveau d'activité"
 
-#: templates/multi_room_report.html.j2:917
+#: templates/multi_room_report.html.j2:920
 msgid "No mask"
 msgstr "Pas de masque"
 
-#: templates/multi_room_report.html.j2:936
+#: templates/multi_room_report.html.j2:939
 msgid "Alternative 1 (average risk) ventilation proposal :"
 msgstr "Proposition de ventilation alternative 1 - Risque moyen :"
 
-#: templates/multi_room_report.html.j2:945
-#: templates/multi_room_report.html.j2:979
+#: templates/multi_room_report.html.j2:948
+#: templates/multi_room_report.html.j2:982
 msgid "Room id"
 msgstr "Identifiant de la pièce"
 
-#: templates/multi_room_report.html.j2:946
-#: templates/multi_room_report.html.j2:980
+#: templates/multi_room_report.html.j2:949
+#: templates/multi_room_report.html.j2:983
 msgid "Room name"
 msgstr "Nom du local"
 
-#: templates/multi_room_report.html.j2:947
-#: templates/multi_room_report.html.j2:981
+#: templates/multi_room_report.html.j2:950
+#: templates/multi_room_report.html.j2:984
 msgid "Previous biov amount"
 msgstr "Débit de bioventilation précédent"
 
-#: templates/multi_room_report.html.j2:948
-#: templates/multi_room_report.html.j2:982
+#: templates/multi_room_report.html.j2:951
+#: templates/multi_room_report.html.j2:985
 msgid "New biov amount"
 msgstr "Nouveau débit de bioventilation"
 
-#: templates/multi_room_report.html.j2:970
+#: templates/multi_room_report.html.j2:973
 msgid "Alternative 2 (maximum risk) ventilation proposal :"
 msgstr "Proposition de ventilation alternative 2 - Risque maximal :"
 
-#: templates/multi_room_report.html.j2:1009
+#: templates/multi_room_report.html.j2:1012
 msgid ""
 "FARC expert calculator uses CARA base model to calculate the report. The "
 "calculator iterates through people in the simulation and assumes each "
@@ -2727,7 +2736,7 @@ msgstr ""
 "est la plus contaminante, il est possible de consulter les résultats "
 "détaillés."
 
-#: templates/multi_room_report.html.j2:1015
+#: templates/multi_room_report.html.j2:1018
 msgid ""
 "Concerning rooms, two pieces of information are given: the average "
 "quantity of virus absorbed by healthy people, and the maximum quantity."
