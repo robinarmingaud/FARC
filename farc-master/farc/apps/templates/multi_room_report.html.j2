@@ -33,7 +33,7 @@
                         <a href="{{ link.link }}">
                            {{_("REPORT ")}} {{data.report.simulations[0].simulation_name}}
                         </a>
-                    </h1>
+                    </h2>
                     <p class="mb-0" id="report_version">
                       {{_("Created")}} {{ creation_date }} {{_("using FARC")}} v{{ calculator_version }}
                     </p>
@@ -743,6 +743,9 @@
                                     </ul>
                                     <ul>
                                         <li>{{_("Event month : ")}}{{_(data.report.simulations[0].event_month)}}</li>
+                                    </ul>
+                                    <ul>
+                                        <li>{{_("Description : ")}}{{_(data.report.simulations[0].simulation_description)}}</li>
                                     </ul>
                                 </div>
                             </div>

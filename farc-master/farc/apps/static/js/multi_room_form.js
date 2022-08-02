@@ -467,7 +467,7 @@ $(document).ready(function () {
             $("option[value="+value+"]").attr('selected','selected')
           }    
           else if (name == 'simulation_description'){
-            $("#"+name).attr("value", value)
+            $("#"+name).html(value)
           } 
     })
     if($("div[id^=Room_]").length<3){
