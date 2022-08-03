@@ -131,7 +131,7 @@
                                                                                         {% set warning_color = 'bg-success' %}
                                                                                     {% endif %}
                                                                                     <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
-                                                                                        <b>{{ mean_expected_cases | round(2)}}</b>
+                                                                                        <b>{{ mean_expected_cases | round(1)}}</b>
                                                                                         <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
                                                                                         <span class="ripple {{ warning_color }}"></span>
                                                                                         <span class="ripple {{ warning_color }}"></span>
@@ -156,17 +156,17 @@
                                                                                     {% if item <= 10 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "success_bkg">{{key}}</td>
-                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "success_bkg">{{item | round(1)}}</td>
                                                                                     </tr>
                                                                                     {% elif item > 10 and item <= 25 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "warning_bkg">{{key}}</td>
-                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "warning_bkg">{{item | round(1)}}</td>
                                                                                     </tr>
                                                                                     {% else %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "danger_bkg">{{key}}</td>
-                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "danger_bkg">{{item | round(1)}}</td>
                                                                                     </tr>
                                                                                     {% endif%}
                                                                                 {% endfor %}
@@ -193,7 +193,7 @@
                                                                                                     {% set warning_color = 'bg-success' %}
                                                                                                 {% endif %}
                                                                                                 <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
-                                                                                                    <b>{{ alternative_scenarios.mean[1][0]  | round(2)}}</b>
+                                                                                                    <b>{{ alternative_scenarios.mean[1][0]  | round(1)}}</b>
                                                                                                     <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
@@ -216,7 +216,7 @@
                                                                                                     {% set warning_color = 'bg-success' %}
                                                                                                 {% endif %}
                                                                                                 <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
-                                                                                                    <b>{{ alternative_scenarios.mean[1][1] | round(2)}}</b>
+                                                                                                    <b>{{ alternative_scenarios.mean[1][1] | round(1)}}</b>
                                                                                                     <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
@@ -248,17 +248,17 @@
                                                                                     {% if alternative_scenarios.mean[2][key] <= 10 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "success_bkg">{{key}}</td>
-                                                                                    <td class = "success_bkg">{{alternative_scenarios.mean[2][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
+                                                                                    <td class = "success_bkg">{{alternative_scenarios.mean[2][key] | round(1)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% elif alternative_scenarios.mean[2][key] > 10 and alternative_scenarios.mean[2][key] <= 25 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "warning_bkg">{{key}}</td>
-                                                                                    <td class = "warning_bkg">{{alternative_scenarios.mean[2][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
+                                                                                    <td class = "warning_bkg">{{alternative_scenarios.mean[2][key] | round(1)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% else %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "danger_bkg">{{key}}</td>
-                                                                                    <td class = "danger_bkg">{{alternative_scenarios.mean[2][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
+                                                                                    <td class = "danger_bkg">{{alternative_scenarios.mean[2][key] | round(1)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% endif%}
                                                                                 {% endfor %}
@@ -281,7 +281,7 @@
                                                                                                     {% set warning_color = 'bg-success' %}
                                                                                                 {% endif %}
                                                                                                 <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
-                                                                                                    <b>{{ worst_expected_cases | round(2)}}</b>
+                                                                                                    <b>{{ worst_expected_cases | round(1)}}</b>
                                                                                                     <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
@@ -306,17 +306,17 @@
                                                                                     {% if item <= 10 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "success_bkg">{{key}}</td>
-                                                                                    <td class = "success_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "success_bkg">{{item | round(1)}}</td>
                                                                                     </tr>
                                                                                     {% elif item > 10 and item <= 25 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "warning_bkg">{{key}}</td>
-                                                                                    <td class = "warning_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "warning_bkg">{{item | round(1)}}</td>
                                                                                     </tr>
                                                                                     {% else %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "danger_bkg">{{key}}</td>
-                                                                                    <td class = "danger_bkg">{{item | round(2)}}</td>
+                                                                                    <td class = "danger_bkg">{{item | round(1)}}</td>
                                                                                     </tr>
                                                                                     {% endif%}
                                                                                 {% endfor %}
@@ -343,7 +343,7 @@
                                                                                                     {% set warning_color = 'bg-success' %}
                                                                                                 {% endif %}
                                                                                                 <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
-                                                                                                    <b>{{ alternative_scenarios.worst[1][0]  | round(2)}}</b>
+                                                                                                    <b>{{ alternative_scenarios.worst[1][0]  | round(1)}}</b>
                                                                                                     <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
@@ -366,7 +366,7 @@
                                                                                                     {% set warning_color = 'bg-success' %}
                                                                                                 {% endif %}
                                                                                                 <div class="intro-banner-vdo-play-btn {{ warning_color }} m-auto d-flex align-items-center justify-content-center">
-                                                                                                    <b>{{ alternative_scenarios.worst[1][1] | round(2)}}</b>
+                                                                                                    <b>{{ alternative_scenarios.worst[1][1] | round(1)}}</b>
                                                                                                     <i class="glyphicon glyphicon-play whiteText" aria-hidden="true"></i>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
                                                                                                     <span class="ripple {{ warning_color }}"></span>
@@ -398,17 +398,17 @@
                                                                                     {% if alternative_scenarios.worst[3][key] <= 10 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "success_bkg">{{key}}</td>
-                                                                                    <td class = "success_bkg">{{alternative_scenarios.worst[3][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
+                                                                                    <td class = "success_bkg">{{alternative_scenarios.worst[3][key] | round(1)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% elif alternative_scenarios.worst[3][key] > 10 and alternative_scenarios.worst[3][key] <= 25 %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "warning_bkg">{{key}}</td>
-                                                                                    <td class = "warning_bkg">{{alternative_scenarios.worst[3][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
+                                                                                    <td class = "warning_bkg">{{alternative_scenarios.worst[3][key] | round(1)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% else %}
                                                                                     <tr id="trAlternativeScenario">
                                                                                     <td class = "danger_bkg">{{key}}</td>
-                                                                                    <td class = "danger_bkg">{{alternative_scenarios.worst[3][key] | round(2)}} (-{{reduction_percentage| round(1)}}%)</td>
+                                                                                    <td class = "danger_bkg">{{alternative_scenarios.worst[3][key] | round(1)}} (-{{reduction_percentage| round(1)}}%)</td>
                                                                                     </tr>
                                                                                     {% endif%}
                                                                                 {% endfor %}
@@ -465,8 +465,8 @@
                                 {% for key, item in base_mean_room_data.items() %}
                                     <tr id="trAlternativeScenario">
                                     <td>{{key}}</td>
-                                    <td>{{base_mean_room_data[key] | round(2)}}</td>
-                                    <td>{{base_worst_room_data[key] | round(2)}}</td>
+                                    <td>{{base_mean_room_data[key] | round(1)}}</td>
+                                    <td>{{base_worst_room_data[key] | round(1)}}</td>
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -494,7 +494,7 @@
                                 {% set infected = simulation.get_infected() %}
                                     <tr id="trAlternativeScenario">
                                     <td>{{infected.person_name}} {{infected.id}}</td>
-                                    <td>{{ expected_cases.total_cases | round(2)}}</td>
+                                    <td>{{ expected_cases.total_cases | round(1)}}</td>
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -545,8 +545,8 @@
                                 {% for key, item in alternative1_mean_room_data.items() %}
                                     <tr id="trAlternativeScenario">
                                     <td>{{key}}</td>
-                                    <td>{{alternative1_mean_room_data[key] | round(2)}}</td>
-                                    <td>{{alternative1_worst_room_data[key] | round(2)}}</td>
+                                    <td>{{alternative1_mean_room_data[key] | round(1)}}</td>
+                                    <td>{{alternative1_worst_room_data[key] | round(1)}}</td>
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -574,7 +574,7 @@
                                 {% set infected = simulation.get_infected() %}
                                     <tr id="trAlternativeScenario">
                                     <td>{{infected.person_name}} {{infected.id}}</td>
-                                    <td>{{ expected_cases.total_cases | round(2)}}</td>
+                                    <td>{{ expected_cases.total_cases | round(1)}}</td>
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -625,8 +625,8 @@
                                 {% for key, item in alternative2_mean_room_data.items() %}
                                     <tr id="trAlternativeScenario">
                                     <td>{{key}}</td>
-                                    <td>{{alternative2_mean_room_data[key] | round(2)}}</td>
-                                    <td>{{alternative2_worst_room_data[key] | round(2)}}</td>
+                                    <td>{{alternative2_mean_room_data[key] | round(1)}}</td>
+                                    <td>{{alternative2_worst_room_data[key] | round(1)}}</td>
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -654,7 +654,7 @@
                                 {% set infected = simulation.get_infected() %}
                                     <tr id="trAlternativeScenario">
                                     <td>{{infected.person_name}} {{infected.id}}</td>
-                                    <td>{{ expected_cases.total_cases | round(2)}}</td>
+                                    <td>{{ expected_cases.total_cases | round(1)}}</td>
                                 {% endfor %}
                                 </tbody>
                             </table>

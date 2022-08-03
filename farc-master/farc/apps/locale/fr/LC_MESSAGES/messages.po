@@ -2354,7 +2354,7 @@ msgstr "Nouvel évènement"
 
 #: templates/multi_room_form.html.j2:683
 msgid "Event description (optional) :"
-msgstr ""
+msgstr "Description de l'évènement (optionel)"
 
 #: templates/multi_room_form.html.j2:693
 msgid "Event location :"
