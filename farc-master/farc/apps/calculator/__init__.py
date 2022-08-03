@@ -178,7 +178,7 @@ class ConcentrationModel(BaseRequestHandler):
                     template_environment = self.settings["template_environment"]
                     template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
                     _ = tornado.locale.get(self.locale.code).translate
-                    locale_code = tornado.locale.get(language )
+                    locale_code = tornado.locale.get(self.locale.code)
                 else :
                     template_environment = self.settings["template_environment"]
                     template_environment.globals['_']=tornado.locale.get(language ).translate
@@ -193,7 +193,7 @@ class ConcentrationModel(BaseRequestHandler):
                     start = datetime.datetime.now()
 
                 try:
-                    form = model_generator.FormData.from_dict(requested_model_config, tornado.locale.get(self.locale.code))
+                    form = model_generator.FormData.from_dict(requested_model_config, locale_code)
                 except Exception as err:
                     if self.settings.get("debug", False):
                         import traceback
