@@ -28,9 +28,6 @@ tornado.locale.load_gettext_translations(path , 'messages')
 locale = tornado.locale.get()
 _ = locale.translate
 
-@dataclass
-class Building:
-    name:str
 
 @dataclass
 class Ventilation:
@@ -346,10 +343,7 @@ class Room(RoomType):
     concentration_models: np.ndarray = np.array([])
     virus_concentration: models._VectorisedFloat = 0.
     cumulative_exposure: models._VectorisedFloat = 0.
-    
 
-    def set_building(self, building : Building):
-        self.building = building
 
     def get_occupants(self, simulation):
         occupants = np.array([])
