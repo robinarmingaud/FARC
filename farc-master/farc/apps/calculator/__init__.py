@@ -40,40 +40,48 @@ password = os.environ.get("db_psswd")
 
 class BaseRequestHandler(RequestHandler):
     async def prepare(self):
-        connection = database.connect(
-        user=username,
-        password=password,
-        host="fl-ubu-212.flow-r.fr",
-        database="flow_r")
-        cursor = connection.cursor()
-        template_environment = self.settings["template_environment"]
-        template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
-        _ = tornado.locale.get(self.locale.code).translate
-        """Called at the beginning of a request before  `get`/`post`/etc."""
-    
-        # Read the secure cookie which exists if we are in an authenticated
-        # context (though not if the farc webservice is running standalone).
-        token_browser = self.get_cookie('USER_TOKEN') or 'null'
+        if self.settings.get("no_auth", True) :
+            self.current_user = AuthenticatedUser(
+                        username="debug",
+                        email="debug@debug",
+                        fullname="debug",
+                        farc_expert=True,
+                        )
+        else :
+            connection = database.connect(
+            user=username,
+            password=password,
+            host="fl-ubu-212.flow-r.fr",
+            database="flow_r")
+            cursor = connection.cursor()
+            template_environment = self.settings["template_environment"]
+            template_environment.globals['_']=tornado.locale.get(self.locale.code).translate
+            _ = tornado.locale.get(self.locale.code).translate
+            """Called at the beginning of a request before  `get`/`post`/etc."""
+        
+            # Read the secure cookie which exists if we are in an authenticated
+            # context (though not if the farc webservice is running standalone).
+            token_browser = self.get_cookie('USER_TOKEN') or 'null'
 
-        try : 
-            cursor.execute("SELECT prenom, email, nom, farc_exp  FROM utilisateurs WHERE token='"+token_browser+"' LIMIT 1")
-            current_user = cursor.fetchone()
-            if current_user :
-                    print('connect to '+current_user[0]+' '+current_user[2])
-                    self.current_user = AuthenticatedUser(
-                    username=current_user[0],
-                    email=current_user[1],
-                    fullname=current_user[2],
-                    farc_expert=current_user[3],
-                    )
-            else :
+            try : 
+                cursor.execute("SELECT prenom, email, nom, farc_exp  FROM utilisateurs WHERE token='"+token_browser+"' LIMIT 1")
+                current_user = cursor.fetchone()
+                if current_user :
+                        print('connect to '+current_user[0]+' '+current_user[2])
+                        self.current_user = AuthenticatedUser(
+                        username=current_user[0],
+                        email=current_user[1],
+                        fullname=current_user[2],
+                        farc_expert=current_user[3],
+                        )
+                else :
+                    self.current_user = AnonymousUser()
+                
+            except database.Error as e:
+                print(f"Error retrieving entry from database: {e}")
                 self.current_user = AnonymousUser()
-            
-        except database.Error as e:
-            print(f"Error retrieving entry from database: {e}")
-            self.current_user = AnonymousUser()
 
-        connection.close()
+            connection.close()
 
         language = self.get_cookie('language') or 'null'
         if language == "null" : 
@@ -561,6 +569,7 @@ class ReadmeHandler(BaseRequestHandler):
 
 
 def make_app(
+        no_auth : bool = False,
         debug: bool = False,
         calculator_prefix: str = '/calculator',
         multi_calculator_prefix : str = '/calculator/multi_room',
@@ -601,6 +610,7 @@ def make_app(
     return Application(
         urls,
         debug=debug,
+        no_auth=no_auth,
         calculator_prefix=calculator_prefix,
         multi_calculator_prefix = multi_calculator_prefix,
         template_environment=template_environment,

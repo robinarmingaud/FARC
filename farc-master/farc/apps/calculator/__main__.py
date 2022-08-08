@@ -26,6 +26,11 @@ def configure_parser(parser) -> argparse.ArgumentParser:
         help="The port to listen on",
         default="8080"
     )
+    parser.add_argument(
+        "--no-auth",
+        help="Disable authentication",
+        default=False
+    )
     return parser
 
 
@@ -36,7 +41,7 @@ def main():
     if theme_dir is not None:
         theme_dir = Path(theme_dir).absolute()
         assert theme_dir.exists()
-    app = make_app(debug=args.no_debug, calculator_prefix=args.prefix, theme_dir=theme_dir)
+    app = make_app(debug=args.no_debug, no_auth = args.no_auth ,calculator_prefix=args.prefix, theme_dir=theme_dir)
     app.listen(args.port)
     IOLoop.instance().start()
 
