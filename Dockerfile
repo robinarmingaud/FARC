@@ -3,6 +3,7 @@ FROM ubuntu:20.04
 MAINTAINER Olivier <olivier.perraud@ingenica.fr>
 
 ENV python=python3
+ENV TZ=Europe/Paris
 # Update the container's packages
 RUN apt update; apt dist-upgrade -y
 
