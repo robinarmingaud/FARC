@@ -1,8 +1,10 @@
-FROM ubuntu:21.10
+FROM ubuntu:20.04
 
 MAINTAINER Olivier <olivier.perraud@ingenica.fr>
 
-ENV python=python3.9   
+ENV python=python3
+ENV TZ=Europe/Paris
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Update the container's packages
 RUN apt update; apt dist-upgrade -y
 
