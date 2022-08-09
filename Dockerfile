@@ -4,7 +4,7 @@ MAINTAINER Olivier <olivier.perraud@ingenica.fr>
 
 ENV python=python3.9   
 # Update the container's packages
-RUN apt-get install software-properties-common -y; apt update; apt dist-upgrade -y
+RUN apt-get update -y; apt-get install software-properties-common -y; apt update; apt dist-upgrade -y
 
 RUN apt install $python -y
 RUN apt install python3-pip -y
